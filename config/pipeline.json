@@ -1,0 +1,43 @@
+{
+  "daily_policy": {
+    "latest_trade_cutoff_hour_local": 18,
+    "default_repair_window_trade_days": 10,
+    "require_confirmation_beyond_trade_days": 10,
+    "northbound_default": "skip_optional",
+    "validation_default": "light"
+  },
+  "history_policy": {
+    "allowed_in_base_build": true,
+    "require_explicit_confirmation": true,
+    "triggers": [
+      "initial_base_build",
+      "schema_change",
+      "formula_change",
+      "adjustment_factor_backfill",
+      "large_source_revision",
+      "validation_recovery"
+    ]
+  },
+  "default_index_pool": [
+    {"index_code": "000001.SH", "name": "上证指数", "role": "market_benchmark"},
+    {"index_code": "000016.SH", "name": "上证50", "role": "large_cap"},
+    {"index_code": "000688.SH", "name": "科创50", "role": "star_market"},
+    {"index_code": "000300.SH", "name": "沪深300", "role": "default_beta"},
+    {"index_code": "000906.SH", "name": "中证800", "role": "large_mid_cap"},
+    {"index_code": "000903.SH", "name": "中证100", "role": "large_cap_core"},
+    {"index_code": "000985.CSI", "name": "中证全指", "role": "all_a_share_broad"},
+    {"index_code": "000905.SH", "name": "中证500", "role": "mid_cap"},
+    {"index_code": "000852.SH", "name": "中证1000", "role": "small_cap"},
+    {"index_code": "399001.SZ", "name": "深证成指", "role": "szse_benchmark"},
+    {"index_code": "399006.SZ", "name": "创业板指", "role": "chinext"},
+    {"index_code": "399317.SZ", "name": "国证A指", "role": "all_a_share_broad"},
+    {"index_code": "399311.SZ", "name": "国证1000", "role": "small_cap_alt"},
+    {"index_code": "399673.SZ", "name": "创业板50", "role": "chinext_core"}
+  ],
+  "stock_scope": {
+    "include_exchanges": ["SSE", "SZSE", "BSE"],
+    "include_markets": ["主板", "创业板", "科创板", "北交所"],
+    "include_list_status": ["L", "D", "P"],
+    "daily_update_status": ["L"]
+  }
+}

@@ -1,0 +1,6 @@
+﻿check_name,duplicate_groups
+stock_daily.pk_duplicates,0
+stock_daily_basic.pk_duplicates,0
+stock_adj_factor.pk_duplicates,0
+financial_income_raw.pk_duplicates,0
+financial_indicator_raw.pk_duplicates,0

@@ -1,0 +1,50 @@
+{
+  "project": "Stock_Maintainance",
+  "source_priority": ["tushare", "local_derived"],
+  "tushare": {
+    "token_env": "TUSHARE_TOKEN",
+    "rate_limit_policy": {
+      "default_sleep_seconds": 0.35,
+      "financial_sleep_seconds": 0.4,
+      "max_retries": 3
+    },
+    "apis": [
+      {"name": "stock_basic", "domain": "security_master", "phase": "P0"},
+      {"name": "trade_cal", "domain": "calendar", "phase": "P0"},
+      {"name": "daily", "domain": "trading", "phase": "P0"},
+      {"name": "daily_basic", "domain": "valuation_daily", "phase": "P0"},
+      {"name": "adj_factor", "domain": "adjustment", "phase": "P0"},
+      {"name": "stk_limit", "domain": "limit_price", "phase": "P0"},
+      {"name": "index_basic", "domain": "index", "phase": "P0"},
+      {"name": "index_daily", "domain": "index", "phase": "P0"},
+      {"name": "index_weight", "domain": "index", "phase": "P0"},
+      {"name": "income", "domain": "financial_statement", "phase": "P0"},
+      {"name": "balancesheet", "domain": "financial_statement", "phase": "P0"},
+      {"name": "cashflow", "domain": "financial_statement", "phase": "P0"},
+      {"name": "fina_indicator", "domain": "financial_indicator", "phase": "P0"},
+      {"name": "moneyflow", "domain": "capital_flow", "phase": "P1"},
+      {"name": "margin_detail", "domain": "margin", "phase": "P1"},
+      {"name": "moneyflow_hsgt", "domain": "northbound", "phase": "P1"},
+      {"name": "hk_hold", "domain": "northbound", "phase": "P1"},
+      {"name": "top_list", "domain": "top_list", "phase": "P1"},
+      {"name": "top_inst", "domain": "top_list", "phase": "P1"},
+      {"name": "index_classify", "domain": "sector", "phase": "P1"},
+      {"name": "index_member_all", "domain": "sector", "phase": "P1"},
+      {"name": "concept", "domain": "concept", "phase": "P1"},
+      {"name": "concept_detail", "domain": "concept", "phase": "P1"},
+      {"name": "forecast", "domain": "financial_detail", "phase": "P1"},
+      {"name": "express", "domain": "financial_detail", "phase": "P1"},
+      {"name": "dividend", "domain": "financial_detail", "phase": "P1"},
+      {"name": "fina_audit", "domain": "financial_detail", "phase": "P1"},
+      {"name": "fina_mainbz", "domain": "financial_detail", "phase": "P1"},
+      {"name": "disclosure_date", "domain": "financial_detail", "phase": "P1"},
+      {"name": "stk_holdernumber", "domain": "financial_detail", "phase": "P1"},
+      {"name": "top10_holders", "domain": "financial_detail", "phase": "P1"},
+      {"name": "top10_floatholders", "domain": "financial_detail", "phase": "P1"},
+      {"name": "pledge_stat", "domain": "financial_detail", "phase": "P1"},
+      {"name": "pledge_detail", "domain": "financial_detail", "phase": "P1"},
+      {"name": "repurchase", "domain": "financial_detail", "phase": "P1"},
+      {"name": "share_float", "domain": "financial_detail", "phase": "P1"}
+    ]
+  }
+}

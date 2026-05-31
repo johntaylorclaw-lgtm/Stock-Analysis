@@ -1,0 +1,17 @@
+.env
+.venv/
+.venv-wsl/
+.pytest_cache/
+.uv-cache/
+node_modules/
+node_modules
+data/
+logs/
+outputs/
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.db

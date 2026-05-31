@@ -1,0 +1,9 @@
+﻿check_name,issue_count
+stock_daily.close_null,0
+stock_daily.non_positive_close,0
+stock_adj_factor.null_factor,0
+stock_adj_factor.non_positive_factor,0
+financial_income_raw.null_effective_date,0
+financial_balance_raw.null_effective_date,0
+financial_cashflow_raw.null_effective_date,0
+financial_indicator_raw.null_ann_date,0
