@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-06-07T15:51:05",
+  "as_of_date": "2026-06-07",
+  "latest_trade_date": "2026-06-05",
+  "reference_start_date": "2026-04-08",
+  "reference_end_date": "2026-06-05",
+  "compare_start_date": "2026-05-25",
+  "compare_end_date": "2026-06-05",
+  "reference_days": 40,
+  "compare_days": 10,
+  "snapshot_prefix": "audit_tmp_phase4_full_",
+  "dry_run": true,
+  "create_snapshot_from_current": false,
+  "snapshot_counts": null,
+  "missing_snapshot_tables": [],
+  "compare_report": null,
+  "summary": {
+    "status": "pass",
+    "table_count": 24,
+    "blocked_reason": ""
+  }
+}

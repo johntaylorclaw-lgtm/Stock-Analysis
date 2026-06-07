@@ -1,0 +1,70 @@
+{
+  "started_at": "2026-06-07T09:56:41",
+  "finished_at": "2026-06-07T09:57:39",
+  "elapsed_seconds": 60.131,
+  "plan": {
+    "mode": "daily",
+    "requested_modules": [
+      "corporate_action"
+    ],
+    "execution_order": [
+      "financial_asof",
+      "corporate_action"
+    ],
+    "write_start_date": "2026-05-27",
+    "write_end_date": "2026-06-05",
+    "requires_confirmation": false,
+    "confirmation_reason": "",
+    "module_plans": [
+      {
+        "module": "financial_asof",
+        "variables": 27,
+        "tables": [
+          "derived_financial_asof"
+        ],
+        "read_start_date": "2025-04-28",
+        "write_start_date": "2026-05-27",
+        "write_end_date": "2026-06-05",
+        "read_window": 260,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": []
+      },
+      {
+        "module": "corporate_action",
+        "variables": 150,
+        "tables": [
+          "corporate_action_event_timeline_v",
+          "derived_corporate_action",
+          "derived_corporate_action_full_v"
+        ],
+        "read_start_date": "2021-03-12",
+        "write_start_date": "2026-05-27",
+        "write_end_date": "2026-06-05",
+        "read_window": 1260,
+        "write_window": 10,
+        "max_min_history": 1250,
+        "dependencies": [
+          "financial_asof"
+        ]
+      }
+    ]
+  },
+  "results": [
+    {
+      "module": "financial_asof",
+      "status": "success",
+      "rows_written": 44069,
+      "message": "rebuilt derived_financial_asof",
+      "elapsed_seconds": 4.992
+    },
+    {
+      "module": "corporate_action",
+      "status": "success",
+      "rows_written": 44069,
+      "message": "rebuilt derived_corporate_action via phase3 backend",
+      "elapsed_seconds": 52.969
+    }
+  ],
+  "cache_results": []
+}

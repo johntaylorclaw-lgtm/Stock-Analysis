@@ -1,0 +1,610 @@
+{
+  "generated_at": "2026-06-07T15:38:20",
+  "as_of_date": "2026-06-07",
+  "latest_trade_date": "2026-06-05",
+  "anchor_data_date": "2026-06-05",
+  "max_auto_trade_days": 10,
+  "validation_days": 1,
+  "validation_dates": [
+    "2026-06-05"
+  ],
+  "incremental_dates": [],
+  "summary": {
+    "status": "pass",
+    "requires_confirmation": false,
+    "incremental_trade_day_count": 0,
+    "table_count": 39,
+    "missing_table_count": 0,
+    "coverage_issue_table_count": 0,
+    "duplicate_issue_table_count": 0,
+    "stock_level_row_count_issue_table_count": 0,
+    "problem_tables": []
+  },
+  "tables": [
+    {
+      "table": "stock_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_daily_basic",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_adj_factor",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5526
+      },
+      "latest_target_rows": 5526,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_limit_price",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 7634
+      },
+      "latest_target_rows": 7634,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_moneyflow_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5197
+      },
+      "latest_target_rows": 5197,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "margin_detail",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 1981
+      },
+      "latest_target_rows": 1981,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "northbound_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 1
+      },
+      "latest_target_rows": 1,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "northbound_holding",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 936
+      },
+      "latest_target_rows": 936,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "top_list_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 83
+      },
+      "latest_target_rows": 83,
+      "missing_target_dates": [],
+      "duplicate_key_count": null,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "top_inst_detail",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 786
+      },
+      "latest_target_rows": 786,
+      "missing_target_dates": [],
+      "duplicate_key_count": null,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "index_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 14
+      },
+      "latest_target_rows": 14,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "index_weight",
+      "group": "base_periodic",
+      "date_column": "trade_date",
+      "max_date": "2026-06-01",
+      "rows_by_target_date": {
+        "2026-06-05": 0
+      },
+      "latest_target_rows": 0,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_daily_spine",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_price_technical",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_volume_liquidity",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_return_momentum",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_volatility_risk",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_trading_constraint",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_valuation_size",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_valuation_percentile_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_financial_asof",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_financial_quality",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_financial_growth",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_capital_flow",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_northbound_flow_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_capital_flow_event_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_sector_daily_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 162
+      },
+      "latest_target_rows": 162,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_concept_daily_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 873
+      },
+      "latest_target_rows": 873,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_sector_concept_context",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_concept_stock_context_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_index_daily_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 14
+      },
+      "latest_target_rows": 14,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_index_membership_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_index_market_context",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_cross_sectional",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_corporate_action",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_composite_state",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_features_core",
+      "group": "feature_view",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_features_plus",
+      "group": "feature_view",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_features_full",
+      "group": "feature_view",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-05": 5514
+      },
+      "latest_target_rows": 5514,
+      "missing_target_dates": [],
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    }
+  ]
+}

@@ -49,10 +49,13 @@ def validate_schema_registry(registry: dict) -> list[str]:
 def validate_variable_registry(registry: dict) -> list[str]:
     errors: list[str] = []
     variables = registry.get("variables", [])
-    names = [item.get("name") for item in variables]
-    for name, count in Counter(names).items():
+    qualified_names = [(item.get("table"), item.get("name")) for item in variables]
+    for (table, name), count in Counter(qualified_names).items():
         if count > 1:
-            errors.append(f"duplicate variable: {name}")
+            if table:
+                errors.append(f"duplicate variable in {table}: {name}")
+            else:
+                errors.append(f"duplicate variable: {name}")
     for item in variables:
         missing = sorted(REQUIRED_VARIABLE_KEYS - set(item))
         if missing:

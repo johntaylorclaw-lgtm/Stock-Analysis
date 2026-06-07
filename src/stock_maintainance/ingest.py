@@ -3,6 +3,7 @@ from __future__ import annotations
 from calendar import monthrange
 from datetime import datetime
 from hashlib import sha1
+import json
 from typing import Any
 
 import pandas as pd
@@ -16,6 +17,7 @@ from .database import (
     upsert_dataframe,
 )
 from .config import load_pipeline
+from .paths import REPORTS_DIR
 from .transform import add_payload_json, add_updated_at, normalize_dates, rename_columns
 from .tushare_source import TushareClient
 
@@ -454,6 +456,29 @@ def sync_adj_factor_for_stock(ts_code: str, start_date: str = "20060101", end_da
     return {"stock_adj_factor": rows}
 
 
+def sync_adj_factor_for_date(trade_date: str) -> dict[str, int]:
+    client = TushareClient()
+    raw = client.call("adj_factor", trade_date=trade_date)
+    raw = normalize_dates(raw, ["trade_date"])
+    raw = add_updated_at(raw)
+    with connect() as con:
+        init_database(con)
+        rows = upsert_dataframe(con, "stock_adj_factor", raw, ["ts_code", "trade_date"])
+        record_task_state(con, "sync_adj_factor_date", trade_date, "success", row_count=rows)
+    return {"stock_adj_factor": rows}
+
+
+def sync_adj_factor_range(start_date: str, end_date: str, limit: int | None = None) -> dict[str, int]:
+    dates = open_trade_dates(start_date, end_date)
+    if limit is not None:
+        dates = dates[:limit]
+    totals = {"stock_adj_factor": 0, "trade_dates": len(dates)}
+    for trade_date in dates:
+        result = sync_adj_factor_for_date(trade_date)
+        totals["stock_adj_factor"] += result["stock_adj_factor"]
+    return totals
+
+
 def stock_codes(include_status: list[str] | None = None) -> list[str]:
     statuses = include_status or ["L", "D", "P"]
     placeholders = ", ".join(["?"] * len(statuses))
@@ -694,6 +719,28 @@ def sync_financial_sample(ts_code: str, start_date: str = "20240101", end_date: 
                     "operate_profit": "operating_profit",
                     "n_income": "net_profit",
                     "n_income_attr_p": "net_profit_attr_parent",
+                    "biz_tax_surchg": "business_tax_surcharge",
+                    "oper_exp": "operating_expense",
+                    "assets_impair_loss": "asset_impairment_loss",
+                    "invest_income": "investment_income",
+                    "ass_invest_income": "associate_investment_income",
+                    "fv_value_chg_gain": "fair_value_change_income",
+                    "forex_gain": "foreign_exchange_gain",
+                    "non_oper_income": "non_operating_income",
+                    "non_oper_exp": "non_operating_expense",
+                    "minority_gain": "minority_profit",
+                    "t_compr_income": "total_comprehensive_income",
+                    "compr_inc_attr_p": "comprehensive_income_parent",
+                    "compr_inc_attr_m_s": "comprehensive_income_minority",
+                    "int_income": "interest_income",
+                    "int_exp": "interest_expense",
+                    "comm_income": "commission_income",
+                    "comm_exp": "commission_expense",
+                    "prem_income": "premium_income",
+                    "prem_earned": "premium_earned",
+                    "insurance_exp": "insurance_expense",
+                    "compens_payout": "compensation_payout",
+                    "undist_profit": "undistributed_profit",
                     "money_cap": "cash_and_equivalents",
                     "accounts_receiv": "accounts_receivable",
                     "total_cur_assets": "current_assets",
@@ -709,6 +756,48 @@ def sync_financial_sample(ts_code: str, start_date: str = "20240101", end_date: 
                     "total_hldr_eqy_inc_min_int": "total_equity",
                     "total_hldr_eqy_exc_min_int": "equity_attr_parent",
                     "minority_int": "minority_interest",
+                    "trad_asset": "trading_financial_assets",
+                    "deriv_assets": "derivative_financial_assets",
+                    "notes_receiv": "notes_receivable",
+                    "accounts_receiv_bill": "accounts_receivable_bill",
+                    "oth_receiv": "other_receivable",
+                    "oth_rcv_total": "total_other_receivable",
+                    "contract_assets": "contract_assets",
+                    "oth_cur_assets": "other_current_assets",
+                    "total_nca": "total_noncurrent_assets",
+                    "lt_eqt_invest": "long_term_equity_investment",
+                    "invest_real_estate": "investment_property",
+                    "fix_assets_total": "fixed_assets_total",
+                    "cip_total": "construction_in_process_total",
+                    "use_right_assets": "right_of_use_assets",
+                    "r_and_d": "development_expenditure",
+                    "lt_amor_exp": "long_term_deferred_expense",
+                    "defer_tax_assets": "deferred_tax_assets",
+                    "oth_nca": "other_noncurrent_assets",
+                    "notes_payable": "notes_payable",
+                    "adv_receipts": "advance_receipts",
+                    "contract_liab": "contract_liabilities",
+                    "payroll_payable": "payroll_payable",
+                    "taxes_payable": "taxes_payable",
+                    "int_payable": "interest_payable",
+                    "div_payable": "dividend_payable",
+                    "oth_payable": "other_payable",
+                    "oth_pay_total": "total_other_payable",
+                    "non_cur_liab_due_1y": "noncurrent_liability_due_1y",
+                    "oth_cur_liab": "other_current_liabilities",
+                    "total_ncl": "total_noncurrent_liabilities",
+                    "lt_payable": "long_term_payable",
+                    "estimated_liab": "estimated_liabilities",
+                    "defer_inc_non_cur_liab": "deferred_income",
+                    "defer_tax_liab": "deferred_tax_liabilities",
+                    "oth_ncl": "other_noncurrent_liabilities",
+                    "total_liab_hldr_eqy": "total_liabilities_and_equity",
+                    "cap_rese": "capital_reserve",
+                    "surplus_rese": "surplus_reserve",
+                    "undistr_porfit": "undistributed_profit",
+                    "treasury_share": "treasury_share",
+                    "oth_comp_income": "other_comprehensive_income",
+                    "special_rese": "special_reserve",
                     "c_fr_sale_sg": "cash_received_from_sales",
                     "c_inf_fr_operate_a": "total_operating_cash_inflow",
                     "c_paid_goods_s": "cash_paid_for_goods",
@@ -725,6 +814,36 @@ def sync_financial_sample(ts_code: str, start_date: str = "20240101", end_date: 
                     "n_incr_cash_cash_equ": "net_increase_in_cash",
                     "c_cash_equ_beg_period": "cash_at_beginning",
                     "c_cash_equ_end_period": "cash_at_end",
+                    "recp_tax_rends": "tax_refund_received",
+                    "c_fr_oth_operate_a": "other_operating_cash_received",
+                    "st_cash_out_act": "total_operating_cash_outflow",
+                    "oth_cash_pay_oper_act": "other_operating_cash_paid",
+                    "c_recp_return_invest": "cash_received_from_investment_withdrawal",
+                    "n_recp_disp_fiolta": "cash_received_from_asset_disposal",
+                    "n_recp_disp_sobu": "cash_received_from_subsidiary_disposal",
+                    "stot_inflows_inv_act": "total_investing_cash_inflow",
+                    "n_disp_subs_oth_biz": "cash_paid_for_subsidiary_acquisition",
+                    "oth_pay_ral_inv_act": "other_investing_cash_paid",
+                    "stot_out_inv_act": "total_investing_cash_outflow",
+                    "c_recp_cap_contrib": "cash_received_from_investors",
+                    "proc_issue_bonds": "cash_received_from_bond_issue",
+                    "oth_cash_recp_ral_fnc_act": "other_financing_cash_received",
+                    "stot_cash_in_fnc_act": "total_financing_cash_inflow",
+                    "stot_cashout_fnc_act": "total_financing_cash_outflow",
+                    "oth_cashpay_ral_fnc_act": "other_financing_cash_paid",
+                    "eff_fx_flu_cash": "fx_effect_on_cash",
+                    "beg_bal_cash": "begin_cash_balance",
+                    "end_bal_cash": "end_cash_balance",
+                    "net_profit": "net_profit_indirect",
+                    "depr_fa_coga_dpba": "asset_depreciation",
+                    "amort_intang_assets": "intangible_asset_amortization",
+                    "lt_amort_deferred_exp": "deferred_expense_amortization",
+                    "finan_exp": "financial_expense_indirect",
+                    "invest_loss": "investment_loss_indirect",
+                    "credit_impa_loss": "credit_impairment_loss_indirect",
+                    "decr_inventories": "inventory_decrease",
+                    "decr_oper_payable": "operating_receivable_decrease",
+                    "incr_oper_payable": "operating_payable_increase",
                 },
             )
             raw = normalize_dates(raw, DATE_COLUMNS)
@@ -782,6 +901,141 @@ def sync_financial_batch(
                 init_database(con)
                 record_task_failure(con, "sync_financial_batch", code, str(exc))
                 record_task_state(con, "sync_financial_batch", code, "failed", checkpoint_value=checkpoint, error_message=str(exc))
+    return totals
+
+
+def _yyyymmdd(value: Any) -> str | None:
+    if value in (None, "") or pd.isna(value):
+        return None
+    return pd.Timestamp(value).strftime("%Y%m%d")
+
+
+def financial_incremental_candidates(start_date: str, end_date: str, *, all_stocks: bool = False) -> list[dict[str, Any]]:
+    if all_stocks:
+        return [{"ts_code": code, "min_report_end_date": None, "candidate_reason": "all_stocks"} for code in stock_codes(["L", "D", "P"])]
+    with connect() as con:
+        init_database(con)
+        rows = con.execute(
+            """
+            SELECT
+                ts_code,
+                min(end_date) AS min_report_end_date,
+                string_agg(DISTINCT reason, ';' ORDER BY reason) AS candidate_reason
+            FROM (
+                SELECT ts_code, end_date, 'ann_date' AS reason
+                FROM financial_disclosure_schedule
+                WHERE ann_date BETWEEN strptime(?, '%Y%m%d') AND strptime(?, '%Y%m%d')
+                UNION ALL
+                SELECT ts_code, end_date, 'actual_date' AS reason
+                FROM financial_disclosure_schedule
+                WHERE actual_date BETWEEN strptime(?, '%Y%m%d') AND strptime(?, '%Y%m%d')
+                UNION ALL
+                SELECT ts_code, end_date, 'modify_date' AS reason
+                FROM financial_disclosure_schedule
+                WHERE modify_date BETWEEN strptime(?, '%Y%m%d') AND strptime(?, '%Y%m%d')
+            )
+            WHERE ts_code IS NOT NULL
+            GROUP BY ts_code
+            ORDER BY ts_code
+            """,
+            [start_date, end_date, start_date, end_date, start_date, end_date],
+        ).fetchall()
+    return [
+        {
+            "ts_code": row[0],
+            "min_report_end_date": _yyyymmdd(row[1]),
+            "candidate_reason": row[2],
+        }
+        for row in rows
+    ]
+
+
+def sync_financial_incremental_range(
+    start_date: str,
+    end_date: str,
+    *,
+    report_start_date: str | None = None,
+    report_end_date: str | None = None,
+    limit: int | None = None,
+    resume: bool = True,
+    all_stocks: bool = False,
+) -> dict[str, Any]:
+    disclosure_result = sync_disclosure_schedule(start_date=start_date, end_date=end_date)
+    candidates = financial_incremental_candidates(start_date, end_date, all_stocks=all_stocks)
+    if limit is not None:
+        candidates = candidates[:limit]
+    totals: dict[str, Any] = {
+        "financial_income_raw": 0,
+        "financial_balance_raw": 0,
+        "financial_cashflow_raw": 0,
+        "financial_indicator_raw": 0,
+        "disclosure_rows": disclosure_result.get("financial_disclosure_schedule", 0),
+        "candidate_mode": "all_stocks" if all_stocks else "disclosure_schedule",
+        "candidates_seen": len(candidates),
+        "stocks_done": 0,
+        "stocks_failed": 0,
+        "stocks_skipped": 0,
+        "failures": [],
+    }
+    started_at = datetime.now().isoformat(timespec="seconds")
+    for candidate in candidates:
+        code = candidate["ts_code"]
+        candidate_report_start = report_start_date or candidate.get("min_report_end_date") or start_date
+        task_key = f"{code}:{start_date}:{end_date}:{candidate_report_start}:{report_end_date or 'latest'}"
+        if resume:
+            with connect() as con:
+                state = fetch_task_state(con, "sync_financial_incremental_range", task_key)
+            if state and state.get("status") == "success":
+                totals["stocks_skipped"] += 1
+                continue
+        try:
+            result = sync_financial_sample(code, start_date=candidate_report_start, end_date=report_end_date)
+            for key in ["financial_income_raw", "financial_balance_raw", "financial_cashflow_raw", "financial_indicator_raw"]:
+                totals[key] += result.get(key, 0)
+            totals["stocks_done"] += 1
+            with connect() as con:
+                init_database(con)
+                record_task_state(
+                    con,
+                    "sync_financial_incremental_range",
+                    task_key,
+                    "success",
+                    checkpoint_value=end_date,
+                    row_count=sum(result.values()),
+                )
+        except Exception as exc:  # noqa: BLE001 - incremental jobs must retain failure detail.
+            totals["stocks_failed"] += 1
+            totals["failures"].append({"ts_code": code, "error": str(exc)})
+            with connect() as con:
+                init_database(con)
+                record_task_failure(con, "sync_financial_incremental_range", code, str(exc))
+                record_task_state(
+                    con,
+                    "sync_financial_incremental_range",
+                    task_key,
+                    "failed",
+                    checkpoint_value=end_date,
+                    error_message=str(exc),
+                )
+    payload = {
+        "started_at": started_at,
+        "finished_at": datetime.now().isoformat(timespec="seconds"),
+        "start_date": start_date,
+        "end_date": end_date,
+        "report_start_date": report_start_date,
+        "report_end_date": report_end_date,
+        "limit": limit,
+        "resume": resume,
+        "all_stocks": all_stocks,
+        "candidates": candidates[:200],
+        "candidate_count": len(candidates),
+        "summary": totals,
+    }
+    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    (REPORTS_DIR / "phase4_financial_incremental_run.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     return totals
 
 

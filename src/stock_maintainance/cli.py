@@ -10,15 +10,26 @@ from .database import DB_PATH, connect, init_database, refresh_source_api_status
 from .docs import check_docs, generate_docs, render_schema_summary
 from .features.build import build_features
 from .features.planner import build_feature_plan, render_plan_markdown
+from .phase4_audit import run_phase4_audit
+from .incremental_compare import compare_incremental_window
+from .daily_validate import validate_daily
+from .daily_light import run_daily_light
+from .weekly_full import run_weekly_full
+from .dictionary import refresh_dictionary
+from .run_summary import summarize_run
+from .export import export_parquet
+from .sample_stock import sample_stock
 from .ingest import (
     default_index_codes,
     smoke_tushare,
     sync_adj_factor_batch,
+    sync_adj_factor_range,
     sync_adj_factor_for_stock,
     sync_daily_for_date,
     sync_daily_range,
     sync_financial_sample,
     sync_financial_batch,
+    sync_financial_incremental_range,
     sync_financial_events_batch,
     FINANCIAL_EVENT_APIS,
     sync_concepts,
@@ -85,7 +96,7 @@ def cmd_docs_check(_: argparse.Namespace) -> int:
         for diff in diffs:
             print(diff)
         return 1
-    print("generated docs are up to date")
+    print("docs are up to date")
     return 0
 
 
@@ -131,6 +142,117 @@ def cmd_audit_quality(_: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_phase4_audit(args: argparse.Namespace) -> int:
+    paths = run_phase4_audit(end_date=args.end_date, output_prefix=args.output_prefix)
+    for path in paths.values():
+        print(path)
+    return 0
+
+
+def cmd_compare_incremental_window(args: argparse.Namespace) -> int:
+    result = compare_incremental_window(
+        start_date=args.start_date,
+        end_date=args.end_date,
+        tables=args.table,
+        snapshot_prefix=args.snapshot_prefix,
+        output_prefix=args.output_prefix,
+        abs_tol=args.abs_tol,
+        rel_tol=args.rel_tol,
+    )
+    print(json.dumps({"json": str(result.json_path), "markdown": str(result.markdown_path), **result.report["summary"]}, ensure_ascii=False, indent=2))
+    return 0 if result.passed or not args.fail_on_diff else 1
+
+
+def cmd_validate_daily(args: argparse.Namespace) -> int:
+    result = validate_daily(
+        as_of_date=args.as_of_date,
+        max_auto_trade_days=args.max_auto_trade_days,
+        validation_days=args.validation_days,
+        tables=args.table,
+        output_prefix=args.output_prefix,
+    )
+    print(json.dumps({"json": str(result.json_path), "markdown": str(result.markdown_path), **result.report["summary"]}, ensure_ascii=False, indent=2))
+    return 0 if result.passed or not args.fail_on_warning else 1
+
+
+def cmd_sample_stock(args: argparse.Namespace) -> int:
+    result = sample_stock(
+        ts_code=args.ts_code,
+        start_date=args.start_date,
+        end_date=args.end_date,
+        row_limit=args.rows,
+        output_prefix=args.output_prefix,
+        build_excel=not args.json_only,
+    )
+    print(
+        json.dumps(
+            {
+                "json": str(result.json_path),
+                "xlsx": str(result.xlsx_path) if result.xlsx_path else None,
+                "ts_code": result.payload["stock"]["ts_code"],
+                "base_table_count": len(result.payload["base_tables"]),
+                "derived_table_count": len(result.payload["derived_tables"]),
+                "quality_table_count": len(result.payload["quality_report"]),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+    return 0
+
+
+def cmd_daily_light(args: argparse.Namespace) -> int:
+    result = run_daily_light(
+        as_of_date=args.as_of_date,
+        max_auto_trade_days=args.max_auto_trade_days,
+        validation_days=args.validation_days,
+        dry_run=args.dry_run,
+        allow_confirmed_history=args.allow_confirmed_history,
+        include_financial=args.include_financial,
+        include_index_weight=args.include_index_weight,
+        output_prefix=args.output_prefix,
+    )
+    print(json.dumps({"json": str(result.json_path), "markdown": str(result.markdown_path), **result.report["summary"]}, ensure_ascii=False, indent=2))
+    return 0 if result.passed else 2
+
+
+def cmd_weekly_full(args: argparse.Namespace) -> int:
+    result = run_weekly_full(
+        as_of_date=args.as_of_date,
+        reference_days=args.reference_days,
+        compare_days=args.compare_days,
+        tables=args.table,
+        snapshot_prefix=args.snapshot_prefix,
+        output_prefix=args.output_prefix,
+        dry_run=args.dry_run,
+        create_snapshot_from_current=args.create_snapshot_from_current,
+    )
+    print(json.dumps({"json": str(result.json_path), "markdown": str(result.markdown_path), **result.report["summary"]}, ensure_ascii=False, indent=2))
+    return 0 if result.passed else 2
+
+
+def cmd_refresh_dictionary(args: argparse.Namespace) -> int:
+    result = refresh_dictionary(
+        build_excel=not args.skip_excel,
+        skip_feature_schema_sync=args.skip_feature_schema_sync,
+        output_prefix=args.output_prefix,
+    )
+    print(json.dumps({"json": str(result.json_path), **result.report["summary"]}, ensure_ascii=False, indent=2))
+    return 0 if result.passed else 1
+
+
+def cmd_summarize_run(args: argparse.Namespace) -> int:
+    result = summarize_run(
+        mode=args.mode,
+        run_id=args.run_id,
+        as_of_date=args.as_of_date,
+        phase=args.phase,
+        output_prefix=args.output_prefix,
+    )
+    print(json.dumps({"markdown": str(result.markdown_path), **result.report["summary"]}, ensure_ascii=False, indent=2))
+    return 0 if result.passed else 2
+
+
 def cmd_plan_features(args: argparse.Namespace) -> int:
     plan = build_feature_plan(
         load_variable_registry(),
@@ -162,11 +284,25 @@ def cmd_build_features(args: argparse.Namespace) -> int:
             mode=args.mode,
             dry_run=args.dry_run,
             allow_confirmed_history=args.allow_confirmed_history,
+            run_cache_steps=not args.skip_cache_steps,
         )
     except ValueError as exc:
         print(json.dumps({"status": "blocked", "reason": str(exc)}, ensure_ascii=False, indent=2))
         return 2
     print(json.dumps(result, ensure_ascii=False, indent=2))
+    return 0
+
+
+def cmd_export_parquet(args: argparse.Namespace) -> int:
+    result = export_parquet(
+        source=args.source,
+        dataset=args.dataset,
+        start_date=args.start_date,
+        end_date=args.end_date,
+        columns=args.column,
+        dry_run=args.dry_run,
+    )
+    print(json.dumps(result.to_dict(), ensure_ascii=False, indent=2))
     return 0
 
 
@@ -259,6 +395,12 @@ def cmd_sync_adj_factor_batch(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_sync_adj_factor_range(args: argparse.Namespace) -> int:
+    result = sync_adj_factor_range(args.start_date, args.end_date, limit=args.limit)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    return 0
+
+
 def cmd_sync_index_daily(args: argparse.Namespace) -> int:
     codes = args.index_code or default_index_codes()
     result = sync_index_daily_range(args.start_date, args.end_date, index_codes=codes)
@@ -314,6 +456,20 @@ def cmd_sync_financial_batch(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_sync_financial_incremental_range(args: argparse.Namespace) -> int:
+    result = sync_financial_incremental_range(
+        args.start_date,
+        args.end_date,
+        report_start_date=args.report_start_date,
+        report_end_date=args.report_end_date,
+        limit=args.limit,
+        resume=not args.no_resume,
+        all_stocks=args.all_stocks,
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    return 0
+
+
 def cmd_sync_financial_events_batch(args: argparse.Namespace) -> int:
     apis = args.api or FINANCIAL_EVENT_APIS
     result = sync_financial_events_batch(
@@ -342,8 +498,17 @@ def build_parser() -> argparse.ArgumentParser:
         "refresh-source-status": cmd_refresh_source_status,
         "create-views": cmd_create_views,
         "audit-quality": cmd_audit_quality,
+        "phase4-audit": cmd_phase4_audit,
+        "compare-incremental-window": cmd_compare_incremental_window,
+        "validate-daily": cmd_validate_daily,
+        "daily-light": cmd_daily_light,
+        "weekly-full": cmd_weekly_full,
+        "refresh-dictionary": cmd_refresh_dictionary,
+        "summarize-run": cmd_summarize_run,
+        "sample-stock": cmd_sample_stock,
         "plan-features": cmd_plan_features,
         "build-features": cmd_build_features,
+        "export-parquet": cmd_export_parquet,
         "smoke-tushare": cmd_smoke_tushare,
     }
     for name, func in commands.items():
@@ -363,6 +528,68 @@ def build_parser() -> argparse.ArgumentParser:
             child.add_argument("--mode", choices=["daily", "history"], default="daily")
             child.add_argument("--dry-run", action="store_true")
             child.add_argument("--allow-confirmed-history", action="store_true")
+            child.add_argument("--skip-cache-steps", action="store_true")
+        if name == "phase4-audit":
+            child.add_argument("--end-date")
+            child.add_argument("--output-prefix", default="phase4_audit_report")
+        if name == "compare-incremental-window":
+            child.add_argument("--start-date", required=True)
+            child.add_argument("--end-date", required=True)
+            child.add_argument("--table", action="append")
+            child.add_argument("--snapshot-prefix", default="audit_tmp_phase4_full_")
+            child.add_argument("--output-prefix", default="incremental_window_compare")
+            child.add_argument("--abs-tol", type=float, default=1e-6)
+            child.add_argument("--rel-tol", type=float, default=1e-12)
+            child.add_argument("--fail-on-diff", action="store_true")
+        if name == "validate-daily":
+            child.add_argument("--as-of-date")
+            child.add_argument("--max-auto-trade-days", type=int, default=10)
+            child.add_argument("--validation-days", type=int, default=1)
+            child.add_argument("--table", action="append")
+            child.add_argument("--output-prefix", default="validate_daily_report")
+            child.add_argument("--fail-on-warning", action="store_true")
+        if name == "daily-light":
+            child.add_argument("--as-of-date")
+            child.add_argument("--max-auto-trade-days", type=int, default=10)
+            child.add_argument("--validation-days", type=int, default=1)
+            child.add_argument("--dry-run", action="store_true")
+            child.add_argument("--allow-confirmed-history", action="store_true")
+            child.add_argument("--include-financial", action="store_true")
+            child.add_argument("--include-index-weight", action="store_true")
+            child.add_argument("--output-prefix", default="daily_light_run")
+        if name == "weekly-full":
+            child.add_argument("--as-of-date")
+            child.add_argument("--reference-days", type=int, default=40)
+            child.add_argument("--compare-days", type=int, default=10)
+            child.add_argument("--table", action="append")
+            child.add_argument("--snapshot-prefix", default="audit_tmp_phase4_full_")
+            child.add_argument("--output-prefix", default="weekly_full_run")
+            child.add_argument("--dry-run", action="store_true")
+            child.add_argument("--create-snapshot-from-current", action="store_true")
+        if name == "refresh-dictionary":
+            child.add_argument("--skip-excel", action="store_true")
+            child.add_argument("--skip-feature-schema-sync", action="store_true")
+            child.add_argument("--output-prefix", default="refresh_dictionary")
+        if name == "summarize-run":
+            child.add_argument("--mode", choices=["status", "daily", "weekly", "phase"], required=True)
+            child.add_argument("--run-id")
+            child.add_argument("--as-of-date")
+            child.add_argument("--phase", default="phase5")
+            child.add_argument("--output-prefix")
+        if name == "sample-stock":
+            child.add_argument("--ts-code")
+            child.add_argument("--start-date")
+            child.add_argument("--end-date")
+            child.add_argument("--rows", type=int, default=20)
+            child.add_argument("--output-prefix", default="phase5_sample_stock")
+            child.add_argument("--json-only", action="store_true")
+        if name == "export-parquet":
+            child.add_argument("--source", default="stock_features_core")
+            child.add_argument("--dataset")
+            child.add_argument("--start-date", required=True)
+            child.add_argument("--end-date", required=True)
+            child.add_argument("--column", action="append")
+            child.add_argument("--dry-run", action="store_true")
         child.set_defaults(func=func)
 
     sync_master = sub.add_parser("sync-master")
@@ -427,6 +654,12 @@ def build_parser() -> argparse.ArgumentParser:
     sync_adj_batch.add_argument("--no-resume", action="store_true")
     sync_adj_batch.set_defaults(func=cmd_sync_adj_factor_batch)
 
+    sync_adj_range = sub.add_parser("sync-adj-factor-range")
+    sync_adj_range.add_argument("start_date")
+    sync_adj_range.add_argument("end_date")
+    sync_adj_range.add_argument("--limit", type=int)
+    sync_adj_range.set_defaults(func=cmd_sync_adj_factor_range)
+
     sync_index_daily = sub.add_parser("sync-index-daily")
     sync_index_daily.add_argument("start_date")
     sync_index_daily.add_argument("end_date")
@@ -465,6 +698,16 @@ def build_parser() -> argparse.ArgumentParser:
     sync_financial_batch_parser.add_argument("--limit", type=int)
     sync_financial_batch_parser.add_argument("--no-resume", action="store_true")
     sync_financial_batch_parser.set_defaults(func=cmd_sync_financial_batch)
+
+    sync_financial_incremental_parser = sub.add_parser("sync-financial-incremental-range")
+    sync_financial_incremental_parser.add_argument("start_date")
+    sync_financial_incremental_parser.add_argument("end_date")
+    sync_financial_incremental_parser.add_argument("--report-start-date")
+    sync_financial_incremental_parser.add_argument("--report-end-date")
+    sync_financial_incremental_parser.add_argument("--limit", type=int)
+    sync_financial_incremental_parser.add_argument("--no-resume", action="store_true")
+    sync_financial_incremental_parser.add_argument("--all-stocks", action="store_true")
+    sync_financial_incremental_parser.set_defaults(func=cmd_sync_financial_incremental_range)
 
     sync_financial_events = sub.add_parser("sync-financial-events-batch")
     sync_financial_events.add_argument("--start-date", default="20060101")

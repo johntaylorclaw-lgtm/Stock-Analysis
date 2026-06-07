@@ -1,0 +1,58 @@
+script,category,has_argparse,has_year_args,has_date_window,has_drop_table,has_create_view,recommended_action
+backfill_valuation_percentile_cache.py,windowized_cache_script,True,False,True,False,False,已接入 build-features valuation_size post-step；daily-core 日批刷新，full 作为周批/显式维护
+build_phase3_capital_flow_caches.py,windowized_cache_script,True,False,True,False,False,已接入 build-features capital_flow post-step；仍支持 --start-date/--end-date 独立窗口刷新
+build_phase3_composite_state_core.py,unified_builder_backend,True,True,True,False,False,已接入 build_composite_state 统一 builder；保留为完整 SQL 后端和全量重建参考
+build_phase3_concept_stock_context_cache.py,windowized_cache_script,True,True,True,False,False,已接入 build-features sector_concept_context pre-step；daily-core 日批刷新静态和20日字段，full 维护完整多周期
+build_phase3_corporate_action_core.py,unified_builder_backend,True,True,True,False,False,已接入 build_corporate_action 统一 builder；保留为完整 SQL 后端和全量重建参考
+build_phase3_cross_sectional_core.py,unified_builder_backend,True,True,True,False,False,已接入 build_cross_sectional 统一 builder；保留为完整 SQL 后端和全量重建参考
+build_phase3_index_market_core.py,unified_builder_backend,True,False,True,False,False,已接入 build_index_market_context 统一 builder；脚本支持 --start-date/--end-date 窗口刷新
+build_phase3_index_membership_cache.py,windowized_cache_script,True,False,True,False,False,保留为指数成分缓存单表快捷刷新入口；日批由 build_phase3_sector_index_caches.py 统一刷新，避免重复
+build_phase3_ownership_governance_core.py,unified_builder_backend,True,True,True,False,False,已接入 build_ownership_governance 统一 builder；保留为完整 SQL 后端和全量重建参考
+build_phase3_sector_concept_core.py,unified_builder_backend,True,True,True,False,False,已接入 build_sector_concept_context 统一 builder；保留为完整 SQL 后端和全量重建参考
+build_phase3_sector_index_caches.py,windowized_cache_script,True,False,True,False,False,已接入 build-features sector_concept_context/index_market_context pre-step；daily-core 日批刷新核心周期，full 维护完整多周期
+create_phase3_capital_flow_full_view.py,view_rebuild_only,False,False,False,False,True,保留为视图刷新脚本，可由 create-views 或模块 post-step 调用
+create_phase3_composite_state_views.py,view_rebuild_only,False,False,False,False,True,保留为视图刷新脚本，可由 create-views 或模块 post-step 调用
+create_phase3_corporate_action_views.py,view_rebuild_only,False,False,False,False,True,保留为视图刷新脚本，可由 create-views 或模块 post-step 调用
+create_phase3_cross_sectional_full_view.py,view_rebuild_only,False,False,False,False,True,保留为视图刷新脚本，可由 create-views 或模块 post-step 调用
+create_phase3_financial_growth_full_view.py,view_rebuild_only,False,False,True,False,True,保留为视图刷新脚本，可由 create-views 或模块 post-step 调用
+create_phase3_ownership_governance_views.py,view_rebuild_only,False,False,False,False,True,保留为视图刷新脚本，可由 create-views 或模块 post-step 调用
+create_phase3_sector_index_full_views.py,view_rebuild_only,False,False,False,False,True,保留为视图刷新脚本，可由 create-views 或模块 post-step 调用
+create_phase3_trading_technical_full_views.py,view_rebuild_only,False,False,False,False,True,保留为视图刷新脚本，可由 create-views 或模块 post-step 调用
+create_phase3_valuation_size_full_view.py,view_rebuild_only,False,False,False,False,True,保留为视图刷新脚本，可由 create-views 或模块 post-step 调用
+generate_phase3_capital_flow_audit.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_composite_state_audit.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_corporate_action_audit.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_cross_sectional_audit.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_financial_growth_batch1_audit.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_financial_growth_full_audit.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_financial_growth_hybrid_audit.py,audit_report,False,False,True,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_financial_stage1_audit.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_full_audit_report.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_ownership_governance_audit.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_sector_index_audit.py,audit_report,False,False,False,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_trading_technical_audit.py,audit_report,False,False,True,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+generate_phase3_valuation_size_audit.py,audit_report,False,False,True,False,False,保留为审计脚本，Phase4 接入统一 audit 命令
+phase3_cross_sectional_config.py,review_needed,False,False,False,False,False,人工复核用途和增量边界
+register_phase3_capital_flow.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+register_phase3_composite_state.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+register_phase3_corporate_action.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+register_phase3_cross_sectional.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+register_phase3_financial_growth.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+register_phase3_financial_growth_hybrid.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+register_phase3_ownership_governance.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+register_phase3_sector_index_context.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+register_phase3_trading_technical.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+register_phase3_valuation_size.py,registry_maintenance,False,False,False,False,False,保留为注册维护脚本，不进入日批
+reset_phase3_composite_state_table.py,full_rebuild_only,False,False,False,True,False,仅全量重建/结构变更使用，日批禁止调用
+reset_phase3_corporate_action_table.py,full_rebuild_only,False,False,False,True,False,仅全量重建/结构变更使用，日批禁止调用
+reset_phase3_cross_sectional_table.py,full_rebuild_only,False,False,False,True,False,仅全量重建/结构变更使用，日批禁止调用
+reset_phase3_financial_growth_core_table.py,full_rebuild_only,False,False,False,True,False,仅全量重建/结构变更使用，日批禁止调用
+reset_phase3_ownership_governance_table.py,full_rebuild_only,False,False,False,True,False,仅全量重建/结构变更使用，日批禁止调用
+reset_phase3_trading_technical_tables.py,full_rebuild_only,False,False,False,True,False,仅全量重建/结构变更使用，日批禁止调用
+run_phase3_capital_flow_core.py,review_needed,False,False,False,False,False,人工复核用途和增量边界
+run_phase3_financial_growth_batch1.py,review_needed,False,False,False,False,False,人工复核用途和增量边界
+run_phase3_financial_growth_quality_batch.py,review_needed,False,False,False,False,False,人工复核用途和增量边界
+run_phase3_history_build.py,review_needed,True,False,False,False,False,人工复核用途和增量边界
+run_phase3_trading_technical_core.py,review_needed,False,False,False,False,False,人工复核用途和增量边界
+run_phase3_valuation_size_core.py,review_needed,False,False,False,False,False,人工复核用途和增量边界
+sync_phase3_sw_industry_enhanced.py,external_full_sync,True,False,False,False,False,外部Tushare全量同步工具；写入需 --confirm-full-refresh，日批禁止调用

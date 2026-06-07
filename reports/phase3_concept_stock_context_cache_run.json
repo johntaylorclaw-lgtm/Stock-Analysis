@@ -1,0 +1,23 @@
+{
+  "started_at": "2026-06-06T23:07:56",
+  "finished_at": "2026-06-06T23:07:58",
+  "mode": "window",
+  "profile": "daily-core",
+  "start_date": "2026-05-27",
+  "end_date": "2026-06-05",
+  "summary": {
+    "derived_concept_stock_context_cache": 44069
+  },
+  "trigger": "build-features",
+  "stage_seconds": {
+    "load_backend": 0.023,
+    "table_fields": 0.0,
+    "concept_static": 0.167,
+    "concept_period_all": 1.132,
+    "core_delta": 0.182,
+    "update_core": 0.431,
+    "insert_missing_core": 0.081,
+    "commit": 0.085,
+    "count_rows": 0.004
+  }
+}

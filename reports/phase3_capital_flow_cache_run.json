@@ -1,0 +1,26 @@
+{
+  "started_at": "2026-06-06T23:07:29",
+  "finished_at": "2026-06-06T23:07:51",
+  "mode": "window",
+  "start_date": "2026-05-27",
+  "end_date": "2026-06-05",
+  "read_start_date": "2024-03-29",
+  "context_days": 520,
+  "summary": {
+    "derived_northbound_flow_cache": 44069,
+    "derived_capital_flow_event_cache": 44069
+  },
+  "trigger": "build-features",
+  "stage_seconds": {
+    "load_backend": 0.019,
+    "resolve_read_start": 0.003,
+    "derived_northbound_flow_cache.delete": 0.115,
+    "derived_northbound_flow_cache.insert": 6.497,
+    "derived_northbound_flow_cache.commit": 0.745,
+    "derived_northbound_flow_cache.count": 0.004,
+    "derived_capital_flow_event_cache.delete": 0.121,
+    "derived_capital_flow_event_cache.insert": 5.482,
+    "derived_capital_flow_event_cache.commit": 9.6,
+    "derived_capital_flow_event_cache.count": 0.006
+  }
+}

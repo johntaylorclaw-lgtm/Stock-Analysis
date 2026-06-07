@@ -1,0 +1,1391 @@
+{
+  "generated_at": "2026-06-06T20:16:05",
+  "case_window": {
+    "start": "2026-05-27",
+    "end": "2026-06-05"
+  },
+  "recent_full_window": {
+    "start": "2026-05-01",
+    "end": "2026-06-05"
+  },
+  "numeric_tolerance": 1e-08,
+  "base_coverage": [
+    {
+      "table": "stock_daily",
+      "recent_rows": 44069,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "stock_daily_basic",
+      "recent_rows": 44069,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "stock_adj_factor",
+      "recent_rows": 44199,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "stock_limit_price",
+      "recent_rows": 61030,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "stock_moneyflow_daily",
+      "recent_rows": 41542,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "margin_detail",
+      "recent_rows": 32541,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "northbound_daily",
+      "recent_rows": 8,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "northbound_holding",
+      "recent_rows": 7485,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "top_list_daily",
+      "recent_rows": 721,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "top_inst_detail",
+      "recent_rows": 6771,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "index_daily",
+      "recent_rows": 112,
+      "max_trade_date": "2026-06-05"
+    },
+    {
+      "table": "index_weight",
+      "recent_rows": 300,
+      "max_trade_date": "2026-06-01"
+    }
+  ],
+  "comparisons": [
+    {
+      "table": "stock_daily",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "stock_daily_basic",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "stock_adj_factor",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44199,
+      "incremental_rows": 44199,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "stock_limit_price",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 61030,
+      "incremental_rows": 61030,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "stock_moneyflow_daily",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 41542,
+      "incremental_rows": 41542,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "margin_detail",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 32541,
+      "incremental_rows": 32541,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "northbound_daily",
+      "keys": [
+        "trade_date"
+      ],
+      "full_rows": 8,
+      "incremental_rows": 8,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "northbound_holding",
+      "keys": [
+        "ts_code",
+        "trade_date",
+        "exchange_type"
+      ],
+      "full_rows": 7485,
+      "incremental_rows": 7485,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "top_list_daily",
+      "keys": [
+        "ts_code",
+        "trade_date",
+        "reason"
+      ],
+      "full_rows": 721,
+      "incremental_rows": 721,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "top_inst_detail",
+      "keys": [
+        "ts_code",
+        "trade_date",
+        "exalter",
+        "side",
+        "reason"
+      ],
+      "full_rows": 6771,
+      "incremental_rows": 6771,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "index_daily",
+      "keys": [
+        "index_code",
+        "trade_date"
+      ],
+      "full_rows": 112,
+      "incremental_rows": 112,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "index_weight",
+      "keys": [
+        "index_code",
+        "con_code",
+        "trade_date"
+      ],
+      "full_rows": 300,
+      "incremental_rows": 300,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_daily_spine",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "limit_down_gap",
+          "type": "DOUBLE",
+          "mismatch_rows": 3
+        }
+      ],
+      "mismatch_column_count": 1,
+      "mismatch_cell_count": 3,
+      "status": "fail"
+    },
+    {
+      "table": "derived_price_technical",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_volume_liquidity",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_return_momentum",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_volatility_risk",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_trading_constraint",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_valuation_size",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "pe_ttm_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 2061
+        },
+        {
+          "column": "pb_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4153
+        },
+        {
+          "column": "ps_ttm_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4300
+        },
+        {
+          "column": "total_mv_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4279
+        }
+      ],
+      "mismatch_column_count": 4,
+      "mismatch_cell_count": 14793,
+      "status": "fail"
+    },
+    {
+      "table": "derived_financial_asof",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_financial_quality",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_financial_growth",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_capital_flow",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_sector_concept_context",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "concept_ids_top_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 1174
+        },
+        {
+          "column": "concept_names_top_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 1174
+        },
+        {
+          "column": "concept_lagging_ids_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 1377
+        },
+        {
+          "column": "concept_lagging_names_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 1377
+        },
+        {
+          "column": "concept_active_ids_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 2605
+        },
+        {
+          "column": "concept_active_names_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 2605
+        },
+        {
+          "column": "concept_best_id_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 38
+        },
+        {
+          "column": "concept_best_name_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 38
+        },
+        {
+          "column": "concept_worst_id_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 223
+        },
+        {
+          "column": "concept_worst_name_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 223
+        }
+      ],
+      "mismatch_column_count": 10,
+      "mismatch_cell_count": 10834,
+      "status": "fail"
+    },
+    {
+      "table": "derived_index_market_context",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_cross_sectional",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "turnover_rate_ma_20_rank_all_desc",
+          "type": "INTEGER",
+          "mismatch_rows": 11
+        },
+        {
+          "column": "turnover_rate_ma_20_pct_all_desc",
+          "type": "DOUBLE",
+          "mismatch_rows": 11
+        },
+        {
+          "column": "turnover_rate_ma_20_rank_market_desc",
+          "type": "INTEGER",
+          "mismatch_rows": 5
+        },
+        {
+          "column": "turnover_rate_ma_20_pct_market_desc",
+          "type": "DOUBLE",
+          "mismatch_rows": 5
+        },
+        {
+          "column": "main_flow_sum_20_rank_all_desc",
+          "type": "INTEGER",
+          "mismatch_rows": 6
+        },
+        {
+          "column": "main_flow_sum_20_pct_all_desc",
+          "type": "DOUBLE",
+          "mismatch_rows": 6
+        },
+        {
+          "column": "main_flow_sum_20_rank_market_desc",
+          "type": "INTEGER",
+          "mismatch_rows": 5
+        },
+        {
+          "column": "main_flow_sum_20_pct_market_desc",
+          "type": "DOUBLE",
+          "mismatch_rows": 5
+        }
+      ],
+      "mismatch_column_count": 8,
+      "mismatch_cell_count": 54,
+      "status": "fail"
+    },
+    {
+      "table": "derived_corporate_action",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "latest_share_float_ann_date",
+          "type": "DATE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "latest_share_float_date",
+          "type": "DATE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "latest_share_float_share",
+          "type": "DOUBLE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "latest_share_float_ratio",
+          "type": "DOUBLE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "share_float_event_count_365d",
+          "type": "INTEGER",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "share_float_share_365d",
+          "type": "DOUBLE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "share_float_ratio_365d",
+          "type": "DOUBLE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "days_since_share_float",
+          "type": "INTEGER",
+          "mismatch_rows": 312
+        }
+      ],
+      "mismatch_column_count": 8,
+      "mismatch_cell_count": 2496,
+      "status": "fail"
+    },
+    {
+      "table": "derived_ownership_governance",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_composite_state",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "state_condition_count",
+          "type": "INTEGER",
+          "mismatch_rows": 1
+        },
+        {
+          "column": "price_above_ma60_flag",
+          "type": "BOOLEAN",
+          "mismatch_rows": 1
+        },
+        {
+          "column": "trend_condition_count",
+          "type": "INTEGER",
+          "mismatch_rows": 1
+        },
+        {
+          "column": "valuation_percentile_state",
+          "type": "VARCHAR",
+          "mismatch_rows": 8
+        },
+        {
+          "column": "multi_domain_condition_count",
+          "type": "INTEGER",
+          "mismatch_rows": 1
+        }
+      ],
+      "mismatch_column_count": 5,
+      "mismatch_cell_count": 12,
+      "status": "fail"
+    },
+    {
+      "table": "derived_valuation_percentile_cache",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "pe_ttm_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 2061
+        },
+        {
+          "column": "pb_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4153
+        },
+        {
+          "column": "ps_ttm_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4300
+        },
+        {
+          "column": "total_mv_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4279
+        }
+      ],
+      "mismatch_column_count": 4,
+      "mismatch_cell_count": 14793,
+      "status": "fail"
+    },
+    {
+      "table": "derived_northbound_flow_cache",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_capital_flow_event_cache",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "top_list_reason",
+          "type": "VARCHAR",
+          "mismatch_rows": 7
+        },
+        {
+          "column": "top_list_days_250",
+          "type": "INTEGER",
+          "mismatch_rows": 79
+        },
+        {
+          "column": "top_inst_net_buy_sum_250",
+          "type": "DOUBLE",
+          "mismatch_rows": 79
+        }
+      ],
+      "mismatch_column_count": 3,
+      "mismatch_cell_count": 165,
+      "status": "fail"
+    },
+    {
+      "table": "derived_sector_daily_cache",
+      "keys": [
+        "industry_level",
+        "industry_code",
+        "trade_date"
+      ],
+      "full_rows": 1296,
+      "incremental_rows": 1296,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_concept_daily_cache",
+      "keys": [
+        "concept_id",
+        "trade_date"
+      ],
+      "full_rows": 6984,
+      "incremental_rows": 6984,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_index_daily_cache",
+      "keys": [
+        "index_code",
+        "trade_date"
+      ],
+      "full_rows": 112,
+      "incremental_rows": 112,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "index_amount_chg_5",
+          "type": "DOUBLE",
+          "mismatch_rows": 70
+        },
+        {
+          "column": "index_amount_chg_20",
+          "type": "DOUBLE",
+          "mismatch_rows": 42
+        }
+      ],
+      "mismatch_column_count": 2,
+      "mismatch_cell_count": 112,
+      "status": "fail"
+    },
+    {
+      "table": "derived_index_membership_cache",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [],
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "status": "pass"
+    },
+    {
+      "table": "derived_concept_stock_context_cache",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "concept_ids_top_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 147
+        },
+        {
+          "column": "concept_names_top_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 147
+        },
+        {
+          "column": "concept_lagging_ids_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 282
+        },
+        {
+          "column": "concept_lagging_names_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 282
+        },
+        {
+          "column": "concept_active_ids_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 239
+        },
+        {
+          "column": "concept_active_names_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 239
+        }
+      ],
+      "mismatch_column_count": 6,
+      "mismatch_cell_count": 1336,
+      "status": "fail"
+    }
+  ],
+  "quality": [
+    {
+      "table": "derived_daily_spine",
+      "rows": 44069,
+      "null_ts_code": 0
+    },
+    {
+      "table": "derived_price_technical",
+      "rows": 44069,
+      "null_ts_code": 0
+    },
+    {
+      "table": "derived_return_momentum",
+      "rows": 44069,
+      "null_ts_code": 0
+    },
+    {
+      "table": "derived_valuation_size",
+      "rows": 44069,
+      "null_ts_code": 0
+    },
+    {
+      "table": "derived_financial_asof",
+      "rows": 44069,
+      "null_ts_code": 0
+    },
+    {
+      "table": "derived_capital_flow",
+      "rows": 44069,
+      "null_ts_code": 0
+    },
+    {
+      "table": "derived_cross_sectional",
+      "rows": 44069,
+      "null_ts_code": 0
+    },
+    {
+      "table": "derived_corporate_action",
+      "rows": 44069,
+      "null_ts_code": 0
+    },
+    {
+      "table": "derived_composite_state",
+      "rows": 44069,
+      "null_ts_code": 0
+    }
+  ],
+  "sparse_stock_probe": [
+    [
+      "600421.SH",
+      "2026-06-01",
+      "-0.9044117647058824",
+      "-0.9044117647058824",
+      "-2.347705528274515",
+      "-0.5"
+    ],
+    [
+      "600599.SH",
+      "2026-06-01",
+      "-0.8556962025316456",
+      "-0.8556962025316456",
+      "-1.9358344970665717",
+      "-0.49873417721519"
+    ]
+  ],
+  "failed_tables": [
+    {
+      "table": "derived_daily_spine",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "limit_down_gap",
+          "type": "DOUBLE",
+          "mismatch_rows": 3
+        }
+      ],
+      "mismatch_column_count": 1,
+      "mismatch_cell_count": 3,
+      "status": "fail"
+    },
+    {
+      "table": "derived_valuation_size",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "pe_ttm_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 2061
+        },
+        {
+          "column": "pb_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4153
+        },
+        {
+          "column": "ps_ttm_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4300
+        },
+        {
+          "column": "total_mv_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4279
+        }
+      ],
+      "mismatch_column_count": 4,
+      "mismatch_cell_count": 14793,
+      "status": "fail"
+    },
+    {
+      "table": "derived_sector_concept_context",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "concept_ids_top_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 1174
+        },
+        {
+          "column": "concept_names_top_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 1174
+        },
+        {
+          "column": "concept_lagging_ids_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 1377
+        },
+        {
+          "column": "concept_lagging_names_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 1377
+        },
+        {
+          "column": "concept_active_ids_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 2605
+        },
+        {
+          "column": "concept_active_names_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 2605
+        },
+        {
+          "column": "concept_best_id_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 38
+        },
+        {
+          "column": "concept_best_name_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 38
+        },
+        {
+          "column": "concept_worst_id_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 223
+        },
+        {
+          "column": "concept_worst_name_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 223
+        }
+      ],
+      "mismatch_column_count": 10,
+      "mismatch_cell_count": 10834,
+      "status": "fail"
+    },
+    {
+      "table": "derived_cross_sectional",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "turnover_rate_ma_20_rank_all_desc",
+          "type": "INTEGER",
+          "mismatch_rows": 11
+        },
+        {
+          "column": "turnover_rate_ma_20_pct_all_desc",
+          "type": "DOUBLE",
+          "mismatch_rows": 11
+        },
+        {
+          "column": "turnover_rate_ma_20_rank_market_desc",
+          "type": "INTEGER",
+          "mismatch_rows": 5
+        },
+        {
+          "column": "turnover_rate_ma_20_pct_market_desc",
+          "type": "DOUBLE",
+          "mismatch_rows": 5
+        },
+        {
+          "column": "main_flow_sum_20_rank_all_desc",
+          "type": "INTEGER",
+          "mismatch_rows": 6
+        },
+        {
+          "column": "main_flow_sum_20_pct_all_desc",
+          "type": "DOUBLE",
+          "mismatch_rows": 6
+        },
+        {
+          "column": "main_flow_sum_20_rank_market_desc",
+          "type": "INTEGER",
+          "mismatch_rows": 5
+        },
+        {
+          "column": "main_flow_sum_20_pct_market_desc",
+          "type": "DOUBLE",
+          "mismatch_rows": 5
+        }
+      ],
+      "mismatch_column_count": 8,
+      "mismatch_cell_count": 54,
+      "status": "fail"
+    },
+    {
+      "table": "derived_corporate_action",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "latest_share_float_ann_date",
+          "type": "DATE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "latest_share_float_date",
+          "type": "DATE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "latest_share_float_share",
+          "type": "DOUBLE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "latest_share_float_ratio",
+          "type": "DOUBLE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "share_float_event_count_365d",
+          "type": "INTEGER",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "share_float_share_365d",
+          "type": "DOUBLE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "share_float_ratio_365d",
+          "type": "DOUBLE",
+          "mismatch_rows": 312
+        },
+        {
+          "column": "days_since_share_float",
+          "type": "INTEGER",
+          "mismatch_rows": 312
+        }
+      ],
+      "mismatch_column_count": 8,
+      "mismatch_cell_count": 2496,
+      "status": "fail"
+    },
+    {
+      "table": "derived_composite_state",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "state_condition_count",
+          "type": "INTEGER",
+          "mismatch_rows": 1
+        },
+        {
+          "column": "price_above_ma60_flag",
+          "type": "BOOLEAN",
+          "mismatch_rows": 1
+        },
+        {
+          "column": "trend_condition_count",
+          "type": "INTEGER",
+          "mismatch_rows": 1
+        },
+        {
+          "column": "valuation_percentile_state",
+          "type": "VARCHAR",
+          "mismatch_rows": 8
+        },
+        {
+          "column": "multi_domain_condition_count",
+          "type": "INTEGER",
+          "mismatch_rows": 1
+        }
+      ],
+      "mismatch_column_count": 5,
+      "mismatch_cell_count": 12,
+      "status": "fail"
+    },
+    {
+      "table": "derived_valuation_percentile_cache",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "pe_ttm_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 2061
+        },
+        {
+          "column": "pb_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4153
+        },
+        {
+          "column": "ps_ttm_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4300
+        },
+        {
+          "column": "total_mv_pct_5y",
+          "type": "DOUBLE",
+          "mismatch_rows": 4279
+        }
+      ],
+      "mismatch_column_count": 4,
+      "mismatch_cell_count": 14793,
+      "status": "fail"
+    },
+    {
+      "table": "derived_capital_flow_event_cache",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "top_list_reason",
+          "type": "VARCHAR",
+          "mismatch_rows": 7
+        },
+        {
+          "column": "top_list_days_250",
+          "type": "INTEGER",
+          "mismatch_rows": 79
+        },
+        {
+          "column": "top_inst_net_buy_sum_250",
+          "type": "DOUBLE",
+          "mismatch_rows": 79
+        }
+      ],
+      "mismatch_column_count": 3,
+      "mismatch_cell_count": 165,
+      "status": "fail"
+    },
+    {
+      "table": "derived_index_daily_cache",
+      "keys": [
+        "index_code",
+        "trade_date"
+      ],
+      "full_rows": 112,
+      "incremental_rows": 112,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "index_amount_chg_5",
+          "type": "DOUBLE",
+          "mismatch_rows": 70
+        },
+        {
+          "column": "index_amount_chg_20",
+          "type": "DOUBLE",
+          "mismatch_rows": 42
+        }
+      ],
+      "mismatch_column_count": 2,
+      "mismatch_cell_count": 112,
+      "status": "fail"
+    },
+    {
+      "table": "derived_concept_stock_context_cache",
+      "keys": [
+        "ts_code",
+        "trade_date"
+      ],
+      "full_rows": 44069,
+      "incremental_rows": 44069,
+      "missing_in_incremental": 0,
+      "missing_in_full": 0,
+      "mismatch_columns": [
+        {
+          "column": "concept_ids_top_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 147
+        },
+        {
+          "column": "concept_names_top_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 147
+        },
+        {
+          "column": "concept_lagging_ids_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 282
+        },
+        {
+          "column": "concept_lagging_names_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 282
+        },
+        {
+          "column": "concept_active_ids_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 239
+        },
+        {
+          "column": "concept_active_names_20",
+          "type": "VARCHAR",
+          "mismatch_rows": 239
+        }
+      ],
+      "mismatch_column_count": 6,
+      "mismatch_cell_count": 1336,
+      "status": "fail"
+    }
+  ],
+  "observations": [
+    "新增 sync-adj-factor-range：实测 Tushare adj_factor 支持按 trade_date 全市场拉取。",
+    "build-features 运行期 read_start 已改为按交易日历回退。",
+    "corporate_action 已改为 read-context 计算、write-window 输出；一致性改善但耗时上升。",
+    "财务四大报表接口实测要求 ts_code，未执行全市场逐股财务公告增量。",
+    "DuckDB 单库写入需要串行执行，测试中并行写入触发过锁冲突。"
+  ]
+}

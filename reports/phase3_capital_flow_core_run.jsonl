@@ -1,0 +1,1 @@
+{"mode": "full_once", "start_date": "2006-01-01", "end_date": "2026-05-26", "read_start_date": "2004-11-07", "started_at": "2026-06-02T21:39:15", "finished_at": "2026-06-02T21:42:47", "result": {"module": "capital_flow", "status": "success", "rows_written": 15295776, "message": "rebuilt derived_capital_flow"}}

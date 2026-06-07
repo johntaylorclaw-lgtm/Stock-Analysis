@@ -1,0 +1,831 @@
+{
+  "generated_at": "2026-06-06T17:44:46",
+  "feature_plan": {
+    "mode": "daily",
+    "requested_modules": [
+      "daily_spine",
+      "price_technical",
+      "volume_liquidity",
+      "return_momentum",
+      "volatility_risk",
+      "trading_constraint",
+      "valuation_size",
+      "financial_asof",
+      "financial_quality",
+      "financial_growth",
+      "capital_flow",
+      "sector_concept_context",
+      "index_market_context",
+      "cross_sectional",
+      "corporate_action",
+      "ownership_governance",
+      "composite_state"
+    ],
+    "execution_order": [
+      "daily_spine",
+      "price_technical",
+      "volume_liquidity",
+      "return_momentum",
+      "volatility_risk",
+      "trading_constraint",
+      "valuation_size",
+      "financial_asof",
+      "financial_quality",
+      "financial_growth",
+      "capital_flow",
+      "sector_concept_context",
+      "index_market_context",
+      "cross_sectional",
+      "corporate_action",
+      "ownership_governance",
+      "composite_state"
+    ],
+    "write_start_date": "2026-05-17",
+    "write_end_date": "2026-05-26",
+    "requires_confirmation": false,
+    "confirmation_reason": "",
+    "module_plans": [
+      {
+        "module": "daily_spine",
+        "variables": 43,
+        "tables": [
+          "derived_daily_spine"
+        ],
+        "read_start_date": "2026-04-27",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 20,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": []
+      },
+      {
+        "module": "price_technical",
+        "variables": 13,
+        "tables": [
+          "derived_price_technical"
+        ],
+        "read_start_date": "2025-03-23",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 420,
+        "write_window": 10,
+        "max_min_history": 250,
+        "dependencies": [
+          "daily_spine"
+        ]
+      },
+      {
+        "module": "volume_liquidity",
+        "variables": 11,
+        "tables": [
+          "derived_volume_liquidity"
+        ],
+        "read_start_date": "2025-11-18",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 180,
+        "write_window": 10,
+        "max_min_history": 60,
+        "dependencies": [
+          "daily_spine"
+        ]
+      },
+      {
+        "module": "return_momentum",
+        "variables": 13,
+        "tables": [
+          "derived_return_momentum"
+        ],
+        "read_start_date": "2025-03-23",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 420,
+        "write_window": 10,
+        "max_min_history": 250,
+        "dependencies": [
+          "daily_spine"
+        ]
+      },
+      {
+        "module": "volatility_risk",
+        "variables": 10,
+        "tables": [
+          "derived_volatility_risk"
+        ],
+        "read_start_date": "2025-05-22",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 360,
+        "write_window": 10,
+        "max_min_history": 120,
+        "dependencies": [
+          "daily_spine",
+          "return_momentum"
+        ]
+      },
+      {
+        "module": "trading_constraint",
+        "variables": 11,
+        "tables": [
+          "derived_trading_constraint"
+        ],
+        "read_start_date": "2026-03-18",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 60,
+        "write_window": 10,
+        "max_min_history": 20,
+        "dependencies": [
+          "daily_spine"
+        ]
+      },
+      {
+        "module": "valuation_size",
+        "variables": 20,
+        "tables": [
+          "derived_valuation_size"
+        ],
+        "read_start_date": "2026-04-27",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 20,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": [
+          "daily_spine"
+        ]
+      },
+      {
+        "module": "financial_asof",
+        "variables": 27,
+        "tables": [
+          "derived_financial_asof"
+        ],
+        "read_start_date": "2025-08-30",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 260,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": []
+      },
+      {
+        "module": "financial_quality",
+        "variables": 114,
+        "tables": [
+          "derived_financial_quality"
+        ],
+        "read_start_date": "2025-08-30",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 260,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": [
+          "financial_asof"
+        ]
+      },
+      {
+        "module": "financial_growth",
+        "variables": 252,
+        "tables": [
+          "derived_financial_growth"
+        ],
+        "read_start_date": "2025-08-30",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 260,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": [
+          "financial_asof"
+        ]
+      },
+      {
+        "module": "capital_flow",
+        "variables": 53,
+        "tables": [
+          "derived_capital_flow"
+        ],
+        "read_start_date": "2025-09-09",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 250,
+        "write_window": 10,
+        "max_min_history": 120,
+        "dependencies": [
+          "daily_spine"
+        ]
+      },
+      {
+        "module": "sector_concept_context",
+        "variables": 101,
+        "tables": [
+          "derived_sector_concept_context"
+        ],
+        "read_start_date": "2024-12-13",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 520,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": [
+          "daily_spine",
+          "return_momentum"
+        ]
+      },
+      {
+        "module": "index_market_context",
+        "variables": 102,
+        "tables": [
+          "derived_index_market_context"
+        ],
+        "read_start_date": "2024-12-13",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 520,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": [
+          "daily_spine",
+          "return_momentum"
+        ]
+      },
+      {
+        "module": "cross_sectional",
+        "variables": 1060,
+        "tables": [
+          "derived_cross_sectional",
+          "derived_cross_sectional_full_v"
+        ],
+        "read_start_date": "2024-12-13",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 520,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": [
+          "daily_spine",
+          "price_technical",
+          "volume_liquidity",
+          "return_momentum",
+          "volatility_risk",
+          "trading_constraint",
+          "valuation_size",
+          "financial_quality",
+          "financial_growth",
+          "capital_flow",
+          "sector_concept_context",
+          "index_market_context"
+        ]
+      },
+      {
+        "module": "corporate_action",
+        "variables": 150,
+        "tables": [
+          "corporate_action_event_timeline_v",
+          "derived_corporate_action",
+          "derived_corporate_action_full_v"
+        ],
+        "read_start_date": "2022-12-04",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 1260,
+        "write_window": 10,
+        "max_min_history": 1250,
+        "dependencies": [
+          "financial_asof"
+        ]
+      },
+      {
+        "module": "ownership_governance",
+        "variables": 106,
+        "tables": [
+          "derived_ownership_governance",
+          "derived_ownership_governance_full_v",
+          "ownership_governance_event_timeline_v"
+        ],
+        "read_start_date": "2022-12-04",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 1260,
+        "write_window": 10,
+        "max_min_history": 250,
+        "dependencies": [
+          "financial_asof"
+        ]
+      },
+      {
+        "module": "composite_state",
+        "variables": 128,
+        "tables": [
+          "composite_state_condition_detail_v",
+          "composite_state_module_coverage_v",
+          "derived_composite_state",
+          "derived_composite_state_full_v"
+        ],
+        "read_start_date": "2025-09-09",
+        "write_start_date": "2026-05-17",
+        "write_end_date": "2026-05-26",
+        "read_window": 250,
+        "write_window": 10,
+        "max_min_history": 1,
+        "dependencies": [
+          "price_technical",
+          "volume_liquidity",
+          "return_momentum",
+          "volatility_risk",
+          "valuation_size",
+          "financial_quality",
+          "capital_flow",
+          "sector_concept_context",
+          "index_market_context",
+          "cross_sectional"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "status": "passed",
+    "errors": []
+  },
+  "docs": {
+    "status": "up_to_date",
+    "diffs": []
+  },
+  "script_classification": {
+    "path": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/phase4_phase3_script_classification.csv",
+    "rows": 57,
+    "counts": {
+      "audit_report": 13,
+      "external_full_sync": 1,
+      "full_rebuild_only": 6,
+      "registry_maintenance": 10,
+      "review_needed": 7,
+      "unified_builder_backend": 6,
+      "view_rebuild_only": 9,
+      "windowized_cache_script": 5
+    },
+    "missing": []
+  },
+  "last_build_run": {
+    "started_at": "2026-06-06T17:33:51",
+    "finished_at": "2026-06-06T17:36:43",
+    "elapsed_seconds": 174.748,
+    "plan": {
+      "mode": "daily",
+      "requested_modules": [
+        "corporate_action",
+        "ownership_governance",
+        "composite_state"
+      ],
+      "execution_order": [
+        "daily_spine",
+        "price_technical",
+        "volume_liquidity",
+        "return_momentum",
+        "volatility_risk",
+        "trading_constraint",
+        "valuation_size",
+        "financial_asof",
+        "financial_quality",
+        "financial_growth",
+        "capital_flow",
+        "sector_concept_context",
+        "index_market_context",
+        "cross_sectional",
+        "corporate_action",
+        "ownership_governance",
+        "composite_state"
+      ],
+      "write_start_date": "2026-05-17",
+      "write_end_date": "2026-05-26",
+      "requires_confirmation": false,
+      "confirmation_reason": "",
+      "module_plans": [
+        {
+          "module": "daily_spine",
+          "variables": 43,
+          "tables": [
+            "derived_daily_spine"
+          ],
+          "read_start_date": "2026-04-27",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 20,
+          "write_window": 10,
+          "max_min_history": 1,
+          "dependencies": []
+        },
+        {
+          "module": "price_technical",
+          "variables": 13,
+          "tables": [
+            "derived_price_technical"
+          ],
+          "read_start_date": "2025-03-23",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 420,
+          "write_window": 10,
+          "max_min_history": 250,
+          "dependencies": [
+            "daily_spine"
+          ]
+        },
+        {
+          "module": "volume_liquidity",
+          "variables": 11,
+          "tables": [
+            "derived_volume_liquidity"
+          ],
+          "read_start_date": "2025-11-18",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 180,
+          "write_window": 10,
+          "max_min_history": 60,
+          "dependencies": [
+            "daily_spine"
+          ]
+        },
+        {
+          "module": "return_momentum",
+          "variables": 13,
+          "tables": [
+            "derived_return_momentum"
+          ],
+          "read_start_date": "2025-03-23",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 420,
+          "write_window": 10,
+          "max_min_history": 250,
+          "dependencies": [
+            "daily_spine"
+          ]
+        },
+        {
+          "module": "volatility_risk",
+          "variables": 10,
+          "tables": [
+            "derived_volatility_risk"
+          ],
+          "read_start_date": "2025-05-22",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 360,
+          "write_window": 10,
+          "max_min_history": 120,
+          "dependencies": [
+            "daily_spine",
+            "return_momentum"
+          ]
+        },
+        {
+          "module": "trading_constraint",
+          "variables": 11,
+          "tables": [
+            "derived_trading_constraint"
+          ],
+          "read_start_date": "2026-03-18",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 60,
+          "write_window": 10,
+          "max_min_history": 20,
+          "dependencies": [
+            "daily_spine"
+          ]
+        },
+        {
+          "module": "valuation_size",
+          "variables": 20,
+          "tables": [
+            "derived_valuation_size"
+          ],
+          "read_start_date": "2026-04-27",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 20,
+          "write_window": 10,
+          "max_min_history": 1,
+          "dependencies": [
+            "daily_spine"
+          ]
+        },
+        {
+          "module": "financial_asof",
+          "variables": 27,
+          "tables": [
+            "derived_financial_asof"
+          ],
+          "read_start_date": "2025-08-30",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 260,
+          "write_window": 10,
+          "max_min_history": 1,
+          "dependencies": []
+        },
+        {
+          "module": "financial_quality",
+          "variables": 114,
+          "tables": [
+            "derived_financial_quality"
+          ],
+          "read_start_date": "2025-08-30",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 260,
+          "write_window": 10,
+          "max_min_history": 1,
+          "dependencies": [
+            "financial_asof"
+          ]
+        },
+        {
+          "module": "financial_growth",
+          "variables": 252,
+          "tables": [
+            "derived_financial_growth"
+          ],
+          "read_start_date": "2025-08-30",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 260,
+          "write_window": 10,
+          "max_min_history": 1,
+          "dependencies": [
+            "financial_asof"
+          ]
+        },
+        {
+          "module": "capital_flow",
+          "variables": 53,
+          "tables": [
+            "derived_capital_flow"
+          ],
+          "read_start_date": "2025-09-09",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 250,
+          "write_window": 10,
+          "max_min_history": 120,
+          "dependencies": [
+            "daily_spine"
+          ]
+        },
+        {
+          "module": "sector_concept_context",
+          "variables": 101,
+          "tables": [
+            "derived_sector_concept_context"
+          ],
+          "read_start_date": "2024-12-13",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 520,
+          "write_window": 10,
+          "max_min_history": 1,
+          "dependencies": [
+            "daily_spine",
+            "return_momentum"
+          ]
+        },
+        {
+          "module": "index_market_context",
+          "variables": 102,
+          "tables": [
+            "derived_index_market_context"
+          ],
+          "read_start_date": "2024-12-13",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 520,
+          "write_window": 10,
+          "max_min_history": 1,
+          "dependencies": [
+            "daily_spine",
+            "return_momentum"
+          ]
+        },
+        {
+          "module": "cross_sectional",
+          "variables": 1060,
+          "tables": [
+            "derived_cross_sectional",
+            "derived_cross_sectional_full_v"
+          ],
+          "read_start_date": "2024-12-13",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 520,
+          "write_window": 10,
+          "max_min_history": 1,
+          "dependencies": [
+            "daily_spine",
+            "price_technical",
+            "volume_liquidity",
+            "return_momentum",
+            "volatility_risk",
+            "trading_constraint",
+            "valuation_size",
+            "financial_quality",
+            "financial_growth",
+            "capital_flow",
+            "sector_concept_context",
+            "index_market_context"
+          ]
+        },
+        {
+          "module": "corporate_action",
+          "variables": 150,
+          "tables": [
+            "corporate_action_event_timeline_v",
+            "derived_corporate_action",
+            "derived_corporate_action_full_v"
+          ],
+          "read_start_date": "2022-12-04",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 1260,
+          "write_window": 10,
+          "max_min_history": 1250,
+          "dependencies": [
+            "financial_asof"
+          ]
+        },
+        {
+          "module": "ownership_governance",
+          "variables": 106,
+          "tables": [
+            "derived_ownership_governance",
+            "derived_ownership_governance_full_v",
+            "ownership_governance_event_timeline_v"
+          ],
+          "read_start_date": "2022-12-04",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 1260,
+          "write_window": 10,
+          "max_min_history": 250,
+          "dependencies": [
+            "financial_asof"
+          ]
+        },
+        {
+          "module": "composite_state",
+          "variables": 128,
+          "tables": [
+            "composite_state_condition_detail_v",
+            "composite_state_module_coverage_v",
+            "derived_composite_state",
+            "derived_composite_state_full_v"
+          ],
+          "read_start_date": "2025-09-09",
+          "write_start_date": "2026-05-17",
+          "write_end_date": "2026-05-26",
+          "read_window": 250,
+          "write_window": 10,
+          "max_min_history": 1,
+          "dependencies": [
+            "price_technical",
+            "volume_liquidity",
+            "return_momentum",
+            "volatility_risk",
+            "valuation_size",
+            "financial_quality",
+            "capital_flow",
+            "sector_concept_context",
+            "index_market_context",
+            "cross_sectional"
+          ]
+        }
+      ]
+    },
+    "results": [
+      {
+        "module": "daily_spine",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_daily_spine",
+        "elapsed_seconds": 2.095
+      },
+      {
+        "module": "price_technical",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_price_technical",
+        "elapsed_seconds": 8.496
+      },
+      {
+        "module": "volume_liquidity",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_volume_liquidity",
+        "elapsed_seconds": 1.995
+      },
+      {
+        "module": "return_momentum",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_return_momentum",
+        "elapsed_seconds": 1.955
+      },
+      {
+        "module": "volatility_risk",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_volatility_risk",
+        "elapsed_seconds": 3.026
+      },
+      {
+        "module": "trading_constraint",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_trading_constraint",
+        "elapsed_seconds": 5.956
+      },
+      {
+        "module": "valuation_size",
+        "status": "built",
+        "rows_written": 38504,
+        "message": "",
+        "elapsed_seconds": 1.428
+      },
+      {
+        "module": "financial_asof",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_financial_asof",
+        "elapsed_seconds": 6.634
+      },
+      {
+        "module": "financial_quality",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_financial_quality",
+        "elapsed_seconds": 16.255
+      },
+      {
+        "module": "financial_growth",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_financial_growth",
+        "elapsed_seconds": 8.824
+      },
+      {
+        "module": "capital_flow",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_capital_flow",
+        "elapsed_seconds": 12.035
+      },
+      {
+        "module": "sector_concept_context",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_sector_concept_context via phase3 backend",
+        "elapsed_seconds": 7.584
+      },
+      {
+        "module": "index_market_context",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_index_market_context via phase3 backend",
+        "elapsed_seconds": 4.608
+      },
+      {
+        "module": "cross_sectional",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_cross_sectional via phase3 backend",
+        "elapsed_seconds": 15.049
+      },
+      {
+        "module": "corporate_action",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_corporate_action via phase3 backend",
+        "elapsed_seconds": 54.534
+      },
+      {
+        "module": "ownership_governance",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_ownership_governance via phase3 backend",
+        "elapsed_seconds": 18.194
+      },
+      {
+        "module": "composite_state",
+        "status": "success",
+        "rows_written": 38504,
+        "message": "rebuilt derived_composite_state via phase3 backend",
+        "elapsed_seconds": 3.935
+      }
+    ],
+    "cache_results": []
+  }
+}

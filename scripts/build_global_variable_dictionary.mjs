@@ -68,11 +68,20 @@ const TABLE_ZH = {
   derived_financial_growth: "财务成长衍生表",
   derived_corporate_action: "公司行为衍生表",
   derived_ownership_governance: "股权与治理衍生表",
+  derived_ownership_governance_full_v: "股权与治理完整视图",
+  ownership_governance_event_timeline_v: "股权与治理事件时间线视图",
+  ownership_holder_concentration_v: "持有人集中度低频视图",
   derived_capital_flow: "资金流衍生表",
   derived_sector_concept_context: "行业与概念上下文衍生表",
   derived_index_market_context: "指数与市场环境衍生表",
   derived_cross_sectional: "截面转换衍生表",
-  derived_composite_state: "综合状态衍生表",
+  derived_composite_state: "综合事实状态衍生表",
+  derived_composite_state_full_v: "综合事实状态完整视图",
+  composite_state_condition_detail_v: "综合事实状态条件明细视图",
+  composite_state_module_coverage_v: "综合事实状态模块覆盖视图",
+  stock_features_core: "统一核心特征出口视图",
+  stock_features_plus: "统一增强特征出口视图",
+  stock_features_full: "统一完整特征出口视图",
 };
 
 const FIELD_ZH = {
@@ -243,6 +252,103 @@ const FIELD_ZH = {
   sell_elg_amount: "特大单卖出金额",
   net_mf_vol: "资金净流入量",
   net_mf_amount: "资金净流入金额",
+  basic_eps: "基本每股收益",
+  diluted_eps: "稀释每股收益",
+  business_tax_surcharge: "税金及附加",
+  operating_expense: "营业费用",
+  asset_impairment_loss: "资产减值损失",
+  investment_income: "投资收益",
+  associate_investment_income: "联营及合营企业投资收益",
+  fair_value_change_income: "公允价值变动收益",
+  foreign_exchange_gain: "汇兑收益",
+  non_operating_income: "营业外收入",
+  non_operating_expense: "营业外支出",
+  minority_profit: "少数股东损益",
+  continued_net_profit: "持续经营净利润",
+  total_comprehensive_income: "综合收益总额",
+  comprehensive_income_parent: "归母综合收益",
+  comprehensive_income_minority: "少数股东综合收益",
+  interest_income: "利息收入",
+  interest_expense: "利息支出",
+  commission_income: "手续费及佣金收入",
+  commission_expense: "手续费及佣金支出",
+  premium_income: "保险业务收入",
+  premium_earned: "已赚保费",
+  insurance_expense: "保险业务支出",
+  compensation_payout: "赔付支出",
+  undistributed_profit: "未分配利润",
+  trading_financial_assets: "交易性金融资产",
+  derivative_financial_assets: "衍生金融资产",
+  notes_receivable: "应收票据",
+  accounts_receivable_bill: "应收票据及应收账款",
+  prepayment: "预付款项",
+  other_receivable: "其他应收款",
+  total_other_receivable: "其他应收款合计",
+  contract_assets: "合同资产",
+  other_current_assets: "其他流动资产",
+  total_noncurrent_assets: "非流动资产合计",
+  long_term_equity_investment: "长期股权投资",
+  investment_property: "投资性房地产",
+  fixed_assets_total: "固定资产合计",
+  construction_in_process_total: "在建工程合计",
+  right_of_use_assets: "使用权资产",
+  development_expenditure: "开发支出",
+  long_term_deferred_expense: "长期待摊费用",
+  deferred_tax_assets: "递延所得税资产",
+  other_noncurrent_assets: "其他非流动资产",
+  notes_payable: "应付票据",
+  advance_receipts: "预收款项",
+  contract_liabilities: "合同负债",
+  payroll_payable: "应付职工薪酬",
+  taxes_payable: "应交税费",
+  interest_payable: "应付利息",
+  dividend_payable: "应付股利",
+  other_payable: "其他应付款",
+  total_other_payable: "其他应付款合计",
+  noncurrent_liability_due_1y: "一年内到期的非流动负债",
+  other_current_liabilities: "其他流动负债",
+  total_noncurrent_liabilities: "非流动负债合计",
+  long_term_payable: "长期应付款",
+  estimated_liabilities: "预计负债",
+  deferred_income: "递延收益",
+  deferred_tax_liabilities: "递延所得税负债",
+  other_noncurrent_liabilities: "其他非流动负债",
+  total_liabilities_and_equity: "负债和所有者权益总计",
+  capital_reserve: "资本公积",
+  surplus_reserve: "盈余公积",
+  treasury_share: "库存股",
+  other_comprehensive_income: "其他综合收益",
+  special_reserve: "专项储备",
+  tax_refund_received: "收到的税费返还",
+  other_operating_cash_received: "收到其他与经营活动有关的现金",
+  total_operating_cash_outflow: "经营活动现金流出小计",
+  other_operating_cash_paid: "支付其他与经营活动有关的现金",
+  cash_received_from_investment_withdrawal: "收回投资收到的现金",
+  cash_received_from_asset_disposal: "处置固定资产、无形资产和其他长期资产收回的现金",
+  cash_received_from_subsidiary_disposal: "处置子公司及其他营业单位收到的现金",
+  total_investing_cash_inflow: "投资活动现金流入小计",
+  cash_paid_for_subsidiary_acquisition: "取得子公司及其他营业单位支付的现金",
+  other_investing_cash_paid: "支付其他与投资活动有关的现金",
+  total_investing_cash_outflow: "投资活动现金流出小计",
+  cash_received_from_investors: "吸收投资收到的现金",
+  cash_received_from_bond_issue: "发行债券收到的现金",
+  other_financing_cash_received: "收到其他与筹资活动有关的现金",
+  total_financing_cash_inflow: "筹资活动现金流入小计",
+  total_financing_cash_outflow: "筹资活动现金流出小计",
+  other_financing_cash_paid: "支付其他与筹资活动有关的现金",
+  fx_effect_on_cash: "汇率变动对现金及现金等价物的影响",
+  begin_cash_balance: "期初现金余额",
+  end_cash_balance: "期末现金余额",
+  net_profit_indirect: "间接法净利润",
+  asset_depreciation: "固定资产等折旧",
+  intangible_asset_amortization: "无形资产摊销",
+  deferred_expense_amortization: "长期待摊费用摊销",
+  financial_expense_indirect: "间接法财务费用",
+  investment_loss_indirect: "间接法投资损失",
+  credit_impairment_loss_indirect: "间接法信用减值损失",
+  inventory_decrease: "存货减少",
+  operating_receivable_decrease: "经营性应收项目减少",
+  operating_payable_increase: "经营性应付项目增加",
   updated_at: "更新时间",
 };
 
@@ -255,8 +361,8 @@ const DERIVED_FORMULA_OVERRIDES = {
   "derived_daily_spine.low_raw": "low_raw = stock_daily.low",
   "derived_daily_spine.close_raw": "close_raw = stock_daily.close",
   "derived_daily_spine.pre_close_raw": "pre_close_raw = stock_daily.pre_close",
-  "derived_daily_spine.volume_raw": "volume_raw = stock_daily.vol",
-  "derived_daily_spine.amount_raw": "amount_raw = stock_daily.amount",
+  "derived_daily_spine.volume": "volume = stock_daily.vol",
+  "derived_daily_spine.amount": "amount = stock_daily.amount",
   "derived_daily_spine.close_hfq": "close_hfq = stock_daily.close * stock_adj_factor.adj_factor",
   "derived_daily_spine.open_hfq": "open_hfq = stock_daily.open * stock_adj_factor.adj_factor",
   "derived_daily_spine.high_hfq": "high_hfq = stock_daily.high * stock_adj_factor.adj_factor",
@@ -276,8 +382,12 @@ const DERIVED_FORMULA_OVERRIDES = {
   "derived_daily_spine.gap_ret_raw": "gap_ret_raw = stock_daily.open / stock_daily.pre_close - 1",
   "derived_daily_spine.limit_up_gap": "limit_up_gap = stock_limit_price.up_limit / stock_daily.close - 1",
   "derived_daily_spine.limit_down_gap": "limit_down_gap = stock_daily.close / stock_limit_price.down_limit - 1",
-  "derived_daily_spine.is_limit_up": "is_limit_up = stock_daily.close >= stock_limit_price.up_limit * (1 - 0.0001)",
-  "derived_daily_spine.is_limit_down": "is_limit_down = stock_daily.close <= stock_limit_price.down_limit * (1 + 0.0001)",
+  "derived_daily_spine.limit_up_flag": "limit_up_flag = close_raw >= up_limit - 0.005",
+  "derived_daily_spine.limit_down_flag": "limit_down_flag = close_raw <= down_limit + 0.005",
+  "derived_daily_spine.touch_limit_up_flag": "touch_limit_up_flag = high_raw >= up_limit - 0.005",
+  "derived_daily_spine.touch_limit_down_flag": "touch_limit_down_flag = low_raw <= down_limit + 0.005",
+  "derived_daily_spine.open_limit_up_flag": "open_limit_up_flag = open_raw >= up_limit - 0.005",
+  "derived_daily_spine.open_limit_down_flag": "open_limit_down_flag = open_raw <= down_limit + 0.005",
   "derived_daily_spine.price_valid_flag": "price_valid_flag = open/high/low/close 非空且 high >= max(open, close) 且 low <= min(open, close)",
   "derived_daily_spine.missing_reason": "missing_reason = case when stock_daily 缺失 then 'missing_daily' when adj_factor 缺失 then 'missing_adj_factor' when limit_price 缺失 then 'missing_limit_price' else null end",
 };
@@ -286,7 +396,7 @@ const tables = schema.tables
   .filter((table) => !table.name.startsWith("metadata_"))
   .map((table) => ({
     ...table,
-    table_type: table.name.startsWith("derived_") ? "derived" : "base",
+    table_type: resolveTableType(table),
   }));
 
 const wb = Workbook.create();
@@ -313,7 +423,7 @@ for (const table of tables) {
     "Sheet名": sheetName,
     "物理表名": tableChineseName(table),
     "英文表名": table.name,
-    "表类型": table.table_type === "derived" ? "衍生变量表" : "基础变量表",
+    "表类型": tableTypeLabel(table.table_type),
     "阶段": table.phase ?? "",
     "主键": (table.primary_key ?? []).join(", "),
     "字段数": rows.length,
@@ -324,12 +434,13 @@ for (const table of tables) {
 
 summary.getRange("A1:G1").merge();
 summary.getRange("A1").values = [["全局变量数据字典"]];
-summary.getRange("A3:B12").values = [
+summary.getRange("A3:B13").values = [
   ["生成时间", new Date()],
-  ["工作簿用途", "基础变量表和衍生变量表的全局数据字典，每个物理表一个 sheet。"],
+  ["工作簿用途", "基础变量表、衍生变量表和统一出口视图的全局数据字典，每个对象一个 sheet。"],
   ["基础变量表数量", tables.filter((table) => table.table_type === "base").length],
   ["衍生变量表数量", tables.filter((table) => table.table_type === "derived").length],
-  ["物理表总数", tables.length],
+  ["视图数量", tables.filter((table) => table.table_type === "view").length],
+  ["对象总数", tables.length],
   ["Schema字段总数", totalFields],
   ["注册变量总数", variables.length],
   ["已匹配注册字段数", totalRegistered],
@@ -340,10 +451,11 @@ summary.getRange("A3:B12").values = [
 summary.getRange("A14:D14").values = [["表类型", "表数量", "字段数", "已注册字段数"]];
 const baseRows = indexRows.filter((row) => row["表类型"] === "基础变量表");
 const derivedRows = indexRows.filter((row) => row["表类型"] === "衍生变量表");
+const viewRows = indexRows.filter((row) => row["表类型"] === "视图");
 summary.getRange("A15:D17").values = [
   ["基础变量表", baseRows.length, sum(baseRows, "字段数"), sum(baseRows, "已注册变量数")],
   ["衍生变量表", derivedRows.length, sum(derivedRows, "字段数"), sum(derivedRows, "已注册变量数")],
-  ["合计", indexRows.length, totalFields, totalRegistered],
+  ["视图", viewRows.length, sum(viewRows, "字段数"), sum(viewRows, "已注册变量数")],
 ];
 summary.tables.add("A14:D17", true, "SummaryTable");
 
@@ -393,8 +505,8 @@ for (const sheet of wb.worksheets.items) {
 }
 
 summary.getRange("A1:G1").format = { fill: "#244062", font: { bold: true, color: "#FFFFFF" } };
-summary.getRange("A3:A12").format = { font: { bold: true }, fill: "#D9EAF7" };
-summary.getRange("B3:B12").format = { wrapText: true };
+summary.getRange("A3:A13").format = { font: { bold: true }, fill: "#D9EAF7" };
+summary.getRange("B3:B13").format = { wrapText: true };
 summary.getRange("B3").setNumberFormat("yyyy-mm-dd hh:mm");
 
 await fs.mkdir(outputDir, { recursive: true });
@@ -430,7 +542,7 @@ function rowsForTable(table) {
       "用途": variable.use_case_zh ?? "",
       "物理表名": tableChineseName(table),
       "英文表名": table.name,
-      "表类型": table.table_type === "derived" ? "衍生变量表" : "基础变量表",
+      "表类型": tableTypeLabel(table.table_type),
       "阶段": table.phase ?? "",
       "数据类型": field.dtype ?? "",
       "是否可空": String(field.nullable ?? true),
@@ -501,7 +613,8 @@ function bestChineseDescription(unique, table, field) {
 function formulaFor(table, field, variable) {
   const override = DERIVED_FORMULA_OVERRIDES[`${table.name}.${field.name}`];
   if (override) return override;
-  if (table.table_type !== "derived") return "";
+  if (!["derived", "view"].includes(table.table_type)) return "";
+  if ((table.primary_key ?? []).includes(field.name) || field.name === "updated_at") return "";
 
   const formulaRef = variable.formula_ref ?? "";
   if (formulaRef) return `${field.name} = ${formulaRef}`;
@@ -514,11 +627,12 @@ function formulaFor(table, field, variable) {
   if (sourceField || sourceApi) {
     return `${field.name} = ${[sourceApi, sourceField].filter(Boolean).join(".")}`;
   }
+  if (field.description) return field.description.includes("=") ? field.description : `${field.name} = ${field.description}`;
   return "";
 }
 
 function inferPriceBasis(table, fieldName) {
-  if (table.table_type !== "derived") return "";
+  if (!["derived", "view"].includes(table.table_type)) return "";
   if (fieldName.includes("_hfq") || fieldName === "close_hfq" || fieldName === "log_ret_1") return "后复权";
   if (fieldName.includes("_qfq")) return "前复权";
   if (fieldName.includes("_raw") || ["up_limit", "down_limit"].includes(fieldName)) return "不复权";
@@ -539,6 +653,18 @@ function normalizePriceBasis(value) {
 
 function tableChineseName(table) {
   return TABLE_ZH[table.name] ?? table.description ?? table.name;
+}
+
+function resolveTableType(table) {
+  if (table.table_type === "view") return "view";
+  if (table.name.startsWith("derived_")) return "derived";
+  return "base";
+}
+
+function tableTypeLabel(tableType) {
+  if (tableType === "derived") return "衍生变量表";
+  if (tableType === "view") return "视图";
+  return "基础变量表";
 }
 
 function containsChinese(value) {

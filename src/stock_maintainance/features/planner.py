@@ -33,7 +33,7 @@ MODULE_DEPENDENCIES = {
     "return_momentum": ["daily_spine"],
     "volatility_risk": ["daily_spine", "return_momentum"],
     "trading_constraint": ["daily_spine"],
-    "valuation_size": ["daily_spine", "financial_asof"],
+    "valuation_size": ["daily_spine"],
     "financial_asof": [],
     "financial_quality": ["financial_asof"],
     "financial_growth": ["financial_asof"],
@@ -254,4 +254,3 @@ def render_plan_markdown(plan: FeaturePlan) -> str:
             + " |"
         )
     return "\n".join(lines).rstrip() + "\n"
-

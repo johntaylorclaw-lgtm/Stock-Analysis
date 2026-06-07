@@ -1,0 +1,31 @@
+{
+  "started_at": "2026-06-06T23:06:39",
+  "finished_at": "2026-06-06T23:06:50",
+  "mode": "window",
+  "start_date": "2026-05-27",
+  "end_date": "2026-06-05",
+  "read_start_date": "2016-02-03",
+  "context_days": 2500,
+  "profile": "daily-core",
+  "computed_fields": [
+    "pe_ttm_pct_5y",
+    "pb_pct_5y",
+    "ps_ttm_pct_5y",
+    "total_mv_pct_5y"
+  ],
+  "summary": {
+    "derived_valuation_percentile_cache": 44069,
+    "pe_ttm_pct_5y_non_null": 31731,
+    "pb_pct_5y_non_null": 43741,
+    "ps_ttm_pct_5y_non_null": 44013,
+    "total_mv_pct_5y_non_null": 44069
+  },
+  "trigger": "build-features",
+  "stage_seconds": {
+    "compute_daily_core_sql": 8.031,
+    "update_daily_core": 0.054,
+    "insert_missing_daily_core": 0.047,
+    "update_valuation_size": 3.04,
+    "commit": 0.373
+  }
+}

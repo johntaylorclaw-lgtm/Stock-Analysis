@@ -9,7 +9,7 @@ import pandas as pd
 
 from .config import load_schema_registry, load_sources
 from .paths import DATA_DIR, LOGS_DIR, REPORTS_DIR
-from .schema import all_create_table_sql, field_sql, quote_ident
+from .schema import all_create_table_sql, create_table_sql, field_sql, quote_ident
 
 
 DB_PATH = DATA_DIR / "duckdb" / "stock_data.duckdb"
@@ -29,7 +29,10 @@ def ensure_runtime_dirs() -> None:
 
 def connect(db_path: Path = DB_PATH) -> duckdb.DuckDBPyConnection:
     ensure_runtime_dirs()
-    return duckdb.connect(str(db_path))
+    con = duckdb.connect(str(db_path))
+    con.execute("SET preserve_insertion_order=false")
+    con.execute("SET threads=4")
+    return con
 
 
 def init_database(con: duckdb.DuckDBPyConnection | None = None) -> None:
@@ -74,8 +77,15 @@ def _seed_source_api(con: duckdb.DuckDBPyConnection) -> None:
 def reconcile_schema(con: duckdb.DuckDBPyConnection, registry: dict[str, Any] | None = None) -> None:
     registry = registry or load_schema_registry()
     for table in registry.get("tables", []):
+        if table.get("table_type") == "view":
+            continue
         table_name = table["name"]
         current = set(table_columns(con, table_name))
+        missing = [field for field in table.get("fields", []) if field["name"] not in current]
+        if table_name == "derived_financial_growth" and len(missing) > 100:
+            con.execute(f"DROP TABLE IF EXISTS {quote_ident(table_name)}")
+            con.execute(create_table_sql(table))
+            continue
         for field in table.get("fields", []):
             name = field["name"]
             if name in current:

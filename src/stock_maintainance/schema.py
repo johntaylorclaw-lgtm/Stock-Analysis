@@ -27,7 +27,11 @@ def create_table_sql(table: dict[str, Any]) -> str:
 
 
 def all_create_table_sql(registry: dict[str, Any]) -> str:
-    return "\n\n".join(create_table_sql(table) for table in registry.get("tables", []))
+    return "\n\n".join(
+        create_table_sql(table)
+        for table in registry.get("tables", [])
+        if table.get("table_type") != "view"
+    )
 
 
 def schema_summary(registry: dict[str, Any]) -> list[dict[str, Any]]:

@@ -11171,6 +11171,2692 @@
       "validation": {
         "constant_allowed": true
       }
+    },
+    {
+      "name": "basic_eps",
+      "label_zh": "Basic earnings per share",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "basic_eps",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "diluted_eps",
+      "label_zh": "Diluted earnings per share",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "diluted_eps",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "business_tax_surcharge",
+      "label_zh": "Business tax and surcharge",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "biz_tax_surchg",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "operating_expense",
+      "label_zh": "Operating expense",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "oper_exp",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "asset_impairment_loss",
+      "label_zh": "Asset impairment loss",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "assets_impair_loss",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "investment_income",
+      "label_zh": "Investment income",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "invest_income",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "associate_investment_income",
+      "label_zh": "Investment income from associates and joint ventures",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "ass_invest_income",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "fair_value_change_income",
+      "label_zh": "Gain or loss from fair value changes",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "fv_value_chg_gain",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "foreign_exchange_gain",
+      "label_zh": "Foreign exchange gain",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "forex_gain",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "non_operating_income",
+      "label_zh": "Non-operating income",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "non_oper_income",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "non_operating_expense",
+      "label_zh": "Non-operating expense",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "non_oper_exp",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "minority_profit",
+      "label_zh": "Minority shareholder profit or loss",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "minority_gain",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "continued_net_profit",
+      "label_zh": "Net profit from continuing operations",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "continued_net_profit",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "total_comprehensive_income",
+      "label_zh": "Total comprehensive income",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "t_compr_income",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "comprehensive_income_parent",
+      "label_zh": "Comprehensive income attributable to parent",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "compr_inc_attr_p",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "comprehensive_income_minority",
+      "label_zh": "Comprehensive income attributable to minority shareholders",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "compr_inc_attr_m_s",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "interest_income",
+      "label_zh": "Interest income",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "int_income",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "interest_expense",
+      "label_zh": "Interest expense",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "int_exp",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "commission_income",
+      "label_zh": "Fee and commission income",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "comm_income",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "commission_expense",
+      "label_zh": "Fee and commission expense",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "comm_exp",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "premium_income",
+      "label_zh": "Insurance premium income",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "prem_income",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "premium_earned",
+      "label_zh": "Earned premium",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "prem_earned",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "insurance_expense",
+      "label_zh": "Insurance expense",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "insurance_exp",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "compensation_payout",
+      "label_zh": "Insurance compensation payout",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "compens_payout",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "financial_income_raw_undistributed_profit",
+      "label_zh": "Undistributed profit",
+      "table": "financial_income_raw",
+      "module": "base_financial",
+      "category": "income_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "income",
+      "source_field": "undist_profit",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "trading_financial_assets",
+      "label_zh": "Trading financial assets",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "trad_asset",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "derivative_financial_assets",
+      "label_zh": "Derivative financial assets",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "deriv_assets",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "notes_receivable",
+      "label_zh": "Notes receivable",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "notes_receiv",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "accounts_receivable_bill",
+      "label_zh": "Accounts receivable and notes receivable",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "accounts_receiv_bill",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "prepayment",
+      "label_zh": "Prepayments",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "prepayment",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "other_receivable",
+      "label_zh": "Other receivables",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "oth_receiv",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "total_other_receivable",
+      "label_zh": "Total other receivables",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "oth_rcv_total",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "contract_assets",
+      "label_zh": "Contract assets",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "contract_assets",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "other_current_assets",
+      "label_zh": "Other current assets",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "oth_cur_assets",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "total_noncurrent_assets",
+      "label_zh": "Total non-current assets",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "total_nca",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "long_term_equity_investment",
+      "label_zh": "Long-term equity investment",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "lt_eqt_invest",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "investment_property",
+      "label_zh": "Investment property",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "invest_real_estate",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "fixed_assets_total",
+      "label_zh": "Total fixed assets",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "fix_assets_total",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "construction_in_process_total",
+      "label_zh": "Total construction in process",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "cip_total",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "right_of_use_assets",
+      "label_zh": "Right-of-use assets",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "use_right_assets",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "development_expenditure",
+      "label_zh": "Development expenditure",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "r_and_d",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "long_term_deferred_expense",
+      "label_zh": "Long-term deferred expense",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "lt_amor_exp",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "deferred_tax_assets",
+      "label_zh": "Deferred tax assets",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "defer_tax_assets",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "other_noncurrent_assets",
+      "label_zh": "Other non-current assets",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "oth_nca",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "notes_payable",
+      "label_zh": "Notes payable",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "notes_payable",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "advance_receipts",
+      "label_zh": "Advance receipts",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "adv_receipts",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "contract_liabilities",
+      "label_zh": "Contract liabilities",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "contract_liab",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "payroll_payable",
+      "label_zh": "Payroll payable",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "payroll_payable",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "taxes_payable",
+      "label_zh": "Taxes payable",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "taxes_payable",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "interest_payable",
+      "label_zh": "Interest payable",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "int_payable",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "dividend_payable",
+      "label_zh": "Dividend payable",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "div_payable",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "other_payable",
+      "label_zh": "Other payables",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "oth_payable",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "total_other_payable",
+      "label_zh": "Total other payables",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "oth_pay_total",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "noncurrent_liability_due_1y",
+      "label_zh": "Non-current liabilities due within one year",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "non_cur_liab_due_1y",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "other_current_liabilities",
+      "label_zh": "Other current liabilities",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "oth_cur_liab",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "total_noncurrent_liabilities",
+      "label_zh": "Total non-current liabilities",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "total_ncl",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "long_term_payable",
+      "label_zh": "Long-term payables",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "lt_payable",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "estimated_liabilities",
+      "label_zh": "Estimated liabilities",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "estimated_liab",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "deferred_income",
+      "label_zh": "Deferred income",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "defer_inc_non_cur_liab",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "deferred_tax_liabilities",
+      "label_zh": "Deferred tax liabilities",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "defer_tax_liab",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "other_noncurrent_liabilities",
+      "label_zh": "Other non-current liabilities",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "oth_ncl",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "total_liabilities_and_equity",
+      "label_zh": "Total liabilities and shareholders equity",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "total_liab_hldr_eqy",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "capital_reserve",
+      "label_zh": "Capital reserve",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "cap_rese",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "surplus_reserve",
+      "label_zh": "Surplus reserve",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "surplus_rese",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "financial_balance_raw_undistributed_profit",
+      "label_zh": "Undistributed profit",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "undistr_porfit",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "treasury_share",
+      "label_zh": "Treasury shares",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "share_or_lot",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "treasury_share",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "other_comprehensive_income",
+      "label_zh": "Other comprehensive income",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "oth_comp_income",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "special_reserve",
+      "label_zh": "Special reserve",
+      "table": "financial_balance_raw",
+      "module": "base_financial",
+      "category": "balance_sheet",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "balancesheet",
+      "source_field": "special_rese",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "tax_refund_received",
+      "label_zh": "Tax refund received",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "recp_tax_rends",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "other_operating_cash_received",
+      "label_zh": "Other cash received from operating activities",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "c_fr_oth_operate_a",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "total_operating_cash_outflow",
+      "label_zh": "Total operating cash outflow",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "st_cash_out_act",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "other_operating_cash_paid",
+      "label_zh": "Other cash paid for operating activities",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "oth_cash_pay_oper_act",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "cash_received_from_investment_withdrawal",
+      "label_zh": "Cash received from withdrawal of investments",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "c_recp_return_invest",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "cash_received_from_asset_disposal",
+      "label_zh": "Cash received from disposal of fixed/intangible assets",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "n_recp_disp_fiolta",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "cash_received_from_subsidiary_disposal",
+      "label_zh": "Cash received from disposal of subsidiaries",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "n_recp_disp_sobu",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "total_investing_cash_inflow",
+      "label_zh": "Total investing cash inflow",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "stot_inflows_inv_act",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "cash_paid_for_subsidiary_acquisition",
+      "label_zh": "Cash paid for acquisition of subsidiaries",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "n_disp_subs_oth_biz",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "other_investing_cash_paid",
+      "label_zh": "Other cash paid for investing activities",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "oth_pay_ral_inv_act",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "total_investing_cash_outflow",
+      "label_zh": "Total investing cash outflow",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "stot_out_inv_act",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "cash_received_from_investors",
+      "label_zh": "Cash received from investors",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "c_recp_cap_contrib",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "cash_received_from_bond_issue",
+      "label_zh": "Cash received from bond issue",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "proc_issue_bonds",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "other_financing_cash_received",
+      "label_zh": "Other cash received from financing activities",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "oth_cash_recp_ral_fnc_act",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "total_financing_cash_inflow",
+      "label_zh": "Total financing cash inflow",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "stot_cash_in_fnc_act",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "total_financing_cash_outflow",
+      "label_zh": "Total financing cash outflow",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "stot_cashout_fnc_act",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "other_financing_cash_paid",
+      "label_zh": "Other cash paid for financing activities",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "oth_cashpay_ral_fnc_act",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "fx_effect_on_cash",
+      "label_zh": "Effect of foreign exchange rate changes on cash",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "eff_fx_flu_cash",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "begin_cash_balance",
+      "label_zh": "Beginning cash balance",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "beg_bal_cash",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "end_cash_balance",
+      "label_zh": "Ending cash balance",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "end_bal_cash",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "net_profit_indirect",
+      "label_zh": "Net profit in indirect cashflow reconciliation",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "net_profit",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "asset_depreciation",
+      "label_zh": "Depreciation of fixed, oil and gas, and biological assets",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "depr_fa_coga_dpba",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "intangible_asset_amortization",
+      "label_zh": "Amortization of intangible assets",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "yuan",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "amort_intang_assets",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true,
+        "min_value": 0
+      }
+    },
+    {
+      "name": "deferred_expense_amortization",
+      "label_zh": "Amortization of long-term deferred expenses",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "lt_amort_deferred_exp",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "financial_expense_indirect",
+      "label_zh": "Financial expense in indirect cashflow reconciliation",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "finan_exp",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "investment_loss_indirect",
+      "label_zh": "Investment loss in indirect cashflow reconciliation",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "invest_loss",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "credit_impairment_loss_indirect",
+      "label_zh": "Credit impairment loss in indirect cashflow reconciliation",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "credit_impa_loss",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "inventory_decrease",
+      "label_zh": "Decrease in inventories",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "decr_inventories",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "operating_receivable_decrease",
+      "label_zh": "Decrease in operating receivables",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "decr_oper_payable",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
+    },
+    {
+      "name": "operating_payable_increase",
+      "label_zh": "Increase in operating payables",
+      "table": "financial_cashflow_raw",
+      "module": "base_financial",
+      "category": "cashflow_statement",
+      "tier": "p0",
+      "dtype": "DOUBLE",
+      "unit": "none",
+      "frequency": "quarterly",
+      "grain": [
+        "ts_code",
+        "end_date",
+        "comp_type",
+        "report_type",
+        "ann_date"
+      ],
+      "source_type": "tushare",
+      "source_api": "cashflow",
+      "source_field": "incr_oper_payable",
+      "price_basis": "not_price",
+      "point_in_time": true,
+      "missing_policy": "source_optional",
+      "validation": {
+        "constant_allowed": true
+      }
     }
   ]
 }

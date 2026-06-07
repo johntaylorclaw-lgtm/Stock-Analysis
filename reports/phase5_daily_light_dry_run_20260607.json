@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-06-07T15:36:38",
+  "as_of_date": "2026-06-07",
+  "dry_run": true,
+  "precheck": {
+    "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/phase5_daily_light_dry_run_20260607_precheck.json",
+    "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/phase5_daily_light_dry_run_20260607_precheck.md",
+    "status": "pass",
+    "latest_trade_date": "2026-06-05",
+    "anchor_data_date": "2026-06-05",
+    "validation_dates": [
+      "2026-06-05"
+    ],
+    "incremental_dates": [],
+    "requires_confirmation": false
+  },
+  "postcheck": null,
+  "steps": [
+    {
+      "name": "sync-master",
+      "status": "planned",
+      "detail": "refresh stock_basic/company/status/trade_calendar/index_basic before daily data"
+    },
+    {
+      "name": "validate-daily-precheck",
+      "status": "pass",
+      "detail": {
+        "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/phase5_daily_light_dry_run_20260607_precheck.json",
+        "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/phase5_daily_light_dry_run_20260607_precheck.md",
+        "status": "pass",
+        "latest_trade_date": "2026-06-05",
+        "anchor_data_date": "2026-06-05",
+        "validation_dates": [
+          "2026-06-05"
+        ],
+        "incremental_dates": [],
+        "requires_confirmation": false
+      }
+    },
+    {
+      "name": "base-incremental",
+      "status": "skipped",
+      "detail": "no missing trade dates"
+    },
+    {
+      "name": "feature-build",
+      "status": "skipped",
+      "detail": "no missing trade dates"
+    },
+    {
+      "name": "create-views",
+      "status": "planned",
+      "detail": "refresh stock_features_core/plus/full and analytical views"
+    },
+    {
+      "name": "validate-daily-postcheck",
+      "status": "planned",
+      "detail": "run after execution"
+    }
+  ],
+  "summary": {
+    "status": "pass",
+    "incremental_trade_day_count": 0,
+    "elapsed_seconds": 104.211
+  }
+}
