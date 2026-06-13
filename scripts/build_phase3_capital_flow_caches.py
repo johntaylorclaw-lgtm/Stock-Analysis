@@ -82,8 +82,9 @@ def north_cache_sql(start: str | None = None, end: str | None = None, read_start
     for n in ZSCORE_PERIODS:
         avg_expr = f"avg(north_money) OVER (ORDER BY trade_date ROWS BETWEEN {n - 1} PRECEDING AND CURRENT ROW)"
         std_expr = f"stddev_samp(north_money) OVER (ORDER BY trade_date ROWS BETWEEN {n - 1} PRECEDING AND CURRENT ROW)"
+        count_expr = f"count(north_money) OVER (ORDER BY trade_date ROWS BETWEEN {n - 1} PRECEDING AND CURRENT ROW)"
         market_select.append(
-            f"CASE WHEN {std_expr} > 0 THEN (north_money - {avg_expr}) / {std_expr} ELSE NULL END AS north_money_zscore_{n}"
+            f"CASE WHEN {count_expr} >= {n} AND {std_expr} > 0 THEN (north_money - {avg_expr}) / {std_expr} ELSE NULL END AS north_money_zscore_{n}"
         )
     final_select = [
         "c.ts_code",

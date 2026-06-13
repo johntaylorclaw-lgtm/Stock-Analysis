@@ -1,0 +1,1458 @@
+{
+  "generated_at": "2026-06-11T23:23:09",
+  "as_of_date": "2026-06-11",
+  "latest_trade_date": "2026-06-11",
+  "anchor_data_date": "2026-06-11",
+  "max_auto_trade_days": 10,
+  "validation_days": 1,
+  "validation_dates": [
+    "2026-06-11"
+  ],
+  "incremental_dates": [],
+  "summary": {
+    "status": "warning",
+    "requires_confirmation": false,
+    "incremental_trade_day_count": 0,
+    "table_count": 40,
+    "missing_table_count": 0,
+    "coverage_issue_table_count": 0,
+    "table_lag_issue_count": 2,
+    "new_stock_coverage_issue_count": 7,
+    "duplicate_issue_table_count": 0,
+    "stock_level_row_count_issue_table_count": 0,
+    "expected_delay_table_count": 2,
+    "row_count_warning_table_count": 0,
+    "problem_tables": [
+      "margin_detail",
+      "northbound_holding"
+    ]
+  },
+  "tables": [
+    {
+      "table": "stock_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_daily_basic",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_adj_factor",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5529
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5529,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_limit_price",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 7651
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 7651,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_moneyflow_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5193
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5193,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "margin_detail",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-11": 0
+      },
+      "lag_dates_to_latest": [
+        "2026-06-08",
+        "2026-06-09",
+        "2026-06-10",
+        "2026-06-11"
+      ],
+      "hidden_lag_dates": [
+        "2026-06-08",
+        "2026-06-09",
+        "2026-06-10"
+      ],
+      "latest_target_rows": 0,
+      "missing_target_dates": [
+        "2026-06-11"
+      ],
+      "expected_delay_missing": true,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "warning"
+    },
+    {
+      "table": "northbound_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 1
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 1,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "northbound_holding",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-05",
+      "rows_by_target_date": {
+        "2026-06-11": 0
+      },
+      "lag_dates_to_latest": [
+        "2026-06-08",
+        "2026-06-09",
+        "2026-06-10",
+        "2026-06-11"
+      ],
+      "hidden_lag_dates": [
+        "2026-06-08",
+        "2026-06-09",
+        "2026-06-10"
+      ],
+      "latest_target_rows": 0,
+      "missing_target_dates": [
+        "2026-06-11"
+      ],
+      "expected_delay_missing": true,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "warning"
+    },
+    {
+      "table": "top_list_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 104
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 104,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": null,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "top_inst_detail",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 957
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 957,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": null,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "index_daily",
+      "group": "base_daily",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 14
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 14,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "index_weight",
+      "group": "base_periodic",
+      "date_column": "trade_date",
+      "max_date": "2026-06-01",
+      "rows_by_target_date": {
+        "2026-06-11": 0
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 0,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_daily_spine",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_price_technical",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_volume_liquidity",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_return_momentum",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_volatility_risk",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_trading_constraint",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_valuation_size",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_valuation_percentile_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_financial_asof",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_financial_quality",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_financial_growth",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_capital_flow",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_northbound_flow_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_capital_flow_event_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_sector_daily_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 162
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 162,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_concept_daily_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 873
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 873,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_sector_concept_context",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_concept_stock_context_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_index_daily_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 14
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 14,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": null,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_index_membership_cache",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_index_market_context",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_cross_sectional",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_corporate_action",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_ownership_governance",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "derived_composite_state",
+      "group": "derived",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_features_core",
+      "group": "feature_view",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_features_plus",
+      "group": "feature_view",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    },
+    {
+      "table": "stock_features_full",
+      "group": "feature_view",
+      "date_column": "trade_date",
+      "max_date": "2026-06-11",
+      "rows_by_target_date": {
+        "2026-06-11": 5511
+      },
+      "lag_dates_to_latest": [],
+      "hidden_lag_dates": [],
+      "latest_target_rows": 5511,
+      "missing_target_dates": [],
+      "expected_delay_missing": false,
+      "expected_delay_lag": false,
+      "duplicate_key_count": 0,
+      "null_ts_code_count": 0,
+      "row_count_warning": null,
+      "stock_level_row_count_issue": null,
+      "status": "pass"
+    }
+  ],
+  "new_stock_coverage_issues": [
+    {
+      "table": "stock_daily",
+      "missing_stock_count": 79,
+      "sample": [
+        {
+          "ts_code": "900901.SH",
+          "list_date": "1992-02-21"
+        },
+        {
+          "ts_code": "200012.SZ",
+          "list_date": "1992-02-28"
+        },
+        {
+          "ts_code": "200016.SZ",
+          "list_date": "1992-03-27"
+        },
+        {
+          "ts_code": "200011.SZ",
+          "list_date": "1992-03-30"
+        },
+        {
+          "ts_code": "200017.SZ",
+          "list_date": "1992-03-31"
+        },
+        {
+          "ts_code": "200020.SZ",
+          "list_date": "1992-04-28"
+        },
+        {
+          "ts_code": "900902.SH",
+          "list_date": "1992-07-01"
+        },
+        {
+          "ts_code": "900903.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900904.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900905.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900906.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900908.SH",
+          "list_date": "1992-08-20"
+        },
+        {
+          "ts_code": "900909.SH",
+          "list_date": "1992-08-28"
+        },
+        {
+          "ts_code": "200019.SZ",
+          "list_date": "1992-10-12"
+        },
+        {
+          "ts_code": "900910.SH",
+          "list_date": "1993-01-18"
+        },
+        {
+          "ts_code": "201872.SZ",
+          "list_date": "1993-05-05"
+        },
+        {
+          "ts_code": "900911.SH",
+          "list_date": "1993-05-31"
+        },
+        {
+          "ts_code": "200026.SZ",
+          "list_date": "1993-06-03"
+        },
+        {
+          "ts_code": "200025.SZ",
+          "list_date": "1993-06-21"
+        },
+        {
+          "ts_code": "200512.SZ",
+          "list_date": "1993-06-30"
+        }
+      ]
+    },
+    {
+      "table": "stock_daily_basic",
+      "missing_stock_count": 79,
+      "sample": [
+        {
+          "ts_code": "900901.SH",
+          "list_date": "1992-02-21"
+        },
+        {
+          "ts_code": "200012.SZ",
+          "list_date": "1992-02-28"
+        },
+        {
+          "ts_code": "200016.SZ",
+          "list_date": "1992-03-27"
+        },
+        {
+          "ts_code": "200011.SZ",
+          "list_date": "1992-03-30"
+        },
+        {
+          "ts_code": "200017.SZ",
+          "list_date": "1992-03-31"
+        },
+        {
+          "ts_code": "200020.SZ",
+          "list_date": "1992-04-28"
+        },
+        {
+          "ts_code": "900902.SH",
+          "list_date": "1992-07-01"
+        },
+        {
+          "ts_code": "900903.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900904.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900905.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900906.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900908.SH",
+          "list_date": "1992-08-20"
+        },
+        {
+          "ts_code": "900909.SH",
+          "list_date": "1992-08-28"
+        },
+        {
+          "ts_code": "200019.SZ",
+          "list_date": "1992-10-12"
+        },
+        {
+          "ts_code": "900910.SH",
+          "list_date": "1993-01-18"
+        },
+        {
+          "ts_code": "201872.SZ",
+          "list_date": "1993-05-05"
+        },
+        {
+          "ts_code": "900911.SH",
+          "list_date": "1993-05-31"
+        },
+        {
+          "ts_code": "200026.SZ",
+          "list_date": "1993-06-03"
+        },
+        {
+          "ts_code": "200025.SZ",
+          "list_date": "1993-06-21"
+        },
+        {
+          "ts_code": "200512.SZ",
+          "list_date": "1993-06-30"
+        }
+      ]
+    },
+    {
+      "table": "stock_adj_factor",
+      "missing_stock_count": 79,
+      "sample": [
+        {
+          "ts_code": "900901.SH",
+          "list_date": "1992-02-21"
+        },
+        {
+          "ts_code": "200012.SZ",
+          "list_date": "1992-02-28"
+        },
+        {
+          "ts_code": "200016.SZ",
+          "list_date": "1992-03-27"
+        },
+        {
+          "ts_code": "200011.SZ",
+          "list_date": "1992-03-30"
+        },
+        {
+          "ts_code": "200017.SZ",
+          "list_date": "1992-03-31"
+        },
+        {
+          "ts_code": "200020.SZ",
+          "list_date": "1992-04-28"
+        },
+        {
+          "ts_code": "900902.SH",
+          "list_date": "1992-07-01"
+        },
+        {
+          "ts_code": "900903.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900904.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900905.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900906.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900908.SH",
+          "list_date": "1992-08-20"
+        },
+        {
+          "ts_code": "900909.SH",
+          "list_date": "1992-08-28"
+        },
+        {
+          "ts_code": "200019.SZ",
+          "list_date": "1992-10-12"
+        },
+        {
+          "ts_code": "900910.SH",
+          "list_date": "1993-01-18"
+        },
+        {
+          "ts_code": "201872.SZ",
+          "list_date": "1993-05-05"
+        },
+        {
+          "ts_code": "900911.SH",
+          "list_date": "1993-05-31"
+        },
+        {
+          "ts_code": "200026.SZ",
+          "list_date": "1993-06-03"
+        },
+        {
+          "ts_code": "200025.SZ",
+          "list_date": "1993-06-21"
+        },
+        {
+          "ts_code": "200512.SZ",
+          "list_date": "1993-06-30"
+        }
+      ]
+    },
+    {
+      "table": "stock_limit_price",
+      "missing_stock_count": 41,
+      "sample": [
+        {
+          "ts_code": "900901.SH",
+          "list_date": "1992-02-21"
+        },
+        {
+          "ts_code": "900902.SH",
+          "list_date": "1992-07-01"
+        },
+        {
+          "ts_code": "900903.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900904.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900905.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900906.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900908.SH",
+          "list_date": "1992-08-20"
+        },
+        {
+          "ts_code": "900909.SH",
+          "list_date": "1992-08-28"
+        },
+        {
+          "ts_code": "900910.SH",
+          "list_date": "1993-01-18"
+        },
+        {
+          "ts_code": "900911.SH",
+          "list_date": "1993-05-31"
+        },
+        {
+          "ts_code": "900912.SH",
+          "list_date": "1993-07-26"
+        },
+        {
+          "ts_code": "900913.SH",
+          "list_date": "1993-09-28"
+        },
+        {
+          "ts_code": "900914.SH",
+          "list_date": "1993-10-18"
+        },
+        {
+          "ts_code": "900915.SH",
+          "list_date": "1993-11-15"
+        },
+        {
+          "ts_code": "900916.SH",
+          "list_date": "1993-11-19"
+        },
+        {
+          "ts_code": "900917.SH",
+          "list_date": "1993-12-08"
+        },
+        {
+          "ts_code": "900918.SH",
+          "list_date": "1993-12-10"
+        },
+        {
+          "ts_code": "900920.SH",
+          "list_date": "1993-12-28"
+        },
+        {
+          "ts_code": "900921.SH",
+          "list_date": "1993-12-28"
+        },
+        {
+          "ts_code": "900922.SH",
+          "list_date": "1993-12-31"
+        }
+      ]
+    },
+    {
+      "table": "stock_moneyflow_daily",
+      "missing_stock_count": 200,
+      "sample": [
+        {
+          "ts_code": "900901.SH",
+          "list_date": "1992-02-21"
+        },
+        {
+          "ts_code": "200012.SZ",
+          "list_date": "1992-02-28"
+        },
+        {
+          "ts_code": "200016.SZ",
+          "list_date": "1992-03-27"
+        },
+        {
+          "ts_code": "200011.SZ",
+          "list_date": "1992-03-30"
+        },
+        {
+          "ts_code": "200017.SZ",
+          "list_date": "1992-03-31"
+        },
+        {
+          "ts_code": "200020.SZ",
+          "list_date": "1992-04-28"
+        },
+        {
+          "ts_code": "900902.SH",
+          "list_date": "1992-07-01"
+        },
+        {
+          "ts_code": "900903.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900904.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900905.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900906.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900908.SH",
+          "list_date": "1992-08-20"
+        },
+        {
+          "ts_code": "900909.SH",
+          "list_date": "1992-08-28"
+        },
+        {
+          "ts_code": "200019.SZ",
+          "list_date": "1992-10-12"
+        },
+        {
+          "ts_code": "900910.SH",
+          "list_date": "1993-01-18"
+        },
+        {
+          "ts_code": "201872.SZ",
+          "list_date": "1993-05-05"
+        },
+        {
+          "ts_code": "900911.SH",
+          "list_date": "1993-05-31"
+        },
+        {
+          "ts_code": "200026.SZ",
+          "list_date": "1993-06-03"
+        },
+        {
+          "ts_code": "200025.SZ",
+          "list_date": "1993-06-21"
+        },
+        {
+          "ts_code": "200512.SZ",
+          "list_date": "1993-06-30"
+        }
+      ]
+    },
+    {
+      "table": "margin_detail",
+      "missing_stock_count": 1625,
+      "sample": [
+        {
+          "ts_code": "000004.SZ",
+          "list_date": "1990-12-01"
+        },
+        {
+          "ts_code": "600603.SH",
+          "list_date": "1992-01-13"
+        },
+        {
+          "ts_code": "900901.SH",
+          "list_date": "1992-02-21"
+        },
+        {
+          "ts_code": "200012.SZ",
+          "list_date": "1992-02-28"
+        },
+        {
+          "ts_code": "200016.SZ",
+          "list_date": "1992-03-27"
+        },
+        {
+          "ts_code": "600605.SH",
+          "list_date": "1992-03-27"
+        },
+        {
+          "ts_code": "600608.SH",
+          "list_date": "1992-03-27"
+        },
+        {
+          "ts_code": "000011.SZ",
+          "list_date": "1992-03-30"
+        },
+        {
+          "ts_code": "200011.SZ",
+          "list_date": "1992-03-30"
+        },
+        {
+          "ts_code": "000017.SZ",
+          "list_date": "1992-03-31"
+        },
+        {
+          "ts_code": "200017.SZ",
+          "list_date": "1992-03-31"
+        },
+        {
+          "ts_code": "000007.SZ",
+          "list_date": "1992-04-13"
+        },
+        {
+          "ts_code": "000020.SZ",
+          "list_date": "1992-04-28"
+        },
+        {
+          "ts_code": "200020.SZ",
+          "list_date": "1992-04-28"
+        },
+        {
+          "ts_code": "000014.SZ",
+          "list_date": "1992-06-02"
+        },
+        {
+          "ts_code": "900902.SH",
+          "list_date": "1992-07-01"
+        },
+        {
+          "ts_code": "900903.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900904.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900905.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900906.SH",
+          "list_date": "1992-07-28"
+        }
+      ]
+    },
+    {
+      "table": "northbound_holding",
+      "missing_stock_count": 1904,
+      "sample": [
+        {
+          "ts_code": "000004.SZ",
+          "list_date": "1990-12-01"
+        },
+        {
+          "ts_code": "600653.SH",
+          "list_date": "1990-12-19"
+        },
+        {
+          "ts_code": "900901.SH",
+          "list_date": "1992-02-21"
+        },
+        {
+          "ts_code": "200012.SZ",
+          "list_date": "1992-02-28"
+        },
+        {
+          "ts_code": "200016.SZ",
+          "list_date": "1992-03-27"
+        },
+        {
+          "ts_code": "600608.SH",
+          "list_date": "1992-03-27"
+        },
+        {
+          "ts_code": "200011.SZ",
+          "list_date": "1992-03-30"
+        },
+        {
+          "ts_code": "000017.SZ",
+          "list_date": "1992-03-31"
+        },
+        {
+          "ts_code": "200017.SZ",
+          "list_date": "1992-03-31"
+        },
+        {
+          "ts_code": "000007.SZ",
+          "list_date": "1992-04-13"
+        },
+        {
+          "ts_code": "000020.SZ",
+          "list_date": "1992-04-28"
+        },
+        {
+          "ts_code": "200020.SZ",
+          "list_date": "1992-04-28"
+        },
+        {
+          "ts_code": "000014.SZ",
+          "list_date": "1992-06-02"
+        },
+        {
+          "ts_code": "900902.SH",
+          "list_date": "1992-07-01"
+        },
+        {
+          "ts_code": "900903.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900904.SH",
+          "list_date": "1992-07-22"
+        },
+        {
+          "ts_code": "900905.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900906.SH",
+          "list_date": "1992-07-28"
+        },
+        {
+          "ts_code": "900908.SH",
+          "list_date": "1992-08-20"
+        },
+        {
+          "ts_code": "900909.SH",
+          "list_date": "1992-08-28"
+        }
+      ]
+    }
+  ]
+}

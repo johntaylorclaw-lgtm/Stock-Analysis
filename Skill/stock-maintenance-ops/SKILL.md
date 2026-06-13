@@ -21,6 +21,8 @@ Always use WSL project commands:
 
 Hermes Agent is the reporting and handoff agent for this project. Hermes does not design investment strategy and does not create subjective scores. Hermes runs after maintenance commands and produces factual Markdown summaries.
 
+Default daily schedule: 20:00 Asia/Shanghai local time. This timing is intentional because several T+0 Tushare APIs publish in the evening window.
+
 Default follow-up rules:
 
 1. After `daily-light`, run:
@@ -47,7 +49,7 @@ Default follow-up rules:
 |---|---|
 | Current status | `summarize-run --mode status` |
 | Daily preflight | `daily-light --dry-run` |
-| Daily execution | `daily-light` |
+| Daily execution | `daily-light` at 20:00 local time |
 | Daily report | `summarize-run --mode daily --run-id <run_id>` |
 | Weekly validation | `weekly-full` |
 | Weekly report | `summarize-run --mode weekly --run-id <run_id>` |
@@ -61,6 +63,7 @@ Default follow-up rules:
 3. Do not handwrite Excel dictionary commands; use `refresh-dictionary`.
 4. Do not generate investment recommendations, labels, rankings as advice, or subjective scoring.
 5. If a report status is `blocked` or `fail`, stop and summarize the blocker.
+6. If only `margin_detail` or `northbound_holding` is missing for the latest trade date, treat it as expected T+1 source delay and cite the validation report.
 
 ## References
 

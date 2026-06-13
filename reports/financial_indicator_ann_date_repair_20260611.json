@@ -1,0 +1,57 @@
+{
+  "generated_at": "2026-06-11T22:18:46",
+  "before_ann_date_eq_end_date": 8,
+  "after_ann_date_eq_end_date": 0,
+  "candidate_count": 8,
+  "candidates": [
+    {
+      "ts_code": "002204.SZ",
+      "end_date": "2026-03-31",
+      "recovered_ann_date": "2026-04-22",
+      "fallback_used": false
+    },
+    {
+      "ts_code": "300553.SZ",
+      "end_date": "2026-03-31",
+      "recovered_ann_date": "2026-04-22",
+      "fallback_used": false
+    },
+    {
+      "ts_code": "600028.SH",
+      "end_date": "2026-03-31",
+      "recovered_ann_date": "2026-04-29",
+      "fallback_used": false
+    },
+    {
+      "ts_code": "600549.SH",
+      "end_date": "2026-03-31",
+      "recovered_ann_date": "2026-04-24",
+      "fallback_used": false
+    },
+    {
+      "ts_code": "600638.SH",
+      "end_date": "2025-12-31",
+      "recovered_ann_date": "2026-04-22",
+      "fallback_used": false
+    },
+    {
+      "ts_code": "688075.SH",
+      "end_date": "2026-03-31",
+      "recovered_ann_date": "2026-04-30",
+      "fallback_used": false
+    },
+    {
+      "ts_code": "688162.SH",
+      "end_date": "2025-12-31",
+      "recovered_ann_date": "2026-04-22",
+      "fallback_used": false
+    },
+    {
+      "ts_code": "688611.SH",
+      "end_date": "2025-12-31",
+      "recovered_ann_date": "2026-04-22",
+      "fallback_used": false
+    }
+  ],
+  "fallback_policy": "end_date + 120 days only when peer statement announcement date is unavailable"
+}

@@ -8,7 +8,7 @@ from typing import Callable
 
 from .context import FeatureBuildContext
 from .planner import MODULE_ORDER
-from .writer import delete_write_window
+from .writer import delete_write_window, write_transaction
 from ..schema import quote_ident
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -85,10 +85,11 @@ def build_daily_spine(ctx: FeatureBuildContext) -> FeatureBuildResult:
             message=f"would rebuild {table_name} from {ctx.write_start_date} to {ctx.write_end_date}",
         )
 
-    delete_write_window(ctx, table_name)
-    ctx.con.execute(
-        f"""
-        INSERT INTO {quote_ident(table_name)}
+    with write_transaction(ctx.con):
+        delete_write_window(ctx, table_name)
+        ctx.con.execute(
+            f"""
+            INSERT INTO {quote_ident(table_name)}
             (
                 ts_code, trade_date,
                 is_trade, is_listed_asof, list_status_asof, days_since_list, market, exchange,
@@ -236,7 +237,7 @@ def build_daily_spine(ctx: FeatureBuildContext) -> FeatureBuildResult:
                 CASE
                     WHEN open_hfq > 0
                      AND lag(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date) > 0
-                    THEN open_hfq / lag(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date) - 1
+                    THEN abs(open_hfq / lag(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date) - 1)
                     ELSE NULL
                 END AS gap_open_hfq,
                 CASE
@@ -327,24 +328,24 @@ def build_daily_spine(ctx: FeatureBuildContext) -> FeatureBuildResult:
             CURRENT_TIMESTAMP AS updated_at
         FROM enriched
         WHERE trade_date BETWEEN ? AND ?
-        """,
-        [
-            ctx.read_start_date,
-            ctx.write_end_date,
-            ctx.read_start_date,
-            ctx.write_end_date,
-            ctx.write_start_date,
-            ctx.write_end_date,
-        ],
-    )
-    rows = ctx.con.execute(
-        f"""
-        SELECT COUNT(*)
-        FROM {quote_ident(table_name)}
-        WHERE trade_date BETWEEN ? AND ?
-        """,
-        [ctx.write_start_date, ctx.write_end_date],
-    ).fetchone()[0]
+            """,
+            [
+                ctx.read_start_date,
+                ctx.write_end_date,
+                ctx.read_start_date,
+                ctx.write_end_date,
+                ctx.write_start_date,
+                ctx.write_end_date,
+            ],
+        )
+        rows = ctx.con.execute(
+            f"""
+            SELECT COUNT(*)
+            FROM {quote_ident(table_name)}
+            WHERE trade_date BETWEEN ? AND ?
+            """,
+            [ctx.write_start_date, ctx.write_end_date],
+        ).fetchone()[0]
     return FeatureBuildResult(
         module=ctx.module,
         status="success",
@@ -368,24 +369,25 @@ def _rebuild_table(
             message=f"would rebuild {table_name} from {ctx.write_start_date} to {ctx.write_end_date}",
         )
 
-    delete_write_window(ctx, table_name)
     quoted_columns = ", ".join(quote_ident(item) for item in columns)
-    ctx.con.execute(
-        f"""
-        INSERT INTO {quote_ident(table_name)}
-            ({quoted_columns})
-        {select_sql}
-        """,
-        params or [ctx.read_start_date, ctx.write_end_date, ctx.write_start_date, ctx.write_end_date],
-    )
-    rows = ctx.con.execute(
-        f"""
-        SELECT COUNT(*)
-        FROM {quote_ident(table_name)}
-        WHERE trade_date BETWEEN ? AND ?
-        """,
-        [ctx.write_start_date, ctx.write_end_date],
-    ).fetchone()[0]
+    with write_transaction(ctx.con):
+        delete_write_window(ctx, table_name)
+        ctx.con.execute(
+            f"""
+            INSERT INTO {quote_ident(table_name)}
+                ({quoted_columns})
+            {select_sql}
+            """,
+            params or [ctx.read_start_date, ctx.write_end_date, ctx.write_start_date, ctx.write_end_date],
+        )
+        rows = ctx.con.execute(
+            f"""
+            SELECT COUNT(*)
+            FROM {quote_ident(table_name)}
+            WHERE trade_date BETWEEN ? AND ?
+            """,
+            [ctx.write_start_date, ctx.write_end_date],
+        ).fetchone()[0]
     return FeatureBuildResult(ctx.module, "success", int(rows), f"rebuilt {table_name}")
 
 
@@ -432,6 +434,11 @@ def build_price_technical(ctx: FeatureBuildContext) -> FeatureBuildResult:
                 avg(CASE WHEN delta > 0 THEN delta ELSE 0 END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 13 PRECEDING AND CURRENT ROW) AS avg_gain,
                 avg(CASE WHEN delta < 0 THEN -delta ELSE 0 END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 13 PRECEDING AND CURRENT ROW) AS avg_loss,
                 count(delta) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 13 PRECEDING AND CURRENT ROW) AS rsi_obs,
+                count(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS obs_5,
+                count(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS obs_10,
+                count(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS obs_20,
+                count(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) AS obs_60,
+                count(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 119 PRECEDING AND CURRENT ROW) AS obs_120,
                 count(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 249 PRECEDING AND CURRENT ROW) AS obs_250
             FROM ordered
         ),
@@ -439,30 +446,32 @@ def build_price_technical(ctx: FeatureBuildContext) -> FeatureBuildResult:
             SELECT
                 *,
                 lag(ma_20_hfq, 20) OVER (PARTITION BY ts_code ORDER BY trade_date) AS lag_ma_20_hfq,
-                lag(ma_60_hfq, 60) OVER (PARTITION BY ts_code ORDER BY trade_date) AS lag_ma_60_hfq
+                lag(ma_60_hfq, 60) OVER (PARTITION BY ts_code ORDER BY trade_date) AS lag_ma_60_hfq,
+                lag(obs_20, 20) OVER (PARTITION BY ts_code ORDER BY trade_date) AS lag_obs_20,
+                lag(obs_60, 60) OVER (PARTITION BY ts_code ORDER BY trade_date) AS lag_obs_60
             FROM rolling
         )
         SELECT
             ts_code,
             trade_date,
-            CASE WHEN obs_250 >= 5 THEN ma_5_hfq ELSE NULL END AS ma_5_hfq,
-            CASE WHEN obs_250 >= 10 THEN ma_10_hfq ELSE NULL END AS ma_10_hfq,
-            CASE WHEN obs_250 >= 20 THEN ma_20_hfq ELSE NULL END AS ma_20_hfq,
-            CASE WHEN obs_250 >= 60 THEN ma_60_hfq ELSE NULL END AS ma_60_hfq,
-            CASE WHEN obs_250 >= 120 THEN ma_120_hfq ELSE NULL END AS ma_120_hfq,
+            CASE WHEN obs_5 >= 5 THEN ma_5_hfq ELSE NULL END AS ma_5_hfq,
+            CASE WHEN obs_10 >= 10 THEN ma_10_hfq ELSE NULL END AS ma_10_hfq,
+            CASE WHEN obs_20 >= 20 THEN ma_20_hfq ELSE NULL END AS ma_20_hfq,
+            CASE WHEN obs_60 >= 60 THEN ma_60_hfq ELSE NULL END AS ma_60_hfq,
+            CASE WHEN obs_120 >= 120 THEN ma_120_hfq ELSE NULL END AS ma_120_hfq,
             CASE WHEN obs_250 >= 250 THEN ma_250_hfq ELSE NULL END AS ma_250_hfq,
-            CASE WHEN ma_20_hfq > 0 THEN close_hfq / ma_20_hfq - 1 ELSE NULL END AS close_to_ma_20_hfq,
-            CASE WHEN ma_60_hfq > 0 THEN close_hfq / ma_60_hfq - 1 ELSE NULL END AS close_to_ma_60_hfq,
-            CASE WHEN lag_ma_20_hfq > 0 THEN ma_20_hfq / lag_ma_20_hfq - 1 ELSE NULL END AS ma_20_slope_20_hfq,
-            CASE WHEN lag_ma_60_hfq > 0 THEN ma_60_hfq / lag_ma_60_hfq - 1 ELSE NULL END AS ma_60_slope_60_hfq,
+            CASE WHEN obs_20 >= 20 AND ma_20_hfq > 0 THEN close_hfq / ma_20_hfq - 1 ELSE NULL END AS close_to_ma_20_hfq,
+            CASE WHEN obs_60 >= 60 AND ma_60_hfq > 0 THEN close_hfq / ma_60_hfq - 1 ELSE NULL END AS close_to_ma_60_hfq,
+            CASE WHEN obs_20 >= 20 AND lag_obs_20 >= 20 AND lag_ma_20_hfq > 0 THEN ma_20_hfq / lag_ma_20_hfq - 1 ELSE NULL END AS ma_20_slope_20_hfq,
+            CASE WHEN obs_60 >= 60 AND lag_obs_60 >= 60 AND lag_ma_60_hfq > 0 THEN ma_60_hfq / lag_ma_60_hfq - 1 ELSE NULL END AS ma_60_slope_60_hfq,
             CASE
                 WHEN rsi_obs < 14 THEN NULL
                 WHEN avg_loss = 0 AND avg_gain > 0 THEN 100
                 WHEN avg_loss = 0 THEN NULL
                 ELSE 100 - 100 / (1 + avg_gain / avg_loss)
             END AS rsi_14,
-            CASE WHEN high_20_hfq > low_20_hfq THEN (close_hfq - low_20_hfq) / (high_20_hfq - low_20_hfq) ELSE NULL END AS price_position_20_hfq,
-            CASE WHEN high_60_hfq > low_60_hfq THEN (close_hfq - low_60_hfq) / (high_60_hfq - low_60_hfq) ELSE NULL END AS price_position_60_hfq,
+            CASE WHEN obs_20 >= 20 AND high_20_hfq > low_20_hfq THEN (close_hfq - low_20_hfq) / (high_20_hfq - low_20_hfq) ELSE NULL END AS price_position_20_hfq,
+            CASE WHEN obs_60 >= 60 AND high_60_hfq > low_60_hfq THEN (close_hfq - low_60_hfq) / (high_60_hfq - low_60_hfq) ELSE NULL END AS price_position_60_hfq,
             CURRENT_TIMESTAMP AS updated_at
         FROM enriched
         WHERE trade_date BETWEEN ? AND ?
@@ -514,23 +523,30 @@ def build_volume_liquidity(ctx: FeatureBuildContext) -> FeatureBuildResult:
                 avg(turnover_rate_free) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS turnover_rate_free_ma_20,
                 avg(CASE WHEN amount > 0 THEN abs(ret_1_hfq) / amount ELSE NULL END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS amihud_20,
                 sum(CASE WHEN coalesce(volume, 0) = 0 THEN 1 ELSE 0 END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS zero_volume_days_20,
-                count(volume) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) AS obs_60
+                count(volume) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS obs_volume_5,
+                count(volume) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS obs_volume_20,
+                count(volume) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) AS obs_volume_60,
+                count(amount) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS obs_amount_20,
+                count(amount) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) AS obs_amount_60,
+                count(turnover_rate) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS obs_turnover_20,
+                count(turnover_rate_free) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS obs_turnover_free_20,
+                count(CASE WHEN amount > 0 AND ret_1_hfq IS NOT NULL THEN 1 ELSE NULL END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS obs_amihud_20
             FROM base
         )
         SELECT
             ts_code,
             trade_date,
-            CASE WHEN obs_60 >= 5 THEN volume_ma_5 ELSE NULL END AS volume_ma_5,
-            CASE WHEN obs_60 >= 20 THEN volume_ma_20 ELSE NULL END AS volume_ma_20,
-            CASE WHEN obs_60 >= 60 THEN volume_ma_60 ELSE NULL END AS volume_ma_60,
-            CASE WHEN obs_60 >= 20 THEN amount_ma_20 ELSE NULL END AS amount_ma_20,
-            CASE WHEN obs_60 >= 60 THEN amount_ma_60 ELSE NULL END AS amount_ma_60,
-            CASE WHEN obs_60 >= 20 THEN turnover_rate_ma_20 ELSE NULL END AS turnover_rate_ma_20,
-            CASE WHEN obs_60 >= 20 THEN turnover_rate_free_ma_20 ELSE NULL END AS turnover_rate_free_ma_20,
-            CASE WHEN volume_ma_20 > 0 THEN volume / volume_ma_20 ELSE NULL END AS volume_ratio_20,
-            CASE WHEN amount_ma_20 > 0 THEN amount / amount_ma_20 ELSE NULL END AS amount_ratio_20,
-            CASE WHEN obs_60 >= 20 THEN amihud_20 ELSE NULL END AS amihud_20,
-            CASE WHEN obs_60 >= 20 THEN CAST(zero_volume_days_20 AS INTEGER) ELSE NULL END AS zero_volume_days_20,
+            CASE WHEN obs_volume_5 >= 5 THEN volume_ma_5 ELSE NULL END AS volume_ma_5,
+            CASE WHEN obs_volume_20 >= 20 THEN volume_ma_20 ELSE NULL END AS volume_ma_20,
+            CASE WHEN obs_volume_60 >= 60 THEN volume_ma_60 ELSE NULL END AS volume_ma_60,
+            CASE WHEN obs_amount_20 >= 20 THEN amount_ma_20 ELSE NULL END AS amount_ma_20,
+            CASE WHEN obs_amount_60 >= 60 THEN amount_ma_60 ELSE NULL END AS amount_ma_60,
+            CASE WHEN obs_turnover_20 >= 20 THEN turnover_rate_ma_20 ELSE NULL END AS turnover_rate_ma_20,
+            CASE WHEN obs_turnover_free_20 >= 20 THEN turnover_rate_free_ma_20 ELSE NULL END AS turnover_rate_free_ma_20,
+            CASE WHEN obs_volume_20 >= 20 AND volume_ma_20 > 0 THEN volume / volume_ma_20 ELSE NULL END AS volume_ratio_20,
+            CASE WHEN obs_amount_20 >= 20 AND amount_ma_20 > 0 THEN amount / amount_ma_20 ELSE NULL END AS amount_ratio_20,
+            CASE WHEN obs_amihud_20 >= 20 THEN amihud_20 ELSE NULL END AS amihud_20,
+            CASE WHEN obs_volume_20 >= 20 THEN CAST(zero_volume_days_20 AS INTEGER) ELSE NULL END AS zero_volume_days_20,
             CURRENT_TIMESTAMP AS updated_at
         FROM rolling
         WHERE trade_date BETWEEN ? AND ?
@@ -626,6 +642,7 @@ def build_volatility_risk(ctx: FeatureBuildContext) -> FeatureBuildResult:
             SELECT
                 ts_code,
                 trade_date,
+                row_number() OVER (PARTITION BY ts_code ORDER BY trade_date) AS rn,
                 close_hfq,
                 high_hfq,
                 low_hfq,
@@ -647,46 +664,74 @@ def build_volatility_risk(ctx: FeatureBuildContext) -> FeatureBuildResult:
             SELECT
                 ts_code,
                 trade_date,
+                rn,
                 close_hfq,
                 stddev_samp(log_ret_1_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) * sqrt(242) AS hv_20,
                 stddev_samp(log_ret_1_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) * sqrt(242) AS hv_60,
                 stddev_samp(log_ret_1_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 119 PRECEDING AND CURRENT ROW) * sqrt(242) AS hv_120,
                 sqrt(avg(power(ln(high_hfq / nullif(low_hfq, 0)), 2)) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) / (4 * ln(2)) * 242) AS parkinson_vol_20,
                 avg(true_range_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 13 PRECEDING AND CURRENT ROW) AS atr_14_hfq,
-                max(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS high_close_20,
-                max(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) AS high_close_60,
                 stddev_samp(CASE WHEN log_ret_1_hfq < 0 THEN log_ret_1_hfq ELSE NULL END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) * sqrt(242) AS downside_vol_60,
                 quantile_cont(ret_1_hfq, 0.05) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) AS var_5pct_60,
-                count(log_ret_1_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 119 PRECEDING AND CURRENT ROW) AS obs_120
+                count(log_ret_1_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS obs_ret_20,
+                count(log_ret_1_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) AS obs_ret_60,
+                count(log_ret_1_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 119 PRECEDING AND CURRENT ROW) AS obs_ret_120,
+                count(CASE WHEN high_hfq > 0 AND low_hfq > 0 THEN 1 END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS obs_hilo_20,
+                count(true_range_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 13 PRECEDING AND CURRENT ROW) AS obs_tr_14,
+                count(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS obs_price_20,
+                count(close_hfq) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) AS obs_price_60
             FROM base
-        ),
-        drawdown AS (
-            SELECT
-                *,
-                close_hfq / nullif(high_close_20, 0) - 1 AS drawdown_20,
-                close_hfq / nullif(high_close_60, 0) - 1 AS drawdown_60
-            FROM rolling
         ),
         enriched AS (
             SELECT
                 *,
-                min(drawdown_20) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS max_drawdown_20_hfq,
-                min(drawdown_60) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 59 PRECEDING AND CURRENT ROW) AS max_drawdown_60_hfq
-            FROM drawdown
+                (
+                    SELECT min(
+                        trough.close_hfq / nullif(
+                            (
+                                SELECT max(peak.close_hfq)
+                                FROM rolling peak
+                                WHERE peak.ts_code = rolling.ts_code
+                                  AND peak.rn BETWEEN rolling.rn - 19 AND trough.rn
+                            ),
+                            0
+                        ) - 1
+                    )
+                    FROM rolling trough
+                    WHERE trough.ts_code = rolling.ts_code
+                      AND trough.rn BETWEEN rolling.rn - 19 AND rolling.rn
+                ) AS max_drawdown_20_hfq,
+                (
+                    SELECT min(
+                        trough.close_hfq / nullif(
+                            (
+                                SELECT max(peak.close_hfq)
+                                FROM rolling peak
+                                WHERE peak.ts_code = rolling.ts_code
+                                  AND peak.rn BETWEEN rolling.rn - 59 AND trough.rn
+                            ),
+                            0
+                        ) - 1
+                    )
+                    FROM rolling trough
+                    WHERE trough.ts_code = rolling.ts_code
+                      AND trough.rn BETWEEN rolling.rn - 59 AND rolling.rn
+                ) AS max_drawdown_60_hfq
+            FROM rolling
         )
         SELECT
             ts_code,
             trade_date,
-            CASE WHEN obs_120 >= 20 THEN hv_20 ELSE NULL END AS hv_20,
-            CASE WHEN obs_120 >= 60 THEN hv_60 ELSE NULL END AS hv_60,
-            CASE WHEN obs_120 >= 120 THEN hv_120 ELSE NULL END AS hv_120,
-            CASE WHEN obs_120 >= 20 THEN parkinson_vol_20 ELSE NULL END AS parkinson_vol_20,
-            CASE WHEN obs_120 >= 14 THEN atr_14_hfq ELSE NULL END AS atr_14_hfq,
-            CASE WHEN close_hfq > 0 AND obs_120 >= 14 THEN atr_14_hfq / close_hfq ELSE NULL END AS atr_14_pct_hfq,
-            CASE WHEN obs_120 >= 20 THEN max_drawdown_20_hfq ELSE NULL END AS max_drawdown_20_hfq,
-            CASE WHEN obs_120 >= 60 THEN max_drawdown_60_hfq ELSE NULL END AS max_drawdown_60_hfq,
-            CASE WHEN obs_120 >= 60 THEN downside_vol_60 ELSE NULL END AS downside_vol_60,
-            CASE WHEN obs_120 >= 60 THEN var_5pct_60 ELSE NULL END AS var_5pct_60,
+            CASE WHEN obs_ret_20 >= 20 THEN hv_20 ELSE NULL END AS hv_20,
+            CASE WHEN obs_ret_60 >= 60 THEN hv_60 ELSE NULL END AS hv_60,
+            CASE WHEN obs_ret_120 >= 120 THEN hv_120 ELSE NULL END AS hv_120,
+            CASE WHEN obs_hilo_20 >= 20 THEN parkinson_vol_20 ELSE NULL END AS parkinson_vol_20,
+            CASE WHEN obs_tr_14 >= 14 THEN atr_14_hfq ELSE NULL END AS atr_14_hfq,
+            CASE WHEN close_hfq > 0 AND obs_tr_14 >= 14 THEN atr_14_hfq / close_hfq ELSE NULL END AS atr_14_pct_hfq,
+            CASE WHEN obs_price_20 >= 20 THEN max_drawdown_20_hfq ELSE NULL END AS max_drawdown_20_hfq,
+            CASE WHEN obs_price_60 >= 60 THEN max_drawdown_60_hfq ELSE NULL END AS max_drawdown_60_hfq,
+            CASE WHEN obs_ret_60 >= 60 THEN downside_vol_60 ELSE NULL END AS downside_vol_60,
+            CASE WHEN obs_ret_60 >= 60 THEN var_5pct_60 ELSE NULL END AS var_5pct_60,
             CURRENT_TIMESTAMP AS updated_at
         FROM enriched
         WHERE trade_date BETWEEN ? AND ?
@@ -753,18 +798,21 @@ def build_trading_constraint(ctx: FeatureBuildContext) -> FeatureBuildResult:
                 sum(CASE WHEN limit_down_flag THEN 1 ELSE 0 END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS limit_down_days_5,
                 sum(CASE WHEN limit_down_flag THEN 1 ELSE 0 END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS limit_down_days_20,
                 sum(CASE WHEN touch_limit_up_flag THEN 1 ELSE 0 END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS touch_limit_up_days_20,
-                sum(CASE WHEN touch_limit_down_flag THEN 1 ELSE 0 END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS touch_limit_down_days_20
+                sum(CASE WHEN touch_limit_down_flag THEN 1 ELSE 0 END) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS touch_limit_down_days_20,
+                count(limit_up_flag) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS limit_flag_obs_5,
+                count(limit_up_flag) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS limit_flag_obs_20,
+                count(touch_limit_up_flag) OVER (PARTITION BY ts_code ORDER BY trade_date ROWS BETWEEN 19 PRECEDING AND CURRENT ROW) AS touch_limit_flag_obs_20
             FROM streaks
         )
         SELECT
             ts_code,
             trade_date,
-            CAST(limit_up_days_5 AS INTEGER) AS limit_up_days_5,
-            CAST(limit_up_days_20 AS INTEGER) AS limit_up_days_20,
-            CAST(limit_down_days_5 AS INTEGER) AS limit_down_days_5,
-            CAST(limit_down_days_20 AS INTEGER) AS limit_down_days_20,
-            CAST(touch_limit_up_days_20 AS INTEGER) AS touch_limit_up_days_20,
-            CAST(touch_limit_down_days_20 AS INTEGER) AS touch_limit_down_days_20,
+            CASE WHEN limit_flag_obs_5 >= 5 THEN CAST(limit_up_days_5 AS INTEGER) ELSE NULL END AS limit_up_days_5,
+            CASE WHEN limit_flag_obs_20 >= 20 THEN CAST(limit_up_days_20 AS INTEGER) ELSE NULL END AS limit_up_days_20,
+            CASE WHEN limit_flag_obs_5 >= 5 THEN CAST(limit_down_days_5 AS INTEGER) ELSE NULL END AS limit_down_days_5,
+            CASE WHEN limit_flag_obs_20 >= 20 THEN CAST(limit_down_days_20 AS INTEGER) ELSE NULL END AS limit_down_days_20,
+            CASE WHEN touch_limit_flag_obs_20 >= 20 THEN CAST(touch_limit_up_days_20 AS INTEGER) ELSE NULL END AS touch_limit_up_days_20,
+            CASE WHEN touch_limit_flag_obs_20 >= 20 THEN CAST(touch_limit_down_days_20 AS INTEGER) ELSE NULL END AS touch_limit_down_days_20,
             CAST(consecutive_limit_up_days AS INTEGER) AS consecutive_limit_up_days,
             CAST(consecutive_limit_down_days AS INTEGER) AS consecutive_limit_down_days,
             one_price_limit_up_flag,
@@ -913,7 +961,7 @@ def build_valuation_size(ctx: FeatureBuildContext) -> FeatureBuildResult:
         f"SELECT count(*) FROM {quote_ident(table_name)} WHERE trade_date BETWEEN ? AND ?",
         [ctx.write_start_date, ctx.write_end_date],
     ).fetchone()[0]
-    return FeatureBuildResult(module=ctx.module, status="built", rows_written=rows)
+    return FeatureBuildResult(module=ctx.module, status="success", rows_written=rows)
 
 
 def build_financial_asof(ctx: FeatureBuildContext) -> FeatureBuildResult:
@@ -1072,6 +1120,13 @@ def build_financial_asof(ctx: FeatureBuildContext) -> FeatureBuildResult:
                 ORDER BY end_date DESC NULLS LAST
             ) = 1
         ),
+        disclosure_schedule AS (
+            SELECT
+                ts_code,
+                CAST(coalesce(pre_date, actual_date, modify_date, ann_date) AS DATE) AS disclosure_pre_date
+            FROM financial_disclosure_schedule
+            WHERE coalesce(pre_date, actual_date, modify_date, ann_date) IS NOT NULL
+        ),
         asof_base AS (
             SELECT
                 d.ts_code,
@@ -1156,12 +1211,34 @@ def build_financial_asof(ctx: FeatureBuildContext) -> FeatureBuildResult:
               + (CASE WHEN indicator_report_end_date = latest_report_end_date THEN 1 ELSE 0 END)
               AS INTEGER
             ) AS statement_available_count,
-            income_report_end_date = latest_report_end_date AS has_income_statement,
-            balance_report_end_date = latest_report_end_date AS has_balance_sheet,
-            cashflow_report_end_date = latest_report_end_date AS has_cashflow_statement,
-            indicator_report_end_date = latest_report_end_date AS has_indicator_statement,
-            NULL::DATE AS next_disclosure_pre_date,
-            NULL::BIGINT AS days_to_next_disclosure,
+            coalesce(income_report_end_date = latest_report_end_date, false) AS has_income_statement,
+            coalesce(balance_report_end_date = latest_report_end_date, false) AS has_balance_sheet,
+            coalesce(cashflow_report_end_date = latest_report_end_date, false) AS has_cashflow_statement,
+            coalesce(indicator_report_end_date = latest_report_end_date, false) AS has_indicator_statement,
+            (
+                SELECT min(s.disclosure_pre_date)
+                FROM disclosure_schedule s
+                WHERE s.ts_code = asof_base.ts_code
+                  AND s.disclosure_pre_date >= asof_base.trade_date
+            ) AS next_disclosure_pre_date,
+            CASE
+                WHEN (
+                    SELECT min(s.disclosure_pre_date)
+                    FROM disclosure_schedule s
+                    WHERE s.ts_code = asof_base.ts_code
+                      AND s.disclosure_pre_date >= asof_base.trade_date
+                ) IS NULL THEN NULL
+                ELSE date_diff(
+                    'day',
+                    trade_date,
+                    (
+                        SELECT min(s.disclosure_pre_date)
+                        FROM disclosure_schedule s
+                        WHERE s.ts_code = asof_base.ts_code
+                          AND s.disclosure_pre_date >= asof_base.trade_date
+                    )
+                )
+            END AS days_to_next_disclosure,
             latest_forecast_end_date IS NOT NULL AS has_forecast_asof,
             latest_forecast_end_date,
             latest_express_end_date IS NOT NULL AS has_express_asof,
@@ -1225,36 +1302,69 @@ def build_financial_quality(ctx: FeatureBuildContext) -> FeatureBuildResult:
             "updated_at",
         ],
         """
-        WITH indicator_latest AS (
-            SELECT *
-            FROM financial_indicator_raw
+        WITH asof_days AS (
+            SELECT ts_code, trade_date, latest_report_end_date
+            FROM derived_financial_asof
+            WHERE trade_date BETWEEN ? AND ?
+        ),
+        indicator_asof AS (
+            SELECT
+                a.ts_code AS asof_ts_code,
+                a.trade_date AS asof_trade_date,
+                i.*
+            FROM asof_days a
+            LEFT JOIN financial_indicator_raw i
+                ON a.ts_code = i.ts_code
+               AND a.latest_report_end_date = i.end_date
+               AND coalesce(i.effective_date, i.ann_date) <= a.trade_date
             QUALIFY row_number() OVER (
-                PARTITION BY ts_code, end_date
-                ORDER BY coalesce(effective_date, ann_date) DESC NULLS LAST, ann_date DESC NULLS LAST
+                PARTITION BY a.ts_code, a.trade_date
+                ORDER BY coalesce(i.effective_date, i.ann_date) DESC NULLS LAST, i.ann_date DESC NULLS LAST
             ) = 1
         ),
-        income_latest AS (
-            SELECT *
-            FROM financial_income_raw
+        income_asof AS (
+            SELECT
+                a.ts_code AS asof_ts_code,
+                a.trade_date AS asof_trade_date,
+                inc.*
+            FROM asof_days a
+            LEFT JOIN financial_income_raw inc
+                ON a.ts_code = inc.ts_code
+               AND a.latest_report_end_date = inc.end_date
+               AND coalesce(inc.effective_date, inc.first_ann_date, inc.ann_date) <= a.trade_date
             QUALIFY row_number() OVER (
-                PARTITION BY ts_code, end_date
-                ORDER BY coalesce(effective_date, first_ann_date, ann_date) DESC NULLS LAST, ann_date DESC NULLS LAST
+                PARTITION BY a.ts_code, a.trade_date
+                ORDER BY coalesce(inc.effective_date, inc.first_ann_date, inc.ann_date) DESC NULLS LAST, inc.ann_date DESC NULLS LAST
             ) = 1
         ),
-        balance_latest AS (
-            SELECT *
-            FROM financial_balance_raw
+        balance_asof AS (
+            SELECT
+                a.ts_code AS asof_ts_code,
+                a.trade_date AS asof_trade_date,
+                bal.*
+            FROM asof_days a
+            LEFT JOIN financial_balance_raw bal
+                ON a.ts_code = bal.ts_code
+               AND a.latest_report_end_date = bal.end_date
+               AND coalesce(bal.effective_date, bal.first_ann_date, bal.ann_date) <= a.trade_date
             QUALIFY row_number() OVER (
-                PARTITION BY ts_code, end_date
-                ORDER BY coalesce(effective_date, first_ann_date, ann_date) DESC NULLS LAST, ann_date DESC NULLS LAST
+                PARTITION BY a.ts_code, a.trade_date
+                ORDER BY coalesce(bal.effective_date, bal.first_ann_date, bal.ann_date) DESC NULLS LAST, bal.ann_date DESC NULLS LAST
             ) = 1
         ),
-        cashflow_latest AS (
-            SELECT *
-            FROM financial_cashflow_raw
+        cashflow_asof AS (
+            SELECT
+                a.ts_code AS asof_ts_code,
+                a.trade_date AS asof_trade_date,
+                cf.*
+            FROM asof_days a
+            LEFT JOIN financial_cashflow_raw cf
+                ON a.ts_code = cf.ts_code
+               AND a.latest_report_end_date = cf.end_date
+               AND coalesce(cf.effective_date, cf.first_ann_date, cf.ann_date) <= a.trade_date
             QUALIFY row_number() OVER (
-                PARTITION BY ts_code, end_date
-                ORDER BY coalesce(effective_date, first_ann_date, ann_date) DESC NULLS LAST, ann_date DESC NULLS LAST
+                PARTITION BY a.ts_code, a.trade_date
+                ORDER BY coalesce(cf.effective_date, cf.first_ann_date, cf.ann_date) DESC NULLS LAST, cf.ann_date DESC NULLS LAST
             ) = 1
         ),
         joined AS (
@@ -1266,23 +1376,23 @@ def build_financial_quality(ctx: FeatureBuildContext) -> FeatureBuildResult:
                 a.report_lag_days,
                 a.has_forecast_asof,
                 a.has_express_asof,
-                i.* EXCLUDE (ts_code, ann_date, end_date, payload_json, effective_date, updated_at),
-                inc.* EXCLUDE (ts_code, ann_date, first_ann_date, end_date, report_type, comp_type, payload_json, effective_date, updated_at),
-                bal.* EXCLUDE (ts_code, ann_date, first_ann_date, end_date, report_type, comp_type, payload_json, effective_date, updated_at),
-                cf.* EXCLUDE (ts_code, ann_date, first_ann_date, end_date, report_type, comp_type, payload_json, effective_date, updated_at)
+                i.* EXCLUDE (asof_ts_code, asof_trade_date, ts_code, ann_date, end_date, payload_json, effective_date, updated_at),
+                inc.* EXCLUDE (asof_ts_code, asof_trade_date, ts_code, ann_date, first_ann_date, end_date, report_type, comp_type, payload_json, effective_date, updated_at),
+                bal.* EXCLUDE (asof_ts_code, asof_trade_date, ts_code, ann_date, first_ann_date, end_date, report_type, comp_type, payload_json, effective_date, updated_at),
+                cf.* EXCLUDE (asof_ts_code, asof_trade_date, ts_code, ann_date, first_ann_date, end_date, report_type, comp_type, payload_json, effective_date, updated_at)
             FROM derived_financial_asof a
-            LEFT JOIN indicator_latest i
-                ON a.ts_code = i.ts_code
-               AND a.latest_report_end_date = i.end_date
-            LEFT JOIN income_latest inc
-                ON a.ts_code = inc.ts_code
-               AND a.latest_report_end_date = inc.end_date
-            LEFT JOIN balance_latest bal
-                ON a.ts_code = bal.ts_code
-               AND a.latest_report_end_date = bal.end_date
-            LEFT JOIN cashflow_latest cf
-                ON a.ts_code = cf.ts_code
-               AND a.latest_report_end_date = cf.end_date
+            LEFT JOIN indicator_asof i
+                ON a.ts_code = i.asof_ts_code
+               AND a.trade_date = i.asof_trade_date
+            LEFT JOIN income_asof inc
+                ON a.ts_code = inc.asof_ts_code
+               AND a.trade_date = inc.asof_trade_date
+            LEFT JOIN balance_asof bal
+                ON a.ts_code = bal.asof_ts_code
+               AND a.trade_date = bal.asof_trade_date
+            LEFT JOIN cashflow_asof cf
+                ON a.ts_code = cf.asof_ts_code
+               AND a.trade_date = cf.asof_trade_date
             WHERE a.trade_date BETWEEN ? AND ?
         ),
         calc AS (
@@ -1446,7 +1556,7 @@ def build_financial_quality(ctx: FeatureBuildContext) -> FeatureBuildResult:
             revenue_to_assets_calc AS dupont_asset_turnover_asof,
             dupont_equity_multiplier_calc AS dupont_equity_multiplier_asof,
             parent_net_profit_margin_calc * revenue_to_assets_calc * dupont_equity_multiplier_calc AS dupont_roe_calc_asof,
-            roe - parent_net_profit_margin_calc * revenue_to_assets_calc * dupont_equity_multiplier_calc AS roe_calc_gap_asof,
+            roe / 100.0 - parent_net_profit_margin_calc * revenue_to_assets_calc * dupont_equity_multiplier_calc AS roe_calc_gap_asof,
             equity_attr_parent < 0 AS negative_equity_flag,
             net_profit < 0 AS negative_net_profit_flag,
             net_profit_attr_parent < 0 AS negative_parent_net_profit_flag,
@@ -1470,7 +1580,7 @@ def build_financial_quality(ctx: FeatureBuildContext) -> FeatureBuildResult:
             CURRENT_TIMESTAMP AS updated_at
         FROM calc
         """,
-        [ctx.write_start_date, ctx.write_end_date],
+        [ctx.write_start_date, ctx.write_end_date, ctx.write_start_date, ctx.write_end_date],
     )
 
 
@@ -1609,7 +1719,14 @@ def build_financial_growth(ctx: FeatureBuildContext) -> FeatureBuildResult:
         for suffix, num, den in comparisons:
             column_name = f"{metric}_{suffix}"
             columns.append(column_name)
-            select_items.append(f"{safe_growth(num, den)} AS {column_name}")
+            if suffix == "qoq_report_asof":
+                select_items.append(
+                    "CASE "
+                    "WHEN seq.prev_report_end_date = a.latest_report_end_date - INTERVAL 3 MONTH "
+                    f"THEN {safe_growth(num, den)} ELSE NULL END AS {column_name}"
+                )
+            else:
+                select_items.append(f"{safe_growth(num, den)} AS {column_name}")
         for suffix, years, den in [
             ("cagr_2y_asof", 2, f"same2.{metric}"),
             ("cagr_3y_asof", 3, f"same3.{metric}"),
@@ -1635,13 +1752,17 @@ def build_financial_growth(ctx: FeatureBuildContext) -> FeatureBuildResult:
         ("ocf_positive_growth_flag", "ocf_yoy_1y_calc_asof > 0"),
         (
             "revenue_profit_same_direction_flag",
-            "(revenue_yoy_1y_calc_asof > 0 AND parent_net_profit_yoy_1y_calc_asof > 0) "
-            "OR (revenue_yoy_1y_calc_asof < 0 AND parent_net_profit_yoy_1y_calc_asof < 0)",
+            "revenue_yoy_1y_calc_asof > -9000000 "
+            "AND parent_net_profit_yoy_1y_calc_asof > -9000000 "
+            "AND ((revenue_yoy_1y_calc_asof > 0 AND parent_net_profit_yoy_1y_calc_asof > 0) "
+            "OR (revenue_yoy_1y_calc_asof < 0 AND parent_net_profit_yoy_1y_calc_asof < 0))",
         ),
         (
             "profit_ocf_same_direction_flag",
-            "(parent_net_profit_yoy_1y_calc_asof > 0 AND ocf_yoy_1y_calc_asof > 0) "
-            "OR (parent_net_profit_yoy_1y_calc_asof < 0 AND ocf_yoy_1y_calc_asof < 0)",
+            "parent_net_profit_yoy_1y_calc_asof > -9000000 "
+            "AND ocf_yoy_1y_calc_asof > -9000000 "
+            "AND ((parent_net_profit_yoy_1y_calc_asof > 0 AND ocf_yoy_1y_calc_asof > 0) "
+            "OR (parent_net_profit_yoy_1y_calc_asof < 0 AND ocf_yoy_1y_calc_asof < 0))",
         ),
     ]
     # Status fields depend on aliases, so evaluate them in an outer SELECT.
@@ -1657,6 +1778,7 @@ def build_financial_growth(ctx: FeatureBuildContext) -> FeatureBuildResult:
     metric_names = [name for name, _expr, _is_flow in amount_metrics]
     raw_value_select = [
         "rs.ts_code",
+        "rs.asof_trade_date",
         "rs.current_report_end_date",
         "EXTRACT(year FROM rs.current_report_end_date) AS report_year",
         "EXTRACT(quarter FROM rs.current_report_end_date) AS report_quarter",
@@ -1716,11 +1838,14 @@ def build_financial_growth(ctx: FeatureBuildContext) -> FeatureBuildResult:
         if next(item for item in amount_metrics if item[0] == metric)[2]:
             single_quarter_select.append(
                 f"""
-                CASE
-                    WHEN report_quarter = 1 THEN {metric}
-                    ELSE {metric} - lag({metric}) OVER (
-                        PARTITION BY ts_code, report_year ORDER BY current_report_end_date
-                    )
+	                CASE
+	                    WHEN report_quarter = 1 THEN {metric}
+	                    WHEN lag(current_report_end_date) OVER (
+	                        PARTITION BY ts_code, asof_trade_date, report_year ORDER BY current_report_end_date
+	                    ) != current_report_end_date - INTERVAL 3 MONTH THEN NULL
+	                    ELSE {metric} - lag({metric}) OVER (
+	                        PARTITION BY ts_code, asof_trade_date, report_year ORDER BY current_report_end_date
+	                    )
                 END AS {metric}_single_quarter_value
                 """.strip()
             )
@@ -1769,56 +1894,104 @@ def build_financial_growth(ctx: FeatureBuildContext) -> FeatureBuildResult:
                AND y2.current_report_end_date = rb.current_report_end_date - INTERVAL 2 YEAR
             LEFT JOIN report_base y3
                 ON rb.ts_code = y3.ts_code
-               AND y3.current_report_end_date = rb.current_report_end_date - INTERVAL 3 YEAR
+	               AND y3.current_report_end_date = rb.current_report_end_date - INTERVAL 3 YEAR
+	        ),
+        asof_days AS (
+            SELECT DISTINCT ts_code, trade_date AS asof_trade_date
+            FROM derived_financial_asof
+            WHERE trade_date BETWEEN ? AND ?
         ),
-        indicator_latest AS (
-            SELECT *
-            FROM financial_indicator_raw
+        report_context AS (
+            SELECT
+                d.asof_trade_date,
+                rs.*
+            FROM asof_days d
+            JOIN report_seq rs USING (ts_code)
+        ),
+        indicator_asof AS (
+            SELECT
+                rc.ts_code AS asof_ts_code,
+                rc.asof_trade_date,
+                rc.current_report_end_date AS asof_report_end_date,
+                i.*
+            FROM report_context rc
+            LEFT JOIN financial_indicator_raw i
+                ON rc.ts_code = i.ts_code
+               AND rc.current_report_end_date = i.end_date
+               AND coalesce(i.effective_date, i.ann_date) <= rc.asof_trade_date
             QUALIFY row_number() OVER (
-                PARTITION BY ts_code, end_date
-                ORDER BY coalesce(effective_date, ann_date) DESC NULLS LAST, ann_date DESC NULLS LAST
+                PARTITION BY rc.ts_code, rc.asof_trade_date, rc.current_report_end_date
+                ORDER BY coalesce(i.effective_date, i.ann_date) DESC NULLS LAST, i.ann_date DESC NULLS LAST
             ) = 1
         ),
-        income_latest AS (
-            SELECT *
-            FROM financial_income_raw
+        income_asof AS (
+            SELECT
+                rc.ts_code AS asof_ts_code,
+                rc.asof_trade_date,
+                rc.current_report_end_date AS asof_report_end_date,
+                inc.*
+            FROM report_context rc
+            LEFT JOIN financial_income_raw inc
+                ON rc.ts_code = inc.ts_code
+               AND rc.current_report_end_date = inc.end_date
+               AND coalesce(inc.effective_date, inc.first_ann_date, inc.ann_date) <= rc.asof_trade_date
             QUALIFY row_number() OVER (
-                PARTITION BY ts_code, end_date
-                ORDER BY coalesce(effective_date, first_ann_date, ann_date) DESC NULLS LAST, ann_date DESC NULLS LAST
+                PARTITION BY rc.ts_code, rc.asof_trade_date, rc.current_report_end_date
+                ORDER BY coalesce(inc.effective_date, inc.first_ann_date, inc.ann_date) DESC NULLS LAST, inc.ann_date DESC NULLS LAST
             ) = 1
         ),
-        balance_latest AS (
-            SELECT *
-            FROM financial_balance_raw
+        balance_asof AS (
+            SELECT
+                rc.ts_code AS asof_ts_code,
+                rc.asof_trade_date,
+                rc.current_report_end_date AS asof_report_end_date,
+                bal.*
+            FROM report_context rc
+            LEFT JOIN financial_balance_raw bal
+                ON rc.ts_code = bal.ts_code
+               AND rc.current_report_end_date = bal.end_date
+               AND coalesce(bal.effective_date, bal.first_ann_date, bal.ann_date) <= rc.asof_trade_date
             QUALIFY row_number() OVER (
-                PARTITION BY ts_code, end_date
-                ORDER BY coalesce(effective_date, first_ann_date, ann_date) DESC NULLS LAST, ann_date DESC NULLS LAST
+                PARTITION BY rc.ts_code, rc.asof_trade_date, rc.current_report_end_date
+                ORDER BY coalesce(bal.effective_date, bal.first_ann_date, bal.ann_date) DESC NULLS LAST, bal.ann_date DESC NULLS LAST
             ) = 1
         ),
-        cashflow_latest AS (
-            SELECT *
-            FROM financial_cashflow_raw
+        cashflow_asof AS (
+            SELECT
+                rc.ts_code AS asof_ts_code,
+                rc.asof_trade_date,
+                rc.current_report_end_date AS asof_report_end_date,
+                cf.*
+            FROM report_context rc
+            LEFT JOIN financial_cashflow_raw cf
+                ON rc.ts_code = cf.ts_code
+               AND rc.current_report_end_date = cf.end_date
+               AND coalesce(cf.effective_date, cf.first_ann_date, cf.ann_date) <= rc.asof_trade_date
             QUALIFY row_number() OVER (
-                PARTITION BY ts_code, end_date
-                ORDER BY coalesce(effective_date, first_ann_date, ann_date) DESC NULLS LAST, ann_date DESC NULLS LAST
+                PARTITION BY rc.ts_code, rc.asof_trade_date, rc.current_report_end_date
+                ORDER BY coalesce(cf.effective_date, cf.first_ann_date, cf.ann_date) DESC NULLS LAST, cf.ann_date DESC NULLS LAST
             ) = 1
         ),
         report_values AS (
             SELECT
                 {raw_select_sql}
-            FROM report_seq rs
-            LEFT JOIN indicator_latest i
-                ON rs.ts_code = i.ts_code
-               AND rs.current_report_end_date = i.end_date
-            LEFT JOIN income_latest inc
-                ON rs.ts_code = inc.ts_code
-               AND rs.current_report_end_date = inc.end_date
-            LEFT JOIN balance_latest bal
-                ON rs.ts_code = bal.ts_code
-               AND rs.current_report_end_date = bal.end_date
-            LEFT JOIN cashflow_latest cf
-                ON rs.ts_code = cf.ts_code
-               AND rs.current_report_end_date = cf.end_date
+            FROM report_context rs
+            LEFT JOIN indicator_asof i
+                ON rs.ts_code = i.asof_ts_code
+               AND rs.asof_trade_date = i.asof_trade_date
+               AND rs.current_report_end_date = i.asof_report_end_date
+            LEFT JOIN income_asof inc
+                ON rs.ts_code = inc.asof_ts_code
+               AND rs.asof_trade_date = inc.asof_trade_date
+               AND rs.current_report_end_date = inc.asof_report_end_date
+            LEFT JOIN balance_asof bal
+                ON rs.ts_code = bal.asof_ts_code
+               AND rs.asof_trade_date = bal.asof_trade_date
+               AND rs.current_report_end_date = bal.asof_report_end_date
+            LEFT JOIN cashflow_asof cf
+                ON rs.ts_code = cf.asof_ts_code
+               AND rs.asof_trade_date = cf.asof_trade_date
+               AND rs.current_report_end_date = cf.asof_report_end_date
         ),
         report_values_enriched AS (
             SELECT
@@ -1835,27 +2008,35 @@ def build_financial_growth(ctx: FeatureBuildContext) -> FeatureBuildResult:
                AND a.latest_report_end_date = seq.current_report_end_date
             LEFT JOIN report_values_enriched cur
                 ON a.ts_code = cur.ts_code
+               AND a.trade_date = cur.asof_trade_date
                AND a.latest_report_end_date = cur.current_report_end_date
             LEFT JOIN report_values_enriched prev
                 ON a.ts_code = prev.ts_code
+               AND a.trade_date = prev.asof_trade_date
                AND seq.prev_report_end_date = prev.current_report_end_date
             LEFT JOIN report_values_enriched lag2
                 ON a.ts_code = lag2.ts_code
+               AND a.trade_date = lag2.asof_trade_date
                AND seq.lag_2report_end_date = lag2.current_report_end_date
             LEFT JOIN report_values_enriched lag4
                 ON a.ts_code = lag4.ts_code
+               AND a.trade_date = lag4.asof_trade_date
                AND seq.lag_4report_end_date = lag4.current_report_end_date
             LEFT JOIN report_values_enriched lag8
                 ON a.ts_code = lag8.ts_code
+               AND a.trade_date = lag8.asof_trade_date
                AND seq.lag_8report_end_date = lag8.current_report_end_date
             LEFT JOIN report_values_enriched same1
                 ON a.ts_code = same1.ts_code
+               AND a.trade_date = same1.asof_trade_date
                AND seq.same_period_1y_end_date = same1.current_report_end_date
             LEFT JOIN report_values_enriched same2
                 ON a.ts_code = same2.ts_code
+               AND a.trade_date = same2.asof_trade_date
                AND seq.same_period_2y_end_date = same2.current_report_end_date
             LEFT JOIN report_values_enriched same3
                 ON a.ts_code = same3.ts_code
+               AND a.trade_date = same3.asof_trade_date
                AND seq.same_period_3y_end_date = same3.current_report_end_date
             WHERE a.trade_date BETWEEN ? AND ?
         )
@@ -1863,7 +2044,11 @@ def build_financial_growth(ctx: FeatureBuildContext) -> FeatureBuildResult:
             {final_select}
         FROM growth_base
         """,
-        [ctx.write_start_date, ctx.write_end_date, ctx.write_start_date, ctx.write_end_date],
+        [
+            ctx.write_start_date, ctx.write_end_date,
+            ctx.write_start_date, ctx.write_end_date,
+            ctx.write_start_date, ctx.write_end_date,
+        ],
     )
 
 
@@ -1942,7 +2127,7 @@ def build_capital_flow(ctx: FeatureBuildContext) -> FeatureBuildResult:
                 ts_code,
                 trade_date,
                 sum(hold_shares) AS north_hold_shares,
-                max(hold_ratio) AS north_hold_ratio
+                sum(hold_ratio) AS north_hold_ratio
             FROM northbound_holding
             WHERE trade_date BETWEEN ? AND ?
             GROUP BY ts_code, trade_date

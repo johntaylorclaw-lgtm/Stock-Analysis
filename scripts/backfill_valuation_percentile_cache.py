@@ -16,6 +16,7 @@ WINDOWS = {"1y": 250, "3y": 750, "5y": 1250, "10y": 2500}
 SOURCES = ["pe", "pe_ttm", "pb", "ps", "ps_ttm", "dv_ratio", "dv_ttm", "total_mv", "circ_mv", "free_float_mv"]
 DAILY_CORE_WINDOWS = {"5y": 1250}
 DAILY_CORE_SOURCES = ["pe_ttm", "pb", "ps_ttm", "total_mv"]
+MIN_PERCENTILE_OBS = 60
 
 
 def q(name: str) -> str:
@@ -115,7 +116,7 @@ def main() -> None:
         for alias, window in active_windows.items():
             target = f"{source}_pct_{alias}"
             df[target] = grouped[source].transform(
-                lambda s, w=window: s.rolling(w, min_periods=1).rank(pct=True)
+                lambda s, w=window: s.where(s > 0).rolling(w, min_periods=MIN_PERCENTILE_OBS).rank(pct=True)
             )
             pct_columns.append(target)
             print({"stage": "computed", "field": target})

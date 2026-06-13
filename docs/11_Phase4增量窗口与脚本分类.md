@@ -123,7 +123,7 @@ P2 模块：
 | 脚本 | 缓存对象 | 编排位置 | 当前状态 |
 |---|---|---|---|
 | `backfill_valuation_percentile_cache.py` | `derived_valuation_percentile_cache` | `valuation_size` post-step | `daily-core` 已用于日批回填 4 个 5 年兼容字段；`full` 保留为周批、月批或显式维护任务。 |
-| `build_phase3_capital_flow_caches.py` | `derived_northbound_flow_cache`、`derived_capital_flow_event_cache` | `capital_flow` post-step | 窗口模式按写入窗口删除，读取窗口默认向前 260 个交易日。 |
+| `build_phase3_capital_flow_caches.py` | `derived_northbound_flow_cache`、`derived_capital_flow_event_cache` | `capital_flow` post-step | 窗口模式按写入窗口删除，缓存读取窗口默认向前 520 个交易日；核心表 `capital_flow` 仍按 250 日读取窗口规划。 |
 | `build_phase3_sector_index_caches.py` | `derived_sector_daily_cache`、`derived_concept_daily_cache`、`derived_index_daily_cache`、`derived_index_membership_cache` | `sector_concept_context` / `index_market_context` pre-step | 日批使用 `daily-core`：行业和指数计算 5/20/60/120，概念计算 20，指数成分按写入窗口展开；`full` 保留完整多周期刷新。 |
 | `build_phase3_concept_stock_context_cache.py` | `derived_concept_stock_context_cache` | `sector_concept_context` pre-step | 日批使用 `daily-core`，只更新静态概念字段和 20 日概念字段；`full` 保留完整多周期刷新。 |
 | `build_phase3_index_membership_cache.py` | `derived_index_membership_cache` | 独立维护入口 | 作为指数成分缓存的单表快捷刷新入口；日批由 `build_phase3_sector_index_caches.py` 统一刷新，避免重复。 |

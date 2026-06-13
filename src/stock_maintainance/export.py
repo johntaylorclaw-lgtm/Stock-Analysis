@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import re
 from typing import Any
 
 from .database import connect
@@ -10,6 +11,7 @@ from .schema import quote_ident
 
 
 PARQUET_DIR = DATA_DIR / "parquet"
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
 @dataclass(frozen=True)
@@ -58,6 +60,11 @@ def _sql_string(value: str) -> str:
     return "'" + value.replace("'", "''") + "'"
 
 
+def _validate_date(value: str, name: str) -> None:
+    if not DATE_RE.fullmatch(value):
+        raise ValueError(f"{name} must use YYYY-MM-DD format: {value}")
+
+
 def export_parquet(
     *,
     source: str = "stock_features_core",
@@ -68,6 +75,8 @@ def export_parquet(
     output_dir: Path | None = None,
     dry_run: bool = False,
 ) -> ParquetExportResult:
+    _validate_date(start_date, "start_date")
+    _validate_date(end_date, "end_date")
     dataset_name = dataset or source
     root = output_dir or (PARQUET_DIR / dataset_name)
     with connect() as con:
@@ -83,9 +92,14 @@ def export_parquet(
         trade_dates = _trade_dates(con, source, start_date, end_date)
         partitions: list[dict[str, Any]] = []
         select_columns = ", ".join(quote_ident(col) for col in selected_columns)
+        order_columns = ["trade_date"]
+        if "ts_code" in available_columns:
+            order_columns.append("ts_code")
+        order_sql = ", ".join(quote_ident(col) for col in order_columns)
         for trade_date in trade_dates:
             partition_dir = root / f"trade_date={trade_date}"
             output_file = partition_dir / "part.parquet"
+            temp_file = partition_dir / "part.parquet.tmp"
             row_count = int(
                 con.execute(
                     f"SELECT count(*) FROM {quote_ident(source)} WHERE trade_date = ?",
@@ -102,21 +116,22 @@ def export_parquet(
             if dry_run:
                 continue
             partition_dir.mkdir(parents=True, exist_ok=True)
-            if output_file.exists():
-                output_file.unlink()
+            if temp_file.exists():
+                temp_file.unlink()
             con.execute(
                 f"""
                 COPY (
                     SELECT {select_columns}
                     FROM {quote_ident(source)}
                     WHERE trade_date = ?
-                    ORDER BY ts_code
+                    ORDER BY {order_sql}
                 )
-                TO {_sql_string(str(output_file))}
+                TO {_sql_string(str(temp_file))}
                 (FORMAT PARQUET, COMPRESSION ZSTD)
                 """,
                 [trade_date],
             )
+            temp_file.replace(output_file)
     return ParquetExportResult(
         dataset=dataset_name,
         source=source,

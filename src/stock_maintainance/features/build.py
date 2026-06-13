@@ -60,6 +60,23 @@ def _resolve_trade_calendar_read_start(con: Any, write_start_date: str, context_
     return row[0].isoformat()
 
 
+def _load_trade_dates_for_plan(con: Any, end_date: str | None) -> list[str]:
+    try:
+        rows = con.execute(
+            """
+            SELECT CAST(cal_date AS DATE)
+            FROM trade_calendar
+            WHERE is_open = true
+              AND CAST(cal_date AS DATE) <= CAST(? AS DATE)
+            ORDER BY CAST(cal_date AS DATE)
+            """,
+            [end_date or datetime.now().date().isoformat()],
+        ).fetchall()
+    except Exception:  # noqa: BLE001 - planning can fall back to calendar days.
+        return []
+    return [row[0].isoformat() for row in rows if row and row[0] is not None]
+
+
 def _run_cache_step(name: str, phase: str, ctx: FeatureBuildContext) -> CacheStepResult:
     started = time.perf_counter()
     if ctx.dry_run:
@@ -135,17 +152,32 @@ def build_features(
     run_started_at = datetime.now().isoformat(timespec="seconds")
     run_started = time.perf_counter()
     registry = load_variable_registry()
+    trade_dates: list[str] = []
+    try:
+        with connect() as con:
+            init_database(con)
+            trade_dates = _load_trade_dates_for_plan(con, end_date)
+    except Exception:  # noqa: BLE001 - keep dry-run/isolated planning usable.
+        trade_dates = []
     plan = build_feature_plan(
         registry,
         modules=modules,
         start_date=start_date,
         end_date=end_date,
         mode=mode,
+        trade_dates=trade_dates,
     )
     if plan.requires_confirmation and not (dry_run or allow_confirmed_history):
         raise ValueError(
             "feature build requires explicit confirmation: "
             f"{plan.confirmation_reason}; rerun with --allow-confirmed-history after review"
+        )
+    required_cache_modules = [item.module for item in plan.module_plans if item.module in POST_CACHE_STEPS]
+    if required_cache_modules and not run_cache_steps and not dry_run:
+        modules_text = ", ".join(required_cache_modules)
+        raise ValueError(
+            "cannot skip required cache steps for modules that publish cache-backed core fields: "
+            f"{modules_text}. Use dry-run to inspect the plan, or run without --skip-cache-steps."
         )
     results: list[FeatureBuildResult] = []
     cache_results: list[CacheStepResult] = []

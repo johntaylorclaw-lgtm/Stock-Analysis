@@ -37,6 +37,7 @@ DEFAULT_COMPARE_TABLES = [
     "derived_index_market_context",
     "derived_cross_sectional",
     "derived_corporate_action",
+    "derived_ownership_governance",
     "derived_composite_state",
 ]
 
@@ -184,23 +185,37 @@ def compare_incremental_window(
                     }
                 )
                 continue
-            current_cte = (
-                f"(SELECT * FROM {quote_ident(table)} "
-                f"WHERE trade_date BETWEEN DATE '{start_date}' AND DATE '{end_date}')"
+            con.execute(
+                f"""
+                CREATE OR REPLACE TEMP TABLE current_window AS
+                SELECT *
+                FROM {quote_ident(table)}
+                WHERE trade_date BETWEEN CAST(? AS DATE) AND CAST(? AS DATE)
+                """,
+                [start_date, end_date],
+            )
+            con.execute(
+                f"""
+                CREATE OR REPLACE TEMP TABLE snapshot_window AS
+                SELECT *
+                FROM {quote_ident(snapshot)}
+                WHERE trade_date BETWEEN CAST(? AS DATE) AND CAST(? AS DATE)
+                """,
+                [start_date, end_date],
             )
             join_sql = " AND ".join(f"a.{quote_ident(col)} = b.{quote_ident(col)}" for col in key_columns)
             null_side_sql = " OR ".join(
                 [f"a.{quote_ident(col)} IS NULL" for col in key_columns]
                 + [f"b.{quote_ident(col)} IS NULL" for col in key_columns]
             )
-            current_rows = int(con.execute(f"SELECT count(*) FROM {current_cte}").fetchone()[0])
-            snapshot_rows = int(con.execute(f"SELECT count(*) FROM {quote_ident(snapshot)}").fetchone()[0])
+            current_rows = int(con.execute("SELECT count(*) FROM current_window").fetchone()[0])
+            snapshot_rows = int(con.execute("SELECT count(*) FROM snapshot_window").fetchone()[0])
             missing_or_extra = int(
                 con.execute(
                     f"""
                     SELECT count(*)
-                    FROM {current_cte} a
-                    FULL OUTER JOIN {quote_ident(snapshot)} b ON {join_sql}
+                    FROM current_window a
+                    FULL OUTER JOIN snapshot_window b ON {join_sql}
                     WHERE {null_side_sql}
                     """
                 ).fetchone()[0]
@@ -219,8 +234,8 @@ def compare_incremental_window(
                     con.execute(
                         f"""
                         SELECT count(*)
-                        FROM {current_cte} a
-                        JOIN {quote_ident(snapshot)} b ON {join_sql}
+                        FROM current_window a
+                        JOIN snapshot_window b ON {join_sql}
                         WHERE {diff_expr}
                         """
                     ).fetchone()[0]

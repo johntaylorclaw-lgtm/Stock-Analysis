@@ -3,17 +3,20 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from datetime import datetime
 
 from .config import load_pipeline, load_schema_registry, load_sources, load_variable_registry
 from .audit import run_quality_audit
 from .database import DB_PATH, connect, init_database, refresh_source_api_status
 from .docs import check_docs, generate_docs, render_schema_summary
 from .features.build import build_features
+from .features.build import _load_trade_dates_for_plan
 from .features.planner import build_feature_plan, render_plan_markdown
 from .phase4_audit import run_phase4_audit
 from .incremental_compare import compare_incremental_window
 from .daily_validate import validate_daily
 from .daily_light import run_daily_light
+from .daily_full import run_daily_full
 from .weekly_full import run_weekly_full
 from .dictionary import refresh_dictionary
 from .run_summary import summarize_run
@@ -53,6 +56,56 @@ from .schema import all_create_table_sql, schema_summary
 from .validate import validate_schema_registry, validate_variable_registry, validate_variable_schema_alignment
 from .views import create_views
 from .paths import REPORTS_DIR
+
+
+def _parse_cli_date(value: str):
+    for fmt in ("%Y%m%d", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(value, fmt).date()
+        except ValueError:
+            continue
+    raise ValueError(f"invalid date: {value}")
+
+
+def _sync_range_guard(
+    start_date: str,
+    end_date: str | None,
+    *,
+    allow_confirmed_history: bool,
+    limit: int | None = None,
+    max_auto_trade_days: int = 10,
+) -> dict[str, object] | None:
+    if allow_confirmed_history or (limit is not None and limit <= max_auto_trade_days):
+        return None
+    end = end_date or datetime.now().date().strftime("%Y%m%d")
+    try:
+        with connect() as con:
+            row = con.execute(
+                """
+                SELECT count(*)
+                FROM trade_calendar
+                WHERE is_open = true
+                  AND CAST(cal_date AS DATE) BETWEEN CAST(? AS DATE) AND CAST(? AS DATE)
+                """,
+                [_parse_cli_date(start_date).isoformat(), _parse_cli_date(end).isoformat()],
+            ).fetchone()
+        day_count = int(row[0] or 0) if row else 0
+        day_unit = "trading days"
+    except Exception:  # noqa: BLE001 - direct sync still needs a conservative fallback.
+        day_count = (_parse_cli_date(end) - _parse_cli_date(start_date)).days + 1
+        day_unit = "calendar days"
+    if day_count <= max_auto_trade_days:
+        return None
+    return {
+        "status": "blocked",
+        "reason": (
+            f"direct sync range spans {day_count} {day_unit}; "
+            "rerun with --allow-confirmed-history after review"
+        ),
+        "start_date": start_date,
+        "end_date": end,
+        "max_auto_trade_days": max_auto_trade_days,
+    }
 
 
 def cmd_plan(_: argparse.Namespace) -> int:
@@ -172,6 +225,8 @@ def cmd_validate_daily(args: argparse.Namespace) -> int:
         output_prefix=args.output_prefix,
     )
     print(json.dumps({"json": str(result.json_path), "markdown": str(result.markdown_path), **result.report["summary"]}, ensure_ascii=False, indent=2))
+    if result.report["summary"]["status"] == "blocked":
+        return 2
     return 0 if result.passed or not args.fail_on_warning else 1
 
 
@@ -216,6 +271,23 @@ def cmd_daily_light(args: argparse.Namespace) -> int:
     return 0 if result.passed else 2
 
 
+def cmd_daily_full(args: argparse.Namespace) -> int:
+    result = run_daily_full(
+        as_of_date=args.as_of_date,
+        reload_trade_days=args.reload_trade_days,
+        validation_days=args.validation_days,
+        dry_run=args.dry_run,
+        include_financial=args.include_financial,
+        include_index_weight=args.include_index_weight,
+        refresh_weekly_snapshot=args.refresh_weekly_snapshot,
+        weekly_reference_days=args.weekly_reference_days,
+        weekly_compare_days=args.weekly_compare_days,
+        output_prefix=args.output_prefix,
+    )
+    print(json.dumps({"json": str(result.json_path), "markdown": str(result.markdown_path), **result.report["summary"]}, ensure_ascii=False, indent=2))
+    return 0 if result.passed else 2
+
+
 def cmd_weekly_full(args: argparse.Namespace) -> int:
     result = run_weekly_full(
         as_of_date=args.as_of_date,
@@ -226,9 +298,10 @@ def cmd_weekly_full(args: argparse.Namespace) -> int:
         output_prefix=args.output_prefix,
         dry_run=args.dry_run,
         create_snapshot_from_current=args.create_snapshot_from_current,
+        auto_create_missing_snapshot=args.auto_create_missing_snapshot,
     )
     print(json.dumps({"json": str(result.json_path), "markdown": str(result.markdown_path), **result.report["summary"]}, ensure_ascii=False, indent=2))
-    return 0 if result.passed else 2
+    return 0 if result.passed or result.report["summary"]["status"] == "snapshot_created" else 2
 
 
 def cmd_refresh_dictionary(args: argparse.Namespace) -> int:
@@ -254,12 +327,20 @@ def cmd_summarize_run(args: argparse.Namespace) -> int:
 
 
 def cmd_plan_features(args: argparse.Namespace) -> int:
+    trade_dates: list[str] = []
+    try:
+        with connect() as con:
+            init_database(con)
+            trade_dates = _load_trade_dates_for_plan(con, args.end_date)
+    except Exception:  # noqa: BLE001 - plan-features should still work in minimal environments.
+        trade_dates = []
     plan = build_feature_plan(
         load_variable_registry(),
         modules=args.module,
         start_date=args.start_date,
         end_date=args.end_date,
         mode=args.mode,
+        trade_dates=trade_dates,
     )
     if args.format == "json":
         content = json.dumps(plan.to_dict(), ensure_ascii=False, indent=2)
@@ -328,7 +409,11 @@ def cmd_sync_daily_date(args: argparse.Namespace) -> int:
 
 
 def cmd_sync_daily_range(args: argparse.Namespace) -> int:
-    result = sync_daily_range(args.start_date, args.end_date, limit=args.limit)
+    blocked = _sync_range_guard(args.start_date, args.end_date, allow_confirmed_history=args.allow_confirmed_history, limit=args.limit)
+    if blocked:
+        print(json.dumps(blocked, ensure_ascii=False, indent=2))
+        return 2
+    result = sync_daily_range(args.start_date, args.end_date, limit=args.limit, resume=not args.no_resume)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
 
@@ -339,8 +424,32 @@ def cmd_sync_market_behavior_date(args: argparse.Namespace) -> int:
 
 
 def cmd_sync_market_behavior_range(args: argparse.Namespace) -> int:
-    result = sync_market_behavior_range(args.start_date, args.end_date, limit=args.limit)
+    blocked = _sync_range_guard(args.start_date, args.end_date, allow_confirmed_history=args.allow_confirmed_history, limit=args.limit)
+    if blocked:
+        print(json.dumps(blocked, ensure_ascii=False, indent=2))
+        return 2
+    result = sync_market_behavior_range(args.start_date, args.end_date, limit=args.limit, force=args.force)
     print(json.dumps(result, ensure_ascii=False, indent=2))
+    return 0
+
+
+def cmd_cleanup_audit_tmp(args: argparse.Namespace) -> int:
+    pattern = args.pattern
+    with connect() as con:
+        rows = con.execute(
+            """
+            SELECT table_name
+            FROM information_schema.tables
+            WHERE table_schema = 'main' AND table_name LIKE ?
+            ORDER BY table_name
+            """,
+            [pattern],
+        ).fetchall()
+        tables = [row[0] for row in rows]
+        if not args.dry_run:
+            for table in tables:
+                con.execute(f'DROP TABLE IF EXISTS "{table}"')
+    print(json.dumps({"status": "planned" if args.dry_run else "done", "pattern": pattern, "table_count": len(tables), "tables": tables}, ensure_ascii=False, indent=2))
     return 0
 
 
@@ -396,12 +505,20 @@ def cmd_sync_adj_factor_batch(args: argparse.Namespace) -> int:
 
 
 def cmd_sync_adj_factor_range(args: argparse.Namespace) -> int:
+    blocked = _sync_range_guard(args.start_date, args.end_date, allow_confirmed_history=args.allow_confirmed_history, limit=args.limit)
+    if blocked:
+        print(json.dumps(blocked, ensure_ascii=False, indent=2))
+        return 2
     result = sync_adj_factor_range(args.start_date, args.end_date, limit=args.limit)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
 
 
 def cmd_sync_index_daily(args: argparse.Namespace) -> int:
+    blocked = _sync_range_guard(args.start_date, args.end_date, allow_confirmed_history=args.allow_confirmed_history)
+    if blocked:
+        print(json.dumps(blocked, ensure_ascii=False, indent=2))
+        return 2
     codes = args.index_code or default_index_codes()
     result = sync_index_daily_range(args.start_date, args.end_date, index_codes=codes)
     print(json.dumps(result, ensure_ascii=False, indent=2))
@@ -457,6 +574,10 @@ def cmd_sync_financial_batch(args: argparse.Namespace) -> int:
 
 
 def cmd_sync_financial_incremental_range(args: argparse.Namespace) -> int:
+    blocked = _sync_range_guard(args.start_date, args.end_date, allow_confirmed_history=args.allow_confirmed_history, limit=args.limit)
+    if blocked:
+        print(json.dumps(blocked, ensure_ascii=False, indent=2))
+        return 2
     result = sync_financial_incremental_range(
         args.start_date,
         args.end_date,
@@ -502,7 +623,9 @@ def build_parser() -> argparse.ArgumentParser:
         "compare-incremental-window": cmd_compare_incremental_window,
         "validate-daily": cmd_validate_daily,
         "daily-light": cmd_daily_light,
+        "daily-full": cmd_daily_full,
         "weekly-full": cmd_weekly_full,
+        "cleanup-audit-tmp": cmd_cleanup_audit_tmp,
         "refresh-dictionary": cmd_refresh_dictionary,
         "summarize-run": cmd_summarize_run,
         "sample-stock": cmd_sample_stock,
@@ -557,6 +680,17 @@ def build_parser() -> argparse.ArgumentParser:
             child.add_argument("--include-financial", action="store_true")
             child.add_argument("--include-index-weight", action="store_true")
             child.add_argument("--output-prefix", default="daily_light_run")
+        if name == "daily-full":
+            child.add_argument("--as-of-date")
+            child.add_argument("--reload-trade-days", type=int, default=1)
+            child.add_argument("--validation-days", type=int, default=1)
+            child.add_argument("--dry-run", action="store_true")
+            child.add_argument("--include-financial", action="store_true")
+            child.add_argument("--include-index-weight", action="store_true")
+            child.add_argument("--refresh-weekly-snapshot", action="store_true")
+            child.add_argument("--weekly-reference-days", type=int, default=40)
+            child.add_argument("--weekly-compare-days", type=int, default=10)
+            child.add_argument("--output-prefix", default="daily_full_run")
         if name == "weekly-full":
             child.add_argument("--as-of-date")
             child.add_argument("--reference-days", type=int, default=40)
@@ -566,6 +700,10 @@ def build_parser() -> argparse.ArgumentParser:
             child.add_argument("--output-prefix", default="weekly_full_run")
             child.add_argument("--dry-run", action="store_true")
             child.add_argument("--create-snapshot-from-current", action="store_true")
+            child.add_argument("--auto-create-missing-snapshot", action="store_true")
+        if name == "cleanup-audit-tmp":
+            child.add_argument("--pattern", default="audit_tmp_phase4_%")
+            child.add_argument("--dry-run", action="store_true")
         if name == "refresh-dictionary":
             child.add_argument("--skip-excel", action="store_true")
             child.add_argument("--skip-feature-schema-sync", action="store_true")
@@ -605,6 +743,8 @@ def build_parser() -> argparse.ArgumentParser:
     sync_daily_range_parser.add_argument("start_date")
     sync_daily_range_parser.add_argument("end_date")
     sync_daily_range_parser.add_argument("--limit", type=int)
+    sync_daily_range_parser.add_argument("--no-resume", action="store_true")
+    sync_daily_range_parser.add_argument("--allow-confirmed-history", action="store_true")
     sync_daily_range_parser.set_defaults(func=cmd_sync_daily_range)
 
     sync_market_behavior = sub.add_parser("sync-market-behavior-date")
@@ -615,6 +755,8 @@ def build_parser() -> argparse.ArgumentParser:
     sync_market_behavior_range_parser.add_argument("start_date")
     sync_market_behavior_range_parser.add_argument("end_date")
     sync_market_behavior_range_parser.add_argument("--limit", type=int)
+    sync_market_behavior_range_parser.add_argument("--force", action="store_true")
+    sync_market_behavior_range_parser.add_argument("--allow-confirmed-history", action="store_true")
     sync_market_behavior_range_parser.set_defaults(func=cmd_sync_market_behavior_range)
 
     sync_dividend = sub.add_parser("sync-dividend-batch")
@@ -658,12 +800,14 @@ def build_parser() -> argparse.ArgumentParser:
     sync_adj_range.add_argument("start_date")
     sync_adj_range.add_argument("end_date")
     sync_adj_range.add_argument("--limit", type=int)
+    sync_adj_range.add_argument("--allow-confirmed-history", action="store_true")
     sync_adj_range.set_defaults(func=cmd_sync_adj_factor_range)
 
     sync_index_daily = sub.add_parser("sync-index-daily")
     sync_index_daily.add_argument("start_date")
     sync_index_daily.add_argument("end_date")
     sync_index_daily.add_argument("--index-code", action="append")
+    sync_index_daily.add_argument("--allow-confirmed-history", action="store_true")
     sync_index_daily.set_defaults(func=cmd_sync_index_daily)
 
     sync_index_weight = sub.add_parser("sync-index-weight-month")
@@ -707,6 +851,7 @@ def build_parser() -> argparse.ArgumentParser:
     sync_financial_incremental_parser.add_argument("--limit", type=int)
     sync_financial_incremental_parser.add_argument("--no-resume", action="store_true")
     sync_financial_incremental_parser.add_argument("--all-stocks", action="store_true")
+    sync_financial_incremental_parser.add_argument("--allow-confirmed-history", action="store_true")
     sync_financial_incremental_parser.set_defaults(func=cmd_sync_financial_incremental_range)
 
     sync_financial_events = sub.add_parser("sync-financial-events-batch")

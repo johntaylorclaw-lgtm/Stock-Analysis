@@ -4,6 +4,7 @@
 | api | domain | phase |
 | --- | --- | --- |
 | stock_basic | security_master | P0 |
+| stock_company | security_master | P0 |
 | trade_cal | calendar | P0 |
 | daily | trading | P0 |
 | daily_basic | valuation_daily | P0 |

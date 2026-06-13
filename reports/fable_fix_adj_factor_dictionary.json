@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-06-12T21:49:46",
+  "feature_view_field_counts": {
+    "stock_features_core": 318,
+    "stock_features_plus": 1198,
+    "stock_features_full": 1602
+  },
+  "global_dictionary_path": "/mnt/d/Opencode Workspace/Stock_Maintainance/outputs/variable_dictionary/global_variable_dictionary.xlsx",
+  "steps": [
+    {
+      "name": "sync-feature-view-schema",
+      "status": "done",
+      "detail": {
+        "stock_features_core": 318,
+        "stock_features_plus": 1198,
+        "stock_features_full": 1602
+      }
+    },
+    {
+      "name": "docs-generate",
+      "status": "done",
+      "detail": [
+        "/mnt/d/Opencode Workspace/Stock_Maintainance/docs/generated/generated_schema_dictionary.md",
+        "/mnt/d/Opencode Workspace/Stock_Maintainance/docs/generated/generated_variable_dictionary.md",
+        "/mnt/d/Opencode Workspace/Stock_Maintainance/docs/generated/generated_source_dictionary.md"
+      ]
+    },
+    {
+      "name": "build-global-variable-dictionary",
+      "status": "done",
+      "detail": {
+        "stdout": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}\nD:\\Opencode Workspace\\Stock_Maintainance\\outputs\\variable_dictionary\\global_variable_dictionary.xlsx",
+        "stderr": "",
+        "node_path": "/mnt/c/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "path": "/mnt/d/Opencode Workspace/Stock_Maintainance/outputs/variable_dictionary/global_variable_dictionary.xlsx",
+        "exists": true
+      }
+    },
+    {
+      "name": "docs-check",
+      "status": "pass",
+      "detail": []
+    }
+  ],
+  "summary": {
+    "status": "pass",
+    "build_excel": true,
+    "docs_diff_count": 0,
+    "global_dictionary_exists": true
+  }
+}

@@ -35,7 +35,7 @@ def _table_exists(con, table_name: str) -> bool:
 def _open_dates(con, end_date: str, days: int) -> list[str]:
     rows = con.execute(
         """
-        SELECT CAST(cal_date AS DATE)
+        SELECT DISTINCT CAST(cal_date AS DATE)
         FROM trade_calendar
         WHERE is_open = 1
           AND CAST(cal_date AS DATE) <= CAST(? AS DATE)
@@ -181,6 +181,7 @@ def run_weekly_full(
     output_prefix: str = "weekly_full_run",
     dry_run: bool = False,
     create_snapshot_from_current: bool = False,
+    auto_create_missing_snapshot: bool = False,
     db_path: Path = DB_PATH,
 ) -> WeeklyFullResult:
     as_of = as_of_date or date.today().isoformat()
@@ -195,7 +196,8 @@ def run_weekly_full(
         snapshot_min, snapshot_max = _snapshot_common_bounds(con, table_names, snapshot_prefix)
 
     snapshot_counts = None
-    if create_snapshot_from_current and not dry_run:
+    should_create_snapshot = create_snapshot_from_current or (auto_create_missing_snapshot and bool(missing))
+    if should_create_snapshot and not dry_run:
         snapshot_counts = _create_snapshot_from_current(
             tables=table_names,
             start_date=compare_dates[0],
@@ -219,6 +221,9 @@ def run_weekly_full(
     blocked_reason = ""
     if dry_run:
         status = "pass"
+    elif should_create_snapshot:
+        status = "snapshot_created"
+        blocked_reason = "snapshot refreshed from current data; rerun weekly-full without --create-snapshot-from-current to perform an independent comparison"
     elif missing:
         status = "blocked"
         blocked_reason = "full-reference snapshot tables are missing; create or refresh snapshots before compare"
@@ -253,6 +258,7 @@ def run_weekly_full(
         "snapshot_prefix": snapshot_prefix,
         "dry_run": dry_run,
         "create_snapshot_from_current": create_snapshot_from_current,
+        "auto_create_missing_snapshot": auto_create_missing_snapshot,
         "snapshot_counts": snapshot_counts,
         "missing_snapshot_tables": missing,
         "compare_report": compare_result.report if compare_result else None,

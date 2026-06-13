@@ -1,10 +1,10 @@
 {
-  "started_at": "2026-06-06T23:06:39",
-  "finished_at": "2026-06-06T23:06:50",
+  "started_at": "2026-06-13T10:15:34",
+  "finished_at": "2026-06-13T10:15:48",
   "mode": "window",
-  "start_date": "2026-05-27",
-  "end_date": "2026-06-05",
-  "read_start_date": "2016-02-03",
+  "start_date": "2026-06-12",
+  "end_date": "2026-06-12",
+  "read_start_date": "2016-02-26",
   "context_days": 2500,
   "profile": "daily-core",
   "computed_fields": [
@@ -14,18 +14,18 @@
     "total_mv_pct_5y"
   ],
   "summary": {
-    "derived_valuation_percentile_cache": 44069,
-    "pe_ttm_pct_5y_non_null": 31731,
-    "pb_pct_5y_non_null": 43741,
-    "ps_ttm_pct_5y_non_null": 44013,
-    "total_mv_pct_5y_non_null": 44069
+    "derived_valuation_percentile_cache": 5512,
+    "pe_ttm_pct_5y_non_null": 3907,
+    "pb_pct_5y_non_null": 5426,
+    "ps_ttm_pct_5y_non_null": 5460,
+    "total_mv_pct_5y_non_null": 5467
   },
   "trigger": "build-features",
   "stage_seconds": {
-    "compute_daily_core_sql": 8.031,
-    "update_daily_core": 0.054,
-    "insert_missing_daily_core": 0.047,
-    "update_valuation_size": 3.04,
-    "commit": 0.373
+    "compute_daily_core_sql": 12.34,
+    "update_daily_core": 0.046,
+    "insert_missing_daily_core": 0.006,
+    "update_valuation_size": 0.217,
+    "commit": 0.072
   }
 }

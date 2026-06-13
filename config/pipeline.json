@@ -1,10 +1,27 @@
 {
   "daily_policy": {
-    "latest_trade_cutoff_hour_local": 18,
+    "latest_trade_cutoff_hour_local": 20,
     "default_repair_window_trade_days": 10,
     "require_confirmation_beyond_trade_days": 10,
     "northbound_default": "skip_optional",
-    "validation_default": "light"
+    "validation_default": "light",
+    "api_release_phases": {
+      "fast": {
+        "available_after_hour_local": 15,
+        "apis": ["daily", "adj_factor", "stk_limit"],
+        "description": "收盘后较快可用的 T+0 行情接口"
+      },
+      "evening": {
+        "available_after_hour_local": 20,
+        "apis": ["daily_basic", "moneyflow", "moneyflow_hsgt", "top_list", "top_inst", "index_daily"],
+        "description": "晚间分批发布的 T+0 基础和市场行为接口"
+      },
+      "next_day": {
+        "available_after_hour_local": 9,
+        "apis": ["margin_detail", "hk_hold"],
+        "description": "通常 T+1 才完整的融资融券和北向持股接口"
+      }
+    }
   },
   "history_policy": {
     "allowed_in_base_build": true,

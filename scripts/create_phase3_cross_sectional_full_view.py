@@ -38,7 +38,7 @@ def q(name: str) -> str:
 def valid_expr(var, alias: str | None = None) -> str:
     prefix = alias or SOURCE_ALIASES[var.source_table]
     expr = f"{prefix}.{q(var.source_field)}"
-    base = f"CASE WHEN NOT xs.xs_universe_flag THEN NULL WHEN {expr} IS NULL THEN NULL WHEN {expr} <= -900000 THEN NULL"
+    base = f"CASE WHEN NOT xs.xs_universe_flag THEN NULL WHEN {expr} IS NULL THEN NULL WHEN {expr} <= -9000000 THEN NULL"
     if var.valid_rule == "positive":
         base += f" WHEN {expr} <= 0 THEN NULL"
     elif var.valid_rule == "non_negative":

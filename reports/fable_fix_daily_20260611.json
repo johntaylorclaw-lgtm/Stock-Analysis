@@ -1,0 +1,127 @@
+{
+  "generated_at": "2026-06-11T22:26:07",
+  "as_of_date": "2026-06-11",
+  "dry_run": false,
+  "precheck": {
+    "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/fable_fix_daily_20260611_precheck.json",
+    "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/fable_fix_daily_20260611_precheck.md",
+    "status": "warning",
+    "latest_trade_date": "2026-06-11",
+    "anchor_data_date": "2026-06-10",
+    "validation_dates": [
+      "2026-06-10"
+    ],
+    "incremental_dates": [
+      "2026-06-11"
+    ],
+    "requires_confirmation": false
+  },
+  "postcheck": {
+    "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/fable_fix_daily_20260611_postcheck.json",
+    "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/fable_fix_daily_20260611_postcheck.md",
+    "status": "pass",
+    "latest_trade_date": "2026-06-11",
+    "anchor_data_date": "2026-06-11",
+    "validation_dates": [
+      "2026-06-11"
+    ],
+    "incremental_dates": [],
+    "requires_confirmation": false
+  },
+  "steps": [
+    {
+      "name": "sync-master",
+      "status": "done",
+      "detail": {
+        "stock_basic_info": 5854,
+        "stock_company_info": 6294,
+        "stock_status_history": 6264,
+        "trade_calendar": 7467,
+        "index_basic_info": 7821
+      }
+    },
+    {
+      "name": "validate-daily-precheck",
+      "status": "warning",
+      "detail": {
+        "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/fable_fix_daily_20260611_precheck.json",
+        "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/fable_fix_daily_20260611_precheck.md",
+        "status": "warning",
+        "latest_trade_date": "2026-06-11",
+        "anchor_data_date": "2026-06-10",
+        "validation_dates": [
+          "2026-06-10"
+        ],
+        "incremental_dates": [
+          "2026-06-11"
+        ],
+        "requires_confirmation": false
+      }
+    },
+    {
+      "name": "base-incremental",
+      "status": "done",
+      "detail": {
+        "daily": {
+          "stock_daily": 5511,
+          "stock_daily_basic": 5511,
+          "stock_limit_price": 7651,
+          "trade_dates": 1
+        },
+        "adj_factor": {
+          "stock_adj_factor": 5529,
+          "trade_dates": 1
+        },
+        "market_behavior": {
+          "stock_moneyflow_daily": 5193,
+          "margin_detail": 0,
+          "northbound_daily": 1,
+          "northbound_holding": 0,
+          "top_list_daily": 104,
+          "top_inst_detail": 957,
+          "trade_dates": 1
+        },
+        "index_daily": {
+          "index_daily": 14,
+          "index_count": 14
+        }
+      }
+    },
+    {
+      "name": "feature-build",
+      "status": "done",
+      "detail": {
+        "start_date": "2026-06-10",
+        "end_date": "2026-06-11",
+        "elapsed_seconds": 256.705,
+        "module_count": 17
+      }
+    },
+    {
+      "name": "create-views",
+      "status": "done",
+      "detail": "created analytical views"
+    },
+    {
+      "name": "validate-daily-postcheck",
+      "status": "pass",
+      "detail": {
+        "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/fable_fix_daily_20260611_postcheck.json",
+        "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/fable_fix_daily_20260611_postcheck.md",
+        "status": "pass",
+        "latest_trade_date": "2026-06-11",
+        "anchor_data_date": "2026-06-11",
+        "validation_dates": [
+          "2026-06-11"
+        ],
+        "incremental_dates": [],
+        "requires_confirmation": false
+      }
+    }
+  ],
+  "summary": {
+    "status": "warning",
+    "incremental_trade_day_count": 1,
+    "elapsed_seconds": 548.822
+  }
+}

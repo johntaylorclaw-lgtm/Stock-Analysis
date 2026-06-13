@@ -12,6 +12,8 @@
 2. 每日报告是接续 `daily-light` 后的执行检查和总结，由 Hermes Agent 执行。
 3. 周报告是接续 `weekly-full` 后的执行检查和总结，由 Hermes Agent 执行。
 4. 自动报告采用 Markdown 形式；当前实现同时保留 CLI 内部可读取的结构化事实来源，但 Hermes 对外输出以 Markdown 为准。
+5. 2026-06-08 首日日加载审计后，Hermes 日加载默认运行时间调整为北京时间 20:00，以覆盖 Tushare 晚间 T+0 API 发布窗口。
+6. 项目内 Hermes 调度配置记录在 `config/hermes_agent.json`，用于把运行手册、Skill 和自动化设置保持一致。
 
 本阶段交付包括：
 
@@ -83,6 +85,7 @@ cd "/mnt/d/Opencode Workspace/Stock_Maintainance"
 | 查看当前状态 | `stock-maintain summarize-run --mode status` |
 | 执行日批前计划 | `stock-maintain daily-light --dry-run` |
 | 执行日批 | `stock-maintain daily-light` |
+| 强制日频重拉 | `stock-maintain daily-full` |
 | 执行周检 | `stock-maintain weekly-full` |
 | 刷新字典 | `stock-maintain refresh-dictionary` |
 | 抽样单股 | `stock-maintain sample-stock` |
@@ -94,7 +97,7 @@ cd "/mnt/d/Opencode Workspace/Stock_Maintainance"
 | 场景 | 规则 |
 |---|---|
 | 超过 10 个交易日补数 | 不自动执行，必须显式确认 |
-| 新股/退市状态 | 日批必须先跑 `sync-master`，由 `daily-light` 自动完成 |
+| 新股/退市状态 | 日批必须先跑 `sync-master`，由 `daily-light` / `daily-full` 自动完成 |
 | 全量重建参照 | 不在 Skill 中直接触发，需进入影子库设计 |
 | Excel 数据字典 | 使用 `refresh-dictionary`，不手写底层 Node 命令 |
 | 投资建议/评分 | 不生成，工程只维护事实数据 |
@@ -148,6 +151,15 @@ cd "/mnt/d/Opencode Workspace/Stock_Maintainance"
   --output-prefix <run_id>
 ```
 
+若日频源数据晚到或需要强制重拉最近窗口：
+
+```bash
+.venv-wsl/bin/stock-maintain daily-full \
+  --as-of-date <YYYY-MM-DD> \
+  --reload-trade-days 1 \
+  --output-prefix <run_id>
+```
+
 验收：
 
 1. 日批报告 status 为 `pass`。
@@ -167,15 +179,17 @@ cd "/mnt/d/Opencode Workspace/Stock_Maintainance"
 
 .venv-wsl/bin/stock-maintain weekly-full \
   --as-of-date <YYYY-MM-DD> \
+  --auto-create-missing-snapshot \
   --output-prefix <run_id>
 ```
 
 验收：
 
-1. 表数为 24。
-2. 通过表为 24。
+1. 表数为 25。
+2. 通过表为 25。
 3. 键差异为 0。
 4. 字段差异为 0。
+5. 若结果为 `snapshot_created`，需要再跑一次 weekly-full 完成 compare。
 5. 若请求比较窗口与快照共同窗口不一致，报告必须明确实际比较窗口。
 
 ### 3.4 字典刷新
@@ -352,3 +366,4 @@ Skill 内容保持短，只记录工作目录、CLI 入口、运行边界和 Her
 2. 每次新增或调整运行命令，应同步更新 `Skill/stock-maintenance-ops/references/commands.md` 与 `docs/14_运行手册.md`。
 3. 每次调整报告字段，应同步更新 `src/stock_maintainance/run_summary.py`、`tests/test_run_summary.py` 与本设计文档。
 4. 报告若出现乱码，优先检查文件是否以 UTF-8 写入；本工程 Markdown 文档和报告统一使用 UTF-8。
+5. Hermes 日加载时间若再调整，必须同步更新 `config/pipeline.json`、`Skill/stock-maintenance-ops/` 和 `docs/14_运行手册.md`。

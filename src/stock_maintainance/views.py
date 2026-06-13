@@ -1109,6 +1109,11 @@ def _unique_output_name(name: str, selected: set[str], prefix: str) -> str:
     return candidate
 
 
+def _is_score_field(column: str) -> bool:
+    lower_column = column.lower()
+    return lower_column == "score" or lower_column.endswith("_score")
+
+
 def _module_select_exprs(
     con: duckdb.DuckDBPyConnection,
     *,
@@ -1121,7 +1126,7 @@ def _module_select_exprs(
     for column in _table_columns(con, table_name):
         if column in FEATURE_KEYS or column in FEATURE_SKIP:
             continue
-        if "score" in column.lower():
+        if _is_score_field(column):
             continue
         if include_columns is not None and column not in include_columns:
             continue
@@ -1153,11 +1158,12 @@ def _create_stock_features_core(con: duckdb.DuckDBPyConnection) -> None:
     for module_alias, columns in CORE_SELECTED_COLUMNS.items():
         exprs.extend(_module_select_exprs(con, module_alias=module_alias, selected=selected, include_columns=columns))
     joins = _feature_joins([*CORE_ALL_MODULE_ALIASES, *CORE_SELECTED_COLUMNS.keys()])
+    select_sql = ",\n            ".join(exprs)
     con.execute(
         f"""
         CREATE OR REPLACE VIEW stock_features_core AS
         SELECT
-            {",\n            ".join(exprs)}
+            {select_sql}
         FROM derived_daily_spine ds
         {joins}
         """
@@ -1179,13 +1185,15 @@ def _create_stock_features_plus(con: duckdb.DuckDBPyConnection) -> None:
              AND c.trade_date = {module_alias}.trade_date
             """
         )
+    select_sql = ",\n            ".join(exprs)
+    join_sql = "".join(joins)
     con.execute(
         f"""
         CREATE OR REPLACE VIEW stock_features_plus AS
         SELECT
-            {",\n            ".join(exprs)}
+            {select_sql}
         FROM stock_features_core c
-        {"".join(joins)}
+        {join_sql}
         """
     )
 
@@ -1195,6 +1203,8 @@ def _create_stock_features_full(con: duckdb.DuckDBPyConnection) -> None:
     exprs = ["p.*"]
     for column in _table_columns(con, "stock_base_daily_enriched"):
         if column in FEATURE_KEYS or column in FEATURE_SKIP:
+            continue
+        if _is_score_field(column):
             continue
         output_name = _unique_output_name(column, selected, "base")
         selected.add(output_name)
@@ -1211,16 +1221,18 @@ def _create_stock_features_full(con: duckdb.DuckDBPyConnection) -> None:
              AND p.trade_date = {module_alias}.trade_date
             """
         )
+    select_sql = ",\n            ".join(exprs)
+    join_sql = "".join(joins)
     con.execute(
         f"""
         CREATE OR REPLACE VIEW stock_features_full AS
         SELECT
-            {",\n            ".join(exprs)}
+            {select_sql}
         FROM stock_features_plus p
         LEFT JOIN stock_base_daily_enriched b
           ON p.ts_code = b.ts_code
          AND p.trade_date = b.trade_date
-        {"".join(joins)}
+        {join_sql}
         """
     )
 
@@ -1234,10 +1246,25 @@ def _create_expanded_feature_views(con: duckdb.DuckDBPyConnection) -> None:
 def create_views(con: duckdb.DuckDBPyConnection | None = None) -> None:
     close = con is None
     con = con or connect()
+    errors: list[str] = []
     try:
-        for sql in VIEW_SQL:
-            con.execute(sql)
-        _create_expanded_feature_views(con)
+        for index, sql in enumerate(VIEW_SQL, start=1):
+            try:
+                con.execute(sql)
+            except Exception as exc:  # noqa: BLE001 - continue refreshing independent views, then report all failures.
+                errors.append(f"VIEW_SQL[{index}]: {exc}")
+        for name, builder in [
+            ("stock_features_core", _create_stock_features_core),
+            ("stock_features_plus", _create_stock_features_plus),
+            ("stock_features_full", _create_stock_features_full),
+        ]:
+            try:
+                builder(con)
+            except Exception as exc:  # noqa: BLE001 - surface dynamic view errors after trying subsequent views.
+                errors.append(f"{name}: {exc}")
+        if errors:
+            message = "\n".join(errors)
+            raise RuntimeError(f"create_views completed with {len(errors)} error(s):\n{message}")
     finally:
         if close:
             con.close()

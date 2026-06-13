@@ -64,16 +64,19 @@ def _status_payload(as_of_date: str) -> dict[str, Any]:
             [as_of_date],
         )
         anchor_data_date = one("SELECT max(CAST(trade_date AS DATE)) FROM derived_daily_spine")
-        incremental_trade_day_count = one(
-            """
-            SELECT count(*)
-            FROM trade_calendar
-            WHERE is_open = 1
-              AND CAST(cal_date AS DATE) > CAST(? AS DATE)
-              AND CAST(cal_date AS DATE) <= CAST(? AS DATE)
-            """,
-            [anchor_data_date, latest_trade_date],
-        )
+        if latest_trade_date is None or anchor_data_date is None:
+            incremental_trade_day_count = None
+        else:
+            incremental_trade_day_count = one(
+                """
+                SELECT count(*)
+                FROM trade_calendar
+                WHERE is_open = 1
+                  AND CAST(cal_date AS DATE) > CAST(? AS DATE)
+                  AND CAST(cal_date AS DATE) <= CAST(? AS DATE)
+                """,
+                [anchor_data_date, latest_trade_date],
+            )
         feature_view_field_counts = {}
         for view in FEATURE_VIEWS:
             feature_view_field_counts[view] = one(
@@ -84,7 +87,9 @@ def _status_payload(as_of_date: str) -> dict[str, Any]:
             "as_of_date": as_of_date,
             "latest_trade_date": str(latest_trade_date),
             "anchor_data_date": str(anchor_data_date),
-            "incremental_trade_day_count": int(incremental_trade_day_count),
+            "incremental_trade_day_count": (
+                int(incremental_trade_day_count) if incremental_trade_day_count is not None else None
+            ),
             "stock_basic_info_rows": int(one("SELECT count(*) FROM stock_basic_info")),
             "stock_active": int(one("SELECT count(*) FROM stock_basic_info WHERE list_status = 'L'")),
             "stock_delisted": int(one("SELECT count(*) FROM stock_basic_info WHERE list_status = 'D'")),
@@ -257,12 +262,15 @@ def summarize_run(
 
     if mode == "status":
         payload = _status_payload(today)
-        status = "pass" if payload["incremental_trade_day_count"] == 0 else "warning"
+        if payload["latest_trade_date"] == "None" or payload["anchor_data_date"] == "None":
+            status = "blocked"
+        else:
+            status = "pass" if payload["incremental_trade_day_count"] == 0 else "warning"
         report = {"generated_at": generated_at, **payload, "summary": {"status": status}}
         name = output_prefix or f"status_summary_{today.replace('-', '')}"
         content = _render_status(report)
     elif mode == "daily":
-        path = _resolve_report(run_id, default_prefix="phase5_daily_light_execute_")
+        path = _resolve_report(run_id, default_prefix="daily_")
         source = _read_json(path)
         status = source.get("summary", {}).get("status", "warning")
         report = {

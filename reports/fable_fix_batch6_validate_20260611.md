@@ -1,0 +1,87 @@
+# Daily-Light 验证报告
+
+生成时间：2026-06-12T08:40:27
+截至日期：`2026-06-11`
+最新交易日：`2026-06-11`
+当前锚点日期：`2026-06-11`
+结果：`warning`
+
+## 窗口判断
+
+- 自动补数上限：10 个交易日
+- 校验日期：2026-06-11
+- 待增量日期：无
+- 待增量交易日数：0
+- 是否需要显式确认：否
+
+## 汇总
+
+- 表数量：40
+- 缺失表：0
+- 有目标日期缺口的表：0
+- 有隐藏滞后的表：2
+- 新股覆盖问题：1
+- 有重复键的表：0
+- 股票级衍生行数低于 spine 的表：0
+- 预期 T+1 延迟表：2
+- 行数波动预警表：0
+
+## 表级结果
+
+| 表 | 分组 | 最大日期 | 目标日期缺口 | 隐藏滞后 | 预期延迟 | 行数预警 | 重复键 | 空 ts_code | 最新/目标行数 | 结果 |
+|---|---|---|---:|---:|---|---|---:|---:|---:|---|
+| `stock_daily` | base_daily | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `stock_daily_basic` | base_daily | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `stock_adj_factor` | base_daily | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5529 | pass |
+| `stock_limit_price` | base_daily | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 7651 | pass |
+| `stock_moneyflow_daily` | base_daily | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5193 | pass |
+| `margin_detail` | base_daily | 2026-06-05 | 1 | 3 | 是 | 否 | 0 | 0 | 0 | warning |
+| `northbound_daily` | base_daily | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | None | 1 | pass |
+| `northbound_holding` | base_daily | 2026-06-05 | 1 | 3 | 是 | 否 | 0 | 0 | 0 | warning |
+| `top_list_daily` | base_daily | 2026-06-11 | 0 | 0 | 否 | 否 | None | 0 | 104 | pass |
+| `top_inst_detail` | base_daily | 2026-06-11 | 0 | 0 | 否 | 否 | None | 0 | 957 | pass |
+| `index_daily` | base_daily | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | None | 14 | pass |
+| `index_weight` | base_periodic | 2026-06-01 | 0 | 0 | 否 | 否 | 0 | None | 0 | pass |
+| `derived_daily_spine` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_price_technical` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_volume_liquidity` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_return_momentum` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_volatility_risk` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_trading_constraint` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_valuation_size` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_valuation_percentile_cache` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_financial_asof` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_financial_quality` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_financial_growth` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_capital_flow` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_northbound_flow_cache` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_capital_flow_event_cache` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_sector_daily_cache` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | None | 162 | pass |
+| `derived_concept_daily_cache` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | None | 873 | pass |
+| `derived_sector_concept_context` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_concept_stock_context_cache` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_index_daily_cache` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | None | 14 | pass |
+| `derived_index_membership_cache` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_index_market_context` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_cross_sectional` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_corporate_action` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_ownership_governance` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `derived_composite_state` | derived | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `stock_features_core` | feature_view | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `stock_features_plus` | feature_view | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+| `stock_features_full` | feature_view | 2026-06-11 | 0 | 0 | 否 | 否 | 0 | 0 | 5511 | pass |
+
+## 问题明细
+
+### margin_detail
+- 目标日期无数据：2026-06-11
+- 缺口归类：预期 T+1 数据源延迟，不阻塞当日晚间日批
+- 最大日期落后且不在锚点补数窗口内：2026-06-08, 2026-06-09, 2026-06-10
+### northbound_holding
+- 目标日期无数据：2026-06-11
+- 缺口归类：预期 T+1 数据源延迟，不阻塞当日晚间日批
+- 最大日期落后且不在锚点补数窗口内：2026-06-08, 2026-06-09, 2026-06-10
+
+## 新股覆盖检查
+
+- `stock_moneyflow_daily`：121 只主数据已上市股票没有上市日起至最新交易日的覆盖记录；样例：920221.BJ(2023-06-08), 920455.BJ(2023-06-21), 920651.BJ(2023-06-27), 920208.BJ(2023-06-29), 920175.BJ(2023-06-30), 920717.BJ(2023-07-03), 920592.BJ(2023-07-10), 920576.BJ(2023-07-12), 920751.BJ(2023-07-17), 920701.BJ(2023-07-19), 920982.BJ(2023-07-20), 920926.BJ(2023-08-08), 920058.BJ(2023-08-10), 920748.BJ(2023-08-16), 920504.BJ(2023-08-17), 920274.BJ(2023-08-18), 920953.BJ(2023-08-23), 920976.BJ(2023-09-01), 920627.BJ(2023-09-07), 920519.BJ(2023-09-15)

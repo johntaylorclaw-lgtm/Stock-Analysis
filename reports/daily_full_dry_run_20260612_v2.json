@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-06-13T09:53:18",
+  "as_of_date": "2026-06-12",
+  "dry_run": true,
+  "target_dates": [
+    "2026-06-12"
+  ],
+  "precheck": {
+    "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_full_dry_run_20260612_v2_precheck.json",
+    "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_full_dry_run_20260612_v2_precheck.md",
+    "status": "warning",
+    "latest_trade_date": "2026-06-12",
+    "anchor_data_date": "2026-06-12",
+    "validation_dates": [
+      "2026-06-12"
+    ],
+    "incremental_dates": [],
+    "requires_confirmation": false
+  },
+  "postcheck": null,
+  "steps": [
+    {
+      "name": "sync-master",
+      "status": "planned",
+      "detail": "refresh stock_basic/company/status/trade_calendar/index_basic before full daily reload"
+    },
+    {
+      "name": "resolve-target-window",
+      "status": "done",
+      "detail": {
+        "reload_trade_days": 1,
+        "target_dates": [
+          "2026-06-12"
+        ]
+      }
+    },
+    {
+      "name": "validate-daily-precheck",
+      "status": "warning",
+      "detail": {
+        "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_full_dry_run_20260612_v2_precheck.json",
+        "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_full_dry_run_20260612_v2_precheck.md",
+        "status": "warning",
+        "latest_trade_date": "2026-06-12",
+        "anchor_data_date": "2026-06-12",
+        "validation_dates": [
+          "2026-06-12"
+        ],
+        "incremental_dates": [],
+        "requires_confirmation": false
+      }
+    },
+    {
+      "name": "base-full-reload",
+      "status": "planned",
+      "detail": {
+        "start_date": "20260612",
+        "end_date": "20260612",
+        "resume": false,
+        "force_market_behavior": true,
+        "apis": [
+          "daily",
+          "daily_basic",
+          "stk_limit",
+          "adj_factor",
+          "moneyflow",
+          "margin_detail",
+          "moneyflow_hsgt",
+          "hk_hold",
+          "top_list",
+          "top_inst",
+          "index_daily"
+        ]
+      }
+    },
+    {
+      "name": "feature-build",
+      "status": "planned",
+      "detail": {
+        "start_date": "2026-06-12",
+        "end_date": "2026-06-12",
+        "mode": "daily",
+        "note": "daily-full dry-run keeps feature planning lightweight; execute mode rebuilds all feature modules for the target window"
+      }
+    },
+    {
+      "name": "create-views",
+      "status": "planned",
+      "detail": "refresh stock_features_core/plus/full and analytical views"
+    },
+    {
+      "name": "validate-daily-postcheck",
+      "status": "planned",
+      "detail": "run after execution"
+    }
+  ],
+  "summary": {
+    "status": "warning",
+    "target_trade_day_count": 1,
+    "elapsed_seconds": 105.139
+  }
+}

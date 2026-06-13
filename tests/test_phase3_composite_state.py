@@ -53,3 +53,10 @@ def test_composite_state_variable_alignment() -> None:
 
     assert validate_variable_schema_alignment(module_variables, schema) == []
     assert not any(item["name"].endswith("_score") for item in module_variables["variables"])
+
+
+def test_composite_trend_state_unknown_when_trend_observations_missing() -> None:
+    sql = (ROOT / "scripts" / "build_phase3_composite_state_core.py").read_text(encoding="utf-8")
+
+    assert "trend_observation_count" in sql
+    assert "WHEN trend_observation_count = 0 THEN 'unknown'" in sql

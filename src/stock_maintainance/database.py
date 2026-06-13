@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from datetime import UTC, datetime
+import time
 from typing import Any
 
 import duckdb
@@ -13,6 +14,8 @@ from .schema import all_create_table_sql, create_table_sql, field_sql, quote_ide
 
 
 DB_PATH = DATA_DIR / "duckdb" / "stock_data.duckdb"
+CONNECT_RETRY_ATTEMPTS = 5
+CONNECT_RETRY_SLEEP_SECONDS = 0.5
 
 
 def ensure_runtime_dirs() -> None:
@@ -29,7 +32,22 @@ def ensure_runtime_dirs() -> None:
 
 def connect(db_path: Path = DB_PATH) -> duckdb.DuckDBPyConnection:
     ensure_runtime_dirs()
-    con = duckdb.connect(str(db_path))
+    last_error: Exception | None = None
+    for attempt in range(CONNECT_RETRY_ATTEMPTS):
+        try:
+            con = duckdb.connect(str(db_path))
+            break
+        except duckdb.IOException as exc:
+            last_error = exc
+            if attempt == CONNECT_RETRY_ATTEMPTS - 1:
+                raise
+            time.sleep(CONNECT_RETRY_SLEEP_SECONDS * (attempt + 1))
+    else:
+        raise last_error or RuntimeError("failed to connect to DuckDB")
+    try:
+        con.execute("SET lock_timeout='30s'")
+    except duckdb.CatalogException:
+        pass
     con.execute("SET preserve_insertion_order=false")
     con.execute("SET threads=4")
     return con
@@ -83,6 +101,13 @@ def reconcile_schema(con: duckdb.DuckDBPyConnection, registry: dict[str, Any] | 
         current = set(table_columns(con, table_name))
         missing = [field for field in table.get("fields", []) if field["name"] not in current]
         if table_name == "derived_financial_growth" and len(missing) > 100:
+            row_count = con.execute(f"SELECT count(*) FROM {quote_ident(table_name)}").fetchone()[0]
+            if row_count:
+                raise RuntimeError(
+                    "derived_financial_growth schema is incompatible with registry "
+                    f"({len(missing)} missing columns, {row_count} existing rows). "
+                    "Run the explicit financial growth rebuild/migration instead of init-time reconcile."
+                )
             con.execute(f"DROP TABLE IF EXISTS {quote_ident(table_name)}")
             con.execute(create_table_sql(table))
             continue
@@ -172,13 +197,22 @@ def upsert_dataframe(
 
     temp_name = f"tmp_{table_name}"
     con.register(temp_name, payload)
-    quoted_table = quote_ident(table_name)
-    quoted_temp = quote_ident(temp_name)
-    key_join = " AND ".join(f"t.{quote_ident(col)} = s.{quote_ident(col)}" for col in primary_key)
-    con.execute(f"DELETE FROM {quoted_table} t USING {quoted_temp} s WHERE {key_join}")
-    col_sql = ", ".join(quote_ident(col) for col in payload.columns)
-    con.execute(f"INSERT INTO {quoted_table} ({col_sql}) SELECT {col_sql} FROM {quoted_temp}")
-    con.unregister(temp_name)
+    try:
+        quoted_table = quote_ident(table_name)
+        quoted_temp = quote_ident(temp_name)
+        key_join = " AND ".join(f"t.{quote_ident(col)} = s.{quote_ident(col)}" for col in primary_key)
+        col_sql = ", ".join(quote_ident(col) for col in payload.columns)
+        con.execute("BEGIN TRANSACTION")
+        try:
+            con.execute(f"DELETE FROM {quoted_table} t USING {quoted_temp} s WHERE {key_join}")
+            con.execute(f"INSERT INTO {quoted_table} ({col_sql}) SELECT {col_sql} FROM {quoted_temp}")
+        except Exception:
+            con.execute("ROLLBACK")
+            raise
+        else:
+            con.execute("COMMIT")
+    finally:
+        con.unregister(temp_name)
     return len(payload)
 
 

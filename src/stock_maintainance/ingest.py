@@ -58,6 +58,14 @@ FINANCIAL_EVENT_APIS = [
     "share_float",
 ]
 
+OPTIONAL_MARKET_BEHAVIOR_APIS = {
+    "margin_detail",
+    "moneyflow_hsgt",
+    "hk_hold",
+    "top_list",
+    "top_inst",
+}
+
 
 def sync_stock_basic(client: TushareClient | None = None) -> dict[str, int]:
     client = client or TushareClient()
@@ -194,7 +202,7 @@ def sync_daily_for_date(trade_date: str) -> dict[str, int]:
     return outputs
 
 
-def sync_market_behavior_for_date(trade_date: str) -> dict[str, int]:
+def sync_market_behavior_for_date(trade_date: str) -> dict[str, Any]:
     client = TushareClient()
     outputs: dict[str, int] = {}
     calls = [
@@ -208,7 +216,18 @@ def sync_market_behavior_for_date(trade_date: str) -> dict[str, int]:
     with connect() as con:
         init_database(con)
         for api_name, table_name, pk in calls:
-            raw = client.call(api_name, trade_date=trade_date)
+            try:
+                raw = client.call(api_name, trade_date=trade_date)
+            except Exception as exc:  # noqa: BLE001 - optional source failures must be auditable.
+                if api_name not in OPTIONAL_MARKET_BEHAVIOR_APIS:
+                    raise
+                outputs[table_name] = 0
+                outputs.setdefault("optional_failures", []).append(
+                    {"api": api_name, "table": table_name, "trade_date": trade_date, "error": str(exc)}
+                )
+                record_task_failure(con, f"sync_{api_name}", trade_date, str(exc))
+                record_task_state(con, f"sync_{api_name}", trade_date, "failed_optional", row_count=0, error_message=str(exc))
+                continue
             raw = rename_columns(
                 raw,
                 {
@@ -234,7 +253,12 @@ def sync_market_behavior_for_date(trade_date: str) -> dict[str, int]:
     return outputs
 
 
-def sync_market_behavior_range(start_date: str, end_date: str, limit: int | None = None) -> dict[str, int]:
+def sync_market_behavior_range(
+    start_date: str,
+    end_date: str,
+    limit: int | None = None,
+    force: bool = False,
+) -> dict[str, Any]:
     dates = open_trade_dates(start_date, end_date)
     if limit is not None:
         dates = dates[:limit]
@@ -248,16 +272,22 @@ def sync_market_behavior_range(start_date: str, end_date: str, limit: int | None
         "trade_dates": len(dates),
     }
     for trade_date in dates:
-        with connect() as con:
-            state = fetch_task_state(con, "sync_market_behavior_date", trade_date)
-        if state and state.get("status") == "success":
-            continue
+        if not force:
+            with connect() as con:
+                state = fetch_task_state(con, "sync_market_behavior_date", trade_date)
+            if state and state.get("status") == "success":
+                continue
         result = sync_market_behavior_for_date(trade_date)
         for key, value in result.items():
-            totals[key] = totals.get(key, 0) + value
+            if isinstance(value, int):
+                totals[key] = totals.get(key, 0) + value
+            else:
+                totals.setdefault(key, []).extend(value)
         with connect() as con:
             init_database(con)
-            record_task_state(con, "sync_market_behavior_date", trade_date, "success", row_count=sum(result.values()))
+            row_count = sum(value for value in result.values() if isinstance(value, int))
+            status = "warning" if result.get("optional_failures") else "success"
+            record_task_state(con, "sync_market_behavior_date", trade_date, status, row_count=row_count)
     return totals
 
 
@@ -285,12 +315,13 @@ def sync_dividend_batch(
                 continue
         try:
             params: dict[str, Any] = {"ts_code": code}
-            raw = client.call("dividend", **params)
+            raw = client.call_paged("dividend", **params)
             if not raw.empty:
-                raw = raw[
-                    (raw.get("ann_date").fillna("") >= start_date)
-                    & (raw.get("ann_date").fillna("") <= checkpoint.replace("-", ""))
-                ] if end_date and "ann_date" in raw.columns else raw
+                if "ann_date" in raw.columns:
+                    ann = raw["ann_date"].fillna("")
+                    raw = raw[ann >= start_date]
+                    if end_date:
+                        raw = raw[ann <= checkpoint.replace("-", "")]
             payload_df = add_payload_json(raw.copy())
             raw = normalize_dates(raw, DATE_COLUMNS + ["record_date", "ex_date", "pay_date", "div_listdate"])
             if not raw.empty:
@@ -429,16 +460,49 @@ def open_trade_dates(start_date: str, end_date: str) -> list[str]:
     return [row[0] for row in rows]
 
 
-def sync_daily_range(start_date: str, end_date: str, limit: int | None = None) -> dict[str, int]:
+def sync_daily_range(
+    start_date: str,
+    end_date: str,
+    limit: int | None = None,
+    *,
+    resume: bool = True,
+) -> dict[str, Any]:
     dates = open_trade_dates(start_date, end_date)
     if limit is not None:
         dates = dates[:limit]
-    totals = {"stock_daily": 0, "stock_daily_basic": 0, "stock_limit_price": 0}
+    totals: dict[str, Any] = {
+        "stock_daily": 0,
+        "stock_daily_basic": 0,
+        "stock_limit_price": 0,
+        "trade_dates": len(dates),
+        "dates_done": 0,
+        "dates_failed": 0,
+        "dates_skipped": 0,
+    }
     for trade_date in dates:
-        result = sync_daily_for_date(trade_date)
-        for key, value in result.items():
-            totals[key] = totals.get(key, 0) + value
-    return totals | {"trade_dates": len(dates)}
+        if resume:
+            with connect() as con:
+                state = fetch_task_state(con, "sync_daily_date", trade_date)
+            if state and state.get("status") == "success":
+                totals["dates_skipped"] += 1
+                continue
+        try:
+            result = sync_daily_for_date(trade_date)
+            for key, value in result.items():
+                totals[key] = totals.get(key, 0) + value
+            row_count = sum(result.values())
+            with connect() as con:
+                init_database(con)
+                record_task_state(con, "sync_daily_date", trade_date, "success", row_count=row_count)
+            totals["dates_done"] += 1
+        except Exception as exc:  # noqa: BLE001 - range jobs must leave a per-date audit trail.
+            totals["dates_failed"] += 1
+            totals.setdefault("failures", []).append({"trade_date": trade_date, "error": str(exc)})
+            with connect() as con:
+                init_database(con)
+                record_task_failure(con, "sync_daily_date", trade_date, str(exc))
+                record_task_state(con, "sync_daily_date", trade_date, "failed", error_message=str(exc))
+    return totals
 
 
 def sync_adj_factor_for_stock(ts_code: str, start_date: str = "20060101", end_date: str | None = None) -> dict[str, int]:
@@ -847,8 +911,6 @@ def sync_financial_sample(ts_code: str, start_date: str = "20240101", end_date: 
                 },
             )
             raw = normalize_dates(raw, DATE_COLUMNS)
-            if table_name == "financial_indicator_raw" and {"ann_date", "end_date"}.issubset(raw.columns):
-                raw["ann_date"] = raw["ann_date"].fillna(raw["end_date"])
             if "payload_json" in payload_df.columns:
                 raw["payload_json"] = payload_df["payload_json"]
             raw = add_updated_at(raw)

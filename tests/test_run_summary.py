@@ -8,7 +8,7 @@ from stock_maintainance import run_summary
 def test_summarize_daily_from_report(tmp_path, monkeypatch):
     reports_dir = tmp_path / "reports"
     reports_dir.mkdir()
-    source = reports_dir / "phase5_daily_light_execute_test.json"
+    source = reports_dir / "daily_test.json"
     source.write_text(
         json.dumps(
             {
@@ -33,7 +33,7 @@ def test_summarize_daily_from_report(tmp_path, monkeypatch):
     monkeypatch.setattr(run_summary, "REPORTS_DIR", reports_dir)
     monkeypatch.setattr(run_summary, "SUMMARY_DIR", reports_dir / "summaries")
 
-    result = run_summary.summarize_run(mode="daily", run_id="phase5_daily_light_execute_test")
+    result = run_summary.summarize_run(mode="daily", run_id="daily_test")
 
     assert result.passed
     assert result.markdown_path.exists()
@@ -111,3 +111,34 @@ def test_summarize_status_payload(monkeypatch, tmp_path):
 
     assert result.passed
     assert "状态汇总报告" in result.markdown_path.read_text(encoding="utf-8")
+
+
+def test_summarize_status_blocks_when_database_anchor_missing(monkeypatch, tmp_path):
+    monkeypatch.setattr(run_summary, "SUMMARY_DIR", tmp_path)
+    monkeypatch.setattr(
+        run_summary,
+        "_status_payload",
+        lambda as_of_date: {
+            "as_of_date": as_of_date,
+            "latest_trade_date": "2026-06-05",
+            "anchor_data_date": "None",
+            "incremental_trade_day_count": None,
+            "stock_basic_info_rows": 0,
+            "stock_active": 0,
+            "stock_delisted": 0,
+            "stock_daily_rows": 0,
+            "stock_daily_distinct": 0,
+            "derived_spine_rows": 0,
+            "derived_spine_distinct": 0,
+            "feature_view_field_counts": {
+                "stock_features_core": 0,
+                "stock_features_plus": 0,
+                "stock_features_full": 0,
+            },
+        },
+    )
+
+    result = run_summary.summarize_run(mode="status", as_of_date="2026-06-07")
+
+    assert not result.passed
+    assert result.report["summary"]["status"] == "blocked"

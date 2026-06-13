@@ -1,9 +1,9 @@
 {
-  "note": "Draft generated from schema_registry.json. Review label_zh and unit before promoting to base_variables.json.",
+  "note": "基础变量注册表：字段中文名已按 Tushare/source_field 与本工程口径维护，后续由数据字典自动同步。",
   "variables": [
     {
       "name": "cal_date",
-      "label_zh": "Calendar date",
+      "label_zh": "日历日期",
       "table": "trade_calendar",
       "module": "base_calendar",
       "category": "base",
@@ -27,7 +27,7 @@
     },
     {
       "name": "trade_calendar_exchange",
-      "label_zh": "Exchange calendar code",
+      "label_zh": "交易所日历代码",
       "table": "trade_calendar",
       "module": "base_calendar",
       "category": "base",
@@ -51,7 +51,7 @@
     },
     {
       "name": "is_open",
-      "label_zh": "Whether market is open",
+      "label_zh": "是否开市",
       "table": "trade_calendar",
       "module": "base_calendar",
       "category": "base",
@@ -75,7 +75,7 @@
     },
     {
       "name": "pretrade_date",
-      "label_zh": "Previous open trade date",
+      "label_zh": "上一开市交易日",
       "table": "trade_calendar",
       "module": "base_calendar",
       "category": "base",
@@ -99,7 +99,7 @@
     },
     {
       "name": "next_trade_date",
-      "label_zh": "Next open trade date",
+      "label_zh": "下一开市交易日",
       "table": "trade_calendar",
       "module": "base_calendar",
       "category": "base",
@@ -123,7 +123,7 @@
     },
     {
       "name": "stock_basic_info_ts_code",
-      "label_zh": "Tushare stock code",
+      "label_zh": "Tushare股票代码",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -146,7 +146,7 @@
     },
     {
       "name": "symbol",
-      "label_zh": "Numeric symbol",
+      "label_zh": "股票数字代码",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -169,7 +169,7 @@
     },
     {
       "name": "stock_basic_info_name",
-      "label_zh": "Stock short name",
+      "label_zh": "股票简称",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -192,7 +192,7 @@
     },
     {
       "name": "area",
-      "label_zh": "Registered area",
+      "label_zh": "注册地区",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -215,7 +215,7 @@
     },
     {
       "name": "industry",
-      "label_zh": "Tushare industry",
+      "label_zh": "Tushare行业",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -238,7 +238,7 @@
     },
     {
       "name": "stock_basic_info_market",
-      "label_zh": "Market board",
+      "label_zh": "上市板块",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -261,7 +261,7 @@
     },
     {
       "name": "stock_basic_info_exchange",
-      "label_zh": "SSE/SZSE/BSE",
+      "label_zh": "交易所代码",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -284,7 +284,7 @@
     },
     {
       "name": "stock_basic_info_list_status",
-      "label_zh": "L/D/P",
+      "label_zh": "上市状态代码",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -307,7 +307,7 @@
     },
     {
       "name": "stock_basic_info_list_date",
-      "label_zh": "Listing date",
+      "label_zh": "上市日期",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -330,7 +330,7 @@
     },
     {
       "name": "delist_date",
-      "label_zh": "Delisting date",
+      "label_zh": "退市日期",
       "table": "stock_basic_info",
       "module": "base_security",
       "category": "security_master",
@@ -353,7 +353,7 @@
     },
     {
       "name": "stock_basic_info_is_active",
-      "label_zh": "Currently listed",
+      "label_zh": "当前是否上市",
       "table": "stock_basic_info",
       "module": "base_misc",
       "category": "base",
@@ -376,7 +376,7 @@
     },
     {
       "name": "stock_daily_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -400,7 +400,7 @@
     },
     {
       "name": "stock_daily_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -424,7 +424,7 @@
     },
     {
       "name": "stock_daily_open",
-      "label_zh": "Open price",
+      "label_zh": "开盘价",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -448,7 +448,7 @@
     },
     {
       "name": "stock_daily_high",
-      "label_zh": "High price",
+      "label_zh": "最高价",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -472,7 +472,7 @@
     },
     {
       "name": "stock_daily_low",
-      "label_zh": "Low price",
+      "label_zh": "最低价",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -496,7 +496,7 @@
     },
     {
       "name": "stock_daily_close",
-      "label_zh": "Close price",
+      "label_zh": "收盘价",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -520,7 +520,7 @@
     },
     {
       "name": "stock_daily_pre_close",
-      "label_zh": "Previous close",
+      "label_zh": "前收盘价",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -544,7 +544,7 @@
     },
     {
       "name": "stock_daily_change",
-      "label_zh": "Price change",
+      "label_zh": "涨跌额",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -568,7 +568,7 @@
     },
     {
       "name": "stock_daily_pct_chg",
-      "label_zh": "Percent change",
+      "label_zh": "涨跌幅",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -592,7 +592,7 @@
     },
     {
       "name": "stock_daily_volume",
-      "label_zh": "Volume in lots",
+      "label_zh": "成交量（手）",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -617,7 +617,7 @@
     },
     {
       "name": "stock_daily_amount",
-      "label_zh": "Amount in thousand yuan",
+      "label_zh": "成交额（千元）",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -642,7 +642,7 @@
     },
     {
       "name": "amplitude",
-      "label_zh": "Amplitude percent",
+      "label_zh": "振幅",
       "table": "stock_daily",
       "module": "base_price",
       "category": "ohlcv",
@@ -666,7 +666,7 @@
     },
     {
       "name": "stock_daily_basic_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -690,7 +690,7 @@
     },
     {
       "name": "stock_daily_basic_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -714,7 +714,7 @@
     },
     {
       "name": "stock_daily_basic_close",
-      "label_zh": "Close price",
+      "label_zh": "收盘价",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -738,7 +738,7 @@
     },
     {
       "name": "stock_daily_basic_turnover_rate",
-      "label_zh": "Turnover rate percent",
+      "label_zh": "换手率",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -762,7 +762,7 @@
     },
     {
       "name": "turnover_rate_free",
-      "label_zh": "Free-float turnover rate percent",
+      "label_zh": "自由流通换手率",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -786,7 +786,7 @@
     },
     {
       "name": "volume_ratio",
-      "label_zh": "Volume ratio",
+      "label_zh": "量比",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -811,7 +811,7 @@
     },
     {
       "name": "pe",
-      "label_zh": "PE",
+      "label_zh": "市盈率",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -835,7 +835,7 @@
     },
     {
       "name": "pe_ttm",
-      "label_zh": "PE TTM",
+      "label_zh": "滚动市盈率",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -859,7 +859,7 @@
     },
     {
       "name": "pb",
-      "label_zh": "PB",
+      "label_zh": "市净率",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -883,7 +883,7 @@
     },
     {
       "name": "ps",
-      "label_zh": "PS",
+      "label_zh": "市销率",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -907,7 +907,7 @@
     },
     {
       "name": "ps_ttm",
-      "label_zh": "PS TTM",
+      "label_zh": "滚动市销率",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -931,7 +931,7 @@
     },
     {
       "name": "dv_ratio",
-      "label_zh": "Dividend yield",
+      "label_zh": "股息率",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -955,7 +955,7 @@
     },
     {
       "name": "dv_ttm",
-      "label_zh": "Dividend yield TTM",
+      "label_zh": "滚动股息率",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -979,7 +979,7 @@
     },
     {
       "name": "stock_daily_basic_total_share",
-      "label_zh": "Total shares in 10k",
+      "label_zh": "总股本（万股）",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -1004,7 +1004,7 @@
     },
     {
       "name": "float_share",
-      "label_zh": "Float shares in 10k",
+      "label_zh": "流通股本（万股）",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -1029,7 +1029,7 @@
     },
     {
       "name": "free_share",
-      "label_zh": "Free float shares in 10k",
+      "label_zh": "自由流通股本（万股）",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -1054,7 +1054,7 @@
     },
     {
       "name": "total_mv",
-      "label_zh": "Total market value in 10k yuan",
+      "label_zh": "总市值（万元）",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -1078,7 +1078,7 @@
     },
     {
       "name": "circ_mv",
-      "label_zh": "Circulating market value in 10k yuan",
+      "label_zh": "流通市值（万元）",
       "table": "stock_daily_basic",
       "module": "base_valuation",
       "category": "valuation",
@@ -1102,7 +1102,7 @@
     },
     {
       "name": "stock_adj_factor_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "stock_adj_factor",
       "module": "base_price",
       "category": "adjustment",
@@ -1126,7 +1126,7 @@
     },
     {
       "name": "stock_adj_factor_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "stock_adj_factor",
       "module": "base_price",
       "category": "adjustment",
@@ -1150,7 +1150,7 @@
     },
     {
       "name": "adj_factor",
-      "label_zh": "Tushare adjustment factor",
+      "label_zh": "Tushare复权因子",
       "table": "stock_adj_factor",
       "module": "base_price",
       "category": "adjustment",
@@ -1175,7 +1175,7 @@
     },
     {
       "name": "factor_source",
-      "label_zh": "Factor source and interpretation",
+      "label_zh": "复权因子来源与口径说明",
       "table": "stock_adj_factor",
       "module": "base_price",
       "category": "adjustment",
@@ -1199,7 +1199,7 @@
     },
     {
       "name": "stock_limit_price_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "stock_limit_price",
       "module": "base_price",
       "category": "limit_price",
@@ -1223,7 +1223,7 @@
     },
     {
       "name": "stock_limit_price_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "stock_limit_price",
       "module": "base_price",
       "category": "limit_price",
@@ -1247,7 +1247,7 @@
     },
     {
       "name": "up_limit",
-      "label_zh": "Up limit price",
+      "label_zh": "涨停价",
       "table": "stock_limit_price",
       "module": "base_price",
       "category": "limit_price",
@@ -1271,7 +1271,7 @@
     },
     {
       "name": "down_limit",
-      "label_zh": "Down limit price",
+      "label_zh": "跌停价",
       "table": "stock_limit_price",
       "module": "base_price",
       "category": "limit_price",
@@ -1295,7 +1295,7 @@
     },
     {
       "name": "stock_company_info_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1318,7 +1318,7 @@
     },
     {
       "name": "company_name",
-      "label_zh": "Company full name",
+      "label_zh": "公司全称",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1341,7 +1341,7 @@
     },
     {
       "name": "company_id",
-      "label_zh": "Company id",
+      "label_zh": "公司ID",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1364,7 +1364,7 @@
     },
     {
       "name": "chairman",
-      "label_zh": "Chairman",
+      "label_zh": "董事长",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1387,7 +1387,7 @@
     },
     {
       "name": "manager",
-      "label_zh": "General manager",
+      "label_zh": "总经理",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1410,7 +1410,7 @@
     },
     {
       "name": "secretary",
-      "label_zh": "Board secretary",
+      "label_zh": "董事会秘书",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1433,7 +1433,7 @@
     },
     {
       "name": "registered_capital",
-      "label_zh": "Registered capital",
+      "label_zh": "注册资本",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1456,7 +1456,7 @@
     },
     {
       "name": "setup_date",
-      "label_zh": "Setup date",
+      "label_zh": "成立日期",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1479,7 +1479,7 @@
     },
     {
       "name": "province",
-      "label_zh": "Province",
+      "label_zh": "省份",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1502,7 +1502,7 @@
     },
     {
       "name": "city",
-      "label_zh": "City",
+      "label_zh": "城市",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1525,7 +1525,7 @@
     },
     {
       "name": "website",
-      "label_zh": "Website",
+      "label_zh": "公司网站",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1548,7 +1548,7 @@
     },
     {
       "name": "email",
-      "label_zh": "Email",
+      "label_zh": "电子邮箱",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1571,7 +1571,7 @@
     },
     {
       "name": "office",
-      "label_zh": "Office address",
+      "label_zh": "办公地址",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1594,7 +1594,7 @@
     },
     {
       "name": "business_scope",
-      "label_zh": "Business scope",
+      "label_zh": "经营范围",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1617,7 +1617,7 @@
     },
     {
       "name": "employees",
-      "label_zh": "Employees",
+      "label_zh": "员工人数",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1640,7 +1640,7 @@
     },
     {
       "name": "main_business",
-      "label_zh": "Main business",
+      "label_zh": "主营业务",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1663,7 +1663,7 @@
     },
     {
       "name": "stock_company_info_exchange",
-      "label_zh": "Exchange",
+      "label_zh": "交易所",
       "table": "stock_company_info",
       "module": "base_security",
       "category": "security_master",
@@ -1686,7 +1686,7 @@
     },
     {
       "name": "stock_status_history_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "stock_status_history",
       "module": "base_misc",
       "category": "base",
@@ -1711,7 +1711,7 @@
     },
     {
       "name": "stock_status_history_effective_date",
-      "label_zh": "Status effective date",
+      "label_zh": "上市状态生效日期",
       "table": "stock_status_history",
       "module": "base_misc",
       "category": "base",
@@ -1736,7 +1736,7 @@
     },
     {
       "name": "stock_status_history_list_status",
-      "label_zh": "Listing status",
+      "label_zh": "上市状态",
       "table": "stock_status_history",
       "module": "base_security",
       "category": "security_master",
@@ -1761,7 +1761,7 @@
     },
     {
       "name": "stock_status_history_name",
-      "label_zh": "Stock name",
+      "label_zh": "股票名称",
       "table": "stock_status_history",
       "module": "base_security",
       "category": "security_master",
@@ -1786,7 +1786,7 @@
     },
     {
       "name": "stock_status_history_is_active",
-      "label_zh": "Whether stock is active after this status",
+      "label_zh": "该状态后是否有效上市",
       "table": "stock_status_history",
       "module": "base_misc",
       "category": "base",
@@ -1811,7 +1811,7 @@
     },
     {
       "name": "change_reason",
-      "label_zh": "Status change reason",
+      "label_zh": "状态变更原因",
       "table": "stock_status_history",
       "module": "base_misc",
       "category": "base",
@@ -1836,7 +1836,7 @@
     },
     {
       "name": "stock_moneyflow_daily_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -1860,7 +1860,7 @@
     },
     {
       "name": "stock_moneyflow_daily_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -1884,7 +1884,7 @@
     },
     {
       "name": "buy_sm_vol",
-      "label_zh": "Small buy volume",
+      "label_zh": "小单买入量",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -1908,7 +1908,7 @@
     },
     {
       "name": "buy_sm_amount",
-      "label_zh": "Small buy amount",
+      "label_zh": "小单买入额",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -1933,7 +1933,7 @@
     },
     {
       "name": "sell_sm_vol",
-      "label_zh": "Small sell volume",
+      "label_zh": "小单卖出量",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -1957,7 +1957,7 @@
     },
     {
       "name": "sell_sm_amount",
-      "label_zh": "Small sell amount",
+      "label_zh": "小单卖出额",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -1982,7 +1982,7 @@
     },
     {
       "name": "buy_md_vol",
-      "label_zh": "Medium buy volume",
+      "label_zh": "中单买入量",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2006,7 +2006,7 @@
     },
     {
       "name": "buy_md_amount",
-      "label_zh": "Medium buy amount",
+      "label_zh": "中单买入额",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2031,7 +2031,7 @@
     },
     {
       "name": "sell_md_vol",
-      "label_zh": "Medium sell volume",
+      "label_zh": "中单卖出量",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2055,7 +2055,7 @@
     },
     {
       "name": "sell_md_amount",
-      "label_zh": "Medium sell amount",
+      "label_zh": "中单卖出额",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2080,7 +2080,7 @@
     },
     {
       "name": "buy_lg_vol",
-      "label_zh": "Large buy volume",
+      "label_zh": "大单买入量",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2104,7 +2104,7 @@
     },
     {
       "name": "buy_lg_amount",
-      "label_zh": "Large buy amount",
+      "label_zh": "大单买入额",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2129,7 +2129,7 @@
     },
     {
       "name": "sell_lg_vol",
-      "label_zh": "Large sell volume",
+      "label_zh": "大单卖出量",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2153,7 +2153,7 @@
     },
     {
       "name": "sell_lg_amount",
-      "label_zh": "Large sell amount",
+      "label_zh": "大单卖出额",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2178,7 +2178,7 @@
     },
     {
       "name": "buy_elg_vol",
-      "label_zh": "Extra-large buy volume",
+      "label_zh": "特大单买入量",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2202,7 +2202,7 @@
     },
     {
       "name": "buy_elg_amount",
-      "label_zh": "Extra-large buy amount",
+      "label_zh": "特大单买入额",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2227,7 +2227,7 @@
     },
     {
       "name": "sell_elg_vol",
-      "label_zh": "Extra-large sell volume",
+      "label_zh": "特大单卖出量",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2251,7 +2251,7 @@
     },
     {
       "name": "sell_elg_amount",
-      "label_zh": "Extra-large sell amount",
+      "label_zh": "特大单卖出额",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2276,7 +2276,7 @@
     },
     {
       "name": "net_mf_vol",
-      "label_zh": "Net money flow volume",
+      "label_zh": "资金净流入量",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2300,7 +2300,7 @@
     },
     {
       "name": "net_mf_amount",
-      "label_zh": "Net money flow amount",
+      "label_zh": "资金净流入额",
       "table": "stock_moneyflow_daily",
       "module": "base_capital_flow",
       "category": "moneyflow",
@@ -2325,7 +2325,7 @@
     },
     {
       "name": "margin_detail_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2349,7 +2349,7 @@
     },
     {
       "name": "margin_detail_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2373,7 +2373,7 @@
     },
     {
       "name": "margin_balance",
-      "label_zh": "Margin balance",
+      "label_zh": "融资余额",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2398,7 +2398,7 @@
     },
     {
       "name": "short_balance",
-      "label_zh": "Short selling balance",
+      "label_zh": "融券余额",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2423,7 +2423,7 @@
     },
     {
       "name": "margin_buy",
-      "label_zh": "Margin buy amount",
+      "label_zh": "融资买入额",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2447,7 +2447,7 @@
     },
     {
       "name": "short_volume",
-      "label_zh": "Short selling volume",
+      "label_zh": "融券余量",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2472,7 +2472,7 @@
     },
     {
       "name": "margin_repay",
-      "label_zh": "Margin repayment",
+      "label_zh": "融资偿还额",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2496,7 +2496,7 @@
     },
     {
       "name": "short_repay_volume",
-      "label_zh": "Short repayment volume",
+      "label_zh": "融券偿还量",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2521,7 +2521,7 @@
     },
     {
       "name": "short_sell_volume",
-      "label_zh": "Short sell volume",
+      "label_zh": "融券卖出量",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2546,7 +2546,7 @@
     },
     {
       "name": "total_balance",
-      "label_zh": "Margin and short total balance",
+      "label_zh": "融资融券余额合计",
       "table": "margin_detail",
       "module": "base_capital_flow",
       "category": "margin",
@@ -2571,7 +2571,7 @@
     },
     {
       "name": "northbound_daily_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "northbound_daily",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2594,7 +2594,7 @@
     },
     {
       "name": "ggt_ss",
-      "label_zh": "Southbound Shanghai",
+      "label_zh": "港股通（沪）资金",
       "table": "northbound_daily",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2617,7 +2617,7 @@
     },
     {
       "name": "ggt_sz",
-      "label_zh": "Southbound Shenzhen",
+      "label_zh": "港股通（深）资金",
       "table": "northbound_daily",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2640,7 +2640,7 @@
     },
     {
       "name": "hgt",
-      "label_zh": "Shanghai northbound",
+      "label_zh": "沪股通资金",
       "table": "northbound_daily",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2663,7 +2663,7 @@
     },
     {
       "name": "sgt",
-      "label_zh": "Shenzhen northbound",
+      "label_zh": "深股通资金",
       "table": "northbound_daily",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2686,7 +2686,7 @@
     },
     {
       "name": "north_money",
-      "label_zh": "Northbound money",
+      "label_zh": "北向资金净流入",
       "table": "northbound_daily",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2709,7 +2709,7 @@
     },
     {
       "name": "south_money",
-      "label_zh": "Southbound money",
+      "label_zh": "南向资金净流入",
       "table": "northbound_daily",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2732,7 +2732,7 @@
     },
     {
       "name": "northbound_holding_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "northbound_holding",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2757,7 +2757,7 @@
     },
     {
       "name": "northbound_holding_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "northbound_holding",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2782,7 +2782,7 @@
     },
     {
       "name": "hk_code",
-      "label_zh": "HK holding code",
+      "label_zh": "港股通持股代码",
       "table": "northbound_holding",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2807,7 +2807,7 @@
     },
     {
       "name": "northbound_holding_name",
-      "label_zh": "Stock name",
+      "label_zh": "股票名称",
       "table": "northbound_holding",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2832,7 +2832,7 @@
     },
     {
       "name": "hold_shares",
-      "label_zh": "Holding shares",
+      "label_zh": "持股数量",
       "table": "northbound_holding",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2858,7 +2858,7 @@
     },
     {
       "name": "hold_ratio",
-      "label_zh": "Holding ratio",
+      "label_zh": "持股比例",
       "table": "northbound_holding",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2883,7 +2883,7 @@
     },
     {
       "name": "exchange_type",
-      "label_zh": "Connect exchange",
+      "label_zh": "互联互通交易所",
       "table": "northbound_holding",
       "module": "base_capital_flow",
       "category": "northbound",
@@ -2908,7 +2908,7 @@
     },
     {
       "name": "top_list_daily_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -2933,7 +2933,7 @@
     },
     {
       "name": "top_list_daily_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -2958,7 +2958,7 @@
     },
     {
       "name": "top_list_daily_name",
-      "label_zh": "Stock name",
+      "label_zh": "股票名称",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -2983,7 +2983,7 @@
     },
     {
       "name": "top_list_daily_close",
-      "label_zh": "Close price",
+      "label_zh": "收盘价",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3008,7 +3008,7 @@
     },
     {
       "name": "pct_change",
-      "label_zh": "Percent change",
+      "label_zh": "涨跌幅",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3033,7 +3033,7 @@
     },
     {
       "name": "top_list_daily_turnover_rate",
-      "label_zh": "Turnover rate",
+      "label_zh": "换手率",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3058,7 +3058,7 @@
     },
     {
       "name": "top_list_daily_amount",
-      "label_zh": "Amount",
+      "label_zh": "成交额",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3084,7 +3084,7 @@
     },
     {
       "name": "l_sell",
-      "label_zh": "List sell amount",
+      "label_zh": "龙虎榜卖出额",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3109,7 +3109,7 @@
     },
     {
       "name": "l_buy",
-      "label_zh": "List buy amount",
+      "label_zh": "龙虎榜买入额",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3134,7 +3134,7 @@
     },
     {
       "name": "l_amount",
-      "label_zh": "List amount",
+      "label_zh": "龙虎榜成交额",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3160,7 +3160,7 @@
     },
     {
       "name": "net_amount",
-      "label_zh": "Net amount",
+      "label_zh": "净额",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3186,7 +3186,7 @@
     },
     {
       "name": "net_rate",
-      "label_zh": "Net rate",
+      "label_zh": "净买入占比",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3211,7 +3211,7 @@
     },
     {
       "name": "amount_rate",
-      "label_zh": "Amount rate",
+      "label_zh": "成交额占比",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3237,7 +3237,7 @@
     },
     {
       "name": "float_values",
-      "label_zh": "Float market value",
+      "label_zh": "流通市值",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3262,7 +3262,7 @@
     },
     {
       "name": "top_list_daily_reason",
-      "label_zh": "Top list reason",
+      "label_zh": "龙虎榜上榜原因",
       "table": "top_list_daily",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3287,7 +3287,7 @@
     },
     {
       "name": "top_inst_detail_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3314,7 +3314,7 @@
     },
     {
       "name": "top_inst_detail_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3341,7 +3341,7 @@
     },
     {
       "name": "exalter",
-      "label_zh": "Seat name",
+      "label_zh": "席位名称",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3368,7 +3368,7 @@
     },
     {
       "name": "buy",
-      "label_zh": "Buy amount",
+      "label_zh": "买入金额",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3395,7 +3395,7 @@
     },
     {
       "name": "buy_rate",
-      "label_zh": "Buy rate",
+      "label_zh": "买入占比",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3422,7 +3422,7 @@
     },
     {
       "name": "sell",
-      "label_zh": "Sell amount",
+      "label_zh": "卖出金额",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3449,7 +3449,7 @@
     },
     {
       "name": "sell_rate",
-      "label_zh": "Sell rate",
+      "label_zh": "卖出占比",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3476,7 +3476,7 @@
     },
     {
       "name": "net_buy",
-      "label_zh": "Net buy",
+      "label_zh": "净买入额",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3503,7 +3503,7 @@
     },
     {
       "name": "side",
-      "label_zh": "Buy/sell side",
+      "label_zh": "买卖方向",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3530,7 +3530,7 @@
     },
     {
       "name": "top_inst_detail_reason",
-      "label_zh": "Top list reason",
+      "label_zh": "龙虎榜上榜原因",
       "table": "top_inst_detail",
       "module": "base_capital_flow",
       "category": "top_list",
@@ -3557,7 +3557,7 @@
     },
     {
       "name": "financial_dividend_raw_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3583,7 +3583,7 @@
     },
     {
       "name": "financial_dividend_raw_end_date",
-      "label_zh": "Report period",
+      "label_zh": "报告期",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3609,7 +3609,7 @@
     },
     {
       "name": "financial_dividend_raw_ann_date",
-      "label_zh": "Announcement date",
+      "label_zh": "公告日期",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3635,7 +3635,7 @@
     },
     {
       "name": "div_proc",
-      "label_zh": "Dividend process",
+      "label_zh": "分红实施进度",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3661,7 +3661,7 @@
     },
     {
       "name": "stk_div",
-      "label_zh": "Bonus shares",
+      "label_zh": "送股数",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3687,7 +3687,7 @@
     },
     {
       "name": "stk_bo_rate",
-      "label_zh": "Bonus share rate",
+      "label_zh": "送股比例",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3713,7 +3713,7 @@
     },
     {
       "name": "stk_co_rate",
-      "label_zh": "Conversion share rate",
+      "label_zh": "转增股比例",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3739,7 +3739,7 @@
     },
     {
       "name": "cash_div",
-      "label_zh": "Cash dividend",
+      "label_zh": "现金分红",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3766,7 +3766,7 @@
     },
     {
       "name": "cash_div_tax",
-      "label_zh": "Cash dividend after tax",
+      "label_zh": "税后现金分红",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3793,7 +3793,7 @@
     },
     {
       "name": "record_date",
-      "label_zh": "Record date",
+      "label_zh": "股权登记日",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3819,7 +3819,7 @@
     },
     {
       "name": "ex_date",
-      "label_zh": "Ex-dividend date",
+      "label_zh": "除权除息日",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3845,7 +3845,7 @@
     },
     {
       "name": "pay_date",
-      "label_zh": "Payment date",
+      "label_zh": "派息日",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3871,7 +3871,7 @@
     },
     {
       "name": "div_listdate",
-      "label_zh": "Dividend list date",
+      "label_zh": "红股上市日",
       "table": "financial_dividend_raw",
       "module": "base_financial",
       "category": "base",
@@ -3897,7 +3897,7 @@
     },
     {
       "name": "financial_disclosure_schedule_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "financial_disclosure_schedule",
       "module": "base_financial",
       "category": "base",
@@ -3922,7 +3922,7 @@
     },
     {
       "name": "financial_disclosure_schedule_ann_date",
-      "label_zh": "Announcement date",
+      "label_zh": "公告日期",
       "table": "financial_disclosure_schedule",
       "module": "base_financial",
       "category": "base",
@@ -3947,7 +3947,7 @@
     },
     {
       "name": "financial_disclosure_schedule_end_date",
-      "label_zh": "Report period",
+      "label_zh": "报告期",
       "table": "financial_disclosure_schedule",
       "module": "base_financial",
       "category": "base",
@@ -3972,7 +3972,7 @@
     },
     {
       "name": "pre_date",
-      "label_zh": "Planned disclosure date",
+      "label_zh": "预计披露日期",
       "table": "financial_disclosure_schedule",
       "module": "base_financial",
       "category": "base",
@@ -3997,7 +3997,7 @@
     },
     {
       "name": "actual_date",
-      "label_zh": "Actual disclosure date",
+      "label_zh": "实际披露日期",
       "table": "financial_disclosure_schedule",
       "module": "base_financial",
       "category": "base",
@@ -4022,7 +4022,7 @@
     },
     {
       "name": "modify_date",
-      "label_zh": "Modified disclosure date",
+      "label_zh": "修正披露日期",
       "table": "financial_disclosure_schedule",
       "module": "base_financial",
       "category": "base",
@@ -4047,7 +4047,7 @@
     },
     {
       "name": "pledge_stat_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "pledge_stat",
       "module": "base_misc",
       "category": "base",
@@ -4071,7 +4071,7 @@
     },
     {
       "name": "pledge_stat_end_date",
-      "label_zh": "Statistic end date",
+      "label_zh": "统计截止日",
       "table": "pledge_stat",
       "module": "base_misc",
       "category": "base",
@@ -4095,7 +4095,7 @@
     },
     {
       "name": "pledge_count",
-      "label_zh": "Pledge count",
+      "label_zh": "质押次数",
       "table": "pledge_stat",
       "module": "base_misc",
       "category": "base",
@@ -4119,7 +4119,7 @@
     },
     {
       "name": "unrest_pledge",
-      "label_zh": "Unrestricted pledged shares",
+      "label_zh": "无限售质押股数",
       "table": "pledge_stat",
       "module": "base_misc",
       "category": "base",
@@ -4143,7 +4143,7 @@
     },
     {
       "name": "rest_pledge",
-      "label_zh": "Restricted pledged shares",
+      "label_zh": "限售质押股数",
       "table": "pledge_stat",
       "module": "base_misc",
       "category": "base",
@@ -4167,7 +4167,7 @@
     },
     {
       "name": "pledge_stat_total_share",
-      "label_zh": "Total shares",
+      "label_zh": "总股本",
       "table": "pledge_stat",
       "module": "base_misc",
       "category": "base",
@@ -4192,7 +4192,7 @@
     },
     {
       "name": "pledge_ratio",
-      "label_zh": "Pledge ratio",
+      "label_zh": "质押比例",
       "table": "pledge_stat",
       "module": "base_misc",
       "category": "base",
@@ -4216,7 +4216,7 @@
     },
     {
       "name": "index_basic_info_index_code",
-      "label_zh": "Index code",
+      "label_zh": "指数代码",
       "table": "index_basic_info",
       "module": "base_index",
       "category": "base",
@@ -4239,7 +4239,7 @@
     },
     {
       "name": "index_name",
-      "label_zh": "Index name",
+      "label_zh": "指数名称",
       "table": "index_basic_info",
       "module": "base_index",
       "category": "base",
@@ -4262,7 +4262,7 @@
     },
     {
       "name": "index_basic_info_market",
-      "label_zh": "Index market",
+      "label_zh": "指数市场",
       "table": "index_basic_info",
       "module": "base_index",
       "category": "base",
@@ -4285,7 +4285,7 @@
     },
     {
       "name": "publisher",
-      "label_zh": "Publisher",
+      "label_zh": "发布方",
       "table": "index_basic_info",
       "module": "base_index",
       "category": "base",
@@ -4308,7 +4308,7 @@
     },
     {
       "name": "category",
-      "label_zh": "Category",
+      "label_zh": "指数类别",
       "table": "index_basic_info",
       "module": "base_index",
       "category": "base",
@@ -4331,7 +4331,7 @@
     },
     {
       "name": "base_date",
-      "label_zh": "Base date",
+      "label_zh": "基日",
       "table": "index_basic_info",
       "module": "base_index",
       "category": "base",
@@ -4354,7 +4354,7 @@
     },
     {
       "name": "base_point",
-      "label_zh": "Base point",
+      "label_zh": "基点",
       "table": "index_basic_info",
       "module": "base_index",
       "category": "base",
@@ -4377,7 +4377,7 @@
     },
     {
       "name": "index_basic_info_list_date",
-      "label_zh": "List date",
+      "label_zh": "发布日期",
       "table": "index_basic_info",
       "module": "base_index",
       "category": "base",
@@ -4400,7 +4400,7 @@
     },
     {
       "name": "index_daily_index_code",
-      "label_zh": "Index code",
+      "label_zh": "指数代码",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4424,7 +4424,7 @@
     },
     {
       "name": "index_daily_trade_date",
-      "label_zh": "Trade date",
+      "label_zh": "交易日期",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4448,7 +4448,7 @@
     },
     {
       "name": "index_daily_open",
-      "label_zh": "Open",
+      "label_zh": "开盘价",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4472,7 +4472,7 @@
     },
     {
       "name": "index_daily_high",
-      "label_zh": "High",
+      "label_zh": "最高价",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4496,7 +4496,7 @@
     },
     {
       "name": "index_daily_low",
-      "label_zh": "Low",
+      "label_zh": "最低价",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4520,7 +4520,7 @@
     },
     {
       "name": "index_daily_close",
-      "label_zh": "Close",
+      "label_zh": "收盘价",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4544,7 +4544,7 @@
     },
     {
       "name": "index_daily_pre_close",
-      "label_zh": "Previous close",
+      "label_zh": "前收盘价",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4568,7 +4568,7 @@
     },
     {
       "name": "index_daily_change",
-      "label_zh": "Change",
+      "label_zh": "涨跌额",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4592,7 +4592,7 @@
     },
     {
       "name": "index_daily_pct_chg",
-      "label_zh": "Percent change",
+      "label_zh": "涨跌幅",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4616,7 +4616,7 @@
     },
     {
       "name": "index_daily_volume",
-      "label_zh": "Volume",
+      "label_zh": "成交量",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4641,7 +4641,7 @@
     },
     {
       "name": "index_daily_amount",
-      "label_zh": "Amount",
+      "label_zh": "成交额",
       "table": "index_daily",
       "module": "base_index",
       "category": "index_ohlcv",
@@ -4666,7 +4666,7 @@
     },
     {
       "name": "index_weight_index_code",
-      "label_zh": "Index code",
+      "label_zh": "指数代码",
       "table": "index_weight",
       "module": "base_index",
       "category": "constituent",
@@ -4691,7 +4691,7 @@
     },
     {
       "name": "con_code",
-      "label_zh": "Constituent stock code",
+      "label_zh": "成分股代码",
       "table": "index_weight",
       "module": "base_index",
       "category": "constituent",
@@ -4716,7 +4716,7 @@
     },
     {
       "name": "index_weight_trade_date",
-      "label_zh": "Weight date",
+      "label_zh": "权重日期",
       "table": "index_weight",
       "module": "base_index",
       "category": "constituent",
@@ -4741,7 +4741,7 @@
     },
     {
       "name": "weight",
-      "label_zh": "Weight percent",
+      "label_zh": "权重比例",
       "table": "index_weight",
       "module": "base_index",
       "category": "constituent",
@@ -4766,7 +4766,7 @@
     },
     {
       "name": "sw_industry_classify_industry_code",
-      "label_zh": "Industry index code",
+      "label_zh": "行业指数代码",
       "table": "sw_industry_classify",
       "module": "base_sector",
       "category": "industry",
@@ -4789,7 +4789,7 @@
     },
     {
       "name": "sw_industry_classify_industry_name",
-      "label_zh": "Industry name",
+      "label_zh": "行业名称",
       "table": "sw_industry_classify",
       "module": "base_sector",
       "category": "industry",
@@ -4812,7 +4812,7 @@
     },
     {
       "name": "level",
-      "label_zh": "Industry level",
+      "label_zh": "行业层级",
       "table": "sw_industry_classify",
       "module": "base_sector",
       "category": "industry",
@@ -4835,7 +4835,7 @@
     },
     {
       "name": "sw_code",
-      "label_zh": "Shenwan numeric industry code",
+      "label_zh": "申万行业数字代码",
       "table": "sw_industry_classify",
       "module": "base_sector",
       "category": "industry",
@@ -4858,7 +4858,7 @@
     },
     {
       "name": "parent_code",
-      "label_zh": "Parent industry code",
+      "label_zh": "父级行业代码",
       "table": "sw_industry_classify",
       "module": "base_sector",
       "category": "industry",
@@ -4881,7 +4881,7 @@
     },
     {
       "name": "src",
-      "label_zh": "Classification source",
+      "label_zh": "分类来源",
       "table": "sw_industry_classify",
       "module": "base_sector",
       "category": "industry",
@@ -4904,7 +4904,7 @@
     },
     {
       "name": "sw_industry_member_industry_code",
-      "label_zh": "Industry code",
+      "label_zh": "行业代码",
       "table": "sw_industry_member",
       "module": "base_sector",
       "category": "industry",
@@ -4929,7 +4929,7 @@
     },
     {
       "name": "sw_industry_member_industry_name",
-      "label_zh": "Industry name",
+      "label_zh": "行业名称",
       "table": "sw_industry_member",
       "module": "base_sector",
       "category": "industry",
@@ -4954,7 +4954,7 @@
     },
     {
       "name": "sw_industry_member_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "sw_industry_member",
       "module": "base_sector",
       "category": "industry",
@@ -4979,7 +4979,7 @@
     },
     {
       "name": "sw_industry_member_stock_name",
-      "label_zh": "Stock name",
+      "label_zh": "股票名称",
       "table": "sw_industry_member",
       "module": "base_sector",
       "category": "industry",
@@ -5004,7 +5004,7 @@
     },
     {
       "name": "sw_industry_member_in_date",
-      "label_zh": "Membership start date",
+      "label_zh": "成员纳入日期",
       "table": "sw_industry_member",
       "module": "base_sector",
       "category": "industry",
@@ -5029,7 +5029,7 @@
     },
     {
       "name": "sw_industry_member_out_date",
-      "label_zh": "Membership end date",
+      "label_zh": "成员剔除日期",
       "table": "sw_industry_member",
       "module": "base_sector",
       "category": "industry",
@@ -5054,7 +5054,7 @@
     },
     {
       "name": "is_new",
-      "label_zh": "Whether current/new membership",
+      "label_zh": "是否当前或新增成员",
       "table": "sw_industry_member",
       "module": "base_sector",
       "category": "industry",
@@ -5079,7 +5079,7 @@
     },
     {
       "name": "concept_basic_concept_id",
-      "label_zh": "Concept id",
+      "label_zh": "概念ID",
       "table": "concept_basic",
       "module": "base_sector",
       "category": "concept",
@@ -5102,7 +5102,7 @@
     },
     {
       "name": "concept_basic_concept_name",
-      "label_zh": "Concept name",
+      "label_zh": "概念名称",
       "table": "concept_basic",
       "module": "base_sector",
       "category": "concept",
@@ -5125,7 +5125,7 @@
     },
     {
       "name": "source",
-      "label_zh": "Concept source",
+      "label_zh": "概念来源",
       "table": "concept_basic",
       "module": "base_sector",
       "category": "concept",
@@ -5148,7 +5148,7 @@
     },
     {
       "name": "concept_member_concept_id",
-      "label_zh": "Concept id",
+      "label_zh": "概念ID",
       "table": "concept_member",
       "module": "base_sector",
       "category": "concept",
@@ -5172,7 +5172,7 @@
     },
     {
       "name": "concept_member_concept_name",
-      "label_zh": "Concept name",
+      "label_zh": "概念名称",
       "table": "concept_member",
       "module": "base_sector",
       "category": "concept",
@@ -5196,7 +5196,7 @@
     },
     {
       "name": "concept_member_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "concept_member",
       "module": "base_sector",
       "category": "concept",
@@ -5220,7 +5220,7 @@
     },
     {
       "name": "concept_member_stock_name",
-      "label_zh": "Stock name",
+      "label_zh": "股票名称",
       "table": "concept_member",
       "module": "base_sector",
       "category": "concept",
@@ -5244,7 +5244,7 @@
     },
     {
       "name": "concept_member_in_date",
-      "label_zh": "Membership start date",
+      "label_zh": "成员纳入日期",
       "table": "concept_member",
       "module": "base_sector",
       "category": "concept",
@@ -5268,7 +5268,7 @@
     },
     {
       "name": "concept_member_out_date",
-      "label_zh": "Membership end date",
+      "label_zh": "成员剔除日期",
       "table": "concept_member",
       "module": "base_sector",
       "category": "concept",
@@ -5292,7 +5292,7 @@
     },
     {
       "name": "financial_income_raw_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5319,7 +5319,7 @@
     },
     {
       "name": "financial_income_raw_ann_date",
-      "label_zh": "Announcement date",
+      "label_zh": "公告日期",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5346,7 +5346,7 @@
     },
     {
       "name": "financial_income_raw_first_ann_date",
-      "label_zh": "First announcement date",
+      "label_zh": "首次公告日期",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5373,7 +5373,7 @@
     },
     {
       "name": "financial_income_raw_end_date",
-      "label_zh": "Report period",
+      "label_zh": "报告期",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5400,7 +5400,7 @@
     },
     {
       "name": "financial_income_raw_report_type",
-      "label_zh": "Report type",
+      "label_zh": "报表类型",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5427,7 +5427,7 @@
     },
     {
       "name": "financial_income_raw_comp_type",
-      "label_zh": "Company report type",
+      "label_zh": "公司报表类型",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5454,7 +5454,7 @@
     },
     {
       "name": "total_revenue",
-      "label_zh": "Total revenue",
+      "label_zh": "营业总收入",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5481,7 +5481,7 @@
     },
     {
       "name": "revenue",
-      "label_zh": "Operating revenue",
+      "label_zh": "营业收入",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5508,7 +5508,7 @@
     },
     {
       "name": "total_cogs",
-      "label_zh": "Total operating costs",
+      "label_zh": "营业总成本",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5535,7 +5535,7 @@
     },
     {
       "name": "operating_cost",
-      "label_zh": "Operating cost",
+      "label_zh": "营业成本",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5562,7 +5562,7 @@
     },
     {
       "name": "selling_expense",
-      "label_zh": "Selling expense",
+      "label_zh": "销售费用",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5589,7 +5589,7 @@
     },
     {
       "name": "admin_expense",
-      "label_zh": "Administrative expense",
+      "label_zh": "管理费用",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5616,7 +5616,7 @@
     },
     {
       "name": "rd_expense",
-      "label_zh": "R&D expense",
+      "label_zh": "研发费用",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5643,7 +5643,7 @@
     },
     {
       "name": "finance_expense",
-      "label_zh": "Finance expense",
+      "label_zh": "财务费用",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5670,7 +5670,7 @@
     },
     {
       "name": "operating_profit",
-      "label_zh": "Operating profit",
+      "label_zh": "营业利润",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5697,7 +5697,7 @@
     },
     {
       "name": "total_profit",
-      "label_zh": "Total profit",
+      "label_zh": "利润总额",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5724,7 +5724,7 @@
     },
     {
       "name": "income_tax",
-      "label_zh": "Income tax",
+      "label_zh": "所得税费用",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5751,7 +5751,7 @@
     },
     {
       "name": "net_profit",
-      "label_zh": "Net profit",
+      "label_zh": "净利润",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5778,7 +5778,7 @@
     },
     {
       "name": "net_profit_attr_parent",
-      "label_zh": "Net profit attributable to parent",
+      "label_zh": "归属于母公司净利润",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5805,7 +5805,7 @@
     },
     {
       "name": "financial_income_raw_ebit",
-      "label_zh": "EBIT",
+      "label_zh": "息税前利润",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5832,7 +5832,7 @@
     },
     {
       "name": "financial_income_raw_ebitda",
-      "label_zh": "EBITDA",
+      "label_zh": "息税折旧摊销前利润",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5859,7 +5859,7 @@
     },
     {
       "name": "financial_income_raw_effective_date",
-      "label_zh": "Point-in-time effective date",
+      "label_zh": "时点有效日期",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -5886,7 +5886,7 @@
     },
     {
       "name": "financial_balance_raw_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -5913,7 +5913,7 @@
     },
     {
       "name": "financial_balance_raw_ann_date",
-      "label_zh": "Announcement date",
+      "label_zh": "公告日期",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -5940,7 +5940,7 @@
     },
     {
       "name": "financial_balance_raw_first_ann_date",
-      "label_zh": "First announcement date",
+      "label_zh": "首次公告日期",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -5967,7 +5967,7 @@
     },
     {
       "name": "financial_balance_raw_end_date",
-      "label_zh": "Report period",
+      "label_zh": "报告期",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -5994,7 +5994,7 @@
     },
     {
       "name": "financial_balance_raw_report_type",
-      "label_zh": "Report type",
+      "label_zh": "报表类型",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6021,7 +6021,7 @@
     },
     {
       "name": "financial_balance_raw_comp_type",
-      "label_zh": "Company report type",
+      "label_zh": "公司报表类型",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6048,7 +6048,7 @@
     },
     {
       "name": "financial_balance_raw_total_share",
-      "label_zh": "Total shares",
+      "label_zh": "总股本",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6076,7 +6076,7 @@
     },
     {
       "name": "cash_and_equivalents",
-      "label_zh": "Cash and equivalents",
+      "label_zh": "货币资金及现金等价物",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6104,7 +6104,7 @@
     },
     {
       "name": "accounts_receivable",
-      "label_zh": "Accounts receivable",
+      "label_zh": "应收账款",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6131,7 +6131,7 @@
     },
     {
       "name": "inventories",
-      "label_zh": "Inventories",
+      "label_zh": "存货",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6158,7 +6158,7 @@
     },
     {
       "name": "current_assets",
-      "label_zh": "Current assets",
+      "label_zh": "流动资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6186,7 +6186,7 @@
     },
     {
       "name": "financial_balance_raw_fixed_assets",
-      "label_zh": "Fixed assets",
+      "label_zh": "固定资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6214,7 +6214,7 @@
     },
     {
       "name": "construction_in_process",
-      "label_zh": "Construction in process",
+      "label_zh": "在建工程",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6241,7 +6241,7 @@
     },
     {
       "name": "intangible_assets",
-      "label_zh": "Intangible assets",
+      "label_zh": "无形资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6269,7 +6269,7 @@
     },
     {
       "name": "goodwill",
-      "label_zh": "Goodwill",
+      "label_zh": "商誉",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6296,7 +6296,7 @@
     },
     {
       "name": "total_assets",
-      "label_zh": "Total assets",
+      "label_zh": "资产总计",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6324,7 +6324,7 @@
     },
     {
       "name": "short_term_borrowings",
-      "label_zh": "Short-term borrowings",
+      "label_zh": "短期借款",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6351,7 +6351,7 @@
     },
     {
       "name": "accounts_payable",
-      "label_zh": "Accounts payable",
+      "label_zh": "应付账款",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6378,7 +6378,7 @@
     },
     {
       "name": "current_liabilities",
-      "label_zh": "Current liabilities",
+      "label_zh": "流动负债",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6406,7 +6406,7 @@
     },
     {
       "name": "long_term_borrowings",
-      "label_zh": "Long-term borrowings",
+      "label_zh": "长期借款",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6433,7 +6433,7 @@
     },
     {
       "name": "bonds_payable",
-      "label_zh": "Bonds payable",
+      "label_zh": "应付债券",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6460,7 +6460,7 @@
     },
     {
       "name": "total_liabilities",
-      "label_zh": "Total liabilities",
+      "label_zh": "负债合计",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6488,7 +6488,7 @@
     },
     {
       "name": "total_equity",
-      "label_zh": "Total equity incl minority interest",
+      "label_zh": "所有者权益合计（含少数股东权益）",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6515,7 +6515,7 @@
     },
     {
       "name": "equity_attr_parent",
-      "label_zh": "Equity attributable to parent",
+      "label_zh": "归属于母公司股东权益",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6542,7 +6542,7 @@
     },
     {
       "name": "minority_interest",
-      "label_zh": "Minority interest",
+      "label_zh": "少数股东权益",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6569,7 +6569,7 @@
     },
     {
       "name": "financial_balance_raw_effective_date",
-      "label_zh": "Point-in-time effective date",
+      "label_zh": "时点有效日期",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -6596,7 +6596,7 @@
     },
     {
       "name": "financial_cashflow_raw_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6623,7 +6623,7 @@
     },
     {
       "name": "financial_cashflow_raw_ann_date",
-      "label_zh": "Announcement date",
+      "label_zh": "公告日期",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6650,7 +6650,7 @@
     },
     {
       "name": "financial_cashflow_raw_first_ann_date",
-      "label_zh": "First announcement date",
+      "label_zh": "首次公告日期",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6677,7 +6677,7 @@
     },
     {
       "name": "financial_cashflow_raw_end_date",
-      "label_zh": "Report period",
+      "label_zh": "报告期",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6704,7 +6704,7 @@
     },
     {
       "name": "financial_cashflow_raw_report_type",
-      "label_zh": "Report type",
+      "label_zh": "报表类型",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6731,7 +6731,7 @@
     },
     {
       "name": "financial_cashflow_raw_comp_type",
-      "label_zh": "Company report type",
+      "label_zh": "公司报表类型",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6758,7 +6758,7 @@
     },
     {
       "name": "cash_received_from_sales",
-      "label_zh": "Cash received from sales",
+      "label_zh": "销售商品提供劳务收到的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6786,7 +6786,7 @@
     },
     {
       "name": "total_operating_cash_inflow",
-      "label_zh": "Total operating cash inflow",
+      "label_zh": "经营活动现金流入小计",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6814,7 +6814,7 @@
     },
     {
       "name": "cash_paid_for_goods",
-      "label_zh": "Cash paid for goods and services",
+      "label_zh": "购买商品接受劳务支付的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6842,7 +6842,7 @@
     },
     {
       "name": "cash_paid_to_employees",
-      "label_zh": "Cash paid to employees",
+      "label_zh": "支付给职工以及为职工支付的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6870,7 +6870,7 @@
     },
     {
       "name": "taxes_paid",
-      "label_zh": "Taxes paid",
+      "label_zh": "支付的各项税费",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6897,7 +6897,7 @@
     },
     {
       "name": "cf_from_operating",
-      "label_zh": "Net operating cash flow",
+      "label_zh": "经营活动产生的现金流量净额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6924,7 +6924,7 @@
     },
     {
       "name": "cash_paid_for_capex",
-      "label_zh": "Cash paid for fixed/intangible assets",
+      "label_zh": "购建固定资产无形资产和其他长期资产支付的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6952,7 +6952,7 @@
     },
     {
       "name": "cash_paid_for_investment",
-      "label_zh": "Cash paid for investment",
+      "label_zh": "投资支付的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -6980,7 +6980,7 @@
     },
     {
       "name": "cf_from_investing",
-      "label_zh": "Net investing cash flow",
+      "label_zh": "投资活动产生的现金流量净额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7007,7 +7007,7 @@
     },
     {
       "name": "cash_received_from_borrowing",
-      "label_zh": "Cash received from borrowing",
+      "label_zh": "取得借款收到的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7035,7 +7035,7 @@
     },
     {
       "name": "cash_paid_for_debt",
-      "label_zh": "Cash paid for debt repayment",
+      "label_zh": "偿还债务支付的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7063,7 +7063,7 @@
     },
     {
       "name": "cash_paid_for_dividend_interest",
-      "label_zh": "Cash paid for dividends/profits/interests",
+      "label_zh": "分配股利利润或偿付利息支付的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7091,7 +7091,7 @@
     },
     {
       "name": "cf_from_financing",
-      "label_zh": "Net financing cash flow",
+      "label_zh": "筹资活动产生的现金流量净额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7118,7 +7118,7 @@
     },
     {
       "name": "free_cashflow",
-      "label_zh": "Free cash flow",
+      "label_zh": "自由现金流",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7146,7 +7146,7 @@
     },
     {
       "name": "net_increase_in_cash",
-      "label_zh": "Net increase in cash and equivalents",
+      "label_zh": "现金及现金等价物净增加额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7174,7 +7174,7 @@
     },
     {
       "name": "cash_at_beginning",
-      "label_zh": "Cash at beginning",
+      "label_zh": "期初现金及现金等价物余额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7202,7 +7202,7 @@
     },
     {
       "name": "cash_at_end",
-      "label_zh": "Cash at end",
+      "label_zh": "期末现金及现金等价物余额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7230,7 +7230,7 @@
     },
     {
       "name": "financial_cashflow_raw_effective_date",
-      "label_zh": "Point-in-time effective date",
+      "label_zh": "时点有效日期",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -7257,7 +7257,7 @@
     },
     {
       "name": "financial_indicator_raw_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7282,7 +7282,7 @@
     },
     {
       "name": "financial_indicator_raw_ann_date",
-      "label_zh": "Announcement date",
+      "label_zh": "公告日期",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7307,7 +7307,7 @@
     },
     {
       "name": "financial_indicator_raw_end_date",
-      "label_zh": "Report period",
+      "label_zh": "报告期",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7332,7 +7332,7 @@
     },
     {
       "name": "eps",
-      "label_zh": "Basic EPS",
+      "label_zh": "基本每股收益",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7357,7 +7357,7 @@
     },
     {
       "name": "dt_eps",
-      "label_zh": "Diluted EPS",
+      "label_zh": "稀释每股收益",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7382,7 +7382,7 @@
     },
     {
       "name": "total_revenue_ps",
-      "label_zh": "Total revenue per share",
+      "label_zh": "每股营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7407,7 +7407,7 @@
     },
     {
       "name": "revenue_ps",
-      "label_zh": "Revenue per share",
+      "label_zh": "每股营业收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7432,7 +7432,7 @@
     },
     {
       "name": "capital_rese_ps",
-      "label_zh": "Capital reserve per share",
+      "label_zh": "每股资本公积",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7457,7 +7457,7 @@
     },
     {
       "name": "surplus_rese_ps",
-      "label_zh": "Surplus reserve per share",
+      "label_zh": "每股盈余公积",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7482,7 +7482,7 @@
     },
     {
       "name": "undist_profit_ps",
-      "label_zh": "Undistributed profit per share",
+      "label_zh": "每股未分配利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7507,7 +7507,7 @@
     },
     {
       "name": "extra_item",
-      "label_zh": "Extraordinary items",
+      "label_zh": "非经常性损益",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7532,7 +7532,7 @@
     },
     {
       "name": "profit_dedt",
-      "label_zh": "Deducted net profit",
+      "label_zh": "扣除非经常性损益后净利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7557,7 +7557,7 @@
     },
     {
       "name": "gross_margin",
-      "label_zh": "Gross margin percent",
+      "label_zh": "销售毛利率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7582,7 +7582,7 @@
     },
     {
       "name": "current_ratio",
-      "label_zh": "Current ratio",
+      "label_zh": "流动比率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7607,7 +7607,7 @@
     },
     {
       "name": "quick_ratio",
-      "label_zh": "Quick ratio",
+      "label_zh": "速动比率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7632,7 +7632,7 @@
     },
     {
       "name": "cash_ratio",
-      "label_zh": "Cash ratio",
+      "label_zh": "现金比率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7658,7 +7658,7 @@
     },
     {
       "name": "ar_turn",
-      "label_zh": "Accounts receivable turnover",
+      "label_zh": "应收账款周转率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7683,7 +7683,7 @@
     },
     {
       "name": "ca_turn",
-      "label_zh": "Current asset turnover",
+      "label_zh": "流动资产周转率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7708,7 +7708,7 @@
     },
     {
       "name": "fa_turn",
-      "label_zh": "Fixed asset turnover",
+      "label_zh": "固定资产周转率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7733,7 +7733,7 @@
     },
     {
       "name": "assets_turn",
-      "label_zh": "Total asset turnover",
+      "label_zh": "总资产周转率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7759,7 +7759,7 @@
     },
     {
       "name": "op_income",
-      "label_zh": "Operating income",
+      "label_zh": "营业利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7784,7 +7784,7 @@
     },
     {
       "name": "financial_indicator_raw_ebit",
-      "label_zh": "EBIT",
+      "label_zh": "息税前利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7809,7 +7809,7 @@
     },
     {
       "name": "financial_indicator_raw_ebitda",
-      "label_zh": "EBITDA",
+      "label_zh": "息税折旧摊销前利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7834,7 +7834,7 @@
     },
     {
       "name": "fcff",
-      "label_zh": "Free cash flow to firm",
+      "label_zh": "企业自由现金流",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7859,7 +7859,7 @@
     },
     {
       "name": "fcfe",
-      "label_zh": "Free cash flow to equity",
+      "label_zh": "股权自由现金流",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7884,7 +7884,7 @@
     },
     {
       "name": "current_exint",
-      "label_zh": "Current liabilities excluding interest",
+      "label_zh": "无息流动负债",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7909,7 +7909,7 @@
     },
     {
       "name": "noncurrent_exint",
-      "label_zh": "Non-current liabilities excluding interest",
+      "label_zh": "无息非流动负债",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7934,7 +7934,7 @@
     },
     {
       "name": "interestdebt",
-      "label_zh": "Interest-bearing debt",
+      "label_zh": "有息负债",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7959,7 +7959,7 @@
     },
     {
       "name": "netdebt",
-      "label_zh": "Net debt",
+      "label_zh": "净债务",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -7984,7 +7984,7 @@
     },
     {
       "name": "tangible_asset",
-      "label_zh": "Tangible assets",
+      "label_zh": "有形资产",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8010,7 +8010,7 @@
     },
     {
       "name": "working_capital",
-      "label_zh": "Working capital",
+      "label_zh": "营运资本",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8035,7 +8035,7 @@
     },
     {
       "name": "networking_capital",
-      "label_zh": "Net working capital",
+      "label_zh": "净营运资本",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8060,7 +8060,7 @@
     },
     {
       "name": "invest_capital",
-      "label_zh": "Invested capital",
+      "label_zh": "投入资本",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8085,7 +8085,7 @@
     },
     {
       "name": "retained_earnings",
-      "label_zh": "Retained earnings",
+      "label_zh": "留存收益",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8110,7 +8110,7 @@
     },
     {
       "name": "diluted2_eps",
-      "label_zh": "Diluted EPS alternate",
+      "label_zh": "稀释每股收益备用口径",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8135,7 +8135,7 @@
     },
     {
       "name": "bps",
-      "label_zh": "Book value per share",
+      "label_zh": "每股净资产",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8160,7 +8160,7 @@
     },
     {
       "name": "ocfps",
-      "label_zh": "Operating cash flow per share",
+      "label_zh": "每股经营现金流",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8185,7 +8185,7 @@
     },
     {
       "name": "retainedps",
-      "label_zh": "Retained earnings per share",
+      "label_zh": "每股留存收益",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8210,7 +8210,7 @@
     },
     {
       "name": "cfps",
-      "label_zh": "Cash flow per share",
+      "label_zh": "每股现金流",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8235,7 +8235,7 @@
     },
     {
       "name": "ebit_ps",
-      "label_zh": "EBIT per share",
+      "label_zh": "每股息税前利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8260,7 +8260,7 @@
     },
     {
       "name": "fcff_ps",
-      "label_zh": "FCFF per share",
+      "label_zh": "每股企业自由现金流",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8285,7 +8285,7 @@
     },
     {
       "name": "fcfe_ps",
-      "label_zh": "FCFE per share",
+      "label_zh": "每股股权自由现金流",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8310,7 +8310,7 @@
     },
     {
       "name": "netprofit_margin",
-      "label_zh": "Net profit margin",
+      "label_zh": "销售净利率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8335,7 +8335,7 @@
     },
     {
       "name": "grossprofit_margin",
-      "label_zh": "Gross profit margin",
+      "label_zh": "销售毛利率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8360,7 +8360,7 @@
     },
     {
       "name": "cogs_of_sales",
-      "label_zh": "COGS to sales",
+      "label_zh": "营业成本率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8385,7 +8385,7 @@
     },
     {
       "name": "expense_of_sales",
-      "label_zh": "Expense to sales",
+      "label_zh": "期间费用率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8410,7 +8410,7 @@
     },
     {
       "name": "profit_to_gr",
-      "label_zh": "Profit to gross revenue",
+      "label_zh": "利润总额占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8435,7 +8435,7 @@
     },
     {
       "name": "saleexp_to_gr",
-      "label_zh": "Selling expense to gross revenue",
+      "label_zh": "销售费用占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8460,7 +8460,7 @@
     },
     {
       "name": "adminexp_of_gr",
-      "label_zh": "Admin expense to gross revenue",
+      "label_zh": "管理费用占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8485,7 +8485,7 @@
     },
     {
       "name": "finaexp_of_gr",
-      "label_zh": "Finance expense to gross revenue",
+      "label_zh": "财务费用占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8510,7 +8510,7 @@
     },
     {
       "name": "impai_ttm",
-      "label_zh": "Impairment TTM",
+      "label_zh": "资产减值损失TTM",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8535,7 +8535,7 @@
     },
     {
       "name": "gc_of_gr",
-      "label_zh": "Gross cost to gross revenue",
+      "label_zh": "营业总成本占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8560,7 +8560,7 @@
     },
     {
       "name": "op_of_gr",
-      "label_zh": "Operating profit to gross revenue",
+      "label_zh": "营业利润占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8585,7 +8585,7 @@
     },
     {
       "name": "ebit_of_gr",
-      "label_zh": "EBIT to gross revenue",
+      "label_zh": "息税前利润占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8610,7 +8610,7 @@
     },
     {
       "name": "roe",
-      "label_zh": "ROE",
+      "label_zh": "净资产收益率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8635,7 +8635,7 @@
     },
     {
       "name": "roe_waa",
-      "label_zh": "Weighted average ROE",
+      "label_zh": "加权平均净资产收益率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8660,7 +8660,7 @@
     },
     {
       "name": "roe_dt",
-      "label_zh": "Deducted ROE",
+      "label_zh": "扣非净资产收益率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8685,7 +8685,7 @@
     },
     {
       "name": "roa",
-      "label_zh": "ROA",
+      "label_zh": "总资产收益率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8710,7 +8710,7 @@
     },
     {
       "name": "npta",
-      "label_zh": "Net profit to total assets",
+      "label_zh": "净利润占总资产",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8735,7 +8735,7 @@
     },
     {
       "name": "roic",
-      "label_zh": "ROIC",
+      "label_zh": "投入资本回报率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8760,7 +8760,7 @@
     },
     {
       "name": "roe_yearly",
-      "label_zh": "Annualized ROE",
+      "label_zh": "年化净资产收益率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8785,7 +8785,7 @@
     },
     {
       "name": "roa2_yearly",
-      "label_zh": "Annualized ROA",
+      "label_zh": "年化总资产收益率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8810,7 +8810,7 @@
     },
     {
       "name": "debt_to_assets",
-      "label_zh": "Debt to assets",
+      "label_zh": "资产负债率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8836,7 +8836,7 @@
     },
     {
       "name": "assets_to_eqt",
-      "label_zh": "Assets to equity",
+      "label_zh": "权益乘数",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8862,7 +8862,7 @@
     },
     {
       "name": "dp_assets_to_eqt",
-      "label_zh": "DuPont assets to equity",
+      "label_zh": "杜邦权益乘数",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8888,7 +8888,7 @@
     },
     {
       "name": "ca_to_assets",
-      "label_zh": "Current assets to assets",
+      "label_zh": "流动资产占总资产",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8914,7 +8914,7 @@
     },
     {
       "name": "nca_to_assets",
-      "label_zh": "Non-current assets to assets",
+      "label_zh": "非流动资产占总资产",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8940,7 +8940,7 @@
     },
     {
       "name": "tbassets_to_totalassets",
-      "label_zh": "Tangible assets to total assets",
+      "label_zh": "有形资产占总资产",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8966,7 +8966,7 @@
     },
     {
       "name": "int_to_talcap",
-      "label_zh": "Intangible assets to total capital",
+      "label_zh": "无形资产占总资本",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -8991,7 +8991,7 @@
     },
     {
       "name": "eqt_to_talcapital",
-      "label_zh": "Equity to total capital",
+      "label_zh": "权益占总资本",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9016,7 +9016,7 @@
     },
     {
       "name": "currentdebt_to_debt",
-      "label_zh": "Current debt to total debt",
+      "label_zh": "流动负债占总负债",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9041,7 +9041,7 @@
     },
     {
       "name": "longdeb_to_debt",
-      "label_zh": "Long debt to total debt",
+      "label_zh": "长期负债占总负债",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9066,7 +9066,7 @@
     },
     {
       "name": "ocf_to_shortdebt",
-      "label_zh": "Operating cash flow to short debt",
+      "label_zh": "经营现金流占短期债务",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9091,7 +9091,7 @@
     },
     {
       "name": "debt_to_eqt",
-      "label_zh": "Debt to equity",
+      "label_zh": "产权比率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9116,7 +9116,7 @@
     },
     {
       "name": "eqt_to_debt",
-      "label_zh": "Equity to debt",
+      "label_zh": "权益负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9141,7 +9141,7 @@
     },
     {
       "name": "eqt_to_interestdebt",
-      "label_zh": "Equity to interest-bearing debt",
+      "label_zh": "权益有息负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9166,7 +9166,7 @@
     },
     {
       "name": "tangibleasset_to_debt",
-      "label_zh": "Tangible assets to debt",
+      "label_zh": "有形资产负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9192,7 +9192,7 @@
     },
     {
       "name": "tangasset_to_intdebt",
-      "label_zh": "Tangible assets to interest debt",
+      "label_zh": "有形资产有息负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9218,7 +9218,7 @@
     },
     {
       "name": "tangibleasset_to_netdebt",
-      "label_zh": "Tangible assets to net debt",
+      "label_zh": "有形资产净债务比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9244,7 +9244,7 @@
     },
     {
       "name": "ocf_to_debt",
-      "label_zh": "Operating cash flow to debt",
+      "label_zh": "经营现金流负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9269,7 +9269,7 @@
     },
     {
       "name": "ocf_to_interestdebt",
-      "label_zh": "Operating cash flow to interest debt",
+      "label_zh": "经营现金流有息负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9294,7 +9294,7 @@
     },
     {
       "name": "ocf_to_netdebt",
-      "label_zh": "Operating cash flow to net debt",
+      "label_zh": "经营现金流净债务比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9319,7 +9319,7 @@
     },
     {
       "name": "ebit_to_interest",
-      "label_zh": "EBIT to interest",
+      "label_zh": "息税前利润利息保障倍数",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9344,7 +9344,7 @@
     },
     {
       "name": "longdebt_to_workingcapital",
-      "label_zh": "Long debt to working capital",
+      "label_zh": "长期负债营运资本比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9369,7 +9369,7 @@
     },
     {
       "name": "ebitda_to_debt",
-      "label_zh": "EBITDA to debt",
+      "label_zh": "EBITDA负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9394,7 +9394,7 @@
     },
     {
       "name": "turn_days",
-      "label_zh": "Operating cycle days",
+      "label_zh": "营业周期天数",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9419,7 +9419,7 @@
     },
     {
       "name": "roa_yearly",
-      "label_zh": "Annualized ROA alternate",
+      "label_zh": "年化总资产收益率备用口径",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9444,7 +9444,7 @@
     },
     {
       "name": "roa_dp",
-      "label_zh": "DuPont ROA",
+      "label_zh": "杜邦总资产收益率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9469,7 +9469,7 @@
     },
     {
       "name": "financial_indicator_raw_fixed_assets",
-      "label_zh": "Fixed assets",
+      "label_zh": "固定资产",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9495,7 +9495,7 @@
     },
     {
       "name": "profit_prefin_exp",
-      "label_zh": "Profit before finance expense",
+      "label_zh": "扣除财务费用前利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9520,7 +9520,7 @@
     },
     {
       "name": "non_op_profit",
-      "label_zh": "Non-operating profit",
+      "label_zh": "营业外利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9545,7 +9545,7 @@
     },
     {
       "name": "op_to_ebt",
-      "label_zh": "Operating profit to EBT",
+      "label_zh": "营业利润占利润总额",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9570,7 +9570,7 @@
     },
     {
       "name": "nop_to_ebt",
-      "label_zh": "Non-operating profit to EBT",
+      "label_zh": "营业外利润占利润总额",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9595,7 +9595,7 @@
     },
     {
       "name": "ocf_to_profit",
-      "label_zh": "Operating cash flow to profit",
+      "label_zh": "经营现金流占净利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9620,7 +9620,7 @@
     },
     {
       "name": "cash_to_liqdebt",
-      "label_zh": "Cash to liquid debt",
+      "label_zh": "现金流动负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9646,7 +9646,7 @@
     },
     {
       "name": "cash_to_liqdebt_withinterest",
-      "label_zh": "Cash to interest-bearing liquid debt",
+      "label_zh": "现金有息流动负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9672,7 +9672,7 @@
     },
     {
       "name": "op_to_liqdebt",
-      "label_zh": "Operating profit to liquid debt",
+      "label_zh": "营业利润流动负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9697,7 +9697,7 @@
     },
     {
       "name": "op_to_debt",
-      "label_zh": "Operating profit to debt",
+      "label_zh": "营业利润负债比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9722,7 +9722,7 @@
     },
     {
       "name": "roic_yearly",
-      "label_zh": "Annualized ROIC",
+      "label_zh": "年化投入资本回报率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9747,7 +9747,7 @@
     },
     {
       "name": "total_fa_trun",
-      "label_zh": "Fixed asset turnover",
+      "label_zh": "固定资产周转率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9772,7 +9772,7 @@
     },
     {
       "name": "profit_to_op",
-      "label_zh": "Profit to operating income",
+      "label_zh": "利润总额占营业收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9797,7 +9797,7 @@
     },
     {
       "name": "q_opincome",
-      "label_zh": "Quarterly operating income",
+      "label_zh": "单季度营业收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9822,7 +9822,7 @@
     },
     {
       "name": "q_investincome",
-      "label_zh": "Quarterly investment income",
+      "label_zh": "单季度投资收益",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9847,7 +9847,7 @@
     },
     {
       "name": "q_dtprofit",
-      "label_zh": "Quarterly deducted profit",
+      "label_zh": "单季度扣非净利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9872,7 +9872,7 @@
     },
     {
       "name": "q_eps",
-      "label_zh": "Quarterly EPS",
+      "label_zh": "单季度每股收益",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9897,7 +9897,7 @@
     },
     {
       "name": "q_netprofit_margin",
-      "label_zh": "Quarterly net profit margin",
+      "label_zh": "单季度销售净利率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9922,7 +9922,7 @@
     },
     {
       "name": "q_gsprofit_margin",
-      "label_zh": "Quarterly gross profit margin",
+      "label_zh": "单季度销售毛利率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9947,7 +9947,7 @@
     },
     {
       "name": "q_exp_to_sales",
-      "label_zh": "Quarterly expense to sales",
+      "label_zh": "单季度期间费用率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9972,7 +9972,7 @@
     },
     {
       "name": "q_profit_to_gr",
-      "label_zh": "Quarterly profit to gross revenue",
+      "label_zh": "单季度利润总额占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -9997,7 +9997,7 @@
     },
     {
       "name": "q_saleexp_to_gr",
-      "label_zh": "Quarterly selling expense to gross revenue",
+      "label_zh": "单季度销售费用占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10022,7 +10022,7 @@
     },
     {
       "name": "q_adminexp_to_gr",
-      "label_zh": "Quarterly admin expense to gross revenue",
+      "label_zh": "单季度管理费用占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10047,7 +10047,7 @@
     },
     {
       "name": "q_finaexp_to_gr",
-      "label_zh": "Quarterly finance expense to gross revenue",
+      "label_zh": "单季度财务费用占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10072,7 +10072,7 @@
     },
     {
       "name": "q_impair_to_gr_ttm",
-      "label_zh": "Quarterly impairment to gross revenue TTM",
+      "label_zh": "单季度资产减值损失TTM占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10097,7 +10097,7 @@
     },
     {
       "name": "q_gc_to_gr",
-      "label_zh": "Quarterly gross cost to gross revenue",
+      "label_zh": "单季度营业总成本占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10122,7 +10122,7 @@
     },
     {
       "name": "q_op_to_gr",
-      "label_zh": "Quarterly operating profit to gross revenue",
+      "label_zh": "单季度营业利润占营业总收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10147,7 +10147,7 @@
     },
     {
       "name": "q_roe",
-      "label_zh": "Quarterly ROE",
+      "label_zh": "单季度净资产收益率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10172,7 +10172,7 @@
     },
     {
       "name": "q_dt_roe",
-      "label_zh": "Quarterly deducted ROE",
+      "label_zh": "单季度扣非净资产收益率",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10197,7 +10197,7 @@
     },
     {
       "name": "q_npta",
-      "label_zh": "Quarterly net profit to total assets",
+      "label_zh": "单季度净利润占总资产",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10222,7 +10222,7 @@
     },
     {
       "name": "q_opincome_to_ebt",
-      "label_zh": "Quarterly operating income to EBT",
+      "label_zh": "单季度营业收入占利润总额",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10247,7 +10247,7 @@
     },
     {
       "name": "q_investincome_to_ebt",
-      "label_zh": "Quarterly investment income to EBT",
+      "label_zh": "单季度投资收益占利润总额",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10272,7 +10272,7 @@
     },
     {
       "name": "q_dtprofit_to_profit",
-      "label_zh": "Quarterly deducted profit to profit",
+      "label_zh": "单季度扣非净利润占净利润",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10297,7 +10297,7 @@
     },
     {
       "name": "q_salescash_to_or",
-      "label_zh": "Quarterly sales cash to operating revenue",
+      "label_zh": "单季度销售收现占营业收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10323,7 +10323,7 @@
     },
     {
       "name": "q_ocf_to_sales",
-      "label_zh": "Quarterly operating cash flow to sales",
+      "label_zh": "单季度经营现金流占销售收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10348,7 +10348,7 @@
     },
     {
       "name": "q_ocf_to_or",
-      "label_zh": "Quarterly operating cash flow to operating revenue",
+      "label_zh": "单季度经营现金流占营业收入",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10373,7 +10373,7 @@
     },
     {
       "name": "basic_eps_yoy",
-      "label_zh": "Basic EPS YoY",
+      "label_zh": "基本每股收益同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10398,7 +10398,7 @@
     },
     {
       "name": "dt_eps_yoy",
-      "label_zh": "Diluted EPS YoY",
+      "label_zh": "稀释每股收益同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10423,7 +10423,7 @@
     },
     {
       "name": "cfps_yoy",
-      "label_zh": "Cash flow per share YoY",
+      "label_zh": "每股现金流同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10448,7 +10448,7 @@
     },
     {
       "name": "op_yoy",
-      "label_zh": "Operating profit YoY",
+      "label_zh": "营业利润同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10473,7 +10473,7 @@
     },
     {
       "name": "ebt_yoy",
-      "label_zh": "EBT YoY",
+      "label_zh": "利润总额同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10498,7 +10498,7 @@
     },
     {
       "name": "netprofit_yoy",
-      "label_zh": "Net profit YoY",
+      "label_zh": "净利润同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10523,7 +10523,7 @@
     },
     {
       "name": "dt_netprofit_yoy",
-      "label_zh": "Deducted net profit YoY",
+      "label_zh": "扣除非经常性损益后净利润同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10548,7 +10548,7 @@
     },
     {
       "name": "ocf_yoy",
-      "label_zh": "Operating cash flow YoY",
+      "label_zh": "经营现金流同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10573,7 +10573,7 @@
     },
     {
       "name": "roe_yoy",
-      "label_zh": "ROE YoY",
+      "label_zh": "净资产收益率同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10598,7 +10598,7 @@
     },
     {
       "name": "bps_yoy",
-      "label_zh": "BPS YoY",
+      "label_zh": "每股净资产同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10623,7 +10623,7 @@
     },
     {
       "name": "assets_yoy",
-      "label_zh": "Assets YoY",
+      "label_zh": "资产同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10649,7 +10649,7 @@
     },
     {
       "name": "eqt_yoy",
-      "label_zh": "Equity YoY",
+      "label_zh": "权益同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10674,7 +10674,7 @@
     },
     {
       "name": "tr_yoy",
-      "label_zh": "Total revenue YoY",
+      "label_zh": "营业总收入同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10699,7 +10699,7 @@
     },
     {
       "name": "or_yoy",
-      "label_zh": "Operating revenue YoY",
+      "label_zh": "营业收入同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10724,7 +10724,7 @@
     },
     {
       "name": "q_gr_yoy",
-      "label_zh": "Quarterly gross revenue YoY",
+      "label_zh": "单季度营业总收入同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10749,7 +10749,7 @@
     },
     {
       "name": "q_gr_qoq",
-      "label_zh": "Quarterly gross revenue QoQ",
+      "label_zh": "单季度营业总收入环比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10774,7 +10774,7 @@
     },
     {
       "name": "q_sales_yoy",
-      "label_zh": "Quarterly sales YoY",
+      "label_zh": "单季度销售收入同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10799,7 +10799,7 @@
     },
     {
       "name": "q_sales_qoq",
-      "label_zh": "Quarterly sales QoQ",
+      "label_zh": "单季度销售收入环比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10824,7 +10824,7 @@
     },
     {
       "name": "q_op_yoy",
-      "label_zh": "Quarterly operating profit YoY",
+      "label_zh": "单季度营业利润同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10849,7 +10849,7 @@
     },
     {
       "name": "q_op_qoq",
-      "label_zh": "Quarterly operating profit QoQ",
+      "label_zh": "单季度营业利润环比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10874,7 +10874,7 @@
     },
     {
       "name": "q_profit_yoy",
-      "label_zh": "Quarterly profit YoY",
+      "label_zh": "单季度利润总额同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10899,7 +10899,7 @@
     },
     {
       "name": "q_profit_qoq",
-      "label_zh": "Quarterly profit QoQ",
+      "label_zh": "单季度利润总额环比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10924,7 +10924,7 @@
     },
     {
       "name": "q_netprofit_yoy",
-      "label_zh": "Quarterly net profit YoY",
+      "label_zh": "单季度净利润同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10949,7 +10949,7 @@
     },
     {
       "name": "q_netprofit_qoq",
-      "label_zh": "Quarterly net profit QoQ",
+      "label_zh": "单季度净利润环比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10974,7 +10974,7 @@
     },
     {
       "name": "equity_yoy",
-      "label_zh": "Equity YoY",
+      "label_zh": "权益同比",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -10999,7 +10999,7 @@
     },
     {
       "name": "rd_exp",
-      "label_zh": "R&D expense",
+      "label_zh": "研发费用",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -11024,7 +11024,7 @@
     },
     {
       "name": "financial_indicator_raw_effective_date",
-      "label_zh": "Point-in-time effective date",
+      "label_zh": "时点有效日期",
       "table": "financial_indicator_raw",
       "module": "base_financial",
       "category": "financial_indicator",
@@ -11049,7 +11049,7 @@
     },
     {
       "name": "api_name",
-      "label_zh": "Tushare API name",
+      "label_zh": "Tushare接口名称",
       "table": "financial_event_raw",
       "module": "base_financial",
       "category": "financial_event",
@@ -11074,7 +11074,7 @@
     },
     {
       "name": "financial_event_raw_ts_code",
-      "label_zh": "Stock code",
+      "label_zh": "股票代码",
       "table": "financial_event_raw",
       "module": "base_financial",
       "category": "financial_event",
@@ -11099,7 +11099,7 @@
     },
     {
       "name": "financial_event_raw_ann_date",
-      "label_zh": "Announcement date when available",
+      "label_zh": "可得公告日期",
       "table": "financial_event_raw",
       "module": "base_financial",
       "category": "financial_event",
@@ -11124,7 +11124,7 @@
     },
     {
       "name": "financial_event_raw_end_date",
-      "label_zh": "Report period when available",
+      "label_zh": "可得报告期",
       "table": "financial_event_raw",
       "module": "base_financial",
       "category": "financial_event",
@@ -11149,7 +11149,7 @@
     },
     {
       "name": "event_date",
-      "label_zh": "Event date when available",
+      "label_zh": "可得事件日期",
       "table": "financial_event_raw",
       "module": "base_financial",
       "category": "financial_event",
@@ -11174,7 +11174,7 @@
     },
     {
       "name": "basic_eps",
-      "label_zh": "Basic earnings per share",
+      "label_zh": "基本每股收益",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11201,7 +11201,7 @@
     },
     {
       "name": "diluted_eps",
-      "label_zh": "Diluted earnings per share",
+      "label_zh": "稀释每股收益",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11228,7 +11228,7 @@
     },
     {
       "name": "business_tax_surcharge",
-      "label_zh": "Business tax and surcharge",
+      "label_zh": "营业税金及附加",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11255,7 +11255,7 @@
     },
     {
       "name": "operating_expense",
-      "label_zh": "Operating expense",
+      "label_zh": "营业费用",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11282,7 +11282,7 @@
     },
     {
       "name": "asset_impairment_loss",
-      "label_zh": "Asset impairment loss",
+      "label_zh": "资产减值损失",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11310,7 +11310,7 @@
     },
     {
       "name": "investment_income",
-      "label_zh": "Investment income",
+      "label_zh": "投资收益",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11337,7 +11337,7 @@
     },
     {
       "name": "associate_investment_income",
-      "label_zh": "Investment income from associates and joint ventures",
+      "label_zh": "对联营企业和合营企业的投资收益",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11364,7 +11364,7 @@
     },
     {
       "name": "fair_value_change_income",
-      "label_zh": "Gain or loss from fair value changes",
+      "label_zh": "公允价值变动收益",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11391,7 +11391,7 @@
     },
     {
       "name": "foreign_exchange_gain",
-      "label_zh": "Foreign exchange gain",
+      "label_zh": "汇兑收益",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11418,7 +11418,7 @@
     },
     {
       "name": "non_operating_income",
-      "label_zh": "Non-operating income",
+      "label_zh": "营业外收入",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11445,7 +11445,7 @@
     },
     {
       "name": "non_operating_expense",
-      "label_zh": "Non-operating expense",
+      "label_zh": "营业外支出",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11472,7 +11472,7 @@
     },
     {
       "name": "minority_profit",
-      "label_zh": "Minority shareholder profit or loss",
+      "label_zh": "少数股东损益",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11499,7 +11499,7 @@
     },
     {
       "name": "continued_net_profit",
-      "label_zh": "Net profit from continuing operations",
+      "label_zh": "持续经营净利润",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11526,7 +11526,7 @@
     },
     {
       "name": "total_comprehensive_income",
-      "label_zh": "Total comprehensive income",
+      "label_zh": "综合收益总额",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11553,7 +11553,7 @@
     },
     {
       "name": "comprehensive_income_parent",
-      "label_zh": "Comprehensive income attributable to parent",
+      "label_zh": "归属于母公司综合收益",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11580,7 +11580,7 @@
     },
     {
       "name": "comprehensive_income_minority",
-      "label_zh": "Comprehensive income attributable to minority shareholders",
+      "label_zh": "归属于少数股东综合收益",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11607,7 +11607,7 @@
     },
     {
       "name": "interest_income",
-      "label_zh": "Interest income",
+      "label_zh": "利息收入",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11634,7 +11634,7 @@
     },
     {
       "name": "interest_expense",
-      "label_zh": "Interest expense",
+      "label_zh": "利息支出",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11661,7 +11661,7 @@
     },
     {
       "name": "commission_income",
-      "label_zh": "Fee and commission income",
+      "label_zh": "手续费及佣金收入",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11688,7 +11688,7 @@
     },
     {
       "name": "commission_expense",
-      "label_zh": "Fee and commission expense",
+      "label_zh": "手续费及佣金支出",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11715,7 +11715,7 @@
     },
     {
       "name": "premium_income",
-      "label_zh": "Insurance premium income",
+      "label_zh": "保险业务收入",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11742,7 +11742,7 @@
     },
     {
       "name": "premium_earned",
-      "label_zh": "Earned premium",
+      "label_zh": "已赚保费",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11769,7 +11769,7 @@
     },
     {
       "name": "insurance_expense",
-      "label_zh": "Insurance expense",
+      "label_zh": "保险业务支出",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11796,7 +11796,7 @@
     },
     {
       "name": "compensation_payout",
-      "label_zh": "Insurance compensation payout",
+      "label_zh": "赔付支出",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11823,7 +11823,7 @@
     },
     {
       "name": "financial_income_raw_undistributed_profit",
-      "label_zh": "Undistributed profit",
+      "label_zh": "未分配利润",
       "table": "financial_income_raw",
       "module": "base_financial",
       "category": "income_statement",
@@ -11850,7 +11850,7 @@
     },
     {
       "name": "trading_financial_assets",
-      "label_zh": "Trading financial assets",
+      "label_zh": "交易性金融资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -11878,7 +11878,7 @@
     },
     {
       "name": "derivative_financial_assets",
-      "label_zh": "Derivative financial assets",
+      "label_zh": "衍生金融资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -11906,7 +11906,7 @@
     },
     {
       "name": "notes_receivable",
-      "label_zh": "Notes receivable",
+      "label_zh": "应收票据",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -11933,7 +11933,7 @@
     },
     {
       "name": "accounts_receivable_bill",
-      "label_zh": "Accounts receivable and notes receivable",
+      "label_zh": "应收票据及应收账款",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -11960,7 +11960,7 @@
     },
     {
       "name": "prepayment",
-      "label_zh": "Prepayments",
+      "label_zh": "预付款项",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -11987,7 +11987,7 @@
     },
     {
       "name": "other_receivable",
-      "label_zh": "Other receivables",
+      "label_zh": "其他应收款",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12014,7 +12014,7 @@
     },
     {
       "name": "total_other_receivable",
-      "label_zh": "Total other receivables",
+      "label_zh": "其他应收款合计",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12041,7 +12041,7 @@
     },
     {
       "name": "contract_assets",
-      "label_zh": "Contract assets",
+      "label_zh": "合同资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12069,7 +12069,7 @@
     },
     {
       "name": "other_current_assets",
-      "label_zh": "Other current assets",
+      "label_zh": "其他流动资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12097,7 +12097,7 @@
     },
     {
       "name": "total_noncurrent_assets",
-      "label_zh": "Total non-current assets",
+      "label_zh": "非流动资产合计",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12125,7 +12125,7 @@
     },
     {
       "name": "long_term_equity_investment",
-      "label_zh": "Long-term equity investment",
+      "label_zh": "长期股权投资",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12152,7 +12152,7 @@
     },
     {
       "name": "investment_property",
-      "label_zh": "Investment property",
+      "label_zh": "投资性房地产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12179,7 +12179,7 @@
     },
     {
       "name": "fixed_assets_total",
-      "label_zh": "Total fixed assets",
+      "label_zh": "固定资产合计",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12207,7 +12207,7 @@
     },
     {
       "name": "construction_in_process_total",
-      "label_zh": "Total construction in process",
+      "label_zh": "在建工程合计",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12234,7 +12234,7 @@
     },
     {
       "name": "right_of_use_assets",
-      "label_zh": "Right-of-use assets",
+      "label_zh": "使用权资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12262,7 +12262,7 @@
     },
     {
       "name": "development_expenditure",
-      "label_zh": "Development expenditure",
+      "label_zh": "开发支出",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12289,7 +12289,7 @@
     },
     {
       "name": "long_term_deferred_expense",
-      "label_zh": "Long-term deferred expense",
+      "label_zh": "长期待摊费用",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12316,7 +12316,7 @@
     },
     {
       "name": "deferred_tax_assets",
-      "label_zh": "Deferred tax assets",
+      "label_zh": "递延所得税资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12344,7 +12344,7 @@
     },
     {
       "name": "other_noncurrent_assets",
-      "label_zh": "Other non-current assets",
+      "label_zh": "其他非流动资产",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12372,7 +12372,7 @@
     },
     {
       "name": "notes_payable",
-      "label_zh": "Notes payable",
+      "label_zh": "应付票据",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12399,7 +12399,7 @@
     },
     {
       "name": "advance_receipts",
-      "label_zh": "Advance receipts",
+      "label_zh": "预收款项",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12426,7 +12426,7 @@
     },
     {
       "name": "contract_liabilities",
-      "label_zh": "Contract liabilities",
+      "label_zh": "合同负债",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12454,7 +12454,7 @@
     },
     {
       "name": "payroll_payable",
-      "label_zh": "Payroll payable",
+      "label_zh": "应付职工薪酬",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12481,7 +12481,7 @@
     },
     {
       "name": "taxes_payable",
-      "label_zh": "Taxes payable",
+      "label_zh": "应交税费",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12508,7 +12508,7 @@
     },
     {
       "name": "interest_payable",
-      "label_zh": "Interest payable",
+      "label_zh": "应付利息",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12535,7 +12535,7 @@
     },
     {
       "name": "dividend_payable",
-      "label_zh": "Dividend payable",
+      "label_zh": "应付股利",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12562,7 +12562,7 @@
     },
     {
       "name": "other_payable",
-      "label_zh": "Other payables",
+      "label_zh": "其他应付款",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12589,7 +12589,7 @@
     },
     {
       "name": "total_other_payable",
-      "label_zh": "Total other payables",
+      "label_zh": "其他应付款合计",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12616,7 +12616,7 @@
     },
     {
       "name": "noncurrent_liability_due_1y",
-      "label_zh": "Non-current liabilities due within one year",
+      "label_zh": "一年内到期的非流动负债",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12644,7 +12644,7 @@
     },
     {
       "name": "other_current_liabilities",
-      "label_zh": "Other current liabilities",
+      "label_zh": "其他流动负债",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12672,7 +12672,7 @@
     },
     {
       "name": "total_noncurrent_liabilities",
-      "label_zh": "Total non-current liabilities",
+      "label_zh": "非流动负债合计",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12700,7 +12700,7 @@
     },
     {
       "name": "long_term_payable",
-      "label_zh": "Long-term payables",
+      "label_zh": "长期应付款",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12727,7 +12727,7 @@
     },
     {
       "name": "estimated_liabilities",
-      "label_zh": "Estimated liabilities",
+      "label_zh": "预计负债",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12755,7 +12755,7 @@
     },
     {
       "name": "deferred_income",
-      "label_zh": "Deferred income",
+      "label_zh": "递延收益",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12782,7 +12782,7 @@
     },
     {
       "name": "deferred_tax_liabilities",
-      "label_zh": "Deferred tax liabilities",
+      "label_zh": "递延所得税负债",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12810,7 +12810,7 @@
     },
     {
       "name": "other_noncurrent_liabilities",
-      "label_zh": "Other non-current liabilities",
+      "label_zh": "其他非流动负债",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12838,7 +12838,7 @@
     },
     {
       "name": "total_liabilities_and_equity",
-      "label_zh": "Total liabilities and shareholders equity",
+      "label_zh": "负债和股东权益合计",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12866,7 +12866,7 @@
     },
     {
       "name": "capital_reserve",
-      "label_zh": "Capital reserve",
+      "label_zh": "资本公积",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12893,7 +12893,7 @@
     },
     {
       "name": "surplus_reserve",
-      "label_zh": "Surplus reserve",
+      "label_zh": "盈余公积",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12920,7 +12920,7 @@
     },
     {
       "name": "financial_balance_raw_undistributed_profit",
-      "label_zh": "Undistributed profit",
+      "label_zh": "未分配利润",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12947,7 +12947,7 @@
     },
     {
       "name": "treasury_share",
-      "label_zh": "Treasury shares",
+      "label_zh": "库存股",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -12975,7 +12975,7 @@
     },
     {
       "name": "other_comprehensive_income",
-      "label_zh": "Other comprehensive income",
+      "label_zh": "其他综合收益",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -13002,7 +13002,7 @@
     },
     {
       "name": "special_reserve",
-      "label_zh": "Special reserve",
+      "label_zh": "专项储备",
       "table": "financial_balance_raw",
       "module": "base_financial",
       "category": "balance_sheet",
@@ -13029,7 +13029,7 @@
     },
     {
       "name": "tax_refund_received",
-      "label_zh": "Tax refund received",
+      "label_zh": "收到的税费返还",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13056,7 +13056,7 @@
     },
     {
       "name": "other_operating_cash_received",
-      "label_zh": "Other cash received from operating activities",
+      "label_zh": "收到其他与经营活动有关的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13084,7 +13084,7 @@
     },
     {
       "name": "total_operating_cash_outflow",
-      "label_zh": "Total operating cash outflow",
+      "label_zh": "经营活动现金流出小计",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13112,7 +13112,7 @@
     },
     {
       "name": "other_operating_cash_paid",
-      "label_zh": "Other cash paid for operating activities",
+      "label_zh": "支付其他与经营活动有关的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13140,7 +13140,7 @@
     },
     {
       "name": "cash_received_from_investment_withdrawal",
-      "label_zh": "Cash received from withdrawal of investments",
+      "label_zh": "收回投资收到的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13168,7 +13168,7 @@
     },
     {
       "name": "cash_received_from_asset_disposal",
-      "label_zh": "Cash received from disposal of fixed/intangible assets",
+      "label_zh": "处置固定资产无形资产和其他长期资产收回的现金净额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13196,7 +13196,7 @@
     },
     {
       "name": "cash_received_from_subsidiary_disposal",
-      "label_zh": "Cash received from disposal of subsidiaries",
+      "label_zh": "处置子公司及其他营业单位收到的现金净额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13224,7 +13224,7 @@
     },
     {
       "name": "total_investing_cash_inflow",
-      "label_zh": "Total investing cash inflow",
+      "label_zh": "投资活动现金流入小计",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13252,7 +13252,7 @@
     },
     {
       "name": "cash_paid_for_subsidiary_acquisition",
-      "label_zh": "Cash paid for acquisition of subsidiaries",
+      "label_zh": "取得子公司及其他营业单位支付的现金净额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13280,7 +13280,7 @@
     },
     {
       "name": "other_investing_cash_paid",
-      "label_zh": "Other cash paid for investing activities",
+      "label_zh": "支付其他与投资活动有关的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13308,7 +13308,7 @@
     },
     {
       "name": "total_investing_cash_outflow",
-      "label_zh": "Total investing cash outflow",
+      "label_zh": "投资活动现金流出小计",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13336,7 +13336,7 @@
     },
     {
       "name": "cash_received_from_investors",
-      "label_zh": "Cash received from investors",
+      "label_zh": "吸收投资收到的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13364,7 +13364,7 @@
     },
     {
       "name": "cash_received_from_bond_issue",
-      "label_zh": "Cash received from bond issue",
+      "label_zh": "发行债券收到的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13392,7 +13392,7 @@
     },
     {
       "name": "other_financing_cash_received",
-      "label_zh": "Other cash received from financing activities",
+      "label_zh": "收到其他与筹资活动有关的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13420,7 +13420,7 @@
     },
     {
       "name": "total_financing_cash_inflow",
-      "label_zh": "Total financing cash inflow",
+      "label_zh": "筹资活动现金流入小计",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13448,7 +13448,7 @@
     },
     {
       "name": "total_financing_cash_outflow",
-      "label_zh": "Total financing cash outflow",
+      "label_zh": "筹资活动现金流出小计",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13476,7 +13476,7 @@
     },
     {
       "name": "other_financing_cash_paid",
-      "label_zh": "Other cash paid for financing activities",
+      "label_zh": "支付其他与筹资活动有关的现金",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13504,7 +13504,7 @@
     },
     {
       "name": "fx_effect_on_cash",
-      "label_zh": "Effect of foreign exchange rate changes on cash",
+      "label_zh": "汇率变动对现金的影响",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13532,7 +13532,7 @@
     },
     {
       "name": "begin_cash_balance",
-      "label_zh": "Beginning cash balance",
+      "label_zh": "期初现金余额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13560,7 +13560,7 @@
     },
     {
       "name": "end_cash_balance",
-      "label_zh": "Ending cash balance",
+      "label_zh": "期末现金余额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13588,7 +13588,7 @@
     },
     {
       "name": "net_profit_indirect",
-      "label_zh": "Net profit in indirect cashflow reconciliation",
+      "label_zh": "间接法现金流量表净利润",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13615,7 +13615,7 @@
     },
     {
       "name": "asset_depreciation",
-      "label_zh": "Depreciation of fixed, oil and gas, and biological assets",
+      "label_zh": "固定资产油气资产生产性生物资产折旧",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13643,7 +13643,7 @@
     },
     {
       "name": "intangible_asset_amortization",
-      "label_zh": "Amortization of intangible assets",
+      "label_zh": "无形资产摊销",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13671,7 +13671,7 @@
     },
     {
       "name": "deferred_expense_amortization",
-      "label_zh": "Amortization of long-term deferred expenses",
+      "label_zh": "长期待摊费用摊销",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13698,7 +13698,7 @@
     },
     {
       "name": "financial_expense_indirect",
-      "label_zh": "Financial expense in indirect cashflow reconciliation",
+      "label_zh": "间接法财务费用",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13725,7 +13725,7 @@
     },
     {
       "name": "investment_loss_indirect",
-      "label_zh": "Investment loss in indirect cashflow reconciliation",
+      "label_zh": "间接法投资损失",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13752,7 +13752,7 @@
     },
     {
       "name": "credit_impairment_loss_indirect",
-      "label_zh": "Credit impairment loss in indirect cashflow reconciliation",
+      "label_zh": "间接法信用减值损失",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13779,7 +13779,7 @@
     },
     {
       "name": "inventory_decrease",
-      "label_zh": "Decrease in inventories",
+      "label_zh": "存货减少额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13806,7 +13806,7 @@
     },
     {
       "name": "operating_receivable_decrease",
-      "label_zh": "Decrease in operating receivables",
+      "label_zh": "经营性应收项目减少额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",
@@ -13833,7 +13833,7 @@
     },
     {
       "name": "operating_payable_increase",
-      "label_zh": "Increase in operating payables",
+      "label_zh": "经营性应付项目增加额",
       "table": "financial_cashflow_raw",
       "module": "base_financial",
       "category": "cashflow_statement",

@@ -49,7 +49,7 @@ def table_fields(table: str) -> list[str]:
 def valid_expr(var, alias: str | None = None, universe_expr: str = "xs_universe_flag") -> str:
     prefix = alias or SOURCE_ALIASES[var.source_table]
     expr = f"{prefix}.{q(var.source_field)}"
-    base = f"CASE WHEN NOT ({universe_expr}) THEN NULL WHEN {expr} IS NULL THEN NULL WHEN {expr} <= -900000 THEN NULL"
+    base = f"CASE WHEN NOT ({universe_expr}) THEN NULL WHEN {expr} IS NULL THEN NULL WHEN {expr} <= -9000000 THEN NULL"
     if var.valid_rule == "positive":
         base += f" WHEN {expr} <= 0 THEN NULL"
     elif var.valid_rule == "non_negative":
@@ -277,9 +277,9 @@ def update_residuals_pandas(con: duckdb.DuckDBPyConnection, start: str, end: str
         y_dm = df[y_col] - df.groupby(["trade_date", "xs_sw_l2_code"], dropna=False)[y_col].transform("mean")
         work = pd.DataFrame({"trade_date": df["trade_date"], "x": size_dm, "y": y_dm})
         beta = work.assign(xy=work["x"] * work["y"], xx=work["x"] * work["x"]).groupby("trade_date")[["xy", "xx"]].sum()
-        beta["beta"] = beta["xy"] / beta["xx"].replace(0, pd.NA)
+        beta["beta"] = (beta["xy"] / beta["xx"].replace(0, pd.NA)).fillna(0.0)
         resid = y_dm - size_dm * df["trade_date"].map(beta["beta"])
-        resid_std = resid.groupby(df["trade_date"]).transform("std")
+        resid_std = resid.groupby(df["trade_date"]).transform("std").fillna(1.0)
         df[out_col] = resid / resid_std.replace(0, pd.NA)
     payload = df[["ts_code", "trade_date"] + out_cols].copy()
     con.register("xs_resid_payload", payload)
@@ -314,12 +314,18 @@ def main() -> None:
         start = f"{year}-01-01"
         end = "2026-05-26" if year == 2026 else f"{year}-12-31"
         started = datetime.now().isoformat(timespec="seconds")
-        con.execute("DELETE FROM derived_cross_sectional WHERE trade_date BETWEEN ? AND ?", [start, end])
-        con.execute(insert_metadata_sql(start, end))
-        for var in PHYSICAL_VARIABLES:
-            con.execute(update_variable_sql(var, start, end))
-        con.execute(update_exposure_sql(start, end))
-        update_residuals_pandas(con, start, end)
+        con.execute("BEGIN TRANSACTION")
+        try:
+            con.execute("DELETE FROM derived_cross_sectional WHERE trade_date BETWEEN ? AND ?", [start, end])
+            con.execute(insert_metadata_sql(start, end))
+            for var in PHYSICAL_VARIABLES:
+                con.execute(update_variable_sql(var, start, end))
+            con.execute(update_exposure_sql(start, end))
+            update_residuals_pandas(con, start, end)
+            con.execute("COMMIT")
+        except Exception:
+            con.execute("ROLLBACK")
+            raise
         rows = con.execute(
             "SELECT count(*) FROM derived_cross_sectional WHERE trade_date BETWEEN ? AND ?",
             [start, end],

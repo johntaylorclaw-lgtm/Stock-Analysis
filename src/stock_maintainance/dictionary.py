@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import os
+import shutil
 import subprocess
 from dataclasses import dataclass
 from datetime import datetime
@@ -77,25 +79,77 @@ def sync_feature_view_schema_registry() -> dict[str, int]:
 
 def _run_global_dictionary_builder(*, node_path: Path = DEFAULT_WINDOWS_NODE_PATH) -> dict[str, Any]:
     script = ROOT / "scripts" / "build_global_variable_dictionary.mjs"
-    if not node_path.exists():
-        raise ValueError(f"Windows Node executable not found: {node_path}")
-    command = (
-        f"Set-Location '{_to_windows_path(ROOT)}'; "
-        f"& '{_to_windows_path(node_path)}' '{_to_windows_path(script)}'"
-    )
-    completed = subprocess.run(
-        ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", command],
-        cwd=ROOT,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
+    candidates = _resolve_node_candidates(node_path)
+    if not candidates:
+        raise ValueError(
+            "Node executable not found. Install Node in WSL, set STOCK_MAINTAIN_NODE, "
+            "or rerun refresh-dictionary with --skip-excel to refresh Markdown docs only."
+        )
+    failures: list[str] = []
+    completed: subprocess.CompletedProcess[str] | None = None
+    resolved_node: Path | None = None
+    for candidate in candidates:
+        command = _node_command(candidate, script)
+        try:
+            completed = subprocess.run(
+                command,
+                cwd=ROOT,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            resolved_node = candidate
+            break
+        except subprocess.CalledProcessError as exc:
+            failures.append(
+                f"{candidate}: exit {exc.returncode}; stdout={exc.stdout.strip()!r}; stderr={exc.stderr.strip()!r}"
+            )
+    if completed is None or resolved_node is None:
+        detail = "\n".join(failures)
+        raise ValueError(
+            "failed to build Excel dictionary with available Node runtimes. "
+            "Install a compatible Node/artifact-tool environment, set STOCK_MAINTAIN_NODE, "
+            f"or rerun with --skip-excel. Details:\n{detail}"
+        )
     return {
         "stdout": completed.stdout.strip(),
         "stderr": completed.stderr.strip(),
+        "node_path": str(resolved_node),
         "path": str(GLOBAL_DICTIONARY_PATH),
         "exists": GLOBAL_DICTIONARY_PATH.exists(),
     }
+
+
+def _resolve_node_path(default_node_path: Path = DEFAULT_WINDOWS_NODE_PATH) -> Path | None:
+    candidates = _resolve_node_candidates(default_node_path)
+    return candidates[0] if candidates else None
+
+
+def _resolve_node_candidates(default_node_path: Path = DEFAULT_WINDOWS_NODE_PATH) -> list[Path]:
+    env_path = os.environ.get("STOCK_MAINTAIN_NODE")
+    candidates = [Path(env_path)] if env_path else []
+    path_node = shutil.which("node")
+    if path_node:
+        candidates.append(Path(path_node))
+    candidates.append(default_node_path)
+    resolved: list[Path] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        key = str(candidate)
+        if candidate.exists() and key not in seen:
+            resolved.append(candidate)
+            seen.add(key)
+    return resolved
+
+
+def _node_command(node_path: Path, script: Path) -> list[str]:
+    if node_path.suffix.lower() == ".exe":
+        command = (
+            f"Set-Location '{_to_windows_path(ROOT)}'; "
+            f"& '{_to_windows_path(node_path)}' '{_to_windows_path(script)}'"
+        )
+        return ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", command]
+    return [str(node_path), str(script)]
 
 
 def refresh_dictionary(

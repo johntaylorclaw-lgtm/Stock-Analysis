@@ -313,7 +313,24 @@ def build_insert_sql(start: str, end: str) -> str:
             ret_250_positive_flag,
             momentum_spread_positive_flag,
             ({bool_int("price_above_ma20_flag")} + {bool_int("price_above_ma60_flag")} + {bool_int("ma20_above_ma60_flag")} + {bool_int("ma60_above_ma120_flag")} + {bool_int("ret_20_positive_flag")} + {bool_int("ret_60_positive_flag")} + {bool_int("ret_250_positive_flag")} + {bool_int("momentum_spread_positive_flag")})::INTEGER AS trend_condition_count,
-            CASE WHEN trend_condition_count >= 7 THEN 'bull' WHEN trend_condition_count >= 5 THEN 'partial_bull' WHEN trend_condition_count >= 3 THEN 'mixed' WHEN trend_condition_count >= 1 THEN 'partial_bear' ELSE 'bear' END AS trend_state,
+            (
+                (price_above_ma20_flag IS NOT NULL)::INTEGER
+              + (price_above_ma60_flag IS NOT NULL)::INTEGER
+              + (ma20_above_ma60_flag IS NOT NULL)::INTEGER
+              + (ma60_above_ma120_flag IS NOT NULL)::INTEGER
+              + (ret_20_positive_flag IS NOT NULL)::INTEGER
+              + (ret_60_positive_flag IS NOT NULL)::INTEGER
+              + (ret_250_positive_flag IS NOT NULL)::INTEGER
+              + (momentum_spread_positive_flag IS NOT NULL)::INTEGER
+            ) AS trend_observation_count,
+            CASE
+                WHEN trend_observation_count = 0 THEN 'unknown'
+                WHEN trend_condition_count >= 7 THEN 'bull'
+                WHEN trend_condition_count >= 5 THEN 'partial_bull'
+                WHEN trend_condition_count >= 3 THEN 'mixed'
+                WHEN trend_condition_count >= 1 THEN 'partial_bear'
+                ELSE 'bear'
+            END AS trend_state,
             liquidity_available_flag,
             {pct_state("amount_ma_20_pct_all_desc")} AS amount_activity_state,
             {pct_state("turnover_rate_ma_20_pct_all_desc")} AS turnover_activity_state,

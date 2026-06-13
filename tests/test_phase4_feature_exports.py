@@ -21,7 +21,7 @@ def test_feature_export_views_are_registered() -> None:
     assert table(schema, "stock_features_full")["table_type"] == "view"
     assert len(table(schema, "stock_features_core")["fields"]) == 318
     assert len(table(schema, "stock_features_plus")["fields"]) == 1198
-    assert len(table(schema, "stock_features_full")["fields"]) == 1602
+    assert len(table(schema, "stock_features_full")["fields"]) == 1603
 
 
 def test_feature_export_views_do_not_expose_scores() -> None:
@@ -29,7 +29,7 @@ def test_feature_export_views_do_not_expose_scores() -> None:
 
     for name in ["stock_features_core", "stock_features_plus", "stock_features_full"]:
         field_names = {field["name"] for field in table(schema, name)["fields"]}
-        assert not any("score" in field.lower() for field in field_names)
+        assert not any(field.lower() == "score" or field.lower().endswith("_score") for field in field_names)
         assert "value_quality_score" not in field_names
 
 

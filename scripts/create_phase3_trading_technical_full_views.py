@@ -301,6 +301,42 @@ def return_momentum_view() -> str:
 
 def volatility_risk_view() -> str:
     var_windows = [20, 30, 60, 120, 250]
+    drawdown_windows = [5, 10, 30, 120, 250]
+    downside_windows = [20, 30, 120, 250]
+    max_drawdown_fields = [
+        f"""
+        CASE WHEN count(close_hfq) OVER (PARTITION BY {win('b', n)}) >= {n}
+        THEN (
+            SELECT min(
+                trough.close_hfq / nullif(
+                    (
+                        SELECT max(peak.close_hfq)
+                        FROM b AS peak
+                        WHERE peak.ts_code = b.ts_code
+                          AND peak.rn BETWEEN b.rn - {n - 1} AND trough.rn
+                    ),
+                    0
+                ) - 1
+            )
+            FROM b AS trough
+            WHERE trough.ts_code = b.ts_code
+              AND trough.rn BETWEEN b.rn - {n - 1} AND b.rn
+        )
+        ELSE NULL END AS max_drawdown_{n}_hfq
+        """
+        for n in drawdown_windows
+    ]
+    downside_fields = [
+        f"""
+        CASE
+            WHEN count(CASE WHEN log_ret_1_hfq < 0 THEN log_ret_1_hfq END) OVER (PARTITION BY {win('b', n)}) >= 2
+            THEN stddev_samp(CASE WHEN log_ret_1_hfq < 0 THEN log_ret_1_hfq ELSE NULL END)
+                 OVER (PARTITION BY {win('b', n)}) * sqrt(242)
+            ELSE NULL
+        END AS downside_vol_{n}
+        """
+        for n in downside_windows
+    ]
     base_fields = [
         "vr.*",
         "ds.log_ret_1_hfq",
@@ -309,6 +345,7 @@ def volatility_risk_view() -> str:
         "ds.low_hfq",
         "ds.close_hfq",
         "fv.true_range_hfq",
+        "row_number() OVER (PARTITION BY vr.ts_code ORDER BY vr.trade_date) AS rn",
         *[
             f"quantile_cont(ds.ret_1_hfq, 0.05) OVER (PARTITION BY {win('ds', n)}) AS var_5pct_{n}_calc"
             for n in var_windows
@@ -340,14 +377,8 @@ def volatility_risk_view() -> str:
             f"{avg_expr('true_range_hfq', n, 'b')} / nullif(close_hfq, 0) AS atr_{n}_pct_hfq"
             for n in [5, 10, 20, 30, 60]
         ],
-        *[
-            f"close_hfq / nullif({max_expr('close_hfq', n, 'b')}, 0) - 1 AS max_drawdown_{n}_hfq"
-            for n in [5, 10, 30, 120, 250]
-        ],
-        *[
-            f"{std_expr('CASE WHEN log_ret_1_hfq < 0 THEN log_ret_1_hfq ELSE 0 END', n, 'b')} * sqrt(242) AS downside_vol_{n}"
-            for n in [20, 30, 120, 250]
-        ],
+        *max_drawdown_fields,
+        *downside_fields,
         *[
             f"var_5pct_{n}_calc AS var_5pct_{n}"
             for n in var_windows
@@ -370,7 +401,7 @@ def volatility_risk_view() -> str:
     )
     SELECT
         {",\n        ".join(final_fields)}
-    FROM b
+    FROM b AS b
     """
 
 

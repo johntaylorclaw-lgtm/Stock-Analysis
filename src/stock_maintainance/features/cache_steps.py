@@ -60,21 +60,6 @@ def _temp_columns(con: duckdb.DuckDBPyConnection, temp_name: str) -> list[str]:
     return [str(row[1]) for row in con.execute(f"PRAGMA table_info({temp_name})").fetchall()]
 
 
-def _update_from_temp_sql(table_name: str, temp_name: str, columns: list[str], qfunc) -> str:
-    set_sql = ", ".join(f"{qfunc(col)} = d.{qfunc(col)}" for col in columns if col not in {"ts_code", "trade_date"})
-    return f"""
-    UPDATE {qfunc(table_name)} AS c
-    SET {set_sql}
-    FROM {qfunc(temp_name)} AS d
-    WHERE c.trade_date = d.trade_date
-      AND (
-            ('ts_code' IN (SELECT column_name FROM information_schema.columns WHERE table_name = '{temp_name}')
-             AND c.ts_code = d.ts_code)
-         OR ('ts_code' NOT IN (SELECT column_name FROM information_schema.columns WHERE table_name = '{temp_name}'))
-      )
-    """
-
-
 def _upsert_daily_cache_from_temp(
     con: duckdb.DuckDBPyConnection,
     *,
@@ -394,26 +379,26 @@ def refresh_valuation_percentile_cache(
             SELECT
                 t.ts_code,
                 t.trade_date,
-                CASE WHEN t.pe_ttm IS NOT NULL AND count(c.pe_ttm) > 0
+                CASE WHEN t.pe_ttm > 0 AND count(CASE WHEN c.pe_ttm > 0 THEN c.pe_ttm END) >= 60
                      THEN (
-                         sum(CASE WHEN c.pe_ttm < t.pe_ttm THEN 1 ELSE 0 END)
-                       + (sum(CASE WHEN c.pe_ttm = t.pe_ttm THEN 1 ELSE 0 END) + 1) / 2.0
-                     ) / count(c.pe_ttm) ELSE NULL END AS pe_ttm_pct_5y,
-                CASE WHEN t.pb IS NOT NULL AND count(c.pb) > 0
+                         sum(CASE WHEN c.pe_ttm > 0 AND c.pe_ttm < t.pe_ttm THEN 1 ELSE 0 END)
+                       + (sum(CASE WHEN c.pe_ttm > 0 AND c.pe_ttm = t.pe_ttm THEN 1 ELSE 0 END) + 1) / 2.0
+                     ) / count(CASE WHEN c.pe_ttm > 0 THEN c.pe_ttm END) ELSE NULL END AS pe_ttm_pct_5y,
+                CASE WHEN t.pb > 0 AND count(CASE WHEN c.pb > 0 THEN c.pb END) >= 60
                      THEN (
-                         sum(CASE WHEN c.pb < t.pb THEN 1 ELSE 0 END)
-                       + (sum(CASE WHEN c.pb = t.pb THEN 1 ELSE 0 END) + 1) / 2.0
-                     ) / count(c.pb) ELSE NULL END AS pb_pct_5y,
-                CASE WHEN t.ps_ttm IS NOT NULL AND count(c.ps_ttm) > 0
+                         sum(CASE WHEN c.pb > 0 AND c.pb < t.pb THEN 1 ELSE 0 END)
+                       + (sum(CASE WHEN c.pb > 0 AND c.pb = t.pb THEN 1 ELSE 0 END) + 1) / 2.0
+                     ) / count(CASE WHEN c.pb > 0 THEN c.pb END) ELSE NULL END AS pb_pct_5y,
+                CASE WHEN t.ps_ttm > 0 AND count(CASE WHEN c.ps_ttm > 0 THEN c.ps_ttm END) >= 60
                      THEN (
-                         sum(CASE WHEN c.ps_ttm < t.ps_ttm THEN 1 ELSE 0 END)
-                       + (sum(CASE WHEN c.ps_ttm = t.ps_ttm THEN 1 ELSE 0 END) + 1) / 2.0
-                     ) / count(c.ps_ttm) ELSE NULL END AS ps_ttm_pct_5y,
-                CASE WHEN t.total_mv IS NOT NULL AND count(c.total_mv) > 0
+                         sum(CASE WHEN c.ps_ttm > 0 AND c.ps_ttm < t.ps_ttm THEN 1 ELSE 0 END)
+                       + (sum(CASE WHEN c.ps_ttm > 0 AND c.ps_ttm = t.ps_ttm THEN 1 ELSE 0 END) + 1) / 2.0
+                     ) / count(CASE WHEN c.ps_ttm > 0 THEN c.ps_ttm END) ELSE NULL END AS ps_ttm_pct_5y,
+                CASE WHEN t.total_mv > 0 AND count(CASE WHEN c.total_mv > 0 THEN c.total_mv END) >= 60
                      THEN (
-                         sum(CASE WHEN c.total_mv < t.total_mv THEN 1 ELSE 0 END)
-                       + (sum(CASE WHEN c.total_mv = t.total_mv THEN 1 ELSE 0 END) + 1) / 2.0
-                     ) / count(c.total_mv) ELSE NULL END AS total_mv_pct_5y
+                         sum(CASE WHEN c.total_mv > 0 AND c.total_mv < t.total_mv THEN 1 ELSE 0 END)
+                       + (sum(CASE WHEN c.total_mv > 0 AND c.total_mv = t.total_mv THEN 1 ELSE 0 END) + 1) / 2.0
+                     ) / count(CASE WHEN c.total_mv > 0 THEN c.total_mv END) ELSE NULL END AS total_mv_pct_5y
             FROM targets t
             JOIN context c
               ON t.ts_code = c.ts_code
@@ -431,7 +416,7 @@ def refresh_valuation_percentile_cache(
         for source in active_sources:
             for alias, window in active_windows.items():
                 target = f"{source}_pct_{alias}"
-                df[target] = grouped[source].transform(lambda series, w=window: series.rolling(w, min_periods=1).rank(pct=True))
+                df[target] = grouped[source].transform(lambda series, w=window: series.where(series > 0).rolling(w, min_periods=backend.MIN_PERCENTILE_OBS).rank(pct=True))
                 pct_columns.append(target)
         write_mask = (df["trade_date"] >= start) & (df["trade_date"] <= end)
         cache_df = df.loc[write_mask, ["ts_code", "trade_date", *pct_columns]].copy()

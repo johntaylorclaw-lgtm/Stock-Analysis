@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-06-13T10:02:43",
+  "start_date": "2026-06-04",
+  "end_date": "2026-06-05",
+  "snapshot_prefix": "snap_",
+  "abs_tol": 1e-06,
+  "rel_tol": 1e-12,
+  "summary": {
+    "passed": true,
+    "table_count": 1,
+    "pass_table_count": 1,
+    "fail_table_count": 0,
+    "missing_or_extra_key_rows": 0,
+    "mismatch_column_count": 0,
+    "mismatch_cell_count": 0,
+    "fail_tables": []
+  },
+  "tables": [
+    {
+      "table": "derived_daily_spine",
+      "snapshot_table": "snap_derived_daily_spine",
+      "current_rows": 2,
+      "snapshot_rows": 2,
+      "missing_or_extra_key_rows": 0,
+      "columns_compared": 1,
+      "mismatch_columns": {},
+      "status": "pass"
+    }
+  ]
+}

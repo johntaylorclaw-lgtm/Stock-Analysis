@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
+from math import ceil
 from typing import Any
 
 
@@ -124,6 +125,31 @@ def format_date(value: date) -> str:
     return value.isoformat()
 
 
+def _normalize_trade_dates(values: list[str | date] | None) -> list[date]:
+    if not values:
+        return []
+    return sorted({parse_date(value.isoformat() if isinstance(value, date) else str(value)) for value in values})
+
+
+def _trade_window_start(end: date, window_size: int, trade_dates: list[date]) -> date | None:
+    eligible = [item for item in trade_dates if item <= end]
+    if len(eligible) < window_size:
+        return None
+    return eligible[-window_size]
+
+
+def _trade_day_count(start: date, end: date, trade_dates: list[date]) -> int | None:
+    if not trade_dates:
+        return None
+    return sum(1 for item in trade_dates if start <= item <= end)
+
+
+def _calendar_context_days(trading_context_days: int, trade_dates: list[date]) -> int:
+    if trade_dates:
+        return trading_context_days
+    return int(ceil(trading_context_days * 7 / 5) + 14)
+
+
 def expand_modules(modules: list[str] | None) -> list[str]:
     if not modules:
         return MODULE_ORDER.copy()
@@ -161,12 +187,20 @@ def build_feature_plan(
     end_date: str | None = None,
     mode: str = "daily",
     default_write_window: int = 10,
+    trade_dates: list[str | date] | None = None,
 ) -> FeaturePlan:
     end = parse_date(end_date)
+    normalized_trade_dates = _normalize_trade_dates(trade_dates)
     if start_date:
         write_start = parse_date(start_date)
+        write_day_count = _trade_day_count(write_start, end, normalized_trade_dates)
     else:
-        write_start = end - timedelta(days=default_write_window - 1)
+        write_start = _trade_window_start(end, default_write_window, normalized_trade_dates)
+        if write_start is None:
+            write_start = end - timedelta(days=default_write_window - 1)
+            write_day_count = None
+        else:
+            write_day_count = default_write_window
 
     execution_order = expand_modules(modules)
     grouped = variables_by_module(variable_registry)
@@ -177,7 +211,8 @@ def build_feature_plan(
         write_window = max([int(item.get("write_window") or 0) for item in variables] or [default_write_window])
         min_history = max([int(item.get("min_history") or 0) for item in variables] or [0])
         context_days = max(read_window, min_history, default_write_window)
-        read_start = write_start - timedelta(days=context_days)
+        fallback_context_days = _calendar_context_days(context_days, normalized_trade_dates)
+        read_start = write_start - timedelta(days=fallback_context_days)
         tables = sorted({item.get("table", "") for item in variables if item.get("table")})
         module_plans.append(
             FeatureModulePlan(
@@ -194,12 +229,14 @@ def build_feature_plan(
             )
         )
 
-    write_days = (end - write_start).days + 1
-    requires_confirmation = mode == "history" or write_days > default_write_window
+    calendar_days = (end - write_start).days + 1
+    effective_write_days = write_day_count if write_day_count is not None else calendar_days
+    requires_confirmation = mode == "history" or effective_write_days > default_write_window
     reason = ""
     if requires_confirmation:
+        day_unit = "trading days" if write_day_count is not None else "calendar days"
         reason = (
-            f"write range spans {write_days} calendar days; "
+            f"write range spans {effective_write_days} {day_unit}; "
             f"Phase 3 daily mode defaults to {default_write_window} recent trading days"
         )
     return FeaturePlan(

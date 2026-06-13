@@ -61,15 +61,16 @@ def physical_fields() -> list[dict]:
     ]
     for var in PHYSICAL_VARIABLES:
         label = var.label_zh
+        source = f"{var.source_table}.{var.source_field}"
         fields.extend(
             [
-                f(f"{var.name}_rank_all_desc", "INTEGER", f"{label}全市场降序排名 = rank({var.source_table}.{var.source_field} DESC) over trade_date"),
-                f(f"{var.name}_pct_all_desc", "DOUBLE", f"{label}全市场降序分位 = (n-rank)/(n-1)"),
-                f(f"{var.name}_z_all", "DOUBLE", f"{label}全市场z值 = z(winsor({var.source_table}.{var.source_field},1%,99%))"),
-                f(f"{var.name}_rank_market_desc", "INTEGER", f"{label}市场分组降序排名 = rank({var.source_field} DESC) over trade_date,xs_market"),
-                f(f"{var.name}_pct_market_desc", "DOUBLE", f"{label}市场分组降序分位 = (n-rank)/(n-1)"),
-                f(f"{var.name}_rank_sw_l2_desc", "INTEGER", f"{label}申万二级降序排名 = rank({var.source_field} DESC) over trade_date,xs_sw_l2_code"),
-                f(f"{var.name}_pct_sw_l2_desc", "DOUBLE", f"{label}申万二级降序分位 = (n-rank)/(n-1)"),
+                f(f"{var.name}_rank_all_desc", "INTEGER", rank_desc(label, source, "全市场", "trade_date", source_mode="raw")),
+                f(f"{var.name}_pct_all_desc", "DOUBLE", pct_desc(label, source, "全市场", "trade_date", source_mode="raw")),
+                f(f"{var.name}_z_all", "DOUBLE", z_desc(label, source, "全市场", "trade_date", source_mode="raw")),
+                f(f"{var.name}_rank_market_desc", "INTEGER", rank_desc(label, source, "市场", "trade_date,xs_market", source_mode="raw")),
+                f(f"{var.name}_pct_market_desc", "DOUBLE", pct_desc(label, source, "市场", "trade_date,xs_market", source_mode="raw")),
+                f(f"{var.name}_rank_sw_l2_desc", "INTEGER", rank_desc(label, source, "申万二级", "trade_date,xs_sw_l2_code", source_mode="raw")),
+                f(f"{var.name}_pct_sw_l2_desc", "DOUBLE", pct_desc(label, source, "申万二级", "trade_date,xs_sw_l2_code", source_mode="raw")),
             ]
         )
     for name in RESIDUAL_VARIABLES:
@@ -88,6 +89,70 @@ def physical_fields() -> list[dict]:
     return fields
 
 
+def valid_clause() -> str:
+    return "xs_universe_flag=true 且 source 非空、非特殊值，并按变量 valid_rule 过滤正值/非负值"
+
+
+def rank_desc(label: str, source: str, group: str, partition: str, *, source_mode: str) -> str:
+    if source_mode == "core_z":
+        source_text = f"基于核心表 {source}"
+    else:
+        source_text = f"基于原始来源 {source}，先按 {valid_clause()} 取样并做 winsor(source,{WINSOR_LOWER:.0%},{WINSOR_UPPER:.0%})"
+    return (
+        f"{label}{group}降序排名 = rank({source_text} DESC) over partition by {partition}; "
+        f"样本数 < {MIN_GROUP_RANK_N} 时返回NULL"
+    )
+
+
+def pct_desc(label: str, source: str, group: str, partition: str, *, source_mode: str) -> str:
+    if source_mode == "core_z":
+        source_text = f"基于核心表 {source}"
+    else:
+        source_text = f"基于原始来源 {source}，先按 {valid_clause()} 取样并做 winsor(source,{WINSOR_LOWER:.0%},{WINSOR_UPPER:.0%})"
+    return (
+        f"{label}{group}降序分位 = (n-rank({source_text} DESC))/(n-1) over partition by {partition}; "
+        f"样本数 < {MIN_GROUP_RANK_N} 时返回NULL"
+    )
+
+
+def z_desc(label: str, source: str, group: str, partition: str, *, source_mode: str) -> str:
+    if source_mode == "core_z":
+        source_text = f"基于核心表 {source}"
+    else:
+        source_text = f"基于原始来源 {source}，先按 {valid_clause()} 取样并做 winsor(source,{WINSOR_LOWER:.0%},{WINSOR_UPPER:.0%})"
+    return (
+        f"{label}{group}z值 = z({source_text}) over partition by {partition}; "
+        f"样本数 < {MIN_GROUP_ZSCORE_N} 或标准差为0时返回NULL"
+    )
+
+
+def extra_view_description(var, name: str, *, from_core_z: bool) -> str:
+    label = var.label_zh
+    source = f"{var.name}_z_all" if from_core_z else f"{var.source_table}.{var.source_field}"
+    source_mode = "core_z" if from_core_z else "raw"
+    suffixes = [
+        ("_z_market", lambda: z_desc(label, source, "市场", "trade_date,xs_market", source_mode=source_mode)),
+        ("_rank_sw_l1_desc", lambda: rank_desc(label, source, "申万一级", "trade_date,xs_sw_l1_code", source_mode=source_mode)),
+        ("_pct_sw_l1_desc", lambda: pct_desc(label, source, "申万一级", "trade_date,xs_sw_l1_code", source_mode=source_mode)),
+        ("_z_sw_l1", lambda: z_desc(label, source, "申万一级", "trade_date,xs_sw_l1_code", source_mode=source_mode)),
+        ("_z_sw_l2", lambda: z_desc(label, source, "申万二级", "trade_date,xs_sw_l2_code", source_mode=source_mode)),
+        ("_rank_exchange_desc", lambda: rank_desc(label, source, "交易所", "trade_date,xs_exchange", source_mode=source_mode)),
+        ("_pct_exchange_desc", lambda: pct_desc(label, source, "交易所", "trade_date,xs_exchange", source_mode=source_mode)),
+        ("_z_exchange", lambda: z_desc(label, source, "交易所", "trade_date,xs_exchange", source_mode=source_mode)),
+        ("_rank_all_desc", lambda: rank_desc(label, source, "全市场", "trade_date", source_mode=source_mode)),
+        ("_pct_all_desc", lambda: pct_desc(label, source, "全市场", "trade_date", source_mode=source_mode)),
+        ("_z_all", lambda: z_desc(label, source, "全市场", "trade_date", source_mode=source_mode)),
+        ("_rank_market_desc", lambda: rank_desc(label, source, "市场", "trade_date,xs_market", source_mode=source_mode)),
+        ("_pct_market_desc", lambda: pct_desc(label, source, "市场", "trade_date,xs_market", source_mode=source_mode)),
+        ("_rank_sw_l2_desc", lambda: rank_desc(label, source, "申万二级", "trade_date,xs_sw_l2_code", source_mode=source_mode)),
+        ("_pct_sw_l2_desc", lambda: pct_desc(label, source, "申万二级", "trade_date,xs_sw_l2_code", source_mode=source_mode)),
+    ]
+    for suffix, builder in suffixes:
+        if name == f"{var.name}{suffix}":
+            return builder()
+    return f"{label}完整视图扩展截面字段 = {name}"
+
+
 def view_fields() -> list[dict]:
     fields = list(physical_fields())
     existing = {field["name"] for field in fields}
@@ -95,14 +160,14 @@ def view_fields() -> list[dict]:
         for name in view_extra_field_names(var.name):
             if name in existing:
                 continue
-            fields.append(f(name, "DOUBLE", f"{var.label_zh}完整视图扩展截面字段 = {name}"))
+            fields.append(f(name, "DOUBLE", extra_view_description(var, name, from_core_z=var.physical)))
             existing.add(name)
     for var in VIEW_EXTRA_VARIABLES:
         for name in physical_field_names(var.name):
             if name in existing:
                 continue
             dtype = "INTEGER" if "_rank_" in name else "DOUBLE"
-            fields.append(f(name, dtype, f"{var.label_zh}完整视图扩展截面字段 = {name}"))
+            fields.append(f(name, dtype, extra_view_description(var, name, from_core_z=False)))
             existing.add(name)
     for name, desc in [
         ("profitability_exposure_z", "盈利能力暴露z值 = avg_z(roe,roa,roic,gross_margin,netprofit_margin)"),

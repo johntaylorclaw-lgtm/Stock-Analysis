@@ -71,7 +71,7 @@ CORE_FIELDS = {
         f("overnight_ret_hfq", "DOUBLE", "后复权隔夜收益率"),
         f("intraday_ret_hfq", "DOUBLE", "后复权日内收益率"),
         f("high_low_range_hfq", "DOUBLE", "后复权日内高低区间"),
-        f("gap_open_hfq", "DOUBLE", "后复权开盘跳空"),
+        f("gap_open_hfq", "DOUBLE", "后复权开盘跳空幅度 = abs(open_hfq / lag(close_hfq) - 1)"),
         f("close_position_hfq", "DOUBLE", "后复权收盘价在日内区间的位置"),
         f("up_limit", "DOUBLE", "涨停价"),
         f("down_limit", "DOUBLE", "跌停价"),

@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import bisect
 import json
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import duckdb
@@ -169,21 +169,29 @@ def build_insert_sql(start: str, end: str, write_start: str | None = None) -> st
         SELECT *
         FROM dividend_events
         QUALIFY row_number() OVER (
-            PARTITION BY ts_code, effective_date
+            PARTITION BY ts_code, coalesce(end_date, event_date), effective_date
             ORDER BY event_date DESC NULLS LAST, record_key DESC NULLS LAST
         ) = 1
     ),
     dividend_day AS (
         SELECT
-            ts_code,
-            event_date,
+            e.ts_code,
+            coalesce(
+                (
+                    SELECT min(d.trade_date)
+                    FROM days_context d
+                    WHERE d.ts_code = e.ts_code
+                      AND d.trade_date >= e.event_date
+                ),
+                e.event_date
+            ) AS event_trade_date,
             sum(cash_div) AS cash_div_day,
             sum(cash_div_tax) AS cash_div_tax_day,
             sum(coalesce(stk_bo_rate, 0) + coalesce(stk_co_rate, 0)) AS stock_div_day,
             count(*) AS dividend_count_day
-        FROM dividend_events
-        WHERE event_date IS NOT NULL
-        GROUP BY ts_code, event_date
+        FROM dividend_latest e
+        WHERE e.event_date IS NOT NULL
+        GROUP BY e.ts_code, event_trade_date
     ),
     dividend_roll AS (
         SELECT
@@ -207,7 +215,7 @@ def build_insert_sql(start: str, end: str, write_start: str | None = None) -> st
             )::INTEGER AS dividend_event_count_365d
         FROM days_context d
         LEFT JOIN dividend_day dd
-          ON d.ts_code = dd.ts_code AND d.trade_date = dd.event_date
+          ON d.ts_code = dd.ts_code AND d.trade_date = dd.event_trade_date
     ),
     dividend_next AS (
         SELECT
@@ -215,7 +223,7 @@ def build_insert_sql(start: str, end: str, write_start: str | None = None) -> st
             d.trade_date,
             min(e.ex_date) AS next_announced_ex_date,
             arg_min(e.cash_div, e.ex_date) AS next_announced_cash_dividend,
-            count(*) > 0 AS has_dividend_announced_not_executed
+            count(e.ts_code) > 0 AS has_dividend_announced_not_executed
         FROM days d
         LEFT JOIN dividend_events e
           ON d.ts_code = e.ts_code
@@ -708,27 +716,35 @@ def main() -> None:
 
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with duckdb.connect(DB_PATH) as con, REPORT_PATH.open("a", encoding="utf-8") as report:
-        if not args.no_delete:
-            con.execute(f"DELETE FROM {q(TABLE_NAME)}")
-        for year in range(args.start_year, args.end_year + 1):
-            start = f"{year}-01-01"
-            end = f"{year}-12-31"
-            started_at = datetime.now().isoformat(timespec="seconds")
-            con.execute(build_insert_sql(start, end))
-            update_share_float_fields(con, start, end)
-            rows = con.execute(
-                f"SELECT count(*) FROM {q(TABLE_NAME)} WHERE trade_date BETWEEN DATE '{start}' AND DATE '{end}'"
-            ).fetchone()[0]
-            payload = {
-                "year": year,
-                "started_at": started_at,
-                "finished_at": datetime.now().isoformat(timespec="seconds"),
-                "rows": rows,
-            }
-            line = json.dumps(payload, ensure_ascii=False)
-            report.write(line + "\n")
-            report.flush()
-            print(line)
+        con.execute("BEGIN TRANSACTION")
+        try:
+            if not args.no_delete:
+                con.execute(f"DELETE FROM {q(TABLE_NAME)}")
+            for year in range(args.start_year, args.end_year + 1):
+                start = f"{year}-01-01"
+                end = f"{year}-12-31"
+                context_start = (date(year, 1, 1) - timedelta(days=370)).isoformat()
+                started_at = datetime.now().isoformat(timespec="seconds")
+                con.execute(build_insert_sql(context_start, end, write_start=start))
+                update_share_float_fields(con, start, end)
+                rows = con.execute(
+                    f"SELECT count(*) FROM {q(TABLE_NAME)} WHERE trade_date BETWEEN DATE '{start}' AND DATE '{end}'"
+                ).fetchone()[0]
+                payload = {
+                    "year": year,
+                    "started_at": started_at,
+                    "finished_at": datetime.now().isoformat(timespec="seconds"),
+                    "rows": rows,
+                }
+                line = json.dumps(payload, ensure_ascii=False)
+                report.write(line + "\n")
+                report.flush()
+                print(line)
+        except Exception:
+            con.execute("ROLLBACK")
+            raise
+        else:
+            con.execute("COMMIT")
 
 
 if __name__ == "__main__":

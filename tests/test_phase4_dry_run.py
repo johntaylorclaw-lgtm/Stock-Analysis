@@ -122,3 +122,39 @@ def test_cache_steps_can_be_skipped_in_dry_run(monkeypatch) -> None:
     )
 
     assert result["cache_results"] == []
+
+
+def test_required_cache_steps_cannot_be_skipped_for_real_build(monkeypatch) -> None:
+    class _Conn:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            return False
+
+        def execute(self, *_):
+            raise RuntimeError("calendar unavailable")
+
+    monkeypatch.setattr(feature_build, "connect", lambda: _Conn())
+    monkeypatch.setattr(feature_build, "init_database", lambda con: None)
+
+    try:
+        feature_build.build_features(
+            modules=["valuation_size"],
+            end_date="2026-05-26",
+            run_cache_steps=False,
+        )
+    except ValueError as exc:
+        assert "cannot skip required cache steps" in str(exc)
+        assert "valuation_size" in str(exc)
+    else:  # pragma: no cover - assertion branch
+        raise AssertionError("expected ValueError")
+
+
+def test_feature_build_results_do_not_use_built_status() -> None:
+    from pathlib import Path
+
+    source = Path("src/stock_maintainance/features/modules.py").read_text(encoding="utf-8")
+
+    assert 'status="built"' not in source
+    assert "status='built'" not in source

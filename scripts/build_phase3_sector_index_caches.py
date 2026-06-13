@@ -197,7 +197,7 @@ def concept_cache_sql(start: str | None = None, end: str | None = None, read_sta
             [
                 f"CASE WHEN count(ret_ratio) OVER w{n} >= {n} THEN exp(sum(ln(1 + ret_ratio)) OVER w{n}) - 1 ELSE NULL END AS concept_ret_{n}",
                 f"avg(amount_total) OVER w{n} AS concept_amount_ma_{n}",
-                f"avg(up_ratio) OVER w{n} AS concept_up_ratio_{n}",
+                f"avg(limit_up_ratio) OVER w{n} AS concept_up_ratio_{n}",
                 f"sum(limit_up_count) OVER w{n} AS concept_limit_up_count_{n}",
             ]
         )
@@ -240,7 +240,7 @@ def concept_cache_sql(start: str | None = None, end: str | None = None, read_sta
             cd.member_count::DOUBLE / nullif(mb.stock_count, 0) AS concept_member_share,
             CASE WHEN cd.ret_equal_weight > -100 THEN cd.ret_equal_weight / 100.0 ELSE NULL END AS ret_ratio,
             cd.amount_total,
-            CASE WHEN cd.member_count > 0 THEN cd.limit_up_count::DOUBLE / cd.member_count ELSE NULL END AS up_ratio,
+            CASE WHEN cd.member_count > 0 THEN cd.limit_up_count::DOUBLE / cd.member_count ELSE NULL END AS limit_up_ratio,
             cd.limit_up_count
         FROM concept_daily cd
         LEFT JOIN market_breadth_daily mb ON cd.trade_date = mb.trade_date

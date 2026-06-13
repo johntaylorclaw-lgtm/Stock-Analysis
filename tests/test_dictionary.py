@@ -38,3 +38,34 @@ def test_refresh_dictionary_skip_excel(tmp_path, monkeypatch) -> None:
     assert result.report["feature_view_field_counts"] == {"stock_features_core": 1}
     assert result.report["summary"]["build_excel"] is False
     assert result.json_path.exists()
+
+
+def test_resolve_node_path_prefers_env(monkeypatch, tmp_path) -> None:
+    node = tmp_path / "node"
+    node.write_text("#!/bin/sh\n", encoding="utf-8")
+    monkeypatch.setenv("STOCK_MAINTAIN_NODE", str(node))
+    monkeypatch.setattr(dictionary.shutil, "which", lambda name: None)
+
+    assert dictionary._resolve_node_path(tmp_path / "missing") == node
+
+
+def test_global_dictionary_builder_error_mentions_skip_excel(monkeypatch, tmp_path) -> None:
+    monkeypatch.delenv("STOCK_MAINTAIN_NODE", raising=False)
+    monkeypatch.setattr(dictionary.shutil, "which", lambda name: None)
+
+    try:
+        dictionary._run_global_dictionary_builder(node_path=tmp_path / "missing-node")
+    except ValueError as exc:
+        assert "--skip-excel" in str(exc)
+    else:  # pragma: no cover - assertion branch
+        raise AssertionError("expected ValueError")
+
+
+def test_node_command_uses_powershell_for_windows_node() -> None:
+    command = dictionary._node_command(
+        dictionary.Path("/mnt/c/Users/Administrator/node.exe"),
+        dictionary.Path("/mnt/d/project/scripts/build.mjs"),
+    )
+
+    assert command[0] == "powershell.exe"
+    assert "node.exe" in command[-1]

@@ -1,0 +1,127 @@
+{
+  "generated_at": "2026-06-09T20:06:32",
+  "as_of_date": "2026-06-09",
+  "dry_run": false,
+  "precheck": {
+    "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-09_precheck.json",
+    "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-09_precheck.md",
+    "status": "warning",
+    "latest_trade_date": "2026-06-09",
+    "anchor_data_date": "2026-06-08",
+    "validation_dates": [
+      "2026-06-08"
+    ],
+    "incremental_dates": [
+      "2026-06-09"
+    ],
+    "requires_confirmation": false
+  },
+  "postcheck": {
+    "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-09_postcheck.json",
+    "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-09_postcheck.md",
+    "status": "pass",
+    "latest_trade_date": "2026-06-09",
+    "anchor_data_date": "2026-06-09",
+    "validation_dates": [
+      "2026-06-09"
+    ],
+    "incremental_dates": [],
+    "requires_confirmation": false
+  },
+  "steps": [
+    {
+      "name": "sync-master",
+      "status": "done",
+      "detail": {
+        "stock_basic_info": 5853,
+        "stock_company_info": 6271,
+        "stock_status_history": 6261,
+        "trade_calendar": 7465,
+        "index_basic_info": 7821
+      }
+    },
+    {
+      "name": "validate-daily-precheck",
+      "status": "warning",
+      "detail": {
+        "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-09_precheck.json",
+        "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-09_precheck.md",
+        "status": "warning",
+        "latest_trade_date": "2026-06-09",
+        "anchor_data_date": "2026-06-08",
+        "validation_dates": [
+          "2026-06-08"
+        ],
+        "incremental_dates": [
+          "2026-06-09"
+        ],
+        "requires_confirmation": false
+      }
+    },
+    {
+      "name": "base-incremental",
+      "status": "done",
+      "detail": {
+        "daily": {
+          "stock_daily": 5515,
+          "stock_daily_basic": 5515,
+          "stock_limit_price": 7644,
+          "trade_dates": 1
+        },
+        "adj_factor": {
+          "stock_adj_factor": 5528,
+          "trade_dates": 1
+        },
+        "market_behavior": {
+          "stock_moneyflow_daily": 5198,
+          "margin_detail": 0,
+          "northbound_daily": 1,
+          "northbound_holding": 0,
+          "top_list_daily": 85,
+          "top_inst_detail": 854,
+          "trade_dates": 1
+        },
+        "index_daily": {
+          "index_daily": 14,
+          "index_count": 14
+        }
+      }
+    },
+    {
+      "name": "feature-build",
+      "status": "done",
+      "detail": {
+        "start_date": "2026-06-08",
+        "end_date": "2026-06-09",
+        "elapsed_seconds": 327.474,
+        "module_count": 17
+      }
+    },
+    {
+      "name": "create-views",
+      "status": "done",
+      "detail": "created analytical views"
+    },
+    {
+      "name": "validate-daily-postcheck",
+      "status": "pass",
+      "detail": {
+        "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-09_postcheck.json",
+        "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-09_postcheck.md",
+        "status": "pass",
+        "latest_trade_date": "2026-06-09",
+        "anchor_data_date": "2026-06-09",
+        "validation_dates": [
+          "2026-06-09"
+        ],
+        "incremental_dates": [],
+        "requires_confirmation": false
+      }
+    }
+  ],
+  "summary": {
+    "status": "warning",
+    "incremental_trade_day_count": 1,
+    "elapsed_seconds": 621.788
+  }
+}

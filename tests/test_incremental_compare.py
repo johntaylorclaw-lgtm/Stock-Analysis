@@ -85,3 +85,32 @@ def test_compare_incremental_window_reports_mismatch(tmp_path, monkeypatch) -> N
 
     assert not result.passed
     assert result.report["tables"][0]["mismatch_columns"] == {"value": 1}
+
+
+def test_compare_incremental_window_filters_snapshot_to_window(tmp_path, monkeypatch) -> None:
+    db_path = tmp_path / "test.duckdb"
+    reports_dir = tmp_path / "reports"
+    _make_test_db(db_path)
+    con = duckdb.connect(str(db_path))
+    try:
+        con.execute(
+            """
+            INSERT INTO snap_derived_daily_spine
+            VALUES ('000003.SZ', DATE '2026-05-31', 3.0, 'outside', current_timestamp)
+            """
+        )
+    finally:
+        con.close()
+    monkeypatch.setattr(incremental_compare, "REPORTS_DIR", reports_dir)
+
+    result = incremental_compare.compare_incremental_window(
+        start_date="2026-06-01",
+        end_date="2026-06-01",
+        tables=["derived_daily_spine"],
+        snapshot_prefix="snap_",
+        output_prefix="cmp",
+        db_path=db_path,
+    )
+
+    assert result.passed
+    assert result.report["tables"][0]["snapshot_rows"] == 2

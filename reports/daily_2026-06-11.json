@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-06-11T20:02:45",
+  "as_of_date": "2026-06-11",
+  "dry_run": true,
+  "precheck": {
+    "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-11_precheck.json",
+    "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-11_precheck.md",
+    "status": "warning",
+    "latest_trade_date": "2026-06-11",
+    "anchor_data_date": "2026-06-10",
+    "validation_dates": [
+      "2026-06-10"
+    ],
+    "incremental_dates": [
+      "2026-06-11"
+    ],
+    "requires_confirmation": false
+  },
+  "postcheck": null,
+  "steps": [
+    {
+      "name": "sync-master",
+      "status": "planned",
+      "detail": "refresh stock_basic/company/status/trade_calendar/index_basic before daily data"
+    },
+    {
+      "name": "validate-daily-precheck",
+      "status": "warning",
+      "detail": {
+        "json": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-11_precheck.json",
+        "markdown": "/mnt/d/Opencode Workspace/Stock_Maintainance/reports/daily_2026-06-11_precheck.md",
+        "status": "warning",
+        "latest_trade_date": "2026-06-11",
+        "anchor_data_date": "2026-06-10",
+        "validation_dates": [
+          "2026-06-10"
+        ],
+        "incremental_dates": [
+          "2026-06-11"
+        ],
+        "requires_confirmation": false
+      }
+    },
+    {
+      "name": "base-incremental",
+      "status": "planned",
+      "detail": {
+        "start_date": "20260611",
+        "end_date": "20260611",
+        "apis": [
+          "daily",
+          "daily_basic",
+          "stk_limit",
+          "adj_factor",
+          "moneyflow",
+          "margin_detail",
+          "moneyflow_hsgt",
+          "hk_hold",
+          "top_list",
+          "top_inst",
+          "index_daily"
+        ]
+      }
+    },
+    {
+      "name": "feature-build",
+      "status": "planned",
+      "detail": {
+        "start_date": "2026-06-10",
+        "end_date": "2026-06-11",
+        "elapsed_seconds": 0.232,
+        "module_count": 17
+      }
+    },
+    {
+      "name": "create-views",
+      "status": "planned",
+      "detail": "refresh stock_features_core/plus/full and analytical views"
+    },
+    {
+      "name": "validate-daily-postcheck",
+      "status": "planned",
+      "detail": "run after execution"
+    }
+  ],
+  "summary": {
+    "status": "warning",
+    "incremental_trade_day_count": 1,
+    "elapsed_seconds": 97.447
+  }
+}

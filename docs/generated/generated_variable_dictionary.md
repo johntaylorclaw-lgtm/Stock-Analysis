@@ -3,599 +3,599 @@
 
 | name | label_zh | table | module | tier | source | price_basis | missing_policy |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| cal_date | Calendar date | trade_calendar | base_calendar | p0 | trade_cal | not_price | required |
-| trade_calendar_exchange | Exchange calendar code | trade_calendar | base_calendar | p0 | trade_cal | not_price | required |
-| is_open | Whether market is open | trade_calendar | base_calendar | p0 | trade_cal | not_price | required |
-| pretrade_date | Previous open trade date | trade_calendar | base_calendar | p0 | trade_cal | not_price | source_optional |
-| next_trade_date | Next open trade date | trade_calendar | base_calendar | p0 | local_derived | not_price | source_optional |
-| stock_basic_info_ts_code | Tushare stock code | stock_basic_info | base_security | p0 | stock_basic | not_price | required |
-| symbol | Numeric symbol | stock_basic_info | base_security | p0 | stock_basic | not_price | required |
-| stock_basic_info_name | Stock short name | stock_basic_info | base_security | p0 | stock_basic | not_price | required |
-| area | Registered area | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
-| industry | Tushare industry | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
-| stock_basic_info_market | Market board | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
-| stock_basic_info_exchange | SSE/SZSE/BSE | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
-| stock_basic_info_list_status | L/D/P | stock_basic_info | base_security | p0 | stock_basic | not_price | required |
-| stock_basic_info_list_date | Listing date | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
-| delist_date | Delisting date | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
-| stock_basic_info_is_active | Currently listed | stock_basic_info | base_misc | p0 | local_derived | not_price | required |
-| stock_daily_ts_code | Stock code | stock_daily | base_price | p0 | daily | not_price | required |
-| stock_daily_trade_date | Trade date | stock_daily | base_price | p0 | daily | not_price | required |
-| stock_daily_open | Open price | stock_daily | base_price | p0 | daily | raw | source_optional |
-| stock_daily_high | High price | stock_daily | base_price | p0 | daily | raw | source_optional |
-| stock_daily_low | Low price | stock_daily | base_price | p0 | daily | raw | source_optional |
-| stock_daily_close | Close price | stock_daily | base_price | p0 | daily | raw | source_optional |
-| stock_daily_pre_close | Previous close | stock_daily | base_price | p0 | daily | raw | source_optional |
-| stock_daily_change | Price change | stock_daily | base_price | p0 | daily | not_price | source_optional |
-| stock_daily_pct_chg | Percent change | stock_daily | base_price | p0 | daily | not_price | source_optional |
-| stock_daily_volume | Volume in lots | stock_daily | base_price | p0 | daily | not_price | source_optional |
-| stock_daily_amount | Amount in thousand yuan | stock_daily | base_price | p0 | daily | not_price | source_optional |
-| amplitude | Amplitude percent | stock_daily | base_price | p0 | local_derived | not_price | source_optional |
-| stock_daily_basic_ts_code | Stock code | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | required |
-| stock_daily_basic_trade_date | Trade date | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | required |
-| stock_daily_basic_close | Close price | stock_daily_basic | base_valuation | p0 | daily_basic | raw | source_optional |
-| stock_daily_basic_turnover_rate | Turnover rate percent | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| turnover_rate_free | Free-float turnover rate percent | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| volume_ratio | Volume ratio | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| pe | PE | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| pe_ttm | PE TTM | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| pb | PB | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| ps | PS | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| ps_ttm | PS TTM | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| dv_ratio | Dividend yield | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| dv_ttm | Dividend yield TTM | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| stock_daily_basic_total_share | Total shares in 10k | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| float_share | Float shares in 10k | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| free_share | Free float shares in 10k | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| total_mv | Total market value in 10k yuan | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| circ_mv | Circulating market value in 10k yuan | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
-| stock_adj_factor_ts_code | Stock code | stock_adj_factor | base_price | p0 | adj_factor | adjustment_factor | required |
-| stock_adj_factor_trade_date | Trade date | stock_adj_factor | base_price | p0 | adj_factor | adjustment_factor | required |
-| adj_factor | Tushare adjustment factor | stock_adj_factor | base_price | p0 | adj_factor | adjustment_factor | source_optional |
-| factor_source | Factor source and interpretation | stock_adj_factor | base_price | p0 | local_derived | adjustment_factor | source_optional |
-| stock_limit_price_ts_code | Stock code | stock_limit_price | base_price | p0 | stk_limit | not_price | required |
-| stock_limit_price_trade_date | Trade date | stock_limit_price | base_price | p0 | stk_limit | not_price | required |
-| up_limit | Up limit price | stock_limit_price | base_price | p0 | stk_limit | not_price | source_optional |
-| down_limit | Down limit price | stock_limit_price | base_price | p0 | stk_limit | not_price | source_optional |
-| stock_company_info_ts_code | Stock code | stock_company_info | base_security | core | stock_company | not_price | required |
-| company_name | Company full name | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| company_id | Company id | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| chairman | Chairman | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| manager | General manager | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| secretary | Board secretary | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| registered_capital | Registered capital | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| setup_date | Setup date | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| province | Province | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| city | City | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| website | Website | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| email | Email | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| office | Office address | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| business_scope | Business scope | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| employees | Employees | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| main_business | Main business | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| stock_company_info_exchange | Exchange | stock_company_info | base_security | core | stock_company | not_price | source_optional |
-| stock_status_history_ts_code | Stock code | stock_status_history | base_misc | core | local_derived | not_price | required |
-| stock_status_history_effective_date | Status effective date | stock_status_history | base_misc | core | local_derived | not_price | required |
-| stock_status_history_list_status | Listing status | stock_status_history | base_security | core | stock_basic | not_price | required |
-| stock_status_history_name | Stock name | stock_status_history | base_security | core | stock_basic | not_price | source_optional |
-| stock_status_history_is_active | Whether stock is active after this status | stock_status_history | base_misc | core | local_derived | not_price | required |
-| change_reason | Status change reason | stock_status_history | base_misc | core | local_derived | not_price | source_optional |
-| stock_moneyflow_daily_ts_code | Stock code | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | required |
-| stock_moneyflow_daily_trade_date | Trade date | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | required |
-| buy_sm_vol | Small buy volume | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| buy_sm_amount | Small buy amount | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| sell_sm_vol | Small sell volume | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| sell_sm_amount | Small sell amount | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| buy_md_vol | Medium buy volume | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| buy_md_amount | Medium buy amount | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| sell_md_vol | Medium sell volume | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| sell_md_amount | Medium sell amount | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| buy_lg_vol | Large buy volume | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| buy_lg_amount | Large buy amount | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| sell_lg_vol | Large sell volume | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| sell_lg_amount | Large sell amount | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| buy_elg_vol | Extra-large buy volume | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| buy_elg_amount | Extra-large buy amount | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| sell_elg_vol | Extra-large sell volume | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| sell_elg_amount | Extra-large sell amount | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| net_mf_vol | Net money flow volume | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| net_mf_amount | Net money flow amount | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
-| margin_detail_ts_code | Stock code | margin_detail | base_capital_flow | core | margin_detail | not_price | required |
-| margin_detail_trade_date | Trade date | margin_detail | base_capital_flow | core | margin_detail | not_price | required |
-| margin_balance | Margin balance | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
-| short_balance | Short selling balance | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
-| margin_buy | Margin buy amount | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
-| short_volume | Short selling volume | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
-| margin_repay | Margin repayment | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
-| short_repay_volume | Short repayment volume | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
-| short_sell_volume | Short sell volume | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
-| total_balance | Margin and short total balance | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
-| northbound_daily_trade_date | Trade date | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | required |
-| ggt_ss | Southbound Shanghai | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
-| ggt_sz | Southbound Shenzhen | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
-| hgt | Shanghai northbound | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
-| sgt | Shenzhen northbound | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
-| north_money | Northbound money | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
-| south_money | Southbound money | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
-| northbound_holding_ts_code | Stock code | northbound_holding | base_capital_flow | core | hk_hold | not_price | required |
-| northbound_holding_trade_date | Trade date | northbound_holding | base_capital_flow | core | hk_hold | not_price | required |
-| hk_code | HK holding code | northbound_holding | base_capital_flow | core | hk_hold | not_price | source_optional |
-| northbound_holding_name | Stock name | northbound_holding | base_capital_flow | core | hk_hold | not_price | source_optional |
-| hold_shares | Holding shares | northbound_holding | base_capital_flow | core | hk_hold | not_price | source_optional |
-| hold_ratio | Holding ratio | northbound_holding | base_capital_flow | core | hk_hold | not_price | source_optional |
-| exchange_type | Connect exchange | northbound_holding | base_capital_flow | core | hk_hold | not_price | required |
-| top_list_daily_ts_code | Stock code | top_list_daily | base_capital_flow | core | top_list | not_price | required |
-| top_list_daily_trade_date | Trade date | top_list_daily | base_capital_flow | core | top_list | not_price | required |
-| top_list_daily_name | Stock name | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| top_list_daily_close | Close price | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| pct_change | Percent change | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| top_list_daily_turnover_rate | Turnover rate | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| top_list_daily_amount | Amount | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| l_sell | List sell amount | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| l_buy | List buy amount | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| l_amount | List amount | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| net_amount | Net amount | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| net_rate | Net rate | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| amount_rate | Amount rate | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| float_values | Float market value | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
-| top_list_daily_reason | Top list reason | top_list_daily | base_capital_flow | core | top_list | not_price | required |
-| top_inst_detail_ts_code | Stock code | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
-| top_inst_detail_trade_date | Trade date | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
-| exalter | Seat name | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
-| buy | Buy amount | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
-| buy_rate | Buy rate | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
-| sell | Sell amount | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
-| sell_rate | Sell rate | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
-| net_buy | Net buy | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
-| side | Buy/sell side | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
-| top_inst_detail_reason | Top list reason | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
-| financial_dividend_raw_ts_code | Stock code | financial_dividend_raw | base_financial | core | dividend | not_price | required |
-| financial_dividend_raw_end_date | Report period | financial_dividend_raw | base_financial | core | dividend | not_price | required |
-| financial_dividend_raw_ann_date | Announcement date | financial_dividend_raw | base_financial | core | dividend | not_price | required |
-| div_proc | Dividend process | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| stk_div | Bonus shares | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| stk_bo_rate | Bonus share rate | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| stk_co_rate | Conversion share rate | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| cash_div | Cash dividend | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| cash_div_tax | Cash dividend after tax | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| record_date | Record date | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| ex_date | Ex-dividend date | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| pay_date | Payment date | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| div_listdate | Dividend list date | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
-| financial_disclosure_schedule_ts_code | Stock code | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | required |
-| financial_disclosure_schedule_ann_date | Announcement date | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | source_optional |
-| financial_disclosure_schedule_end_date | Report period | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | required |
-| pre_date | Planned disclosure date | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | source_optional |
-| actual_date | Actual disclosure date | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | source_optional |
-| modify_date | Modified disclosure date | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | source_optional |
-| pledge_stat_ts_code | Stock code | pledge_stat | base_misc | core | pledge_stat | not_price | required |
-| pledge_stat_end_date | Statistic end date | pledge_stat | base_misc | core | pledge_stat | not_price | required |
-| pledge_count | Pledge count | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
-| unrest_pledge | Unrestricted pledged shares | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
-| rest_pledge | Restricted pledged shares | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
-| pledge_stat_total_share | Total shares | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
-| pledge_ratio | Pledge ratio | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
-| index_basic_info_index_code | Index code | index_basic_info | base_index | p0 | index_basic | not_price | required |
-| index_name | Index name | index_basic_info | base_index | p0 | index_basic | not_price | required |
-| index_basic_info_market | Index market | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
-| publisher | Publisher | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
-| category | Category | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
-| base_date | Base date | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
-| base_point | Base point | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
-| index_basic_info_list_date | List date | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
-| index_daily_index_code | Index code | index_daily | base_index | p0 | index_daily | not_price | required |
-| index_daily_trade_date | Trade date | index_daily | base_index | p0 | index_daily | not_price | required |
-| index_daily_open | Open | index_daily | base_index | p0 | index_daily | not_price | source_optional |
-| index_daily_high | High | index_daily | base_index | p0 | index_daily | not_price | source_optional |
-| index_daily_low | Low | index_daily | base_index | p0 | index_daily | not_price | source_optional |
-| index_daily_close | Close | index_daily | base_index | p0 | index_daily | not_price | source_optional |
-| index_daily_pre_close | Previous close | index_daily | base_index | p0 | index_daily | not_price | source_optional |
-| index_daily_change | Change | index_daily | base_index | p0 | index_daily | not_price | source_optional |
-| index_daily_pct_chg | Percent change | index_daily | base_index | p0 | index_daily | not_price | source_optional |
-| index_daily_volume | Volume | index_daily | base_index | p0 | index_daily | not_price | source_optional |
-| index_daily_amount | Amount | index_daily | base_index | p0 | index_daily | not_price | source_optional |
-| index_weight_index_code | Index code | index_weight | base_index | p0 | index_weight | not_price | required |
-| con_code | Constituent stock code | index_weight | base_index | p0 | index_weight | not_price | required |
-| index_weight_trade_date | Weight date | index_weight | base_index | p0 | index_weight | not_price | required |
-| weight | Weight percent | index_weight | base_index | p0 | index_weight | not_price | source_optional |
-| sw_industry_classify_industry_code | Industry index code | sw_industry_classify | base_sector | core | index_classify | not_price | required |
-| sw_industry_classify_industry_name | Industry name | sw_industry_classify | base_sector | core | index_classify | not_price | required |
-| level | Industry level | sw_industry_classify | base_sector | core | index_classify | not_price | source_optional |
-| sw_code | Shenwan numeric industry code | sw_industry_classify | base_sector | core | index_classify | not_price | source_optional |
-| parent_code | Parent industry code | sw_industry_classify | base_sector | core | index_classify | not_price | source_optional |
-| src | Classification source | sw_industry_classify | base_sector | core | index_classify | not_price | required |
-| sw_industry_member_industry_code | Industry code | sw_industry_member | base_sector | core | index_member_all | not_price | required |
-| sw_industry_member_industry_name | Industry name | sw_industry_member | base_sector | core | index_member_all | not_price | source_optional |
-| sw_industry_member_ts_code | Stock code | sw_industry_member | base_sector | core | index_member_all | not_price | required |
-| sw_industry_member_stock_name | Stock name | sw_industry_member | base_sector | core | index_member_all | not_price | source_optional |
-| sw_industry_member_in_date | Membership start date | sw_industry_member | base_sector | core | index_member_all | not_price | required |
-| sw_industry_member_out_date | Membership end date | sw_industry_member | base_sector | core | index_member_all | not_price | source_optional |
-| is_new | Whether current/new membership | sw_industry_member | base_sector | core | index_member_all | not_price | source_optional |
-| concept_basic_concept_id | Concept id | concept_basic | base_sector | core | concept | not_price | required |
-| concept_basic_concept_name | Concept name | concept_basic | base_sector | core | concept | not_price | required |
-| source | Concept source | concept_basic | base_sector | core | concept | not_price | source_optional |
-| concept_member_concept_id | Concept id | concept_member | base_sector | core | concept_detail | not_price | required |
-| concept_member_concept_name | Concept name | concept_member | base_sector | core | concept_detail | not_price | source_optional |
-| concept_member_ts_code | Stock code | concept_member | base_sector | core | concept_detail | not_price | required |
-| concept_member_stock_name | Stock name | concept_member | base_sector | core | concept_detail | not_price | source_optional |
-| concept_member_in_date | Membership start date | concept_member | base_sector | core | concept_detail | not_price | source_optional |
-| concept_member_out_date | Membership end date | concept_member | base_sector | core | concept_detail | not_price | source_optional |
-| financial_income_raw_ts_code | Stock code | financial_income_raw | base_financial | p0 | income | not_price | required |
-| financial_income_raw_ann_date | Announcement date | financial_income_raw | base_financial | p0 | income | not_price | required |
-| financial_income_raw_first_ann_date | First announcement date | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| financial_income_raw_end_date | Report period | financial_income_raw | base_financial | p0 | income | not_price | required |
-| financial_income_raw_report_type | Report type | financial_income_raw | base_financial | p0 | income | not_price | required |
-| financial_income_raw_comp_type | Company report type | financial_income_raw | base_financial | p0 | income | not_price | required |
-| total_revenue | Total revenue | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| revenue | Operating revenue | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| total_cogs | Total operating costs | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| operating_cost | Operating cost | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| selling_expense | Selling expense | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| admin_expense | Administrative expense | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| rd_expense | R&D expense | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| finance_expense | Finance expense | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| operating_profit | Operating profit | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| total_profit | Total profit | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| income_tax | Income tax | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| net_profit | Net profit | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| net_profit_attr_parent | Net profit attributable to parent | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| financial_income_raw_ebit | EBIT | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| financial_income_raw_ebitda | EBITDA | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| financial_income_raw_effective_date | Point-in-time effective date | financial_income_raw | base_financial | p0 | local_derived | not_price | source_optional |
-| financial_balance_raw_ts_code | Stock code | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
-| financial_balance_raw_ann_date | Announcement date | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
-| financial_balance_raw_first_ann_date | First announcement date | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| financial_balance_raw_end_date | Report period | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
-| financial_balance_raw_report_type | Report type | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
-| financial_balance_raw_comp_type | Company report type | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
-| financial_balance_raw_total_share | Total shares | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| cash_and_equivalents | Cash and equivalents | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| accounts_receivable | Accounts receivable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| inventories | Inventories | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| current_assets | Current assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| financial_balance_raw_fixed_assets | Fixed assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| construction_in_process | Construction in process | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| intangible_assets | Intangible assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| goodwill | Goodwill | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| total_assets | Total assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| short_term_borrowings | Short-term borrowings | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| accounts_payable | Accounts payable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| current_liabilities | Current liabilities | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| long_term_borrowings | Long-term borrowings | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| bonds_payable | Bonds payable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| total_liabilities | Total liabilities | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| total_equity | Total equity incl minority interest | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| equity_attr_parent | Equity attributable to parent | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| minority_interest | Minority interest | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| financial_balance_raw_effective_date | Point-in-time effective date | financial_balance_raw | base_financial | p0 | local_derived | not_price | source_optional |
-| financial_cashflow_raw_ts_code | Stock code | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
-| financial_cashflow_raw_ann_date | Announcement date | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
-| financial_cashflow_raw_first_ann_date | First announcement date | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| financial_cashflow_raw_end_date | Report period | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
-| financial_cashflow_raw_report_type | Report type | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
-| financial_cashflow_raw_comp_type | Company report type | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
-| cash_received_from_sales | Cash received from sales | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| total_operating_cash_inflow | Total operating cash inflow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_paid_for_goods | Cash paid for goods and services | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_paid_to_employees | Cash paid to employees | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| taxes_paid | Taxes paid | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cf_from_operating | Net operating cash flow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_paid_for_capex | Cash paid for fixed/intangible assets | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_paid_for_investment | Cash paid for investment | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cf_from_investing | Net investing cash flow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_received_from_borrowing | Cash received from borrowing | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_paid_for_debt | Cash paid for debt repayment | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_paid_for_dividend_interest | Cash paid for dividends/profits/interests | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cf_from_financing | Net financing cash flow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| free_cashflow | Free cash flow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| net_increase_in_cash | Net increase in cash and equivalents | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_at_beginning | Cash at beginning | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_at_end | Cash at end | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| financial_cashflow_raw_effective_date | Point-in-time effective date | financial_cashflow_raw | base_financial | p0 | local_derived | not_price | source_optional |
-| financial_indicator_raw_ts_code | Stock code | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | required |
-| financial_indicator_raw_ann_date | Announcement date | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | required |
-| financial_indicator_raw_end_date | Report period | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | required |
-| eps | Basic EPS | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| dt_eps | Diluted EPS | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| total_revenue_ps | Total revenue per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| revenue_ps | Revenue per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| capital_rese_ps | Capital reserve per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| surplus_rese_ps | Surplus reserve per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| undist_profit_ps | Undistributed profit per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| extra_item | Extraordinary items | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| profit_dedt | Deducted net profit | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| gross_margin | Gross margin percent | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| current_ratio | Current ratio | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| quick_ratio | Quick ratio | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| cash_ratio | Cash ratio | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ar_turn | Accounts receivable turnover | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ca_turn | Current asset turnover | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| fa_turn | Fixed asset turnover | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| assets_turn | Total asset turnover | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| op_income | Operating income | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| financial_indicator_raw_ebit | EBIT | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| financial_indicator_raw_ebitda | EBITDA | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| fcff | Free cash flow to firm | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| fcfe | Free cash flow to equity | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| current_exint | Current liabilities excluding interest | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| noncurrent_exint | Non-current liabilities excluding interest | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| interestdebt | Interest-bearing debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| netdebt | Net debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| tangible_asset | Tangible assets | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| working_capital | Working capital | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| networking_capital | Net working capital | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| invest_capital | Invested capital | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| retained_earnings | Retained earnings | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| diluted2_eps | Diluted EPS alternate | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| bps | Book value per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ocfps | Operating cash flow per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| retainedps | Retained earnings per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| cfps | Cash flow per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ebit_ps | EBIT per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| fcff_ps | FCFF per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| fcfe_ps | FCFE per share | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| netprofit_margin | Net profit margin | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| grossprofit_margin | Gross profit margin | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| cogs_of_sales | COGS to sales | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| expense_of_sales | Expense to sales | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| profit_to_gr | Profit to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| saleexp_to_gr | Selling expense to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| adminexp_of_gr | Admin expense to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| finaexp_of_gr | Finance expense to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| impai_ttm | Impairment TTM | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| gc_of_gr | Gross cost to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| op_of_gr | Operating profit to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ebit_of_gr | EBIT to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roe | ROE | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roe_waa | Weighted average ROE | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roe_dt | Deducted ROE | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roa | ROA | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| npta | Net profit to total assets | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roic | ROIC | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roe_yearly | Annualized ROE | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roa2_yearly | Annualized ROA | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| debt_to_assets | Debt to assets | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| assets_to_eqt | Assets to equity | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| dp_assets_to_eqt | DuPont assets to equity | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ca_to_assets | Current assets to assets | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| nca_to_assets | Non-current assets to assets | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| tbassets_to_totalassets | Tangible assets to total assets | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| int_to_talcap | Intangible assets to total capital | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| eqt_to_talcapital | Equity to total capital | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| currentdebt_to_debt | Current debt to total debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| longdeb_to_debt | Long debt to total debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ocf_to_shortdebt | Operating cash flow to short debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| debt_to_eqt | Debt to equity | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| eqt_to_debt | Equity to debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| eqt_to_interestdebt | Equity to interest-bearing debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| tangibleasset_to_debt | Tangible assets to debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| tangasset_to_intdebt | Tangible assets to interest debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| tangibleasset_to_netdebt | Tangible assets to net debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ocf_to_debt | Operating cash flow to debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ocf_to_interestdebt | Operating cash flow to interest debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ocf_to_netdebt | Operating cash flow to net debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ebit_to_interest | EBIT to interest | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| longdebt_to_workingcapital | Long debt to working capital | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ebitda_to_debt | EBITDA to debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| turn_days | Operating cycle days | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roa_yearly | Annualized ROA alternate | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roa_dp | DuPont ROA | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| financial_indicator_raw_fixed_assets | Fixed assets | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| profit_prefin_exp | Profit before finance expense | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| non_op_profit | Non-operating profit | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| op_to_ebt | Operating profit to EBT | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| nop_to_ebt | Non-operating profit to EBT | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ocf_to_profit | Operating cash flow to profit | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| cash_to_liqdebt | Cash to liquid debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| cash_to_liqdebt_withinterest | Cash to interest-bearing liquid debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| op_to_liqdebt | Operating profit to liquid debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| op_to_debt | Operating profit to debt | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roic_yearly | Annualized ROIC | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| total_fa_trun | Fixed asset turnover | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| profit_to_op | Profit to operating income | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_opincome | Quarterly operating income | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_investincome | Quarterly investment income | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_dtprofit | Quarterly deducted profit | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_eps | Quarterly EPS | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_netprofit_margin | Quarterly net profit margin | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_gsprofit_margin | Quarterly gross profit margin | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_exp_to_sales | Quarterly expense to sales | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_profit_to_gr | Quarterly profit to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_saleexp_to_gr | Quarterly selling expense to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_adminexp_to_gr | Quarterly admin expense to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_finaexp_to_gr | Quarterly finance expense to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_impair_to_gr_ttm | Quarterly impairment to gross revenue TTM | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_gc_to_gr | Quarterly gross cost to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_op_to_gr | Quarterly operating profit to gross revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_roe | Quarterly ROE | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_dt_roe | Quarterly deducted ROE | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_npta | Quarterly net profit to total assets | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_opincome_to_ebt | Quarterly operating income to EBT | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_investincome_to_ebt | Quarterly investment income to EBT | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_dtprofit_to_profit | Quarterly deducted profit to profit | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_salescash_to_or | Quarterly sales cash to operating revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_ocf_to_sales | Quarterly operating cash flow to sales | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_ocf_to_or | Quarterly operating cash flow to operating revenue | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| basic_eps_yoy | Basic EPS YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| dt_eps_yoy | Diluted EPS YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| cfps_yoy | Cash flow per share YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| op_yoy | Operating profit YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ebt_yoy | EBT YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| netprofit_yoy | Net profit YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| dt_netprofit_yoy | Deducted net profit YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| ocf_yoy | Operating cash flow YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| roe_yoy | ROE YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| bps_yoy | BPS YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| assets_yoy | Assets YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| eqt_yoy | Equity YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| tr_yoy | Total revenue YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| or_yoy | Operating revenue YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_gr_yoy | Quarterly gross revenue YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_gr_qoq | Quarterly gross revenue QoQ | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_sales_yoy | Quarterly sales YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_sales_qoq | Quarterly sales QoQ | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_op_yoy | Quarterly operating profit YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_op_qoq | Quarterly operating profit QoQ | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_profit_yoy | Quarterly profit YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_profit_qoq | Quarterly profit QoQ | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_netprofit_yoy | Quarterly net profit YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| q_netprofit_qoq | Quarterly net profit QoQ | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| equity_yoy | Equity YoY | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| rd_exp | R&D expense | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
-| financial_indicator_raw_effective_date | Point-in-time effective date | financial_indicator_raw | base_financial | p0 | local_derived | not_price | source_optional |
-| api_name | Tushare API name | financial_event_raw | base_financial | core | local_derived | not_price | required |
-| financial_event_raw_ts_code | Stock code | financial_event_raw | base_financial | core | local_derived | not_price | required |
-| financial_event_raw_ann_date | Announcement date when available | financial_event_raw | base_financial | core | local_derived | not_price | source_optional |
-| financial_event_raw_end_date | Report period when available | financial_event_raw | base_financial | core | local_derived | not_price | source_optional |
-| event_date | Event date when available | financial_event_raw | base_financial | core | local_derived | not_price | source_optional |
-| basic_eps | Basic earnings per share | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| diluted_eps | Diluted earnings per share | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| business_tax_surcharge | Business tax and surcharge | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| operating_expense | Operating expense | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| asset_impairment_loss | Asset impairment loss | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| investment_income | Investment income | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| associate_investment_income | Investment income from associates and joint ventures | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| fair_value_change_income | Gain or loss from fair value changes | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| foreign_exchange_gain | Foreign exchange gain | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| non_operating_income | Non-operating income | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| non_operating_expense | Non-operating expense | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| minority_profit | Minority shareholder profit or loss | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| continued_net_profit | Net profit from continuing operations | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| total_comprehensive_income | Total comprehensive income | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| comprehensive_income_parent | Comprehensive income attributable to parent | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| comprehensive_income_minority | Comprehensive income attributable to minority shareholders | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| interest_income | Interest income | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| interest_expense | Interest expense | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| commission_income | Fee and commission income | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| commission_expense | Fee and commission expense | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| premium_income | Insurance premium income | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| premium_earned | Earned premium | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| insurance_expense | Insurance expense | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| compensation_payout | Insurance compensation payout | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| financial_income_raw_undistributed_profit | Undistributed profit | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
-| trading_financial_assets | Trading financial assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| derivative_financial_assets | Derivative financial assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| notes_receivable | Notes receivable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| accounts_receivable_bill | Accounts receivable and notes receivable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| prepayment | Prepayments | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| other_receivable | Other receivables | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| total_other_receivable | Total other receivables | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| contract_assets | Contract assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| other_current_assets | Other current assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| total_noncurrent_assets | Total non-current assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| long_term_equity_investment | Long-term equity investment | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| investment_property | Investment property | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| fixed_assets_total | Total fixed assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| construction_in_process_total | Total construction in process | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| right_of_use_assets | Right-of-use assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| development_expenditure | Development expenditure | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| long_term_deferred_expense | Long-term deferred expense | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| deferred_tax_assets | Deferred tax assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| other_noncurrent_assets | Other non-current assets | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| notes_payable | Notes payable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| advance_receipts | Advance receipts | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| contract_liabilities | Contract liabilities | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| payroll_payable | Payroll payable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| taxes_payable | Taxes payable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| interest_payable | Interest payable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| dividend_payable | Dividend payable | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| other_payable | Other payables | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| total_other_payable | Total other payables | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| noncurrent_liability_due_1y | Non-current liabilities due within one year | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| other_current_liabilities | Other current liabilities | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| total_noncurrent_liabilities | Total non-current liabilities | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| long_term_payable | Long-term payables | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| estimated_liabilities | Estimated liabilities | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| deferred_income | Deferred income | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| deferred_tax_liabilities | Deferred tax liabilities | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| other_noncurrent_liabilities | Other non-current liabilities | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| total_liabilities_and_equity | Total liabilities and shareholders equity | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| capital_reserve | Capital reserve | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| surplus_reserve | Surplus reserve | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| financial_balance_raw_undistributed_profit | Undistributed profit | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| treasury_share | Treasury shares | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| other_comprehensive_income | Other comprehensive income | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| special_reserve | Special reserve | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
-| tax_refund_received | Tax refund received | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| other_operating_cash_received | Other cash received from operating activities | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| total_operating_cash_outflow | Total operating cash outflow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| other_operating_cash_paid | Other cash paid for operating activities | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_received_from_investment_withdrawal | Cash received from withdrawal of investments | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_received_from_asset_disposal | Cash received from disposal of fixed/intangible assets | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_received_from_subsidiary_disposal | Cash received from disposal of subsidiaries | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| total_investing_cash_inflow | Total investing cash inflow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_paid_for_subsidiary_acquisition | Cash paid for acquisition of subsidiaries | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| other_investing_cash_paid | Other cash paid for investing activities | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| total_investing_cash_outflow | Total investing cash outflow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_received_from_investors | Cash received from investors | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| cash_received_from_bond_issue | Cash received from bond issue | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| other_financing_cash_received | Other cash received from financing activities | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| total_financing_cash_inflow | Total financing cash inflow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| total_financing_cash_outflow | Total financing cash outflow | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| other_financing_cash_paid | Other cash paid for financing activities | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| fx_effect_on_cash | Effect of foreign exchange rate changes on cash | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| begin_cash_balance | Beginning cash balance | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| end_cash_balance | Ending cash balance | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| net_profit_indirect | Net profit in indirect cashflow reconciliation | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| asset_depreciation | Depreciation of fixed, oil and gas, and biological assets | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| intangible_asset_amortization | Amortization of intangible assets | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| deferred_expense_amortization | Amortization of long-term deferred expenses | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| financial_expense_indirect | Financial expense in indirect cashflow reconciliation | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| investment_loss_indirect | Investment loss in indirect cashflow reconciliation | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| credit_impairment_loss_indirect | Credit impairment loss in indirect cashflow reconciliation | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| inventory_decrease | Decrease in inventories | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| operating_receivable_decrease | Decrease in operating receivables | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| operating_payable_increase | Increase in operating payables | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
-| latest_report_end_date | ????????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| latest_financial_effective_date | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| latest_financial_ann_date | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| report_age_days | ????????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| report_lag_days | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| report_year | ???? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| report_quarter | ???? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| report_period_type | ????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| is_annual_report | ???? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| is_interim_report | ???? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| is_q1_report | ????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| is_q3_report | ????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| income_report_end_date | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| balance_report_end_date | ?????????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| cashflow_report_end_date | ?????????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| indicator_report_end_date | ?????????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| statement_available_count | ??????????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| has_income_statement | ?????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| has_balance_sheet | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| has_cashflow_statement | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| has_indicator_statement | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| next_disclosure_pre_date | ????????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| days_to_next_disclosure | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| has_forecast_asof | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| latest_forecast_end_date | ??????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| has_express_asof | ???????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
-| latest_express_end_date | ??????? | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| cal_date | 日历日期 | trade_calendar | base_calendar | p0 | trade_cal | not_price | required |
+| trade_calendar_exchange | 交易所日历代码 | trade_calendar | base_calendar | p0 | trade_cal | not_price | required |
+| is_open | 是否开市 | trade_calendar | base_calendar | p0 | trade_cal | not_price | required |
+| pretrade_date | 上一开市交易日 | trade_calendar | base_calendar | p0 | trade_cal | not_price | source_optional |
+| next_trade_date | 下一开市交易日 | trade_calendar | base_calendar | p0 | local_derived | not_price | source_optional |
+| stock_basic_info_ts_code | Tushare股票代码 | stock_basic_info | base_security | p0 | stock_basic | not_price | required |
+| symbol | 股票数字代码 | stock_basic_info | base_security | p0 | stock_basic | not_price | required |
+| stock_basic_info_name | 股票简称 | stock_basic_info | base_security | p0 | stock_basic | not_price | required |
+| area | 注册地区 | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
+| industry | Tushare行业 | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
+| stock_basic_info_market | 上市板块 | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
+| stock_basic_info_exchange | 交易所代码 | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
+| stock_basic_info_list_status | 上市状态代码 | stock_basic_info | base_security | p0 | stock_basic | not_price | required |
+| stock_basic_info_list_date | 上市日期 | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
+| delist_date | 退市日期 | stock_basic_info | base_security | p0 | stock_basic | not_price | source_optional |
+| stock_basic_info_is_active | 当前是否上市 | stock_basic_info | base_misc | p0 | local_derived | not_price | required |
+| stock_daily_ts_code | 股票代码 | stock_daily | base_price | p0 | daily | not_price | required |
+| stock_daily_trade_date | 交易日期 | stock_daily | base_price | p0 | daily | not_price | required |
+| stock_daily_open | 开盘价 | stock_daily | base_price | p0 | daily | raw | source_optional |
+| stock_daily_high | 最高价 | stock_daily | base_price | p0 | daily | raw | source_optional |
+| stock_daily_low | 最低价 | stock_daily | base_price | p0 | daily | raw | source_optional |
+| stock_daily_close | 收盘价 | stock_daily | base_price | p0 | daily | raw | source_optional |
+| stock_daily_pre_close | 前收盘价 | stock_daily | base_price | p0 | daily | raw | source_optional |
+| stock_daily_change | 涨跌额 | stock_daily | base_price | p0 | daily | not_price | source_optional |
+| stock_daily_pct_chg | 涨跌幅 | stock_daily | base_price | p0 | daily | not_price | source_optional |
+| stock_daily_volume | 成交量（手） | stock_daily | base_price | p0 | daily | not_price | source_optional |
+| stock_daily_amount | 成交额（千元） | stock_daily | base_price | p0 | daily | not_price | source_optional |
+| amplitude | 振幅 | stock_daily | base_price | p0 | local_derived | not_price | source_optional |
+| stock_daily_basic_ts_code | 股票代码 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | required |
+| stock_daily_basic_trade_date | 交易日期 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | required |
+| stock_daily_basic_close | 收盘价 | stock_daily_basic | base_valuation | p0 | daily_basic | raw | source_optional |
+| stock_daily_basic_turnover_rate | 换手率 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| turnover_rate_free | 自由流通换手率 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| volume_ratio | 量比 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| pe | 市盈率 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| pe_ttm | 滚动市盈率 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| pb | 市净率 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| ps | 市销率 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| ps_ttm | 滚动市销率 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| dv_ratio | 股息率 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| dv_ttm | 滚动股息率 | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| stock_daily_basic_total_share | 总股本（万股） | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| float_share | 流通股本（万股） | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| free_share | 自由流通股本（万股） | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| total_mv | 总市值（万元） | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| circ_mv | 流通市值（万元） | stock_daily_basic | base_valuation | p0 | daily_basic | not_price | source_optional |
+| stock_adj_factor_ts_code | 股票代码 | stock_adj_factor | base_price | p0 | adj_factor | adjustment_factor | required |
+| stock_adj_factor_trade_date | 交易日期 | stock_adj_factor | base_price | p0 | adj_factor | adjustment_factor | required |
+| adj_factor | Tushare复权因子 | stock_adj_factor | base_price | p0 | adj_factor | adjustment_factor | source_optional |
+| factor_source | 复权因子来源与口径说明 | stock_adj_factor | base_price | p0 | local_derived | adjustment_factor | source_optional |
+| stock_limit_price_ts_code | 股票代码 | stock_limit_price | base_price | p0 | stk_limit | not_price | required |
+| stock_limit_price_trade_date | 交易日期 | stock_limit_price | base_price | p0 | stk_limit | not_price | required |
+| up_limit | 涨停价 | stock_limit_price | base_price | p0 | stk_limit | not_price | source_optional |
+| down_limit | 跌停价 | stock_limit_price | base_price | p0 | stk_limit | not_price | source_optional |
+| stock_company_info_ts_code | 股票代码 | stock_company_info | base_security | core | stock_company | not_price | required |
+| company_name | 公司全称 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| company_id | 公司ID | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| chairman | 董事长 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| manager | 总经理 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| secretary | 董事会秘书 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| registered_capital | 注册资本 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| setup_date | 成立日期 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| province | 省份 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| city | 城市 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| website | 公司网站 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| email | 电子邮箱 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| office | 办公地址 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| business_scope | 经营范围 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| employees | 员工人数 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| main_business | 主营业务 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| stock_company_info_exchange | 交易所 | stock_company_info | base_security | core | stock_company | not_price | source_optional |
+| stock_status_history_ts_code | 股票代码 | stock_status_history | base_misc | core | local_derived | not_price | required |
+| stock_status_history_effective_date | 上市状态生效日期 | stock_status_history | base_misc | core | local_derived | not_price | required |
+| stock_status_history_list_status | 上市状态 | stock_status_history | base_security | core | stock_basic | not_price | required |
+| stock_status_history_name | 股票名称 | stock_status_history | base_security | core | stock_basic | not_price | source_optional |
+| stock_status_history_is_active | 该状态后是否有效上市 | stock_status_history | base_misc | core | local_derived | not_price | required |
+| change_reason | 状态变更原因 | stock_status_history | base_misc | core | local_derived | not_price | source_optional |
+| stock_moneyflow_daily_ts_code | 股票代码 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | required |
+| stock_moneyflow_daily_trade_date | 交易日期 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | required |
+| buy_sm_vol | 小单买入量 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| buy_sm_amount | 小单买入额 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| sell_sm_vol | 小单卖出量 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| sell_sm_amount | 小单卖出额 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| buy_md_vol | 中单买入量 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| buy_md_amount | 中单买入额 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| sell_md_vol | 中单卖出量 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| sell_md_amount | 中单卖出额 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| buy_lg_vol | 大单买入量 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| buy_lg_amount | 大单买入额 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| sell_lg_vol | 大单卖出量 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| sell_lg_amount | 大单卖出额 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| buy_elg_vol | 特大单买入量 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| buy_elg_amount | 特大单买入额 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| sell_elg_vol | 特大单卖出量 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| sell_elg_amount | 特大单卖出额 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| net_mf_vol | 资金净流入量 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| net_mf_amount | 资金净流入额 | stock_moneyflow_daily | base_capital_flow | core | moneyflow | not_price | source_optional |
+| margin_detail_ts_code | 股票代码 | margin_detail | base_capital_flow | core | margin_detail | not_price | required |
+| margin_detail_trade_date | 交易日期 | margin_detail | base_capital_flow | core | margin_detail | not_price | required |
+| margin_balance | 融资余额 | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
+| short_balance | 融券余额 | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
+| margin_buy | 融资买入额 | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
+| short_volume | 融券余量 | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
+| margin_repay | 融资偿还额 | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
+| short_repay_volume | 融券偿还量 | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
+| short_sell_volume | 融券卖出量 | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
+| total_balance | 融资融券余额合计 | margin_detail | base_capital_flow | core | margin_detail | not_price | source_optional |
+| northbound_daily_trade_date | 交易日期 | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | required |
+| ggt_ss | 港股通（沪）资金 | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
+| ggt_sz | 港股通（深）资金 | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
+| hgt | 沪股通资金 | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
+| sgt | 深股通资金 | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
+| north_money | 北向资金净流入 | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
+| south_money | 南向资金净流入 | northbound_daily | base_capital_flow | core | moneyflow_hsgt | not_price | source_optional |
+| northbound_holding_ts_code | 股票代码 | northbound_holding | base_capital_flow | core | hk_hold | not_price | required |
+| northbound_holding_trade_date | 交易日期 | northbound_holding | base_capital_flow | core | hk_hold | not_price | required |
+| hk_code | 港股通持股代码 | northbound_holding | base_capital_flow | core | hk_hold | not_price | source_optional |
+| northbound_holding_name | 股票名称 | northbound_holding | base_capital_flow | core | hk_hold | not_price | source_optional |
+| hold_shares | 持股数量 | northbound_holding | base_capital_flow | core | hk_hold | not_price | source_optional |
+| hold_ratio | 持股比例 | northbound_holding | base_capital_flow | core | hk_hold | not_price | source_optional |
+| exchange_type | 互联互通交易所 | northbound_holding | base_capital_flow | core | hk_hold | not_price | required |
+| top_list_daily_ts_code | 股票代码 | top_list_daily | base_capital_flow | core | top_list | not_price | required |
+| top_list_daily_trade_date | 交易日期 | top_list_daily | base_capital_flow | core | top_list | not_price | required |
+| top_list_daily_name | 股票名称 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| top_list_daily_close | 收盘价 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| pct_change | 涨跌幅 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| top_list_daily_turnover_rate | 换手率 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| top_list_daily_amount | 成交额 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| l_sell | 龙虎榜卖出额 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| l_buy | 龙虎榜买入额 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| l_amount | 龙虎榜成交额 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| net_amount | 净额 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| net_rate | 净买入占比 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| amount_rate | 成交额占比 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| float_values | 流通市值 | top_list_daily | base_capital_flow | core | top_list | not_price | source_optional |
+| top_list_daily_reason | 龙虎榜上榜原因 | top_list_daily | base_capital_flow | core | top_list | not_price | required |
+| top_inst_detail_ts_code | 股票代码 | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
+| top_inst_detail_trade_date | 交易日期 | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
+| exalter | 席位名称 | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
+| buy | 买入金额 | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
+| buy_rate | 买入占比 | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
+| sell | 卖出金额 | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
+| sell_rate | 卖出占比 | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
+| net_buy | 净买入额 | top_inst_detail | base_capital_flow | core | top_inst | not_price | source_optional |
+| side | 买卖方向 | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
+| top_inst_detail_reason | 龙虎榜上榜原因 | top_inst_detail | base_capital_flow | core | top_inst | not_price | required |
+| financial_dividend_raw_ts_code | 股票代码 | financial_dividend_raw | base_financial | core | dividend | not_price | required |
+| financial_dividend_raw_end_date | 报告期 | financial_dividend_raw | base_financial | core | dividend | not_price | required |
+| financial_dividend_raw_ann_date | 公告日期 | financial_dividend_raw | base_financial | core | dividend | not_price | required |
+| div_proc | 分红实施进度 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| stk_div | 送股数 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| stk_bo_rate | 送股比例 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| stk_co_rate | 转增股比例 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| cash_div | 现金分红 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| cash_div_tax | 税后现金分红 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| record_date | 股权登记日 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| ex_date | 除权除息日 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| pay_date | 派息日 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| div_listdate | 红股上市日 | financial_dividend_raw | base_financial | core | dividend | not_price | source_optional |
+| financial_disclosure_schedule_ts_code | 股票代码 | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | required |
+| financial_disclosure_schedule_ann_date | 公告日期 | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | source_optional |
+| financial_disclosure_schedule_end_date | 报告期 | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | required |
+| pre_date | 预计披露日期 | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | source_optional |
+| actual_date | 实际披露日期 | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | source_optional |
+| modify_date | 修正披露日期 | financial_disclosure_schedule | base_financial | core | disclosure_date | not_price | source_optional |
+| pledge_stat_ts_code | 股票代码 | pledge_stat | base_misc | core | pledge_stat | not_price | required |
+| pledge_stat_end_date | 统计截止日 | pledge_stat | base_misc | core | pledge_stat | not_price | required |
+| pledge_count | 质押次数 | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
+| unrest_pledge | 无限售质押股数 | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
+| rest_pledge | 限售质押股数 | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
+| pledge_stat_total_share | 总股本 | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
+| pledge_ratio | 质押比例 | pledge_stat | base_misc | core | pledge_stat | not_price | source_optional |
+| index_basic_info_index_code | 指数代码 | index_basic_info | base_index | p0 | index_basic | not_price | required |
+| index_name | 指数名称 | index_basic_info | base_index | p0 | index_basic | not_price | required |
+| index_basic_info_market | 指数市场 | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
+| publisher | 发布方 | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
+| category | 指数类别 | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
+| base_date | 基日 | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
+| base_point | 基点 | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
+| index_basic_info_list_date | 发布日期 | index_basic_info | base_index | p0 | index_basic | not_price | source_optional |
+| index_daily_index_code | 指数代码 | index_daily | base_index | p0 | index_daily | not_price | required |
+| index_daily_trade_date | 交易日期 | index_daily | base_index | p0 | index_daily | not_price | required |
+| index_daily_open | 开盘价 | index_daily | base_index | p0 | index_daily | not_price | source_optional |
+| index_daily_high | 最高价 | index_daily | base_index | p0 | index_daily | not_price | source_optional |
+| index_daily_low | 最低价 | index_daily | base_index | p0 | index_daily | not_price | source_optional |
+| index_daily_close | 收盘价 | index_daily | base_index | p0 | index_daily | not_price | source_optional |
+| index_daily_pre_close | 前收盘价 | index_daily | base_index | p0 | index_daily | not_price | source_optional |
+| index_daily_change | 涨跌额 | index_daily | base_index | p0 | index_daily | not_price | source_optional |
+| index_daily_pct_chg | 涨跌幅 | index_daily | base_index | p0 | index_daily | not_price | source_optional |
+| index_daily_volume | 成交量 | index_daily | base_index | p0 | index_daily | not_price | source_optional |
+| index_daily_amount | 成交额 | index_daily | base_index | p0 | index_daily | not_price | source_optional |
+| index_weight_index_code | 指数代码 | index_weight | base_index | p0 | index_weight | not_price | required |
+| con_code | 成分股代码 | index_weight | base_index | p0 | index_weight | not_price | required |
+| index_weight_trade_date | 权重日期 | index_weight | base_index | p0 | index_weight | not_price | required |
+| weight | 权重比例 | index_weight | base_index | p0 | index_weight | not_price | source_optional |
+| sw_industry_classify_industry_code | 行业指数代码 | sw_industry_classify | base_sector | core | index_classify | not_price | required |
+| sw_industry_classify_industry_name | 行业名称 | sw_industry_classify | base_sector | core | index_classify | not_price | required |
+| level | 行业层级 | sw_industry_classify | base_sector | core | index_classify | not_price | source_optional |
+| sw_code | 申万行业数字代码 | sw_industry_classify | base_sector | core | index_classify | not_price | source_optional |
+| parent_code | 父级行业代码 | sw_industry_classify | base_sector | core | index_classify | not_price | source_optional |
+| src | 分类来源 | sw_industry_classify | base_sector | core | index_classify | not_price | required |
+| sw_industry_member_industry_code | 行业代码 | sw_industry_member | base_sector | core | index_member_all | not_price | required |
+| sw_industry_member_industry_name | 行业名称 | sw_industry_member | base_sector | core | index_member_all | not_price | source_optional |
+| sw_industry_member_ts_code | 股票代码 | sw_industry_member | base_sector | core | index_member_all | not_price | required |
+| sw_industry_member_stock_name | 股票名称 | sw_industry_member | base_sector | core | index_member_all | not_price | source_optional |
+| sw_industry_member_in_date | 成员纳入日期 | sw_industry_member | base_sector | core | index_member_all | not_price | required |
+| sw_industry_member_out_date | 成员剔除日期 | sw_industry_member | base_sector | core | index_member_all | not_price | source_optional |
+| is_new | 是否当前或新增成员 | sw_industry_member | base_sector | core | index_member_all | not_price | source_optional |
+| concept_basic_concept_id | 概念ID | concept_basic | base_sector | core | concept | not_price | required |
+| concept_basic_concept_name | 概念名称 | concept_basic | base_sector | core | concept | not_price | required |
+| source | 概念来源 | concept_basic | base_sector | core | concept | not_price | source_optional |
+| concept_member_concept_id | 概念ID | concept_member | base_sector | core | concept_detail | not_price | required |
+| concept_member_concept_name | 概念名称 | concept_member | base_sector | core | concept_detail | not_price | source_optional |
+| concept_member_ts_code | 股票代码 | concept_member | base_sector | core | concept_detail | not_price | required |
+| concept_member_stock_name | 股票名称 | concept_member | base_sector | core | concept_detail | not_price | source_optional |
+| concept_member_in_date | 成员纳入日期 | concept_member | base_sector | core | concept_detail | not_price | source_optional |
+| concept_member_out_date | 成员剔除日期 | concept_member | base_sector | core | concept_detail | not_price | source_optional |
+| financial_income_raw_ts_code | 股票代码 | financial_income_raw | base_financial | p0 | income | not_price | required |
+| financial_income_raw_ann_date | 公告日期 | financial_income_raw | base_financial | p0 | income | not_price | required |
+| financial_income_raw_first_ann_date | 首次公告日期 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| financial_income_raw_end_date | 报告期 | financial_income_raw | base_financial | p0 | income | not_price | required |
+| financial_income_raw_report_type | 报表类型 | financial_income_raw | base_financial | p0 | income | not_price | required |
+| financial_income_raw_comp_type | 公司报表类型 | financial_income_raw | base_financial | p0 | income | not_price | required |
+| total_revenue | 营业总收入 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| revenue | 营业收入 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| total_cogs | 营业总成本 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| operating_cost | 营业成本 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| selling_expense | 销售费用 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| admin_expense | 管理费用 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| rd_expense | 研发费用 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| finance_expense | 财务费用 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| operating_profit | 营业利润 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| total_profit | 利润总额 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| income_tax | 所得税费用 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| net_profit | 净利润 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| net_profit_attr_parent | 归属于母公司净利润 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| financial_income_raw_ebit | 息税前利润 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| financial_income_raw_ebitda | 息税折旧摊销前利润 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| financial_income_raw_effective_date | 时点有效日期 | financial_income_raw | base_financial | p0 | local_derived | not_price | source_optional |
+| financial_balance_raw_ts_code | 股票代码 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
+| financial_balance_raw_ann_date | 公告日期 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
+| financial_balance_raw_first_ann_date | 首次公告日期 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| financial_balance_raw_end_date | 报告期 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
+| financial_balance_raw_report_type | 报表类型 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
+| financial_balance_raw_comp_type | 公司报表类型 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | required |
+| financial_balance_raw_total_share | 总股本 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| cash_and_equivalents | 货币资金及现金等价物 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| accounts_receivable | 应收账款 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| inventories | 存货 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| current_assets | 流动资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| financial_balance_raw_fixed_assets | 固定资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| construction_in_process | 在建工程 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| intangible_assets | 无形资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| goodwill | 商誉 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| total_assets | 资产总计 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| short_term_borrowings | 短期借款 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| accounts_payable | 应付账款 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| current_liabilities | 流动负债 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| long_term_borrowings | 长期借款 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| bonds_payable | 应付债券 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| total_liabilities | 负债合计 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| total_equity | 所有者权益合计（含少数股东权益） | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| equity_attr_parent | 归属于母公司股东权益 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| minority_interest | 少数股东权益 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| financial_balance_raw_effective_date | 时点有效日期 | financial_balance_raw | base_financial | p0 | local_derived | not_price | source_optional |
+| financial_cashflow_raw_ts_code | 股票代码 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
+| financial_cashflow_raw_ann_date | 公告日期 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
+| financial_cashflow_raw_first_ann_date | 首次公告日期 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| financial_cashflow_raw_end_date | 报告期 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
+| financial_cashflow_raw_report_type | 报表类型 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
+| financial_cashflow_raw_comp_type | 公司报表类型 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | required |
+| cash_received_from_sales | 销售商品提供劳务收到的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| total_operating_cash_inflow | 经营活动现金流入小计 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_paid_for_goods | 购买商品接受劳务支付的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_paid_to_employees | 支付给职工以及为职工支付的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| taxes_paid | 支付的各项税费 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cf_from_operating | 经营活动产生的现金流量净额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_paid_for_capex | 购建固定资产无形资产和其他长期资产支付的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_paid_for_investment | 投资支付的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cf_from_investing | 投资活动产生的现金流量净额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_received_from_borrowing | 取得借款收到的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_paid_for_debt | 偿还债务支付的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_paid_for_dividend_interest | 分配股利利润或偿付利息支付的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cf_from_financing | 筹资活动产生的现金流量净额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| free_cashflow | 自由现金流 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| net_increase_in_cash | 现金及现金等价物净增加额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_at_beginning | 期初现金及现金等价物余额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_at_end | 期末现金及现金等价物余额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| financial_cashflow_raw_effective_date | 时点有效日期 | financial_cashflow_raw | base_financial | p0 | local_derived | not_price | source_optional |
+| financial_indicator_raw_ts_code | 股票代码 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | required |
+| financial_indicator_raw_ann_date | 公告日期 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | required |
+| financial_indicator_raw_end_date | 报告期 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | required |
+| eps | 基本每股收益 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| dt_eps | 稀释每股收益 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| total_revenue_ps | 每股营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| revenue_ps | 每股营业收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| capital_rese_ps | 每股资本公积 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| surplus_rese_ps | 每股盈余公积 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| undist_profit_ps | 每股未分配利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| extra_item | 非经常性损益 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| profit_dedt | 扣除非经常性损益后净利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| gross_margin | 销售毛利率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| current_ratio | 流动比率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| quick_ratio | 速动比率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| cash_ratio | 现金比率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ar_turn | 应收账款周转率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ca_turn | 流动资产周转率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| fa_turn | 固定资产周转率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| assets_turn | 总资产周转率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| op_income | 营业利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| financial_indicator_raw_ebit | 息税前利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| financial_indicator_raw_ebitda | 息税折旧摊销前利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| fcff | 企业自由现金流 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| fcfe | 股权自由现金流 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| current_exint | 无息流动负债 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| noncurrent_exint | 无息非流动负债 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| interestdebt | 有息负债 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| netdebt | 净债务 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| tangible_asset | 有形资产 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| working_capital | 营运资本 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| networking_capital | 净营运资本 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| invest_capital | 投入资本 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| retained_earnings | 留存收益 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| diluted2_eps | 稀释每股收益备用口径 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| bps | 每股净资产 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ocfps | 每股经营现金流 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| retainedps | 每股留存收益 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| cfps | 每股现金流 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ebit_ps | 每股息税前利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| fcff_ps | 每股企业自由现金流 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| fcfe_ps | 每股股权自由现金流 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| netprofit_margin | 销售净利率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| grossprofit_margin | 销售毛利率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| cogs_of_sales | 营业成本率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| expense_of_sales | 期间费用率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| profit_to_gr | 利润总额占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| saleexp_to_gr | 销售费用占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| adminexp_of_gr | 管理费用占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| finaexp_of_gr | 财务费用占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| impai_ttm | 资产减值损失TTM | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| gc_of_gr | 营业总成本占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| op_of_gr | 营业利润占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ebit_of_gr | 息税前利润占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roe | 净资产收益率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roe_waa | 加权平均净资产收益率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roe_dt | 扣非净资产收益率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roa | 总资产收益率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| npta | 净利润占总资产 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roic | 投入资本回报率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roe_yearly | 年化净资产收益率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roa2_yearly | 年化总资产收益率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| debt_to_assets | 资产负债率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| assets_to_eqt | 权益乘数 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| dp_assets_to_eqt | 杜邦权益乘数 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ca_to_assets | 流动资产占总资产 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| nca_to_assets | 非流动资产占总资产 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| tbassets_to_totalassets | 有形资产占总资产 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| int_to_talcap | 无形资产占总资本 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| eqt_to_talcapital | 权益占总资本 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| currentdebt_to_debt | 流动负债占总负债 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| longdeb_to_debt | 长期负债占总负债 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ocf_to_shortdebt | 经营现金流占短期债务 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| debt_to_eqt | 产权比率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| eqt_to_debt | 权益负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| eqt_to_interestdebt | 权益有息负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| tangibleasset_to_debt | 有形资产负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| tangasset_to_intdebt | 有形资产有息负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| tangibleasset_to_netdebt | 有形资产净债务比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ocf_to_debt | 经营现金流负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ocf_to_interestdebt | 经营现金流有息负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ocf_to_netdebt | 经营现金流净债务比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ebit_to_interest | 息税前利润利息保障倍数 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| longdebt_to_workingcapital | 长期负债营运资本比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ebitda_to_debt | EBITDA负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| turn_days | 营业周期天数 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roa_yearly | 年化总资产收益率备用口径 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roa_dp | 杜邦总资产收益率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| financial_indicator_raw_fixed_assets | 固定资产 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| profit_prefin_exp | 扣除财务费用前利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| non_op_profit | 营业外利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| op_to_ebt | 营业利润占利润总额 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| nop_to_ebt | 营业外利润占利润总额 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ocf_to_profit | 经营现金流占净利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| cash_to_liqdebt | 现金流动负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| cash_to_liqdebt_withinterest | 现金有息流动负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| op_to_liqdebt | 营业利润流动负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| op_to_debt | 营业利润负债比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roic_yearly | 年化投入资本回报率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| total_fa_trun | 固定资产周转率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| profit_to_op | 利润总额占营业收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_opincome | 单季度营业收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_investincome | 单季度投资收益 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_dtprofit | 单季度扣非净利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_eps | 单季度每股收益 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_netprofit_margin | 单季度销售净利率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_gsprofit_margin | 单季度销售毛利率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_exp_to_sales | 单季度期间费用率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_profit_to_gr | 单季度利润总额占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_saleexp_to_gr | 单季度销售费用占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_adminexp_to_gr | 单季度管理费用占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_finaexp_to_gr | 单季度财务费用占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_impair_to_gr_ttm | 单季度资产减值损失TTM占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_gc_to_gr | 单季度营业总成本占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_op_to_gr | 单季度营业利润占营业总收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_roe | 单季度净资产收益率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_dt_roe | 单季度扣非净资产收益率 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_npta | 单季度净利润占总资产 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_opincome_to_ebt | 单季度营业收入占利润总额 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_investincome_to_ebt | 单季度投资收益占利润总额 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_dtprofit_to_profit | 单季度扣非净利润占净利润 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_salescash_to_or | 单季度销售收现占营业收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_ocf_to_sales | 单季度经营现金流占销售收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_ocf_to_or | 单季度经营现金流占营业收入 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| basic_eps_yoy | 基本每股收益同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| dt_eps_yoy | 稀释每股收益同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| cfps_yoy | 每股现金流同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| op_yoy | 营业利润同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ebt_yoy | 利润总额同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| netprofit_yoy | 净利润同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| dt_netprofit_yoy | 扣除非经常性损益后净利润同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| ocf_yoy | 经营现金流同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| roe_yoy | 净资产收益率同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| bps_yoy | 每股净资产同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| assets_yoy | 资产同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| eqt_yoy | 权益同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| tr_yoy | 营业总收入同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| or_yoy | 营业收入同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_gr_yoy | 单季度营业总收入同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_gr_qoq | 单季度营业总收入环比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_sales_yoy | 单季度销售收入同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_sales_qoq | 单季度销售收入环比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_op_yoy | 单季度营业利润同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_op_qoq | 单季度营业利润环比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_profit_yoy | 单季度利润总额同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_profit_qoq | 单季度利润总额环比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_netprofit_yoy | 单季度净利润同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| q_netprofit_qoq | 单季度净利润环比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| equity_yoy | 权益同比 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| rd_exp | 研发费用 | financial_indicator_raw | base_financial | p0 | fina_indicator | not_price | source_optional |
+| financial_indicator_raw_effective_date | 时点有效日期 | financial_indicator_raw | base_financial | p0 | local_derived | not_price | source_optional |
+| api_name | Tushare接口名称 | financial_event_raw | base_financial | core | local_derived | not_price | required |
+| financial_event_raw_ts_code | 股票代码 | financial_event_raw | base_financial | core | local_derived | not_price | required |
+| financial_event_raw_ann_date | 可得公告日期 | financial_event_raw | base_financial | core | local_derived | not_price | source_optional |
+| financial_event_raw_end_date | 可得报告期 | financial_event_raw | base_financial | core | local_derived | not_price | source_optional |
+| event_date | 可得事件日期 | financial_event_raw | base_financial | core | local_derived | not_price | source_optional |
+| basic_eps | 基本每股收益 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| diluted_eps | 稀释每股收益 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| business_tax_surcharge | 营业税金及附加 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| operating_expense | 营业费用 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| asset_impairment_loss | 资产减值损失 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| investment_income | 投资收益 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| associate_investment_income | 对联营企业和合营企业的投资收益 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| fair_value_change_income | 公允价值变动收益 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| foreign_exchange_gain | 汇兑收益 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| non_operating_income | 营业外收入 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| non_operating_expense | 营业外支出 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| minority_profit | 少数股东损益 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| continued_net_profit | 持续经营净利润 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| total_comprehensive_income | 综合收益总额 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| comprehensive_income_parent | 归属于母公司综合收益 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| comprehensive_income_minority | 归属于少数股东综合收益 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| interest_income | 利息收入 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| interest_expense | 利息支出 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| commission_income | 手续费及佣金收入 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| commission_expense | 手续费及佣金支出 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| premium_income | 保险业务收入 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| premium_earned | 已赚保费 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| insurance_expense | 保险业务支出 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| compensation_payout | 赔付支出 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| financial_income_raw_undistributed_profit | 未分配利润 | financial_income_raw | base_financial | p0 | income | not_price | source_optional |
+| trading_financial_assets | 交易性金融资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| derivative_financial_assets | 衍生金融资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| notes_receivable | 应收票据 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| accounts_receivable_bill | 应收票据及应收账款 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| prepayment | 预付款项 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| other_receivable | 其他应收款 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| total_other_receivable | 其他应收款合计 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| contract_assets | 合同资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| other_current_assets | 其他流动资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| total_noncurrent_assets | 非流动资产合计 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| long_term_equity_investment | 长期股权投资 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| investment_property | 投资性房地产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| fixed_assets_total | 固定资产合计 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| construction_in_process_total | 在建工程合计 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| right_of_use_assets | 使用权资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| development_expenditure | 开发支出 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| long_term_deferred_expense | 长期待摊费用 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| deferred_tax_assets | 递延所得税资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| other_noncurrent_assets | 其他非流动资产 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| notes_payable | 应付票据 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| advance_receipts | 预收款项 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| contract_liabilities | 合同负债 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| payroll_payable | 应付职工薪酬 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| taxes_payable | 应交税费 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| interest_payable | 应付利息 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| dividend_payable | 应付股利 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| other_payable | 其他应付款 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| total_other_payable | 其他应付款合计 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| noncurrent_liability_due_1y | 一年内到期的非流动负债 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| other_current_liabilities | 其他流动负债 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| total_noncurrent_liabilities | 非流动负债合计 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| long_term_payable | 长期应付款 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| estimated_liabilities | 预计负债 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| deferred_income | 递延收益 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| deferred_tax_liabilities | 递延所得税负债 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| other_noncurrent_liabilities | 其他非流动负债 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| total_liabilities_and_equity | 负债和股东权益合计 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| capital_reserve | 资本公积 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| surplus_reserve | 盈余公积 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| financial_balance_raw_undistributed_profit | 未分配利润 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| treasury_share | 库存股 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| other_comprehensive_income | 其他综合收益 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| special_reserve | 专项储备 | financial_balance_raw | base_financial | p0 | balancesheet | not_price | source_optional |
+| tax_refund_received | 收到的税费返还 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| other_operating_cash_received | 收到其他与经营活动有关的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| total_operating_cash_outflow | 经营活动现金流出小计 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| other_operating_cash_paid | 支付其他与经营活动有关的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_received_from_investment_withdrawal | 收回投资收到的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_received_from_asset_disposal | 处置固定资产无形资产和其他长期资产收回的现金净额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_received_from_subsidiary_disposal | 处置子公司及其他营业单位收到的现金净额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| total_investing_cash_inflow | 投资活动现金流入小计 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_paid_for_subsidiary_acquisition | 取得子公司及其他营业单位支付的现金净额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| other_investing_cash_paid | 支付其他与投资活动有关的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| total_investing_cash_outflow | 投资活动现金流出小计 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_received_from_investors | 吸收投资收到的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| cash_received_from_bond_issue | 发行债券收到的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| other_financing_cash_received | 收到其他与筹资活动有关的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| total_financing_cash_inflow | 筹资活动现金流入小计 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| total_financing_cash_outflow | 筹资活动现金流出小计 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| other_financing_cash_paid | 支付其他与筹资活动有关的现金 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| fx_effect_on_cash | 汇率变动对现金的影响 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| begin_cash_balance | 期初现金余额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| end_cash_balance | 期末现金余额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| net_profit_indirect | 间接法现金流量表净利润 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| asset_depreciation | 固定资产油气资产生产性生物资产折旧 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| intangible_asset_amortization | 无形资产摊销 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| deferred_expense_amortization | 长期待摊费用摊销 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| financial_expense_indirect | 间接法财务费用 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| investment_loss_indirect | 间接法投资损失 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| credit_impairment_loss_indirect | 间接法信用减值损失 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| inventory_decrease | 存货减少额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| operating_receivable_decrease | 经营性应收项目减少额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| operating_payable_increase | 经营性应付项目增加额 | financial_cashflow_raw | base_financial | p0 | cashflow | not_price | source_optional |
+| latest_report_end_date | 最新可见财务报告期截止日 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| latest_financial_effective_date | 最新可见财务数据生效日 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| latest_financial_ann_date | 最新可见财务公告日 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| report_age_days | 财报距当前交易日天数 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| report_lag_days | 财报披露滞后天数 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| report_year | 财报年度 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| report_quarter | 财报季度 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| report_period_type | 财报期间类型 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| is_annual_report | 是否年报 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| is_interim_report | 是否中报 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| is_q1_report | 是否一季报 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| is_q3_report | 是否三季报 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| income_report_end_date | 利润表可见报告期截止日 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| balance_report_end_date | 资产负债表可见报告期截止日 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| cashflow_report_end_date | 现金流量表可见报告期截止日 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| indicator_report_end_date | 财务指标可见报告期截止日 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| statement_available_count | 可见财务报表数量 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| has_income_statement | 是否有可见利润表 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| has_balance_sheet | 是否有可见资产负债表 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| has_cashflow_statement | 是否有可见现金流量表 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| has_indicator_statement | 是否有可见财务指标表 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| next_disclosure_pre_date | 下一次计划披露日 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| days_to_next_disclosure | 距下一次计划披露日天数 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| has_forecast_asof | 是否有可见业绩预告 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| latest_forecast_end_date | 最新可见业绩预告报告期 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| has_express_asof | 是否有可见业绩快报 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
+| latest_express_end_date | 最新可见业绩快报报告期 | derived_financial_asof | financial_asof | core | derived | financial_asof | financial_not_disclosed |
 | roe_asof | ??????ROE | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | roe_waa_asof | ????ROE | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | roe_dt_asof | ??ROE | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | roa_asof | ??????ROA | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | roic_asof | ???????ROIC | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| gross_margin_asof | ??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| grossprofit_margin_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| netprofit_margin_asof | ??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| operating_profit_margin_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| total_profit_margin_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| net_profit_margin_calc_asof | ??????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| parent_net_profit_margin_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| minority_profit_ratio_asof | ???????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| non_operating_income_ratio_asof | ???????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| investment_income_ratio_asof | ??????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| fair_value_gain_ratio_asof | ??????????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| asset_impairment_to_profit_asof | ????????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| deducted_profit_to_net_profit_asof | ??????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| gross_margin_asof | 可见销售毛利率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| grossprofit_margin_asof | 可见毛利率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| netprofit_margin_asof | 可见净利率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| operating_profit_margin_asof | 可见营业利润率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| total_profit_margin_asof | 可见利润总额率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| net_profit_margin_calc_asof | 可见净利润率计算值 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| parent_net_profit_margin_asof | 可见归母净利率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| minority_profit_ratio_asof | 可见少数股东损益占比 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| non_operating_income_ratio_asof | 可见营业外收支占利润总额比例 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| investment_income_ratio_asof | 可见投资收益占利润总额比例 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| fair_value_gain_ratio_asof | 可见公允价值变动收益占利润总额比例 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| asset_impairment_to_profit_asof | 可见资产减值损失占利润总额比例 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| deducted_profit_to_net_profit_asof | 可见扣非净利润占净利润比例 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | eps_asof | ????EPS | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| dt_eps_asof | ?????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| bps_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| ocfps_asof | ??????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| cfps_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| dt_eps_asof | 可见扣非每股收益 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| bps_asof | 可见每股净资产 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| ocfps_asof | 可见每股经营现金流 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| cfps_asof | 可见每股现金流量净额 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | ocf_to_profit_asof | ?????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | ocf_to_revenue_asof | ?????/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | free_cashflow_to_revenue_asof | ?????/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
@@ -606,7 +606,7 @@
 | fcf_to_ocf_asof | ?????/????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | cash_end_to_assets_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | cash_net_increase_to_assets_asof | ?????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| accrual_ratio_asof | ?????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| accrual_ratio_asof | 可见应计利润比例 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | cash_to_assets_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | current_assets_to_assets_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | noncurrent_assets_to_assets_asof | ?????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
@@ -619,14 +619,14 @@
 | inventory_to_revenue_asof | ??/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | contract_assets_to_revenue_asof | ????/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | contract_liability_to_revenue_asof | ????/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| working_capital_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| working_capital_asof | 可见营运资本 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | working_capital_to_assets_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| net_working_capital_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| net_working_capital_asof | 可见净营运资本 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | net_working_capital_to_assets_asof | ?????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| debt_to_assets_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| assets_to_equity_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| interestdebt_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| netdebt_asof | ??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| debt_to_assets_asof | 可见资产负债率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| assets_to_equity_asof | 可见权益乘数 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| interestdebt_asof | 可见有息负债 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| netdebt_asof | 可见净负债 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | interestdebt_to_assets_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | netdebt_to_assets_asof | ???/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | short_borrowing_to_assets_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
@@ -634,59 +634,59 @@
 | bonds_payable_to_assets_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | current_debt_to_total_debt_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | longdebt_to_total_debt_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| current_ratio_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| quick_ratio_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| cash_ratio_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| current_ratio_asof | 可见流动比率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| quick_ratio_asof | 可见速动比率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| cash_ratio_asof | 可见现金比率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | ocf_to_debt_asof | ?????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | ocf_to_interestdebt_asof | ?????/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | ebit_to_interest_asof | EBIT/?? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | ebitda_to_debt_asof | EBITDA/?? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | liabilities_to_equity_asof | ???/????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | current_liabilities_to_liabilities_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| ar_turn_asof | ??????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| current_asset_turn_asof | ??????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| fixed_asset_turn_asof | ??????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| assets_turn_asof | ?????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| turn_days_asof | ?????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| total_fa_turn_asof | ????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| ar_turn_asof | 可见应收账款周转率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| current_asset_turn_asof | 可见流动资产周转率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| fixed_asset_turn_asof | 可见固定资产周转率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| assets_turn_asof | 可见总资产周转率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| turn_days_asof | 可见存货周转天数 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| total_fa_turn_asof | 可见固定资产总周转率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | revenue_to_assets_asof | ????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | revenue_to_fixed_assets_asof | ????/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| selling_expense_to_revenue_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| admin_expense_to_revenue_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| rd_exp_to_revenue_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| finance_expense_to_revenue_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| expense_to_revenue_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| selling_expense_to_revenue_asof | 可见销售费用率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| admin_expense_to_revenue_asof | 可见管理费用率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| rd_exp_to_revenue_asof | 可见研发费用率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| finance_expense_to_revenue_asof | 可见财务费用率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| expense_to_revenue_asof | 可见期间费用率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | business_tax_to_revenue_asof | ?????/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | income_tax_to_profit_asof | ???/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| rd_exp_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| selling_expense_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| admin_expense_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| finance_expense_asof | ???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| dupont_net_margin_asof | ????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| dupont_asset_turnover_asof | ??????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| dupont_equity_multiplier_asof | ?????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| rd_exp_asof | 可见研发费用 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| selling_expense_asof | 可见销售费用 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| admin_expense_asof | 可见管理费用 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| finance_expense_asof | 可见财务费用 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| dupont_net_margin_asof | 杜邦净利率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| dupont_asset_turnover_asof | 杜邦总资产周转率 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| dupont_equity_multiplier_asof | 杜邦权益乘数 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | dupont_roe_calc_asof | ??ROE??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | roe_calc_gap_asof | ??ROE?????ROE?? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| negative_equity_flag | ???????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| negative_net_profit_flag | ??????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| negative_parent_net_profit_flag | ????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| negative_ocf_flag | ????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| high_goodwill_flag | ???????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| high_receivable_flag | ????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| high_inventory_flag | ????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| high_leverage_flag | ????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| low_current_ratio_flag | ???????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| ocf_profit_mismatch_flag | ?????????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| liability_equity_balance_gap_asof | ?????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| negative_equity_flag | 负股东权益标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| negative_net_profit_flag | 净利润为负标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| negative_parent_net_profit_flag | 归母净利润为负标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| negative_ocf_flag | 经营现金流为负标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| high_goodwill_flag | 高商誉占比标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| high_receivable_flag | 高应收账款占比标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| high_inventory_flag | 高存货占比标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| high_leverage_flag | 高杠杆标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| low_current_ratio_flag | 低流动比率标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| ocf_profit_mismatch_flag | 经营现金流与利润背离标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| liability_equity_balance_gap_asof | 负债权益平衡校验差额 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | liability_equity_balance_gap_ratio_asof | ??????????/??? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| cashflow_cash_balance_gap_asof | ??????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| cashflow_cash_balance_gap_asof | 现金流现金余额校验差额 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | cashflow_cash_balance_gap_ratio_asof | ??????/???? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| statement_available_count_asof | ??????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| has_complete_statement_set_asof | ????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| report_age_days_asof | ????????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| report_lag_days_asof | ???????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| forecast_available_flag | ???????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
-| express_available_flag | ???????? | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| statement_available_count_asof | 可见财务报表数量 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| has_complete_statement_set_asof | 是否具备完整报表集合 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| report_age_days_asof | 可见财报距当前交易日天数 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| report_lag_days_asof | 可见财报披露滞后天数 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| forecast_available_flag | 业绩预告可见标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
+| express_available_flag | 业绩快报可见标志 | derived_financial_quality | financial_quality | core | derived | financial_asof | financial_not_disclosed |
 | current_report_end_date | 当前可得报告期 | derived_financial_growth | financial_growth | core | derived | financial_asof | financial_not_disclosed |
 | prev_report_end_date | 上一报告期 | derived_financial_growth | financial_growth | core | derived | financial_asof | financial_not_disclosed |
 | lag_2report_end_date | 前2个报告期 | derived_financial_growth | financial_growth | core | derived | financial_asof | financial_not_disclosed |
@@ -955,7 +955,7 @@
 | volume | 成交量 | derived_daily_spine | daily_spine | core | derived | not_price | initial_window_null |
 | amount | 成交额 | derived_daily_spine | daily_spine | core | derived | not_price | initial_window_null |
 | amplitude_raw | 不复权振幅 | derived_daily_spine | daily_spine | core | derived | raw | initial_window_null |
-| latest_adj_factor_asof | 最新复权因子 | derived_daily_spine | daily_spine | core | derived | not_price | initial_window_null |
+| latest_adj_factor_asof | 当前样本最新复权因子 | derived_daily_spine | daily_spine | core | derived | qfq_current_anchor | source_optional_current_anchor |
 | open_hfq | 后复权开盘价 | derived_daily_spine | daily_spine | core | derived | hfq | initial_window_null |
 | high_hfq | 后复权最高价 | derived_daily_spine | daily_spine | core | derived | hfq | initial_window_null |
 | low_hfq | 后复权最低价 | derived_daily_spine | daily_spine | core | derived | hfq | initial_window_null |
@@ -967,7 +967,7 @@
 | overnight_ret_hfq | 后复权隔夜收益率 | derived_daily_spine | daily_spine | core | derived | hfq | initial_window_null |
 | intraday_ret_hfq | 后复权日内收益率 | derived_daily_spine | daily_spine | core | derived | hfq | initial_window_null |
 | high_low_range_hfq | 后复权日内高低区间 | derived_daily_spine | daily_spine | core | derived | hfq | initial_window_null |
-| gap_open_hfq | 后复权开盘跳空 | derived_daily_spine | daily_spine | core | derived | hfq | initial_window_null |
+| gap_open_hfq | 后复权开盘跳空幅度 | derived_daily_spine | daily_spine | core | derived | hfq | initial_window_null |
 | close_position_hfq | 后复权收盘价在日内区间的位置 | derived_daily_spine | daily_spine | core | derived | hfq | initial_window_null |
 | limit_up_flag | 收盘涨停标记，按最小价格变动单位判断 | derived_daily_spine | daily_spine | core | derived | raw | initial_window_null |
 | limit_down_flag | 收盘跌停标记，按最小价格变动单位判断 | derived_daily_spine | daily_spine | core | derived | raw | initial_window_null |
@@ -1316,1066 +1316,6 @@
 | star_vs_broad_ret_120 | 120日科创50相对宽基收益差 | derived_index_market_context | index_market_context | core | derived | mixed | source_optional |
 | has_market_breadth | 是否有市场宽度数据 | derived_index_market_context | index_market_context | core | derived | mixed | source_optional |
 | index_context_missing_reason | 指数市场上下文缺失原因 | derived_index_market_context | index_market_context | core | derived | mixed | source_optional |
-| xs_universe_flag | 是否进入截面样本 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_market | 截面市场分组 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_exchange | 截面交易所分组 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_sw_l1_code | 截面申万一级行业 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_sw_l2_code | 截面申万二级行业 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_sample_all_count | 全市场截面样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_sample_market_count | 市场分组样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_sample_sw_l1_count | 申万一级样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_sample_sw_l2_count | 申万二级样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_core_available_count | 核心截面变量可用数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_core_available_ratio | 核心截面变量可用率 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_missing_fields | 缺失核心字段列表 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_winsor_lower_pct | 缩尾下分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_winsor_upper_pct | 缩尾上分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_min_group_zscore_n | z-score最小分组样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| xs_min_group_rank_n | 排名最小分组样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_20_hfq_rank_all_desc | 20日收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_20_hfq_pct_all_desc | 20日收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_20_hfq_z_all | 20日收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_20_hfq_rank_market_desc | 20日收益市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_20_hfq_pct_market_desc | 20日收益市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_20_hfq_rank_sw_l2_desc | 20日收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_20_hfq_pct_sw_l2_desc | 20日收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_60_hfq_rank_all_desc | 60日收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_60_hfq_pct_all_desc | 60日收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_60_hfq_z_all | 60日收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_60_hfq_rank_market_desc | 60日收益市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_60_hfq_pct_market_desc | 60日收益市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_60_hfq_rank_sw_l2_desc | 60日收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_60_hfq_pct_sw_l2_desc | 60日收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_120_hfq_rank_all_desc | 120日收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_120_hfq_pct_all_desc | 120日收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_120_hfq_z_all | 120日收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_120_hfq_rank_market_desc | 120日收益市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_120_hfq_pct_market_desc | 120日收益市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_120_hfq_rank_sw_l2_desc | 120日收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_120_hfq_pct_sw_l2_desc | 120日收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_250_hfq_rank_all_desc | 250日收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_250_hfq_pct_all_desc | 250日收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_250_hfq_z_all | 250日收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_250_hfq_rank_market_desc | 250日收益市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_250_hfq_pct_market_desc | 250日收益市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_250_hfq_rank_sw_l2_desc | 250日收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_250_hfq_pct_sw_l2_desc | 250日收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| momentum_60_20_hfq_rank_all_desc | 60-20日动量全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| momentum_60_20_hfq_pct_all_desc | 60-20日动量全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| momentum_60_20_hfq_z_all | 60-20日动量全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| momentum_60_20_hfq_rank_market_desc | 60-20日动量市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| momentum_60_20_hfq_pct_market_desc | 60-20日动量市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| momentum_60_20_hfq_rank_sw_l2_desc | 60-20日动量申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| momentum_60_20_hfq_pct_sw_l2_desc | 60-20日动量申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| reversal_5_hfq_rank_all_desc | 5日反转全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| reversal_5_hfq_pct_all_desc | 5日反转全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| reversal_5_hfq_z_all | 5日反转全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| reversal_5_hfq_rank_market_desc | 5日反转市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| reversal_5_hfq_pct_market_desc | 5日反转市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| reversal_5_hfq_rank_sw_l2_desc | 5日反转申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| reversal_5_hfq_pct_sw_l2_desc | 5日反转申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amount_ma_20_rank_all_desc | 20日成交额均值全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amount_ma_20_pct_all_desc | 20日成交额均值全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amount_ma_20_z_all | 20日成交额均值全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amount_ma_20_rank_market_desc | 20日成交额均值市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amount_ma_20_pct_market_desc | 20日成交额均值市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amount_ma_20_rank_sw_l2_desc | 20日成交额均值申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amount_ma_20_pct_sw_l2_desc | 20日成交额均值申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| turnover_rate_ma_20_rank_all_desc | 20日换手率均值全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| turnover_rate_ma_20_pct_all_desc | 20日换手率均值全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| turnover_rate_ma_20_z_all | 20日换手率均值全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| turnover_rate_ma_20_rank_market_desc | 20日换手率均值市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| turnover_rate_ma_20_pct_market_desc | 20日换手率均值市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| turnover_rate_ma_20_rank_sw_l2_desc | 20日换手率均值申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| turnover_rate_ma_20_pct_sw_l2_desc | 20日换手率均值申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amihud_20_rank_all_desc | 20日Amihud流动性冲击全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amihud_20_pct_all_desc | 20日Amihud流动性冲击全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amihud_20_z_all | 20日Amihud流动性冲击全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amihud_20_rank_market_desc | 20日Amihud流动性冲击市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amihud_20_pct_market_desc | 20日Amihud流动性冲击市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amihud_20_rank_sw_l2_desc | 20日Amihud流动性冲击申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amihud_20_pct_sw_l2_desc | 20日Amihud流动性冲击申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_20_rank_all_desc | 20日历史波动率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_20_pct_all_desc | 20日历史波动率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_20_z_all | 20日历史波动率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_20_rank_market_desc | 20日历史波动率市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_20_pct_market_desc | 20日历史波动率市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_20_rank_sw_l2_desc | 20日历史波动率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_20_pct_sw_l2_desc | 20日历史波动率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_60_rank_all_desc | 60日历史波动率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_60_pct_all_desc | 60日历史波动率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_60_z_all | 60日历史波动率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_60_rank_market_desc | 60日历史波动率市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_60_pct_market_desc | 60日历史波动率市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_60_rank_sw_l2_desc | 60日历史波动率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_60_pct_sw_l2_desc | 60日历史波动率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| atr_14_pct_hfq_rank_all_desc | 14日ATR占价格比例全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| atr_14_pct_hfq_pct_all_desc | 14日ATR占价格比例全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| atr_14_pct_hfq_z_all | 14日ATR占价格比例全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| atr_14_pct_hfq_rank_market_desc | 14日ATR占价格比例市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| atr_14_pct_hfq_pct_market_desc | 14日ATR占价格比例市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| atr_14_pct_hfq_rank_sw_l2_desc | 14日ATR占价格比例申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| atr_14_pct_hfq_pct_sw_l2_desc | 14日ATR占价格比例申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| max_drawdown_60_hfq_rank_all_desc | 60日最大回撤全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| max_drawdown_60_hfq_pct_all_desc | 60日最大回撤全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| max_drawdown_60_hfq_z_all | 60日最大回撤全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| max_drawdown_60_hfq_rank_market_desc | 60日最大回撤市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| max_drawdown_60_hfq_pct_market_desc | 60日最大回撤市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| max_drawdown_60_hfq_rank_sw_l2_desc | 60日最大回撤申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| max_drawdown_60_hfq_pct_sw_l2_desc | 60日最大回撤申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_total_mv_rank_all_desc | 总市值对数全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_total_mv_pct_all_desc | 总市值对数全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_total_mv_z_all | 总市值对数全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_total_mv_rank_market_desc | 总市值对数市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_total_mv_pct_market_desc | 总市值对数市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_total_mv_rank_sw_l2_desc | 总市值对数申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_total_mv_pct_sw_l2_desc | 总市值对数申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_free_float_mv_rank_all_desc | 自由流通市值对数全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_free_float_mv_pct_all_desc | 自由流通市值对数全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_free_float_mv_z_all | 自由流通市值对数全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_free_float_mv_rank_market_desc | 自由流通市值对数市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_free_float_mv_pct_market_desc | 自由流通市值对数市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_free_float_mv_rank_sw_l2_desc | 自由流通市值对数申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| log_free_float_mv_pct_sw_l2_desc | 自由流通市值对数申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pe_ttm_rank_all_desc | 市盈率TTM全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pe_ttm_pct_all_desc | 市盈率TTM全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pe_ttm_z_all | 市盈率TTM全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pe_ttm_rank_market_desc | 市盈率TTM市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pe_ttm_pct_market_desc | 市盈率TTM市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pe_ttm_rank_sw_l2_desc | 市盈率TTM申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pe_ttm_pct_sw_l2_desc | 市盈率TTM申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pb_rank_all_desc | 市净率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pb_pct_all_desc | 市净率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pb_z_all | 市净率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pb_rank_market_desc | 市净率市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pb_pct_market_desc | 市净率市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pb_rank_sw_l2_desc | 市净率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| pb_pct_sw_l2_desc | 市净率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| earnings_yield_ttm_rank_all_desc | 盈利收益率TTM全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| earnings_yield_ttm_pct_all_desc | 盈利收益率TTM全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| earnings_yield_ttm_z_all | 盈利收益率TTM全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| earnings_yield_ttm_rank_market_desc | 盈利收益率TTM市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| earnings_yield_ttm_pct_market_desc | 盈利收益率TTM市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| earnings_yield_ttm_rank_sw_l2_desc | 盈利收益率TTM申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| earnings_yield_ttm_pct_sw_l2_desc | 盈利收益率TTM申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| book_to_price_rank_all_desc | 账面市值比全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| book_to_price_pct_all_desc | 账面市值比全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| book_to_price_z_all | 账面市值比全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| book_to_price_rank_market_desc | 账面市值比市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| book_to_price_pct_market_desc | 账面市值比市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| book_to_price_rank_sw_l2_desc | 账面市值比申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| book_to_price_pct_sw_l2_desc | 账面市值比申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| dividend_yield_ttm_rank_all_desc | 股息率TTM全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| dividend_yield_ttm_pct_all_desc | 股息率TTM全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| dividend_yield_ttm_z_all | 股息率TTM全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| dividend_yield_ttm_rank_market_desc | 股息率TTM市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| dividend_yield_ttm_pct_market_desc | 股息率TTM市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| dividend_yield_ttm_rank_sw_l2_desc | 股息率TTM申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| dividend_yield_ttm_pct_sw_l2_desc | 股息率TTM申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roe_asof_rank_all_desc | ROE全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roe_asof_pct_all_desc | ROE全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roe_asof_z_all | ROE全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roe_asof_rank_market_desc | ROE市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roe_asof_pct_market_desc | ROE市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roe_asof_rank_sw_l2_desc | ROE申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roe_asof_pct_sw_l2_desc | ROE申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roa_asof_rank_all_desc | ROA全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roa_asof_pct_all_desc | ROA全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roa_asof_z_all | ROA全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roa_asof_rank_market_desc | ROA市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roa_asof_pct_market_desc | ROA市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roa_asof_rank_sw_l2_desc | ROA申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roa_asof_pct_sw_l2_desc | ROA申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roic_asof_rank_all_desc | ROIC全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roic_asof_pct_all_desc | ROIC全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roic_asof_z_all | ROIC全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roic_asof_rank_market_desc | ROIC市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roic_asof_pct_market_desc | ROIC市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roic_asof_rank_sw_l2_desc | ROIC申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roic_asof_pct_sw_l2_desc | ROIC申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| gross_margin_asof_rank_all_desc | 毛利率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| gross_margin_asof_pct_all_desc | 毛利率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| gross_margin_asof_z_all | 毛利率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| gross_margin_asof_rank_market_desc | 毛利率市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| gross_margin_asof_pct_market_desc | 毛利率市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| gross_margin_asof_rank_sw_l2_desc | 毛利率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| gross_margin_asof_pct_sw_l2_desc | 毛利率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_margin_asof_rank_all_desc | 净利率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_margin_asof_pct_all_desc | 净利率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_margin_asof_z_all | 净利率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_margin_asof_rank_market_desc | 净利率市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_margin_asof_pct_market_desc | 净利率市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_margin_asof_rank_sw_l2_desc | 净利率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_margin_asof_pct_sw_l2_desc | 净利率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_to_profit_asof_rank_all_desc | 经营现金流占利润全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_to_profit_asof_pct_all_desc | 经营现金流占利润全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_to_profit_asof_z_all | 经营现金流占利润全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_to_profit_asof_rank_market_desc | 经营现金流占利润市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_to_profit_asof_pct_market_desc | 经营现金流占利润市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_to_profit_asof_rank_sw_l2_desc | 经营现金流占利润申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_to_profit_asof_pct_sw_l2_desc | 经营现金流占利润申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| accrual_ratio_asof_rank_all_desc | 应计比率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| accrual_ratio_asof_pct_all_desc | 应计比率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| accrual_ratio_asof_z_all | 应计比率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| accrual_ratio_asof_rank_market_desc | 应计比率市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| accrual_ratio_asof_pct_market_desc | 应计比率市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| accrual_ratio_asof_rank_sw_l2_desc | 应计比率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| accrual_ratio_asof_pct_sw_l2_desc | 应计比率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| debt_to_assets_asof_rank_all_desc | 资产负债率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| debt_to_assets_asof_pct_all_desc | 资产负债率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| debt_to_assets_asof_z_all | 资产负债率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| debt_to_assets_asof_rank_market_desc | 资产负债率市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| debt_to_assets_asof_pct_market_desc | 资产负债率市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| debt_to_assets_asof_rank_sw_l2_desc | 资产负债率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| debt_to_assets_asof_pct_sw_l2_desc | 资产负债率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| current_ratio_asof_rank_all_desc | 流动比率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| current_ratio_asof_pct_all_desc | 流动比率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| current_ratio_asof_z_all | 流动比率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| current_ratio_asof_rank_market_desc | 流动比率市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| current_ratio_asof_pct_market_desc | 流动比率市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| current_ratio_asof_rank_sw_l2_desc | 流动比率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| current_ratio_asof_pct_sw_l2_desc | 流动比率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| assets_turn_asof_rank_all_desc | 总资产周转率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| assets_turn_asof_pct_all_desc | 总资产周转率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| assets_turn_asof_z_all | 总资产周转率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| assets_turn_asof_rank_market_desc | 总资产周转率市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| assets_turn_asof_pct_market_desc | 总资产周转率市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| assets_turn_asof_rank_sw_l2_desc | 总资产周转率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| assets_turn_asof_pct_sw_l2_desc | 总资产周转率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_yoy_asof_rank_all_desc | 营业收入同比全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_yoy_asof_pct_all_desc | 营业收入同比全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_yoy_asof_z_all | 营业收入同比全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_yoy_asof_rank_market_desc | 营业收入同比市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_yoy_asof_pct_market_desc | 营业收入同比市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_yoy_asof_rank_sw_l2_desc | 营业收入同比申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_yoy_asof_pct_sw_l2_desc | 营业收入同比申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_yoy_asof_rank_all_desc | 净利润同比全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_yoy_asof_pct_all_desc | 净利润同比全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_yoy_asof_z_all | 净利润同比全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_yoy_asof_rank_market_desc | 净利润同比市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_yoy_asof_pct_market_desc | 净利润同比市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_yoy_asof_rank_sw_l2_desc | 净利润同比申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| netprofit_yoy_asof_pct_sw_l2_desc | 净利润同比申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_yoy_asof_rank_all_desc | 经营现金流同比全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_yoy_asof_pct_all_desc | 经营现金流同比全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_yoy_asof_z_all | 经营现金流同比全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_yoy_asof_rank_market_desc | 经营现金流同比市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_yoy_asof_pct_market_desc | 经营现金流同比市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_yoy_asof_rank_sw_l2_desc | 经营现金流同比申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ocf_yoy_asof_pct_sw_l2_desc | 经营现金流同比申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_rank_all_desc | 营业收入3年复合增长全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_pct_all_desc | 营业收入3年复合增长全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_z_all | 营业收入3年复合增长全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_rank_market_desc | 营业收入3年复合增长市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_pct_market_desc | 营业收入3年复合增长市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_rank_sw_l2_desc | 营业收入3年复合增长申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_pct_sw_l2_desc | 营业收入3年复合增长申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_rank_all_desc | 净利润3年复合增长全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_pct_all_desc | 净利润3年复合增长全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_z_all | 净利润3年复合增长全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_rank_market_desc | 净利润3年复合增长市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_pct_market_desc | 净利润3年复合增长市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_rank_sw_l2_desc | 净利润3年复合增长申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_pct_sw_l2_desc | 净利润3年复合增长申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_sum_20_rank_all_desc | 20日主力净流入累计全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_sum_20_pct_all_desc | 20日主力净流入累计全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_sum_20_z_all | 20日主力净流入累计全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_sum_20_rank_market_desc | 20日主力净流入累计市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_sum_20_pct_market_desc | 20日主力净流入累计市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_sum_20_rank_sw_l2_desc | 20日主力净流入累计申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_sum_20_pct_sw_l2_desc | 20日主力净流入累计申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_rank_all_desc | 20日主力净流入占总市值全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_pct_all_desc | 20日主力净流入占总市值全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_z_all | 20日主力净流入占总市值全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_rank_market_desc | 20日主力净流入占总市值市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_pct_market_desc | 20日主力净流入占总市值市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_rank_sw_l2_desc | 20日主力净流入占总市值申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_pct_sw_l2_desc | 20日主力净流入占总市值申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_rank_all_desc | 20日主力净流入持续比例全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_pct_all_desc | 20日主力净流入持续比例全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_z_all | 20日主力净流入持续比例全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_rank_market_desc | 20日主力净流入持续比例市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_pct_market_desc | 20日主力净流入持续比例市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_rank_sw_l2_desc | 20日主力净流入持续比例申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_pct_sw_l2_desc | 20日主力净流入持续比例申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| margin_balance_chg_20_rank_all_desc | 融资融券余额20日变化全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| margin_balance_chg_20_pct_all_desc | 融资融券余额20日变化全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| margin_balance_chg_20_z_all | 融资融券余额20日变化全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| margin_balance_chg_20_rank_market_desc | 融资融券余额20日变化市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| margin_balance_chg_20_pct_market_desc | 融资融券余额20日变化市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| margin_balance_chg_20_rank_sw_l2_desc | 融资融券余额20日变化申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| margin_balance_chg_20_pct_sw_l2_desc | 融资融券余额20日变化申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_rank_all_desc | 北向持股比例20日变化全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_pct_all_desc | 北向持股比例20日变化全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_z_all | 北向持股比例20日变化全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_rank_market_desc | 北向持股比例20日变化市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_pct_market_desc | 北向持股比例20日变化市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_rank_sw_l2_desc | 北向持股比例20日变化申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_pct_sw_l2_desc | 北向持股比例20日变化申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_rank_all_desc | 20日相对申万二级超额收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_pct_all_desc | 20日相对申万二级超额收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_z_all | 20日相对申万二级超额收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_rank_market_desc | 20日相对申万二级超额收益市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_pct_market_desc | 20日相对申万二级超额收益市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_rank_sw_l2_desc | 20日相对申万二级超额收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_pct_sw_l2_desc | 20日相对申万二级超额收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_count_rank_all_desc | 概念数量全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_count_pct_all_desc | 概念数量全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_count_z_all | 概念数量全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_count_rank_market_desc | 概念数量市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_count_pct_market_desc | 概念数量市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_count_rank_sw_l2_desc | 概念数量申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_count_pct_sw_l2_desc | 概念数量申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_avg_ret_20_rank_all_desc | 所属概念20日平均收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_avg_ret_20_pct_all_desc | 所属概念20日平均收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_avg_ret_20_z_all | 所属概念20日平均收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_avg_ret_20_rank_market_desc | 所属概念20日平均收益市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_avg_ret_20_pct_market_desc | 所属概念20日平均收益市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_avg_ret_20_rank_sw_l2_desc | 所属概念20日平均收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_avg_ret_20_pct_sw_l2_desc | 所属概念20日平均收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_hot_count_20_rank_all_desc | 20日高热概念数量全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_hot_count_20_pct_all_desc | 20日高热概念数量全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_hot_count_20_z_all | 20日高热概念数量全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_hot_count_20_rank_market_desc | 20日高热概念数量市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_hot_count_20_pct_market_desc | 20日高热概念数量市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_hot_count_20_rank_sw_l2_desc | 20日高热概念数量申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| concept_hot_count_20_pct_sw_l2_desc | 20日高热概念数量申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_hs300_20_rank_all_desc | 20日相对沪深300超额收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_hs300_20_pct_all_desc | 20日相对沪深300超额收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_hs300_20_z_all | 20日相对沪深300超额收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_hs300_20_rank_market_desc | 20日相对沪深300超额收益市场分组降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_hs300_20_pct_market_desc | 20日相对沪深300超额收益市场分组降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_hs300_20_rank_sw_l2_desc | 20日相对沪深300超额收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| stock_excess_hs300_20_pct_sw_l2_desc | 20日相对沪深300超额收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_20_hfq_resid_size_sw_l2_z | 20日收益规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_60_hfq_resid_size_sw_l2_z | 60日收益规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| momentum_60_20_hfq_resid_size_sw_l2_z | 60-20日动量规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| hv_60_resid_size_sw_l2_z | 60日历史波动率规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| amihud_20_resid_size_sw_l2_z | 20日Amihud流动性冲击规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| earnings_yield_ttm_resid_size_sw_l2_z | 盈利收益率TTM规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| book_to_price_resid_size_sw_l2_z | 账面市值比规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| roe_asof_resid_size_sw_l2_z | ROE规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| revenue_yoy_asof_resid_size_sw_l2_z | 营业收入同比规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_resid_size_sw_l2_z | 20日主力净流入占总市值规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| size_exposure_z | 规模暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| value_exposure_z | 价值暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| momentum_exposure_z | 动量暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| reversal_exposure_z | 短期反转暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| volatility_exposure_z | 波动暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| liquidity_exposure_z | 流动性活跃暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| quality_exposure_z | 财务质量暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| growth_exposure_z | 财务成长暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| flow_exposure_z | 资金流暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
-| ret_20_hfq_z_market | 20日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_20_hfq_rank_sw_l1_desc | 20日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_20_hfq_pct_sw_l1_desc | 20日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_20_hfq_z_sw_l1 | 20日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_20_hfq_z_sw_l2 | 20日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_20_hfq_rank_exchange_desc | 20日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_20_hfq_pct_exchange_desc | 20日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_20_hfq_z_exchange | 20日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_60_hfq_z_market | 60日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_60_hfq_rank_sw_l1_desc | 60日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_60_hfq_pct_sw_l1_desc | 60日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_60_hfq_z_sw_l1 | 60日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_60_hfq_z_sw_l2 | 60日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_60_hfq_rank_exchange_desc | 60日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_60_hfq_pct_exchange_desc | 60日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_60_hfq_z_exchange | 60日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_120_hfq_z_market | 120日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_120_hfq_rank_sw_l1_desc | 120日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_120_hfq_pct_sw_l1_desc | 120日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_120_hfq_z_sw_l1 | 120日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_120_hfq_z_sw_l2 | 120日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_120_hfq_rank_exchange_desc | 120日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_120_hfq_pct_exchange_desc | 120日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_120_hfq_z_exchange | 120日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_250_hfq_z_market | 250日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_250_hfq_rank_sw_l1_desc | 250日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_250_hfq_pct_sw_l1_desc | 250日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_250_hfq_z_sw_l1 | 250日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_250_hfq_z_sw_l2 | 250日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_250_hfq_rank_exchange_desc | 250日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_250_hfq_pct_exchange_desc | 250日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_250_hfq_z_exchange | 250日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| momentum_60_20_hfq_z_market | 60-20日动量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| momentum_60_20_hfq_rank_sw_l1_desc | 60-20日动量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| momentum_60_20_hfq_pct_sw_l1_desc | 60-20日动量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| momentum_60_20_hfq_z_sw_l1 | 60-20日动量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| momentum_60_20_hfq_z_sw_l2 | 60-20日动量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| momentum_60_20_hfq_rank_exchange_desc | 60-20日动量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| momentum_60_20_hfq_pct_exchange_desc | 60-20日动量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| momentum_60_20_hfq_z_exchange | 60-20日动量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| reversal_5_hfq_z_market | 5日反转完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| reversal_5_hfq_rank_sw_l1_desc | 5日反转完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| reversal_5_hfq_pct_sw_l1_desc | 5日反转完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| reversal_5_hfq_z_sw_l1 | 5日反转完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| reversal_5_hfq_z_sw_l2 | 5日反转完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| reversal_5_hfq_rank_exchange_desc | 5日反转完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| reversal_5_hfq_pct_exchange_desc | 5日反转完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| reversal_5_hfq_z_exchange | 5日反转完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_20_z_market | 20日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_20_rank_sw_l1_desc | 20日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_20_pct_sw_l1_desc | 20日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_20_z_sw_l1 | 20日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_20_z_sw_l2 | 20日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_20_rank_exchange_desc | 20日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_20_pct_exchange_desc | 20日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_20_z_exchange | 20日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| turnover_rate_ma_20_z_market | 20日换手率均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| turnover_rate_ma_20_rank_sw_l1_desc | 20日换手率均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| turnover_rate_ma_20_pct_sw_l1_desc | 20日换手率均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| turnover_rate_ma_20_z_sw_l1 | 20日换手率均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| turnover_rate_ma_20_z_sw_l2 | 20日换手率均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| turnover_rate_ma_20_rank_exchange_desc | 20日换手率均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| turnover_rate_ma_20_pct_exchange_desc | 20日换手率均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| turnover_rate_ma_20_z_exchange | 20日换手率均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amihud_20_z_market | 20日Amihud流动性冲击完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amihud_20_rank_sw_l1_desc | 20日Amihud流动性冲击完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amihud_20_pct_sw_l1_desc | 20日Amihud流动性冲击完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amihud_20_z_sw_l1 | 20日Amihud流动性冲击完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amihud_20_z_sw_l2 | 20日Amihud流动性冲击完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amihud_20_rank_exchange_desc | 20日Amihud流动性冲击完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amihud_20_pct_exchange_desc | 20日Amihud流动性冲击完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amihud_20_z_exchange | 20日Amihud流动性冲击完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_20_z_market | 20日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_20_rank_sw_l1_desc | 20日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_20_pct_sw_l1_desc | 20日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_20_z_sw_l1 | 20日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_20_z_sw_l2 | 20日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_20_rank_exchange_desc | 20日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_20_pct_exchange_desc | 20日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_20_z_exchange | 20日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_60_z_market | 60日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_60_rank_sw_l1_desc | 60日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_60_pct_sw_l1_desc | 60日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_60_z_sw_l1 | 60日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_60_z_sw_l2 | 60日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_60_rank_exchange_desc | 60日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_60_pct_exchange_desc | 60日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| hv_60_z_exchange | 60日历史波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| atr_14_pct_hfq_z_market | 14日ATR占价格比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| atr_14_pct_hfq_rank_sw_l1_desc | 14日ATR占价格比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| atr_14_pct_hfq_pct_sw_l1_desc | 14日ATR占价格比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| atr_14_pct_hfq_z_sw_l1 | 14日ATR占价格比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| atr_14_pct_hfq_z_sw_l2 | 14日ATR占价格比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| atr_14_pct_hfq_rank_exchange_desc | 14日ATR占价格比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| atr_14_pct_hfq_pct_exchange_desc | 14日ATR占价格比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| atr_14_pct_hfq_z_exchange | 14日ATR占价格比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_60_hfq_z_market | 60日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_60_hfq_rank_sw_l1_desc | 60日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_60_hfq_pct_sw_l1_desc | 60日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_60_hfq_z_sw_l1 | 60日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_60_hfq_z_sw_l2 | 60日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_60_hfq_rank_exchange_desc | 60日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_60_hfq_pct_exchange_desc | 60日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_60_hfq_z_exchange | 60日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_total_mv_z_market | 总市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_total_mv_rank_sw_l1_desc | 总市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_total_mv_pct_sw_l1_desc | 总市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_total_mv_z_sw_l1 | 总市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_total_mv_z_sw_l2 | 总市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_total_mv_rank_exchange_desc | 总市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_total_mv_pct_exchange_desc | 总市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_total_mv_z_exchange | 总市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_free_float_mv_z_market | 自由流通市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_free_float_mv_rank_sw_l1_desc | 自由流通市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_free_float_mv_pct_sw_l1_desc | 自由流通市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_free_float_mv_z_sw_l1 | 自由流通市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_free_float_mv_z_sw_l2 | 自由流通市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_free_float_mv_rank_exchange_desc | 自由流通市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_free_float_mv_pct_exchange_desc | 自由流通市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| log_free_float_mv_z_exchange | 自由流通市值对数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_z_market | 市盈率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_rank_sw_l1_desc | 市盈率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_sw_l1_desc | 市盈率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_z_sw_l1 | 市盈率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_z_sw_l2 | 市盈率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_rank_exchange_desc | 市盈率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_exchange_desc | 市盈率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_z_exchange | 市盈率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_z_market | 市净率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_rank_sw_l1_desc | 市净率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_sw_l1_desc | 市净率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_z_sw_l1 | 市净率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_z_sw_l2 | 市净率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_rank_exchange_desc | 市净率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_exchange_desc | 市净率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_z_exchange | 市净率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| earnings_yield_ttm_z_market | 盈利收益率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| earnings_yield_ttm_rank_sw_l1_desc | 盈利收益率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| earnings_yield_ttm_pct_sw_l1_desc | 盈利收益率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| earnings_yield_ttm_z_sw_l1 | 盈利收益率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| earnings_yield_ttm_z_sw_l2 | 盈利收益率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| earnings_yield_ttm_rank_exchange_desc | 盈利收益率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| earnings_yield_ttm_pct_exchange_desc | 盈利收益率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| earnings_yield_ttm_z_exchange | 盈利收益率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| book_to_price_z_market | 账面市值比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| book_to_price_rank_sw_l1_desc | 账面市值比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| book_to_price_pct_sw_l1_desc | 账面市值比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| book_to_price_z_sw_l1 | 账面市值比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| book_to_price_z_sw_l2 | 账面市值比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| book_to_price_rank_exchange_desc | 账面市值比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| book_to_price_pct_exchange_desc | 账面市值比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| book_to_price_z_exchange | 账面市值比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| dividend_yield_ttm_z_market | 股息率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| dividend_yield_ttm_rank_sw_l1_desc | 股息率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| dividend_yield_ttm_pct_sw_l1_desc | 股息率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| dividend_yield_ttm_z_sw_l1 | 股息率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| dividend_yield_ttm_z_sw_l2 | 股息率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| dividend_yield_ttm_rank_exchange_desc | 股息率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| dividend_yield_ttm_pct_exchange_desc | 股息率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| dividend_yield_ttm_z_exchange | 股息率TTM完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roe_asof_z_market | ROE完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roe_asof_rank_sw_l1_desc | ROE完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roe_asof_pct_sw_l1_desc | ROE完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roe_asof_z_sw_l1 | ROE完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roe_asof_z_sw_l2 | ROE完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roe_asof_rank_exchange_desc | ROE完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roe_asof_pct_exchange_desc | ROE完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roe_asof_z_exchange | ROE完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roa_asof_z_market | ROA完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roa_asof_rank_sw_l1_desc | ROA完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roa_asof_pct_sw_l1_desc | ROA完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roa_asof_z_sw_l1 | ROA完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roa_asof_z_sw_l2 | ROA完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roa_asof_rank_exchange_desc | ROA完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roa_asof_pct_exchange_desc | ROA完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roa_asof_z_exchange | ROA完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roic_asof_z_market | ROIC完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roic_asof_rank_sw_l1_desc | ROIC完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roic_asof_pct_sw_l1_desc | ROIC完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roic_asof_z_sw_l1 | ROIC完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roic_asof_z_sw_l2 | ROIC完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roic_asof_rank_exchange_desc | ROIC完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roic_asof_pct_exchange_desc | ROIC完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| roic_asof_z_exchange | ROIC完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| gross_margin_asof_z_market | 毛利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| gross_margin_asof_rank_sw_l1_desc | 毛利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| gross_margin_asof_pct_sw_l1_desc | 毛利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| gross_margin_asof_z_sw_l1 | 毛利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| gross_margin_asof_z_sw_l2 | 毛利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| gross_margin_asof_rank_exchange_desc | 毛利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| gross_margin_asof_pct_exchange_desc | 毛利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| gross_margin_asof_z_exchange | 毛利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_margin_asof_z_market | 净利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_margin_asof_rank_sw_l1_desc | 净利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_margin_asof_pct_sw_l1_desc | 净利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_margin_asof_z_sw_l1 | 净利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_margin_asof_z_sw_l2 | 净利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_margin_asof_rank_exchange_desc | 净利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_margin_asof_pct_exchange_desc | 净利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_margin_asof_z_exchange | 净利率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_to_profit_asof_z_market | 经营现金流占利润完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_to_profit_asof_rank_sw_l1_desc | 经营现金流占利润完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_to_profit_asof_pct_sw_l1_desc | 经营现金流占利润完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_to_profit_asof_z_sw_l1 | 经营现金流占利润完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_to_profit_asof_z_sw_l2 | 经营现金流占利润完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_to_profit_asof_rank_exchange_desc | 经营现金流占利润完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_to_profit_asof_pct_exchange_desc | 经营现金流占利润完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_to_profit_asof_z_exchange | 经营现金流占利润完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| accrual_ratio_asof_z_market | 应计比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| accrual_ratio_asof_rank_sw_l1_desc | 应计比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| accrual_ratio_asof_pct_sw_l1_desc | 应计比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| accrual_ratio_asof_z_sw_l1 | 应计比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| accrual_ratio_asof_z_sw_l2 | 应计比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| accrual_ratio_asof_rank_exchange_desc | 应计比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| accrual_ratio_asof_pct_exchange_desc | 应计比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| accrual_ratio_asof_z_exchange | 应计比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| debt_to_assets_asof_z_market | 资产负债率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| debt_to_assets_asof_rank_sw_l1_desc | 资产负债率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| debt_to_assets_asof_pct_sw_l1_desc | 资产负债率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| debt_to_assets_asof_z_sw_l1 | 资产负债率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| debt_to_assets_asof_z_sw_l2 | 资产负债率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| debt_to_assets_asof_rank_exchange_desc | 资产负债率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| debt_to_assets_asof_pct_exchange_desc | 资产负债率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| debt_to_assets_asof_z_exchange | 资产负债率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| current_ratio_asof_z_market | 流动比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| current_ratio_asof_rank_sw_l1_desc | 流动比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| current_ratio_asof_pct_sw_l1_desc | 流动比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| current_ratio_asof_z_sw_l1 | 流动比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| current_ratio_asof_z_sw_l2 | 流动比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| current_ratio_asof_rank_exchange_desc | 流动比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| current_ratio_asof_pct_exchange_desc | 流动比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| current_ratio_asof_z_exchange | 流动比率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| assets_turn_asof_z_market | 总资产周转率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| assets_turn_asof_rank_sw_l1_desc | 总资产周转率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| assets_turn_asof_pct_sw_l1_desc | 总资产周转率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| assets_turn_asof_z_sw_l1 | 总资产周转率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| assets_turn_asof_z_sw_l2 | 总资产周转率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| assets_turn_asof_rank_exchange_desc | 总资产周转率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| assets_turn_asof_pct_exchange_desc | 总资产周转率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| assets_turn_asof_z_exchange | 总资产周转率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_yoy_asof_z_market | 营业收入同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_yoy_asof_rank_sw_l1_desc | 营业收入同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_yoy_asof_pct_sw_l1_desc | 营业收入同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_yoy_asof_z_sw_l1 | 营业收入同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_yoy_asof_z_sw_l2 | 营业收入同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_yoy_asof_rank_exchange_desc | 营业收入同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_yoy_asof_pct_exchange_desc | 营业收入同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_yoy_asof_z_exchange | 营业收入同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_yoy_asof_z_market | 净利润同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_yoy_asof_rank_sw_l1_desc | 净利润同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_yoy_asof_pct_sw_l1_desc | 净利润同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_yoy_asof_z_sw_l1 | 净利润同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_yoy_asof_z_sw_l2 | 净利润同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_yoy_asof_rank_exchange_desc | 净利润同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_yoy_asof_pct_exchange_desc | 净利润同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| netprofit_yoy_asof_z_exchange | 净利润同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_yoy_asof_z_market | 经营现金流同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_yoy_asof_rank_sw_l1_desc | 经营现金流同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_yoy_asof_pct_sw_l1_desc | 经营现金流同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_yoy_asof_z_sw_l1 | 经营现金流同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_yoy_asof_z_sw_l2 | 经营现金流同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_yoy_asof_rank_exchange_desc | 经营现金流同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_yoy_asof_pct_exchange_desc | 经营现金流同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_yoy_asof_z_exchange | 经营现金流同比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_z_market | 营业收入3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_rank_sw_l1_desc | 营业收入3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_pct_sw_l1_desc | 营业收入3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_z_sw_l1 | 营业收入3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_z_sw_l2 | 营业收入3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_rank_exchange_desc | 营业收入3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_pct_exchange_desc | 营业收入3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_cagr_3y_asof_z_exchange | 营业收入3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_z_market | 净利润3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_rank_sw_l1_desc | 净利润3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_pct_sw_l1_desc | 净利润3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_z_sw_l1 | 净利润3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_z_sw_l2 | 净利润3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_rank_exchange_desc | 净利润3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_pct_exchange_desc | 净利润3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_cagr_3y_asof_z_exchange | 净利润3年复合增长完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_20_z_market | 20日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_20_rank_sw_l1_desc | 20日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_20_pct_sw_l1_desc | 20日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_20_z_sw_l1 | 20日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_20_z_sw_l2 | 20日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_20_rank_exchange_desc | 20日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_20_pct_exchange_desc | 20日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_20_z_exchange | 20日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_z_market | 20日主力净流入占总市值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_rank_sw_l1_desc | 20日主力净流入占总市值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_pct_sw_l1_desc | 20日主力净流入占总市值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_z_sw_l1 | 20日主力净流入占总市值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_z_sw_l2 | 20日主力净流入占总市值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_rank_exchange_desc | 20日主力净流入占总市值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_pct_exchange_desc | 20日主力净流入占总市值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_to_total_mv_20_z_exchange | 20日主力净流入占总市值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_z_market | 20日主力净流入持续比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_rank_sw_l1_desc | 20日主力净流入持续比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_pct_sw_l1_desc | 20日主力净流入持续比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_z_sw_l1 | 20日主力净流入持续比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_z_sw_l2 | 20日主力净流入持续比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_rank_exchange_desc | 20日主力净流入持续比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_pct_exchange_desc | 20日主力净流入持续比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_persist_ratio_20_z_exchange | 20日主力净流入持续比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| margin_balance_chg_20_z_market | 融资融券余额20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| margin_balance_chg_20_rank_sw_l1_desc | 融资融券余额20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| margin_balance_chg_20_pct_sw_l1_desc | 融资融券余额20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| margin_balance_chg_20_z_sw_l1 | 融资融券余额20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| margin_balance_chg_20_z_sw_l2 | 融资融券余额20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| margin_balance_chg_20_rank_exchange_desc | 融资融券余额20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| margin_balance_chg_20_pct_exchange_desc | 融资融券余额20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| margin_balance_chg_20_z_exchange | 融资融券余额20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_z_market | 北向持股比例20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_rank_sw_l1_desc | 北向持股比例20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_pct_sw_l1_desc | 北向持股比例20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_z_sw_l1 | 北向持股比例20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_z_sw_l2 | 北向持股比例20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_rank_exchange_desc | 北向持股比例20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_pct_exchange_desc | 北向持股比例20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| north_hold_ratio_chg_20_z_exchange | 北向持股比例20日变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_z_market | 20日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_rank_sw_l1_desc | 20日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_pct_sw_l1_desc | 20日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_z_sw_l1 | 20日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_z_sw_l2 | 20日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_rank_exchange_desc | 20日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_pct_exchange_desc | 20日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_20_z_exchange | 20日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_count_z_market | 概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_count_rank_sw_l1_desc | 概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_count_pct_sw_l1_desc | 概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_count_z_sw_l1 | 概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_count_z_sw_l2 | 概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_count_rank_exchange_desc | 概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_count_pct_exchange_desc | 概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_count_z_exchange | 概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_avg_ret_20_z_market | 所属概念20日平均收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_avg_ret_20_rank_sw_l1_desc | 所属概念20日平均收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_avg_ret_20_pct_sw_l1_desc | 所属概念20日平均收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_avg_ret_20_z_sw_l1 | 所属概念20日平均收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_avg_ret_20_z_sw_l2 | 所属概念20日平均收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_avg_ret_20_rank_exchange_desc | 所属概念20日平均收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_avg_ret_20_pct_exchange_desc | 所属概念20日平均收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_avg_ret_20_z_exchange | 所属概念20日平均收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_hot_count_20_z_market | 20日高热概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_hot_count_20_rank_sw_l1_desc | 20日高热概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_hot_count_20_pct_sw_l1_desc | 20日高热概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_hot_count_20_z_sw_l1 | 20日高热概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_hot_count_20_z_sw_l2 | 20日高热概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_hot_count_20_rank_exchange_desc | 20日高热概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_hot_count_20_pct_exchange_desc | 20日高热概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_hot_count_20_z_exchange | 20日高热概念数量完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_hs300_20_z_market | 20日相对沪深300超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_hs300_20_rank_sw_l1_desc | 20日相对沪深300超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_hs300_20_pct_sw_l1_desc | 20日相对沪深300超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_hs300_20_z_sw_l1 | 20日相对沪深300超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_hs300_20_z_sw_l2 | 20日相对沪深300超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_hs300_20_rank_exchange_desc | 20日相对沪深300超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_hs300_20_pct_exchange_desc | 20日相对沪深300超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_hs300_20_z_exchange | 20日相对沪深300超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_z_market | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_rank_sw_l1_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_pct_sw_l1_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_z_sw_l1 | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_z_sw_l2 | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_rank_exchange_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_pct_exchange_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_z_exchange | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_z_market | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_rank_sw_l1_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_pct_sw_l1_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_z_sw_l1 | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_z_sw_l2 | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_rank_exchange_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_pct_exchange_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_z_exchange | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_z_market | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_rank_sw_l1_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_pct_sw_l1_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_z_sw_l1 | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_z_sw_l2 | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_rank_exchange_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_pct_exchange_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_z_exchange | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_z_market | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_rank_sw_l1_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_pct_sw_l1_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_z_sw_l1 | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_z_sw_l2 | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_rank_exchange_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_pct_exchange_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_z_exchange | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_z_market | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_rank_sw_l1_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_pct_sw_l1_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_z_sw_l1 | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_z_sw_l2 | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_rank_exchange_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_pct_exchange_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_z_exchange | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_z_market | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_rank_sw_l1_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_pct_sw_l1_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_z_sw_l1 | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_z_sw_l2 | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_rank_exchange_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_pct_exchange_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_z_exchange | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_z_market | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_rank_sw_l1_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_pct_sw_l1_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_z_sw_l1 | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_z_sw_l2 | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_rank_exchange_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_pct_exchange_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_z_exchange | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_z_market | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_rank_sw_l1_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_pct_sw_l1_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_z_sw_l1 | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_z_sw_l2 | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_rank_exchange_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_pct_exchange_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_z_exchange | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_z_market | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_rank_sw_l1_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_pct_sw_l1_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_z_sw_l1 | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_z_sw_l2 | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_rank_exchange_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_pct_exchange_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_z_exchange | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_z_market | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_rank_sw_l1_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_pct_sw_l1_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_z_sw_l1 | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_z_sw_l2 | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_rank_exchange_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_pct_exchange_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_z_exchange | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_z_market | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_rank_sw_l1_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_pct_sw_l1_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_z_sw_l1 | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_z_sw_l2 | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_rank_exchange_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_pct_exchange_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_z_exchange | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_z_market | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_rank_sw_l1_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_pct_sw_l1_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_z_sw_l1 | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_z_sw_l2 | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_rank_exchange_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_pct_exchange_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_z_exchange | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_z_market | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_rank_sw_l1_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_pct_sw_l1_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_z_sw_l1 | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_z_sw_l2 | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_rank_exchange_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_pct_exchange_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_z_exchange | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_z_market | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_rank_sw_l1_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_pct_sw_l1_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_z_sw_l1 | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_z_sw_l2 | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_rank_exchange_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_pct_exchange_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_z_exchange | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_z_market | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_rank_sw_l1_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_pct_sw_l1_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_z_sw_l1 | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_z_sw_l2 | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_rank_exchange_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_pct_exchange_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_z_exchange | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_z_market | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_rank_sw_l1_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_pct_sw_l1_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_z_sw_l1 | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_z_sw_l2 | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_rank_exchange_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_pct_exchange_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_z_exchange | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_z_market | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_rank_sw_l1_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_pct_sw_l1_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_z_sw_l1 | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_z_sw_l2 | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_rank_exchange_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_pct_exchange_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_z_exchange | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_z_market | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_rank_sw_l1_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_pct_sw_l1_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_z_sw_l1 | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_z_sw_l2 | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_rank_exchange_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_pct_exchange_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_z_exchange | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_z_market | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_rank_sw_l1_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_pct_sw_l1_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_z_sw_l1 | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_z_sw_l2 | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_rank_exchange_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_pct_exchange_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_z_exchange | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_z_market | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_rank_sw_l1_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_pct_sw_l1_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_z_sw_l1 | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_z_sw_l2 | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_rank_exchange_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_pct_exchange_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_z_exchange | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_z_market | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_rank_sw_l1_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_pct_sw_l1_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_z_sw_l1 | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_z_sw_l2 | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_rank_exchange_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_pct_exchange_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_z_exchange | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_z_market | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_rank_sw_l1_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_pct_sw_l1_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_z_sw_l1 | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_z_sw_l2 | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_rank_exchange_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_pct_exchange_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_z_exchange | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_z_market | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_rank_sw_l1_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_pct_sw_l1_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_z_sw_l1 | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_z_sw_l2 | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_rank_exchange_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_pct_exchange_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_z_exchange | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_rank_all_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_pct_all_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_z_all | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_rank_market_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_pct_market_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_rank_sw_l2_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ret_5_hfq_pct_sw_l2_desc | 5日收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_rank_all_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_pct_all_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_z_all | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_rank_market_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_pct_market_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_rank_sw_l2_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| up_days_20_pct_sw_l2_desc | 20日上涨天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_rank_all_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_pct_all_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_z_all | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_rank_market_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_pct_market_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_rank_sw_l2_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| down_days_20_pct_sw_l2_desc | 20日下跌天数完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_rank_all_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_pct_all_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_z_all | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_rank_market_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_pct_market_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_rank_sw_l2_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ma_60_pct_sw_l2_desc | 60日成交额均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_rank_all_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_pct_all_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_z_all | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_rank_market_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_pct_market_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_rank_sw_l2_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| volume_ratio_20_pct_sw_l2_desc | 20日成交量相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_rank_all_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_pct_all_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_z_all | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_rank_market_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_pct_market_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_rank_sw_l2_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| amount_ratio_20_pct_sw_l2_desc | 20日成交额相对均值完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_rank_all_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_pct_all_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_z_all | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_rank_market_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_pct_market_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_rank_sw_l2_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| parkinson_vol_20_pct_sw_l2_desc | 20日Parkinson波动率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_rank_all_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_pct_all_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_z_all | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_rank_market_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_pct_market_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_rank_sw_l2_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| max_drawdown_20_hfq_pct_sw_l2_desc | 20日最大回撤完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_rank_all_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_pct_all_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_z_all | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_rank_market_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_pct_market_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_rank_sw_l2_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pe_ttm_pct_5y_pct_sw_l2_desc | PE_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_rank_all_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_pct_all_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_z_all | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_rank_market_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_pct_market_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_rank_sw_l2_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| pb_pct_5y_pct_sw_l2_desc | PB五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_rank_all_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_pct_all_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_z_all | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_rank_market_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_pct_market_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_rank_sw_l2_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ps_ttm_pct_5y_pct_sw_l2_desc | PS_TTM五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_rank_all_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_pct_all_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_z_all | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_rank_market_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_pct_market_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_rank_sw_l2_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| total_mv_pct_5y_pct_sw_l2_desc | 总市值五年历史分位完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_rank_all_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_pct_all_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_z_all | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_rank_market_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_pct_market_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_rank_sw_l2_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| operating_profit_margin_asof_pct_sw_l2_desc | 营业利润率完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_rank_all_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_pct_all_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_z_all | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_rank_market_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_pct_market_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_rank_sw_l2_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cash_to_assets_asof_pct_sw_l2_desc | 货币资金占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_rank_all_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_pct_all_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_z_all | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_rank_market_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_pct_market_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_rank_sw_l2_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| goodwill_to_assets_asof_pct_sw_l2_desc | 商誉占资产完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_rank_all_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_pct_all_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_z_all | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_rank_market_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_pct_market_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_rank_sw_l2_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| liabilities_to_equity_asof_pct_sw_l2_desc | 负债权益比完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_rank_all_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_pct_all_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_z_all | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_rank_market_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_pct_market_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_rank_sw_l2_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| revenue_change_4report_asof_pct_sw_l2_desc | 营业收入4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_rank_all_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_pct_all_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_z_all | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_rank_market_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_pct_market_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_rank_sw_l2_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| net_profit_change_4report_asof_pct_sw_l2_desc | 净利润4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_rank_all_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_pct_all_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_z_all | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_rank_market_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_pct_market_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_rank_sw_l2_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| ocf_change_4report_asof_pct_sw_l2_desc | 经营现金流4报告期变化完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_rank_all_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_pct_all_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_z_all | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_rank_market_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_pct_market_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_rank_sw_l2_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| main_flow_sum_60_pct_sw_l2_desc | 60日主力净流入累计完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_rank_all_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_pct_all_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_z_all | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_rank_market_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_pct_market_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_rank_sw_l2_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| small_net_amount_rate_pct_sw_l2_desc | 小单净流入比例完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_rank_all_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_pct_all_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_z_all | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_rank_market_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_pct_market_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_rank_sw_l2_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_sw_l2_60_pct_sw_l2_desc | 60日相对申万二级超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_rank_all_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_pct_all_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_z_all | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_rank_market_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_pct_market_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_rank_sw_l2_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| stock_excess_zz1000_20_pct_sw_l2_desc | 20日相对中证1000超额收益完整视图扩展截面字段 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| profitability_exposure_z | 盈利能力暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| cashflow_quality_exposure_z | 现金流质量暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| leverage_exposure_z | 杠杆暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| concept_heat_exposure_z | 概念热度暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
-| index_relative_exposure_z | 指数相对强弱暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
 | corp_action_available_flag | 公司行为数据可用标记 | derived_corporate_action | corporate_action | core | derived | not_price | false_when_missing |
 | latest_corp_action_date | 最近公司行为事件日期 | derived_corporate_action | corporate_action | core | derived | not_price | event_sparse |
 | days_since_latest_corp_action | 距最近公司行为事件天数 | derived_corporate_action | corporate_action | core | derived | not_price | event_sparse |
@@ -2760,3 +1700,1063 @@
 | key_non_null_ratio | 关键字段非空率 | composite_state_module_coverage_v | composite_state | extended | derived | mixed_documented | unknown_enum_or_null |
 | latest_source_update_at | 来源最新更新时间 | composite_state_module_coverage_v | composite_state | extended | derived | mixed_documented | unknown_enum_or_null |
 | quality_note | 质量备注 | composite_state_module_coverage_v | composite_state | extended | derived | mixed_documented | unknown_enum_or_null |
+| xs_universe_flag | 是否进入截面样本 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_market | 截面市场分组 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_exchange | 截面交易所分组 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_sw_l1_code | 截面申万一级行业 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_sw_l2_code | 截面申万二级行业 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_sample_all_count | 全市场截面样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_sample_market_count | 市场分组样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_sample_sw_l1_count | 申万一级样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_sample_sw_l2_count | 申万二级样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_core_available_count | 核心截面变量可用数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_core_available_ratio | 核心截面变量可用率 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_missing_fields | 缺失核心字段列表 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_winsor_lower_pct | 缩尾下分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_winsor_upper_pct | 缩尾上分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_min_group_zscore_n | z-score最小分组样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| xs_min_group_rank_n | 排名最小分组样本数 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_20_hfq_rank_all_desc | 20日收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_20_hfq_pct_all_desc | 20日收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_20_hfq_z_all | 20日收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_20_hfq_rank_market_desc | 20日收益市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_20_hfq_pct_market_desc | 20日收益市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_20_hfq_rank_sw_l2_desc | 20日收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_20_hfq_pct_sw_l2_desc | 20日收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_60_hfq_rank_all_desc | 60日收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_60_hfq_pct_all_desc | 60日收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_60_hfq_z_all | 60日收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_60_hfq_rank_market_desc | 60日收益市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_60_hfq_pct_market_desc | 60日收益市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_60_hfq_rank_sw_l2_desc | 60日收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_60_hfq_pct_sw_l2_desc | 60日收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_120_hfq_rank_all_desc | 120日收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_120_hfq_pct_all_desc | 120日收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_120_hfq_z_all | 120日收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_120_hfq_rank_market_desc | 120日收益市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_120_hfq_pct_market_desc | 120日收益市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_120_hfq_rank_sw_l2_desc | 120日收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_120_hfq_pct_sw_l2_desc | 120日收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_250_hfq_rank_all_desc | 250日收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_250_hfq_pct_all_desc | 250日收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_250_hfq_z_all | 250日收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_250_hfq_rank_market_desc | 250日收益市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_250_hfq_pct_market_desc | 250日收益市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_250_hfq_rank_sw_l2_desc | 250日收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_250_hfq_pct_sw_l2_desc | 250日收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| momentum_60_20_hfq_rank_all_desc | 60-20日动量全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| momentum_60_20_hfq_pct_all_desc | 60-20日动量全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| momentum_60_20_hfq_z_all | 60-20日动量全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| momentum_60_20_hfq_rank_market_desc | 60-20日动量市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| momentum_60_20_hfq_pct_market_desc | 60-20日动量市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| momentum_60_20_hfq_rank_sw_l2_desc | 60-20日动量申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| momentum_60_20_hfq_pct_sw_l2_desc | 60-20日动量申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| reversal_5_hfq_rank_all_desc | 5日反转全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| reversal_5_hfq_pct_all_desc | 5日反转全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| reversal_5_hfq_z_all | 5日反转全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| reversal_5_hfq_rank_market_desc | 5日反转市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| reversal_5_hfq_pct_market_desc | 5日反转市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| reversal_5_hfq_rank_sw_l2_desc | 5日反转申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| reversal_5_hfq_pct_sw_l2_desc | 5日反转申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amount_ma_20_rank_all_desc | 20日成交额均值全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amount_ma_20_pct_all_desc | 20日成交额均值全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amount_ma_20_z_all | 20日成交额均值全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amount_ma_20_rank_market_desc | 20日成交额均值市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amount_ma_20_pct_market_desc | 20日成交额均值市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amount_ma_20_rank_sw_l2_desc | 20日成交额均值申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amount_ma_20_pct_sw_l2_desc | 20日成交额均值申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| turnover_rate_ma_20_rank_all_desc | 20日换手率均值全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| turnover_rate_ma_20_pct_all_desc | 20日换手率均值全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| turnover_rate_ma_20_z_all | 20日换手率均值全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| turnover_rate_ma_20_rank_market_desc | 20日换手率均值市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| turnover_rate_ma_20_pct_market_desc | 20日换手率均值市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| turnover_rate_ma_20_rank_sw_l2_desc | 20日换手率均值申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| turnover_rate_ma_20_pct_sw_l2_desc | 20日换手率均值申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amihud_20_rank_all_desc | 20日Amihud流动性冲击全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amihud_20_pct_all_desc | 20日Amihud流动性冲击全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amihud_20_z_all | 20日Amihud流动性冲击全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amihud_20_rank_market_desc | 20日Amihud流动性冲击市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amihud_20_pct_market_desc | 20日Amihud流动性冲击市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amihud_20_rank_sw_l2_desc | 20日Amihud流动性冲击申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amihud_20_pct_sw_l2_desc | 20日Amihud流动性冲击申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_20_rank_all_desc | 20日历史波动率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_20_pct_all_desc | 20日历史波动率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_20_z_all | 20日历史波动率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_20_rank_market_desc | 20日历史波动率市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_20_pct_market_desc | 20日历史波动率市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_20_rank_sw_l2_desc | 20日历史波动率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_20_pct_sw_l2_desc | 20日历史波动率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_60_rank_all_desc | 60日历史波动率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_60_pct_all_desc | 60日历史波动率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_60_z_all | 60日历史波动率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_60_rank_market_desc | 60日历史波动率市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_60_pct_market_desc | 60日历史波动率市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_60_rank_sw_l2_desc | 60日历史波动率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_60_pct_sw_l2_desc | 60日历史波动率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| atr_14_pct_hfq_rank_all_desc | 14日ATR占价格比例全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| atr_14_pct_hfq_pct_all_desc | 14日ATR占价格比例全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| atr_14_pct_hfq_z_all | 14日ATR占价格比例全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| atr_14_pct_hfq_rank_market_desc | 14日ATR占价格比例市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| atr_14_pct_hfq_pct_market_desc | 14日ATR占价格比例市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| atr_14_pct_hfq_rank_sw_l2_desc | 14日ATR占价格比例申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| atr_14_pct_hfq_pct_sw_l2_desc | 14日ATR占价格比例申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| max_drawdown_60_hfq_rank_all_desc | 60日最大回撤全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| max_drawdown_60_hfq_pct_all_desc | 60日最大回撤全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| max_drawdown_60_hfq_z_all | 60日最大回撤全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| max_drawdown_60_hfq_rank_market_desc | 60日最大回撤市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| max_drawdown_60_hfq_pct_market_desc | 60日最大回撤市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| max_drawdown_60_hfq_rank_sw_l2_desc | 60日最大回撤申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| max_drawdown_60_hfq_pct_sw_l2_desc | 60日最大回撤申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_total_mv_rank_all_desc | 总市值对数全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_total_mv_pct_all_desc | 总市值对数全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_total_mv_z_all | 总市值对数全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_total_mv_rank_market_desc | 总市值对数市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_total_mv_pct_market_desc | 总市值对数市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_total_mv_rank_sw_l2_desc | 总市值对数申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_total_mv_pct_sw_l2_desc | 总市值对数申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_free_float_mv_rank_all_desc | 自由流通市值对数全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_free_float_mv_pct_all_desc | 自由流通市值对数全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_free_float_mv_z_all | 自由流通市值对数全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_free_float_mv_rank_market_desc | 自由流通市值对数市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_free_float_mv_pct_market_desc | 自由流通市值对数市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_free_float_mv_rank_sw_l2_desc | 自由流通市值对数申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| log_free_float_mv_pct_sw_l2_desc | 自由流通市值对数申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pe_ttm_rank_all_desc | 市盈率TTM全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pe_ttm_pct_all_desc | 市盈率TTM全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pe_ttm_z_all | 市盈率TTM全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pe_ttm_rank_market_desc | 市盈率TTM市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pe_ttm_pct_market_desc | 市盈率TTM市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pe_ttm_rank_sw_l2_desc | 市盈率TTM申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pe_ttm_pct_sw_l2_desc | 市盈率TTM申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pb_rank_all_desc | 市净率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pb_pct_all_desc | 市净率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pb_z_all | 市净率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pb_rank_market_desc | 市净率市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pb_pct_market_desc | 市净率市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pb_rank_sw_l2_desc | 市净率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| pb_pct_sw_l2_desc | 市净率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| earnings_yield_ttm_rank_all_desc | 盈利收益率TTM全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| earnings_yield_ttm_pct_all_desc | 盈利收益率TTM全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| earnings_yield_ttm_z_all | 盈利收益率TTM全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| earnings_yield_ttm_rank_market_desc | 盈利收益率TTM市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| earnings_yield_ttm_pct_market_desc | 盈利收益率TTM市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| earnings_yield_ttm_rank_sw_l2_desc | 盈利收益率TTM申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| earnings_yield_ttm_pct_sw_l2_desc | 盈利收益率TTM申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| book_to_price_rank_all_desc | 账面市值比全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| book_to_price_pct_all_desc | 账面市值比全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| book_to_price_z_all | 账面市值比全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| book_to_price_rank_market_desc | 账面市值比市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| book_to_price_pct_market_desc | 账面市值比市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| book_to_price_rank_sw_l2_desc | 账面市值比申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| book_to_price_pct_sw_l2_desc | 账面市值比申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| dividend_yield_ttm_rank_all_desc | 股息率TTM全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| dividend_yield_ttm_pct_all_desc | 股息率TTM全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| dividend_yield_ttm_z_all | 股息率TTM全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| dividend_yield_ttm_rank_market_desc | 股息率TTM市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| dividend_yield_ttm_pct_market_desc | 股息率TTM市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| dividend_yield_ttm_rank_sw_l2_desc | 股息率TTM申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| dividend_yield_ttm_pct_sw_l2_desc | 股息率TTM申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roe_asof_rank_all_desc | ROE全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roe_asof_pct_all_desc | ROE全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roe_asof_z_all | ROE全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roe_asof_rank_market_desc | ROE市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roe_asof_pct_market_desc | ROE市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roe_asof_rank_sw_l2_desc | ROE申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roe_asof_pct_sw_l2_desc | ROE申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roa_asof_rank_all_desc | ROA全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roa_asof_pct_all_desc | ROA全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roa_asof_z_all | ROA全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roa_asof_rank_market_desc | ROA市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roa_asof_pct_market_desc | ROA市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roa_asof_rank_sw_l2_desc | ROA申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roa_asof_pct_sw_l2_desc | ROA申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roic_asof_rank_all_desc | ROIC全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roic_asof_pct_all_desc | ROIC全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roic_asof_z_all | ROIC全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roic_asof_rank_market_desc | ROIC市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roic_asof_pct_market_desc | ROIC市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roic_asof_rank_sw_l2_desc | ROIC申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roic_asof_pct_sw_l2_desc | ROIC申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| gross_margin_asof_rank_all_desc | 毛利率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| gross_margin_asof_pct_all_desc | 毛利率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| gross_margin_asof_z_all | 毛利率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| gross_margin_asof_rank_market_desc | 毛利率市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| gross_margin_asof_pct_market_desc | 毛利率市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| gross_margin_asof_rank_sw_l2_desc | 毛利率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| gross_margin_asof_pct_sw_l2_desc | 毛利率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_margin_asof_rank_all_desc | 净利率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_margin_asof_pct_all_desc | 净利率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_margin_asof_z_all | 净利率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_margin_asof_rank_market_desc | 净利率市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_margin_asof_pct_market_desc | 净利率市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_margin_asof_rank_sw_l2_desc | 净利率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_margin_asof_pct_sw_l2_desc | 净利率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_to_profit_asof_rank_all_desc | 经营现金流占利润全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_to_profit_asof_pct_all_desc | 经营现金流占利润全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_to_profit_asof_z_all | 经营现金流占利润全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_to_profit_asof_rank_market_desc | 经营现金流占利润市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_to_profit_asof_pct_market_desc | 经营现金流占利润市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_to_profit_asof_rank_sw_l2_desc | 经营现金流占利润申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_to_profit_asof_pct_sw_l2_desc | 经营现金流占利润申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| accrual_ratio_asof_rank_all_desc | 应计比率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| accrual_ratio_asof_pct_all_desc | 应计比率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| accrual_ratio_asof_z_all | 应计比率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| accrual_ratio_asof_rank_market_desc | 应计比率市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| accrual_ratio_asof_pct_market_desc | 应计比率市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| accrual_ratio_asof_rank_sw_l2_desc | 应计比率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| accrual_ratio_asof_pct_sw_l2_desc | 应计比率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| debt_to_assets_asof_rank_all_desc | 资产负债率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| debt_to_assets_asof_pct_all_desc | 资产负债率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| debt_to_assets_asof_z_all | 资产负债率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| debt_to_assets_asof_rank_market_desc | 资产负债率市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| debt_to_assets_asof_pct_market_desc | 资产负债率市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| debt_to_assets_asof_rank_sw_l2_desc | 资产负债率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| debt_to_assets_asof_pct_sw_l2_desc | 资产负债率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| current_ratio_asof_rank_all_desc | 流动比率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| current_ratio_asof_pct_all_desc | 流动比率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| current_ratio_asof_z_all | 流动比率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| current_ratio_asof_rank_market_desc | 流动比率市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| current_ratio_asof_pct_market_desc | 流动比率市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| current_ratio_asof_rank_sw_l2_desc | 流动比率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| current_ratio_asof_pct_sw_l2_desc | 流动比率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| assets_turn_asof_rank_all_desc | 总资产周转率全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| assets_turn_asof_pct_all_desc | 总资产周转率全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| assets_turn_asof_z_all | 总资产周转率全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| assets_turn_asof_rank_market_desc | 总资产周转率市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| assets_turn_asof_pct_market_desc | 总资产周转率市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| assets_turn_asof_rank_sw_l2_desc | 总资产周转率申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| assets_turn_asof_pct_sw_l2_desc | 总资产周转率申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_yoy_asof_rank_all_desc | 营业收入同比全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_yoy_asof_pct_all_desc | 营业收入同比全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_yoy_asof_z_all | 营业收入同比全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_yoy_asof_rank_market_desc | 营业收入同比市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_yoy_asof_pct_market_desc | 营业收入同比市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_yoy_asof_rank_sw_l2_desc | 营业收入同比申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_yoy_asof_pct_sw_l2_desc | 营业收入同比申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_yoy_asof_rank_all_desc | 净利润同比全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_yoy_asof_pct_all_desc | 净利润同比全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_yoy_asof_z_all | 净利润同比全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_yoy_asof_rank_market_desc | 净利润同比市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_yoy_asof_pct_market_desc | 净利润同比市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_yoy_asof_rank_sw_l2_desc | 净利润同比申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| netprofit_yoy_asof_pct_sw_l2_desc | 净利润同比申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_yoy_asof_rank_all_desc | 经营现金流同比全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_yoy_asof_pct_all_desc | 经营现金流同比全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_yoy_asof_z_all | 经营现金流同比全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_yoy_asof_rank_market_desc | 经营现金流同比市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_yoy_asof_pct_market_desc | 经营现金流同比市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_yoy_asof_rank_sw_l2_desc | 经营现金流同比申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ocf_yoy_asof_pct_sw_l2_desc | 经营现金流同比申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_rank_all_desc | 营业收入3年复合增长全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_pct_all_desc | 营业收入3年复合增长全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_z_all | 营业收入3年复合增长全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_rank_market_desc | 营业收入3年复合增长市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_pct_market_desc | 营业收入3年复合增长市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_rank_sw_l2_desc | 营业收入3年复合增长申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_pct_sw_l2_desc | 营业收入3年复合增长申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_rank_all_desc | 净利润3年复合增长全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_pct_all_desc | 净利润3年复合增长全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_z_all | 净利润3年复合增长全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_rank_market_desc | 净利润3年复合增长市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_pct_market_desc | 净利润3年复合增长市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_rank_sw_l2_desc | 净利润3年复合增长申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_pct_sw_l2_desc | 净利润3年复合增长申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_sum_20_rank_all_desc | 20日主力净流入累计全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_sum_20_pct_all_desc | 20日主力净流入累计全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_sum_20_z_all | 20日主力净流入累计全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_sum_20_rank_market_desc | 20日主力净流入累计市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_sum_20_pct_market_desc | 20日主力净流入累计市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_sum_20_rank_sw_l2_desc | 20日主力净流入累计申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_sum_20_pct_sw_l2_desc | 20日主力净流入累计申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_rank_all_desc | 20日主力净流入占总市值全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_pct_all_desc | 20日主力净流入占总市值全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_z_all | 20日主力净流入占总市值全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_rank_market_desc | 20日主力净流入占总市值市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_pct_market_desc | 20日主力净流入占总市值市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_rank_sw_l2_desc | 20日主力净流入占总市值申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_pct_sw_l2_desc | 20日主力净流入占总市值申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_rank_all_desc | 20日主力净流入持续比例全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_pct_all_desc | 20日主力净流入持续比例全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_z_all | 20日主力净流入持续比例全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_rank_market_desc | 20日主力净流入持续比例市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_pct_market_desc | 20日主力净流入持续比例市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_rank_sw_l2_desc | 20日主力净流入持续比例申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_pct_sw_l2_desc | 20日主力净流入持续比例申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| margin_balance_chg_20_rank_all_desc | 融资融券余额20日变化全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| margin_balance_chg_20_pct_all_desc | 融资融券余额20日变化全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| margin_balance_chg_20_z_all | 融资融券余额20日变化全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| margin_balance_chg_20_rank_market_desc | 融资融券余额20日变化市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| margin_balance_chg_20_pct_market_desc | 融资融券余额20日变化市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| margin_balance_chg_20_rank_sw_l2_desc | 融资融券余额20日变化申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| margin_balance_chg_20_pct_sw_l2_desc | 融资融券余额20日变化申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_rank_all_desc | 北向持股比例20日变化全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_pct_all_desc | 北向持股比例20日变化全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_z_all | 北向持股比例20日变化全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_rank_market_desc | 北向持股比例20日变化市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_pct_market_desc | 北向持股比例20日变化市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_rank_sw_l2_desc | 北向持股比例20日变化申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_pct_sw_l2_desc | 北向持股比例20日变化申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_rank_all_desc | 20日相对申万二级超额收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_pct_all_desc | 20日相对申万二级超额收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_z_all | 20日相对申万二级超额收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_rank_market_desc | 20日相对申万二级超额收益市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_pct_market_desc | 20日相对申万二级超额收益市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_rank_sw_l2_desc | 20日相对申万二级超额收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_pct_sw_l2_desc | 20日相对申万二级超额收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_count_rank_all_desc | 概念数量全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_count_pct_all_desc | 概念数量全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_count_z_all | 概念数量全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_count_rank_market_desc | 概念数量市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_count_pct_market_desc | 概念数量市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_count_rank_sw_l2_desc | 概念数量申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_count_pct_sw_l2_desc | 概念数量申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_avg_ret_20_rank_all_desc | 所属概念20日平均收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_avg_ret_20_pct_all_desc | 所属概念20日平均收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_avg_ret_20_z_all | 所属概念20日平均收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_avg_ret_20_rank_market_desc | 所属概念20日平均收益市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_avg_ret_20_pct_market_desc | 所属概念20日平均收益市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_avg_ret_20_rank_sw_l2_desc | 所属概念20日平均收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_avg_ret_20_pct_sw_l2_desc | 所属概念20日平均收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_hot_count_20_rank_all_desc | 20日高热概念数量全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_hot_count_20_pct_all_desc | 20日高热概念数量全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_hot_count_20_z_all | 20日高热概念数量全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_hot_count_20_rank_market_desc | 20日高热概念数量市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_hot_count_20_pct_market_desc | 20日高热概念数量市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_hot_count_20_rank_sw_l2_desc | 20日高热概念数量申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| concept_hot_count_20_pct_sw_l2_desc | 20日高热概念数量申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_hs300_20_rank_all_desc | 20日相对沪深300超额收益全市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_hs300_20_pct_all_desc | 20日相对沪深300超额收益全市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_hs300_20_z_all | 20日相对沪深300超额收益全市场z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_hs300_20_rank_market_desc | 20日相对沪深300超额收益市场降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_hs300_20_pct_market_desc | 20日相对沪深300超额收益市场降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_hs300_20_rank_sw_l2_desc | 20日相对沪深300超额收益申万二级降序排名 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| stock_excess_hs300_20_pct_sw_l2_desc | 20日相对沪深300超额收益申万二级降序分位 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_20_hfq_resid_size_sw_l2_z | 20日收益规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_60_hfq_resid_size_sw_l2_z | 60日收益规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| momentum_60_20_hfq_resid_size_sw_l2_z | 60-20日动量规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| hv_60_resid_size_sw_l2_z | 60日历史波动率规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| amihud_20_resid_size_sw_l2_z | 20日Amihud流动性冲击规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| earnings_yield_ttm_resid_size_sw_l2_z | 盈利收益率TTM规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| book_to_price_resid_size_sw_l2_z | 账面市值比规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| roe_asof_resid_size_sw_l2_z | ROE规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| revenue_yoy_asof_resid_size_sw_l2_z | 营业收入同比规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_resid_size_sw_l2_z | 20日主力净流入占总市值规模行业中性残差z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| size_exposure_z | 规模暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| value_exposure_z | 价值暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| momentum_exposure_z | 动量暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| reversal_exposure_z | 短期反转暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| volatility_exposure_z | 波动暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| liquidity_exposure_z | 流动性活跃暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| quality_exposure_z | 财务质量暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| growth_exposure_z | 财务成长暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| flow_exposure_z | 资金流暴露z值 | derived_cross_sectional | cross_sectional | core | derived | mixed | source_optional |
+| ret_20_hfq_z_market | 20日收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_20_hfq_rank_sw_l1_desc | 20日收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_20_hfq_pct_sw_l1_desc | 20日收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_20_hfq_z_sw_l1 | 20日收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_20_hfq_z_sw_l2 | 20日收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_20_hfq_rank_exchange_desc | 20日收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_20_hfq_pct_exchange_desc | 20日收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_20_hfq_z_exchange | 20日收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_60_hfq_z_market | 60日收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_60_hfq_rank_sw_l1_desc | 60日收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_60_hfq_pct_sw_l1_desc | 60日收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_60_hfq_z_sw_l1 | 60日收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_60_hfq_z_sw_l2 | 60日收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_60_hfq_rank_exchange_desc | 60日收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_60_hfq_pct_exchange_desc | 60日收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_60_hfq_z_exchange | 60日收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_120_hfq_z_market | 120日收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_120_hfq_rank_sw_l1_desc | 120日收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_120_hfq_pct_sw_l1_desc | 120日收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_120_hfq_z_sw_l1 | 120日收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_120_hfq_z_sw_l2 | 120日收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_120_hfq_rank_exchange_desc | 120日收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_120_hfq_pct_exchange_desc | 120日收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_120_hfq_z_exchange | 120日收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_250_hfq_z_market | 250日收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_250_hfq_rank_sw_l1_desc | 250日收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_250_hfq_pct_sw_l1_desc | 250日收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_250_hfq_z_sw_l1 | 250日收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_250_hfq_z_sw_l2 | 250日收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_250_hfq_rank_exchange_desc | 250日收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_250_hfq_pct_exchange_desc | 250日收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_250_hfq_z_exchange | 250日收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| momentum_60_20_hfq_z_market | 60-20日动量市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| momentum_60_20_hfq_rank_sw_l1_desc | 60-20日动量申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| momentum_60_20_hfq_pct_sw_l1_desc | 60-20日动量申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| momentum_60_20_hfq_z_sw_l1 | 60-20日动量申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| momentum_60_20_hfq_z_sw_l2 | 60-20日动量申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| momentum_60_20_hfq_rank_exchange_desc | 60-20日动量交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| momentum_60_20_hfq_pct_exchange_desc | 60-20日动量交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| momentum_60_20_hfq_z_exchange | 60-20日动量交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| reversal_5_hfq_z_market | 5日反转市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| reversal_5_hfq_rank_sw_l1_desc | 5日反转申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| reversal_5_hfq_pct_sw_l1_desc | 5日反转申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| reversal_5_hfq_z_sw_l1 | 5日反转申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| reversal_5_hfq_z_sw_l2 | 5日反转申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| reversal_5_hfq_rank_exchange_desc | 5日反转交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| reversal_5_hfq_pct_exchange_desc | 5日反转交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| reversal_5_hfq_z_exchange | 5日反转交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_20_z_market | 20日成交额均值市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_20_rank_sw_l1_desc | 20日成交额均值申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_20_pct_sw_l1_desc | 20日成交额均值申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_20_z_sw_l1 | 20日成交额均值申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_20_z_sw_l2 | 20日成交额均值申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_20_rank_exchange_desc | 20日成交额均值交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_20_pct_exchange_desc | 20日成交额均值交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_20_z_exchange | 20日成交额均值交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| turnover_rate_ma_20_z_market | 20日换手率均值市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| turnover_rate_ma_20_rank_sw_l1_desc | 20日换手率均值申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| turnover_rate_ma_20_pct_sw_l1_desc | 20日换手率均值申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| turnover_rate_ma_20_z_sw_l1 | 20日换手率均值申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| turnover_rate_ma_20_z_sw_l2 | 20日换手率均值申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| turnover_rate_ma_20_rank_exchange_desc | 20日换手率均值交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| turnover_rate_ma_20_pct_exchange_desc | 20日换手率均值交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| turnover_rate_ma_20_z_exchange | 20日换手率均值交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amihud_20_z_market | 20日Amihud流动性冲击市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amihud_20_rank_sw_l1_desc | 20日Amihud流动性冲击申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amihud_20_pct_sw_l1_desc | 20日Amihud流动性冲击申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amihud_20_z_sw_l1 | 20日Amihud流动性冲击申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amihud_20_z_sw_l2 | 20日Amihud流动性冲击申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amihud_20_rank_exchange_desc | 20日Amihud流动性冲击交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amihud_20_pct_exchange_desc | 20日Amihud流动性冲击交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amihud_20_z_exchange | 20日Amihud流动性冲击交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_20_z_market | 20日历史波动率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_20_rank_sw_l1_desc | 20日历史波动率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_20_pct_sw_l1_desc | 20日历史波动率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_20_z_sw_l1 | 20日历史波动率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_20_z_sw_l2 | 20日历史波动率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_20_rank_exchange_desc | 20日历史波动率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_20_pct_exchange_desc | 20日历史波动率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_20_z_exchange | 20日历史波动率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_60_z_market | 60日历史波动率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_60_rank_sw_l1_desc | 60日历史波动率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_60_pct_sw_l1_desc | 60日历史波动率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_60_z_sw_l1 | 60日历史波动率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_60_z_sw_l2 | 60日历史波动率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_60_rank_exchange_desc | 60日历史波动率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_60_pct_exchange_desc | 60日历史波动率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| hv_60_z_exchange | 60日历史波动率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| atr_14_pct_hfq_z_market | 14日ATR占价格比例市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| atr_14_pct_hfq_rank_sw_l1_desc | 14日ATR占价格比例申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| atr_14_pct_hfq_pct_sw_l1_desc | 14日ATR占价格比例申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| atr_14_pct_hfq_z_sw_l1 | 14日ATR占价格比例申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| atr_14_pct_hfq_z_sw_l2 | 14日ATR占价格比例申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| atr_14_pct_hfq_rank_exchange_desc | 14日ATR占价格比例交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| atr_14_pct_hfq_pct_exchange_desc | 14日ATR占价格比例交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| atr_14_pct_hfq_z_exchange | 14日ATR占价格比例交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_60_hfq_z_market | 60日最大回撤市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_60_hfq_rank_sw_l1_desc | 60日最大回撤申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_60_hfq_pct_sw_l1_desc | 60日最大回撤申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_60_hfq_z_sw_l1 | 60日最大回撤申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_60_hfq_z_sw_l2 | 60日最大回撤申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_60_hfq_rank_exchange_desc | 60日最大回撤交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_60_hfq_pct_exchange_desc | 60日最大回撤交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_60_hfq_z_exchange | 60日最大回撤交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_total_mv_z_market | 总市值对数市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_total_mv_rank_sw_l1_desc | 总市值对数申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_total_mv_pct_sw_l1_desc | 总市值对数申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_total_mv_z_sw_l1 | 总市值对数申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_total_mv_z_sw_l2 | 总市值对数申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_total_mv_rank_exchange_desc | 总市值对数交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_total_mv_pct_exchange_desc | 总市值对数交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_total_mv_z_exchange | 总市值对数交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_free_float_mv_z_market | 自由流通市值对数市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_free_float_mv_rank_sw_l1_desc | 自由流通市值对数申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_free_float_mv_pct_sw_l1_desc | 自由流通市值对数申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_free_float_mv_z_sw_l1 | 自由流通市值对数申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_free_float_mv_z_sw_l2 | 自由流通市值对数申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_free_float_mv_rank_exchange_desc | 自由流通市值对数交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_free_float_mv_pct_exchange_desc | 自由流通市值对数交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| log_free_float_mv_z_exchange | 自由流通市值对数交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_z_market | 市盈率TTM市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_rank_sw_l1_desc | 市盈率TTM申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_sw_l1_desc | 市盈率TTM申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_z_sw_l1 | 市盈率TTM申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_z_sw_l2 | 市盈率TTM申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_rank_exchange_desc | 市盈率TTM交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_exchange_desc | 市盈率TTM交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_z_exchange | 市盈率TTM交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_z_market | 市净率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_rank_sw_l1_desc | 市净率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_sw_l1_desc | 市净率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_z_sw_l1 | 市净率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_z_sw_l2 | 市净率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_rank_exchange_desc | 市净率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_exchange_desc | 市净率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_z_exchange | 市净率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| earnings_yield_ttm_z_market | 盈利收益率TTM市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| earnings_yield_ttm_rank_sw_l1_desc | 盈利收益率TTM申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| earnings_yield_ttm_pct_sw_l1_desc | 盈利收益率TTM申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| earnings_yield_ttm_z_sw_l1 | 盈利收益率TTM申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| earnings_yield_ttm_z_sw_l2 | 盈利收益率TTM申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| earnings_yield_ttm_rank_exchange_desc | 盈利收益率TTM交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| earnings_yield_ttm_pct_exchange_desc | 盈利收益率TTM交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| earnings_yield_ttm_z_exchange | 盈利收益率TTM交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| book_to_price_z_market | 账面市值比市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| book_to_price_rank_sw_l1_desc | 账面市值比申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| book_to_price_pct_sw_l1_desc | 账面市值比申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| book_to_price_z_sw_l1 | 账面市值比申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| book_to_price_z_sw_l2 | 账面市值比申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| book_to_price_rank_exchange_desc | 账面市值比交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| book_to_price_pct_exchange_desc | 账面市值比交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| book_to_price_z_exchange | 账面市值比交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| dividend_yield_ttm_z_market | 股息率TTM市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| dividend_yield_ttm_rank_sw_l1_desc | 股息率TTM申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| dividend_yield_ttm_pct_sw_l1_desc | 股息率TTM申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| dividend_yield_ttm_z_sw_l1 | 股息率TTM申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| dividend_yield_ttm_z_sw_l2 | 股息率TTM申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| dividend_yield_ttm_rank_exchange_desc | 股息率TTM交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| dividend_yield_ttm_pct_exchange_desc | 股息率TTM交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| dividend_yield_ttm_z_exchange | 股息率TTM交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roe_asof_z_market | ROE市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roe_asof_rank_sw_l1_desc | ROE申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roe_asof_pct_sw_l1_desc | ROE申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roe_asof_z_sw_l1 | ROE申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roe_asof_z_sw_l2 | ROE申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roe_asof_rank_exchange_desc | ROE交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roe_asof_pct_exchange_desc | ROE交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roe_asof_z_exchange | ROE交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roa_asof_z_market | ROA市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roa_asof_rank_sw_l1_desc | ROA申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roa_asof_pct_sw_l1_desc | ROA申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roa_asof_z_sw_l1 | ROA申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roa_asof_z_sw_l2 | ROA申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roa_asof_rank_exchange_desc | ROA交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roa_asof_pct_exchange_desc | ROA交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roa_asof_z_exchange | ROA交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roic_asof_z_market | ROIC市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roic_asof_rank_sw_l1_desc | ROIC申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roic_asof_pct_sw_l1_desc | ROIC申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roic_asof_z_sw_l1 | ROIC申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roic_asof_z_sw_l2 | ROIC申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roic_asof_rank_exchange_desc | ROIC交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roic_asof_pct_exchange_desc | ROIC交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| roic_asof_z_exchange | ROIC交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| gross_margin_asof_z_market | 毛利率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| gross_margin_asof_rank_sw_l1_desc | 毛利率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| gross_margin_asof_pct_sw_l1_desc | 毛利率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| gross_margin_asof_z_sw_l1 | 毛利率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| gross_margin_asof_z_sw_l2 | 毛利率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| gross_margin_asof_rank_exchange_desc | 毛利率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| gross_margin_asof_pct_exchange_desc | 毛利率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| gross_margin_asof_z_exchange | 毛利率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_margin_asof_z_market | 净利率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_margin_asof_rank_sw_l1_desc | 净利率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_margin_asof_pct_sw_l1_desc | 净利率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_margin_asof_z_sw_l1 | 净利率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_margin_asof_z_sw_l2 | 净利率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_margin_asof_rank_exchange_desc | 净利率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_margin_asof_pct_exchange_desc | 净利率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_margin_asof_z_exchange | 净利率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_to_profit_asof_z_market | 经营现金流占利润市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_to_profit_asof_rank_sw_l1_desc | 经营现金流占利润申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_to_profit_asof_pct_sw_l1_desc | 经营现金流占利润申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_to_profit_asof_z_sw_l1 | 经营现金流占利润申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_to_profit_asof_z_sw_l2 | 经营现金流占利润申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_to_profit_asof_rank_exchange_desc | 经营现金流占利润交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_to_profit_asof_pct_exchange_desc | 经营现金流占利润交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_to_profit_asof_z_exchange | 经营现金流占利润交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| accrual_ratio_asof_z_market | 应计比率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| accrual_ratio_asof_rank_sw_l1_desc | 应计比率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| accrual_ratio_asof_pct_sw_l1_desc | 应计比率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| accrual_ratio_asof_z_sw_l1 | 应计比率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| accrual_ratio_asof_z_sw_l2 | 应计比率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| accrual_ratio_asof_rank_exchange_desc | 应计比率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| accrual_ratio_asof_pct_exchange_desc | 应计比率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| accrual_ratio_asof_z_exchange | 应计比率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| debt_to_assets_asof_z_market | 资产负债率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| debt_to_assets_asof_rank_sw_l1_desc | 资产负债率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| debt_to_assets_asof_pct_sw_l1_desc | 资产负债率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| debt_to_assets_asof_z_sw_l1 | 资产负债率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| debt_to_assets_asof_z_sw_l2 | 资产负债率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| debt_to_assets_asof_rank_exchange_desc | 资产负债率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| debt_to_assets_asof_pct_exchange_desc | 资产负债率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| debt_to_assets_asof_z_exchange | 资产负债率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| current_ratio_asof_z_market | 流动比率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| current_ratio_asof_rank_sw_l1_desc | 流动比率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| current_ratio_asof_pct_sw_l1_desc | 流动比率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| current_ratio_asof_z_sw_l1 | 流动比率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| current_ratio_asof_z_sw_l2 | 流动比率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| current_ratio_asof_rank_exchange_desc | 流动比率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| current_ratio_asof_pct_exchange_desc | 流动比率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| current_ratio_asof_z_exchange | 流动比率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| assets_turn_asof_z_market | 总资产周转率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| assets_turn_asof_rank_sw_l1_desc | 总资产周转率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| assets_turn_asof_pct_sw_l1_desc | 总资产周转率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| assets_turn_asof_z_sw_l1 | 总资产周转率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| assets_turn_asof_z_sw_l2 | 总资产周转率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| assets_turn_asof_rank_exchange_desc | 总资产周转率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| assets_turn_asof_pct_exchange_desc | 总资产周转率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| assets_turn_asof_z_exchange | 总资产周转率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_yoy_asof_z_market | 营业收入同比市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_yoy_asof_rank_sw_l1_desc | 营业收入同比申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_yoy_asof_pct_sw_l1_desc | 营业收入同比申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_yoy_asof_z_sw_l1 | 营业收入同比申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_yoy_asof_z_sw_l2 | 营业收入同比申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_yoy_asof_rank_exchange_desc | 营业收入同比交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_yoy_asof_pct_exchange_desc | 营业收入同比交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_yoy_asof_z_exchange | 营业收入同比交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_yoy_asof_z_market | 净利润同比市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_yoy_asof_rank_sw_l1_desc | 净利润同比申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_yoy_asof_pct_sw_l1_desc | 净利润同比申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_yoy_asof_z_sw_l1 | 净利润同比申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_yoy_asof_z_sw_l2 | 净利润同比申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_yoy_asof_rank_exchange_desc | 净利润同比交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_yoy_asof_pct_exchange_desc | 净利润同比交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| netprofit_yoy_asof_z_exchange | 净利润同比交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_yoy_asof_z_market | 经营现金流同比市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_yoy_asof_rank_sw_l1_desc | 经营现金流同比申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_yoy_asof_pct_sw_l1_desc | 经营现金流同比申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_yoy_asof_z_sw_l1 | 经营现金流同比申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_yoy_asof_z_sw_l2 | 经营现金流同比申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_yoy_asof_rank_exchange_desc | 经营现金流同比交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_yoy_asof_pct_exchange_desc | 经营现金流同比交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_yoy_asof_z_exchange | 经营现金流同比交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_z_market | 营业收入3年复合增长市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_rank_sw_l1_desc | 营业收入3年复合增长申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_pct_sw_l1_desc | 营业收入3年复合增长申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_z_sw_l1 | 营业收入3年复合增长申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_z_sw_l2 | 营业收入3年复合增长申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_rank_exchange_desc | 营业收入3年复合增长交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_pct_exchange_desc | 营业收入3年复合增长交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_cagr_3y_asof_z_exchange | 营业收入3年复合增长交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_z_market | 净利润3年复合增长市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_rank_sw_l1_desc | 净利润3年复合增长申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_pct_sw_l1_desc | 净利润3年复合增长申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_z_sw_l1 | 净利润3年复合增长申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_z_sw_l2 | 净利润3年复合增长申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_rank_exchange_desc | 净利润3年复合增长交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_pct_exchange_desc | 净利润3年复合增长交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_cagr_3y_asof_z_exchange | 净利润3年复合增长交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_20_z_market | 20日主力净流入累计市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_20_rank_sw_l1_desc | 20日主力净流入累计申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_20_pct_sw_l1_desc | 20日主力净流入累计申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_20_z_sw_l1 | 20日主力净流入累计申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_20_z_sw_l2 | 20日主力净流入累计申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_20_rank_exchange_desc | 20日主力净流入累计交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_20_pct_exchange_desc | 20日主力净流入累计交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_20_z_exchange | 20日主力净流入累计交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_z_market | 20日主力净流入占总市值市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_rank_sw_l1_desc | 20日主力净流入占总市值申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_pct_sw_l1_desc | 20日主力净流入占总市值申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_z_sw_l1 | 20日主力净流入占总市值申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_z_sw_l2 | 20日主力净流入占总市值申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_rank_exchange_desc | 20日主力净流入占总市值交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_pct_exchange_desc | 20日主力净流入占总市值交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_to_total_mv_20_z_exchange | 20日主力净流入占总市值交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_z_market | 20日主力净流入持续比例市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_rank_sw_l1_desc | 20日主力净流入持续比例申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_pct_sw_l1_desc | 20日主力净流入持续比例申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_z_sw_l1 | 20日主力净流入持续比例申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_z_sw_l2 | 20日主力净流入持续比例申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_rank_exchange_desc | 20日主力净流入持续比例交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_pct_exchange_desc | 20日主力净流入持续比例交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_persist_ratio_20_z_exchange | 20日主力净流入持续比例交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| margin_balance_chg_20_z_market | 融资融券余额20日变化市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| margin_balance_chg_20_rank_sw_l1_desc | 融资融券余额20日变化申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| margin_balance_chg_20_pct_sw_l1_desc | 融资融券余额20日变化申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| margin_balance_chg_20_z_sw_l1 | 融资融券余额20日变化申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| margin_balance_chg_20_z_sw_l2 | 融资融券余额20日变化申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| margin_balance_chg_20_rank_exchange_desc | 融资融券余额20日变化交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| margin_balance_chg_20_pct_exchange_desc | 融资融券余额20日变化交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| margin_balance_chg_20_z_exchange | 融资融券余额20日变化交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_z_market | 北向持股比例20日变化市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_rank_sw_l1_desc | 北向持股比例20日变化申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_pct_sw_l1_desc | 北向持股比例20日变化申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_z_sw_l1 | 北向持股比例20日变化申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_z_sw_l2 | 北向持股比例20日变化申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_rank_exchange_desc | 北向持股比例20日变化交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_pct_exchange_desc | 北向持股比例20日变化交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| north_hold_ratio_chg_20_z_exchange | 北向持股比例20日变化交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_z_market | 20日相对申万二级超额收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_rank_sw_l1_desc | 20日相对申万二级超额收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_pct_sw_l1_desc | 20日相对申万二级超额收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_z_sw_l1 | 20日相对申万二级超额收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_z_sw_l2 | 20日相对申万二级超额收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_rank_exchange_desc | 20日相对申万二级超额收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_pct_exchange_desc | 20日相对申万二级超额收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_20_z_exchange | 20日相对申万二级超额收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_count_z_market | 概念数量市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_count_rank_sw_l1_desc | 概念数量申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_count_pct_sw_l1_desc | 概念数量申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_count_z_sw_l1 | 概念数量申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_count_z_sw_l2 | 概念数量申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_count_rank_exchange_desc | 概念数量交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_count_pct_exchange_desc | 概念数量交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_count_z_exchange | 概念数量交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_avg_ret_20_z_market | 所属概念20日平均收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_avg_ret_20_rank_sw_l1_desc | 所属概念20日平均收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_avg_ret_20_pct_sw_l1_desc | 所属概念20日平均收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_avg_ret_20_z_sw_l1 | 所属概念20日平均收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_avg_ret_20_z_sw_l2 | 所属概念20日平均收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_avg_ret_20_rank_exchange_desc | 所属概念20日平均收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_avg_ret_20_pct_exchange_desc | 所属概念20日平均收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_avg_ret_20_z_exchange | 所属概念20日平均收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_hot_count_20_z_market | 20日高热概念数量市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_hot_count_20_rank_sw_l1_desc | 20日高热概念数量申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_hot_count_20_pct_sw_l1_desc | 20日高热概念数量申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_hot_count_20_z_sw_l1 | 20日高热概念数量申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_hot_count_20_z_sw_l2 | 20日高热概念数量申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_hot_count_20_rank_exchange_desc | 20日高热概念数量交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_hot_count_20_pct_exchange_desc | 20日高热概念数量交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_hot_count_20_z_exchange | 20日高热概念数量交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_hs300_20_z_market | 20日相对沪深300超额收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_hs300_20_rank_sw_l1_desc | 20日相对沪深300超额收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_hs300_20_pct_sw_l1_desc | 20日相对沪深300超额收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_hs300_20_z_sw_l1 | 20日相对沪深300超额收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_hs300_20_z_sw_l2 | 20日相对沪深300超额收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_hs300_20_rank_exchange_desc | 20日相对沪深300超额收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_hs300_20_pct_exchange_desc | 20日相对沪深300超额收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_hs300_20_z_exchange | 20日相对沪深300超额收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_z_market | 5日收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_rank_sw_l1_desc | 5日收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_pct_sw_l1_desc | 5日收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_z_sw_l1 | 5日收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_z_sw_l2 | 5日收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_rank_exchange_desc | 5日收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_pct_exchange_desc | 5日收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_z_exchange | 5日收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_z_market | 20日上涨天数市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_rank_sw_l1_desc | 20日上涨天数申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_pct_sw_l1_desc | 20日上涨天数申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_z_sw_l1 | 20日上涨天数申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_z_sw_l2 | 20日上涨天数申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_rank_exchange_desc | 20日上涨天数交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_pct_exchange_desc | 20日上涨天数交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_z_exchange | 20日上涨天数交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_z_market | 20日下跌天数市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_rank_sw_l1_desc | 20日下跌天数申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_pct_sw_l1_desc | 20日下跌天数申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_z_sw_l1 | 20日下跌天数申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_z_sw_l2 | 20日下跌天数申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_rank_exchange_desc | 20日下跌天数交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_pct_exchange_desc | 20日下跌天数交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_z_exchange | 20日下跌天数交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_z_market | 60日成交额均值市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_rank_sw_l1_desc | 60日成交额均值申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_pct_sw_l1_desc | 60日成交额均值申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_z_sw_l1 | 60日成交额均值申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_z_sw_l2 | 60日成交额均值申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_rank_exchange_desc | 60日成交额均值交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_pct_exchange_desc | 60日成交额均值交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_z_exchange | 60日成交额均值交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_z_market | 20日成交量相对均值市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_rank_sw_l1_desc | 20日成交量相对均值申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_pct_sw_l1_desc | 20日成交量相对均值申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_z_sw_l1 | 20日成交量相对均值申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_z_sw_l2 | 20日成交量相对均值申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_rank_exchange_desc | 20日成交量相对均值交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_pct_exchange_desc | 20日成交量相对均值交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_z_exchange | 20日成交量相对均值交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_z_market | 20日成交额相对均值市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_rank_sw_l1_desc | 20日成交额相对均值申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_pct_sw_l1_desc | 20日成交额相对均值申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_z_sw_l1 | 20日成交额相对均值申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_z_sw_l2 | 20日成交额相对均值申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_rank_exchange_desc | 20日成交额相对均值交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_pct_exchange_desc | 20日成交额相对均值交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_z_exchange | 20日成交额相对均值交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_z_market | 20日Parkinson波动率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_rank_sw_l1_desc | 20日Parkinson波动率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_pct_sw_l1_desc | 20日Parkinson波动率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_z_sw_l1 | 20日Parkinson波动率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_z_sw_l2 | 20日Parkinson波动率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_rank_exchange_desc | 20日Parkinson波动率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_pct_exchange_desc | 20日Parkinson波动率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_z_exchange | 20日Parkinson波动率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_z_market | 20日最大回撤市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_rank_sw_l1_desc | 20日最大回撤申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_pct_sw_l1_desc | 20日最大回撤申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_z_sw_l1 | 20日最大回撤申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_z_sw_l2 | 20日最大回撤申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_rank_exchange_desc | 20日最大回撤交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_pct_exchange_desc | 20日最大回撤交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_z_exchange | 20日最大回撤交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_z_market | PE_TTM五年历史分位市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_rank_sw_l1_desc | PE_TTM五年历史分位申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_pct_sw_l1_desc | PE_TTM五年历史分位申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_z_sw_l1 | PE_TTM五年历史分位申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_z_sw_l2 | PE_TTM五年历史分位申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_rank_exchange_desc | PE_TTM五年历史分位交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_pct_exchange_desc | PE_TTM五年历史分位交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_z_exchange | PE_TTM五年历史分位交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_z_market | PB五年历史分位市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_rank_sw_l1_desc | PB五年历史分位申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_pct_sw_l1_desc | PB五年历史分位申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_z_sw_l1 | PB五年历史分位申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_z_sw_l2 | PB五年历史分位申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_rank_exchange_desc | PB五年历史分位交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_pct_exchange_desc | PB五年历史分位交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_z_exchange | PB五年历史分位交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_z_market | PS_TTM五年历史分位市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_rank_sw_l1_desc | PS_TTM五年历史分位申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_pct_sw_l1_desc | PS_TTM五年历史分位申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_z_sw_l1 | PS_TTM五年历史分位申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_z_sw_l2 | PS_TTM五年历史分位申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_rank_exchange_desc | PS_TTM五年历史分位交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_pct_exchange_desc | PS_TTM五年历史分位交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_z_exchange | PS_TTM五年历史分位交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_z_market | 总市值五年历史分位市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_rank_sw_l1_desc | 总市值五年历史分位申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_pct_sw_l1_desc | 总市值五年历史分位申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_z_sw_l1 | 总市值五年历史分位申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_z_sw_l2 | 总市值五年历史分位申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_rank_exchange_desc | 总市值五年历史分位交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_pct_exchange_desc | 总市值五年历史分位交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_z_exchange | 总市值五年历史分位交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_z_market | 营业利润率市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_rank_sw_l1_desc | 营业利润率申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_pct_sw_l1_desc | 营业利润率申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_z_sw_l1 | 营业利润率申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_z_sw_l2 | 营业利润率申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_rank_exchange_desc | 营业利润率交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_pct_exchange_desc | 营业利润率交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_z_exchange | 营业利润率交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_z_market | 货币资金占资产市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_rank_sw_l1_desc | 货币资金占资产申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_pct_sw_l1_desc | 货币资金占资产申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_z_sw_l1 | 货币资金占资产申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_z_sw_l2 | 货币资金占资产申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_rank_exchange_desc | 货币资金占资产交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_pct_exchange_desc | 货币资金占资产交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_z_exchange | 货币资金占资产交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_z_market | 商誉占资产市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_rank_sw_l1_desc | 商誉占资产申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_pct_sw_l1_desc | 商誉占资产申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_z_sw_l1 | 商誉占资产申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_z_sw_l2 | 商誉占资产申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_rank_exchange_desc | 商誉占资产交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_pct_exchange_desc | 商誉占资产交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_z_exchange | 商誉占资产交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_z_market | 负债权益比市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_rank_sw_l1_desc | 负债权益比申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_pct_sw_l1_desc | 负债权益比申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_z_sw_l1 | 负债权益比申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_z_sw_l2 | 负债权益比申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_rank_exchange_desc | 负债权益比交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_pct_exchange_desc | 负债权益比交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_z_exchange | 负债权益比交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_z_market | 营业收入4报告期变化市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_rank_sw_l1_desc | 营业收入4报告期变化申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_pct_sw_l1_desc | 营业收入4报告期变化申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_z_sw_l1 | 营业收入4报告期变化申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_z_sw_l2 | 营业收入4报告期变化申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_rank_exchange_desc | 营业收入4报告期变化交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_pct_exchange_desc | 营业收入4报告期变化交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_z_exchange | 营业收入4报告期变化交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_z_market | 净利润4报告期变化市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_rank_sw_l1_desc | 净利润4报告期变化申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_pct_sw_l1_desc | 净利润4报告期变化申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_z_sw_l1 | 净利润4报告期变化申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_z_sw_l2 | 净利润4报告期变化申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_rank_exchange_desc | 净利润4报告期变化交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_pct_exchange_desc | 净利润4报告期变化交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_z_exchange | 净利润4报告期变化交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_z_market | 经营现金流4报告期变化市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_rank_sw_l1_desc | 经营现金流4报告期变化申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_pct_sw_l1_desc | 经营现金流4报告期变化申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_z_sw_l1 | 经营现金流4报告期变化申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_z_sw_l2 | 经营现金流4报告期变化申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_rank_exchange_desc | 经营现金流4报告期变化交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_pct_exchange_desc | 经营现金流4报告期变化交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_z_exchange | 经营现金流4报告期变化交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_z_market | 60日主力净流入累计市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_rank_sw_l1_desc | 60日主力净流入累计申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_pct_sw_l1_desc | 60日主力净流入累计申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_z_sw_l1 | 60日主力净流入累计申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_z_sw_l2 | 60日主力净流入累计申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_rank_exchange_desc | 60日主力净流入累计交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_pct_exchange_desc | 60日主力净流入累计交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_z_exchange | 60日主力净流入累计交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_z_market | 小单净流入比例市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_rank_sw_l1_desc | 小单净流入比例申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_pct_sw_l1_desc | 小单净流入比例申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_z_sw_l1 | 小单净流入比例申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_z_sw_l2 | 小单净流入比例申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_rank_exchange_desc | 小单净流入比例交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_pct_exchange_desc | 小单净流入比例交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_z_exchange | 小单净流入比例交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_z_market | 60日相对申万二级超额收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_rank_sw_l1_desc | 60日相对申万二级超额收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_pct_sw_l1_desc | 60日相对申万二级超额收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_z_sw_l1 | 60日相对申万二级超额收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_z_sw_l2 | 60日相对申万二级超额收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_rank_exchange_desc | 60日相对申万二级超额收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_pct_exchange_desc | 60日相对申万二级超额收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_z_exchange | 60日相对申万二级超额收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_z_market | 20日相对中证1000超额收益市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_rank_sw_l1_desc | 20日相对中证1000超额收益申万一级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_pct_sw_l1_desc | 20日相对中证1000超额收益申万一级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_z_sw_l1 | 20日相对中证1000超额收益申万一级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_z_sw_l2 | 20日相对中证1000超额收益申万二级z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_rank_exchange_desc | 20日相对中证1000超额收益交易所降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_pct_exchange_desc | 20日相对中证1000超额收益交易所降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_z_exchange | 20日相对中证1000超额收益交易所z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_rank_all_desc | 5日收益全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_pct_all_desc | 5日收益全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_z_all | 5日收益全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_rank_market_desc | 5日收益市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_pct_market_desc | 5日收益市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_rank_sw_l2_desc | 5日收益申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ret_5_hfq_pct_sw_l2_desc | 5日收益申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_rank_all_desc | 20日上涨天数全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_pct_all_desc | 20日上涨天数全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_z_all | 20日上涨天数全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_rank_market_desc | 20日上涨天数市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_pct_market_desc | 20日上涨天数市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_rank_sw_l2_desc | 20日上涨天数申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| up_days_20_pct_sw_l2_desc | 20日上涨天数申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_rank_all_desc | 20日下跌天数全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_pct_all_desc | 20日下跌天数全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_z_all | 20日下跌天数全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_rank_market_desc | 20日下跌天数市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_pct_market_desc | 20日下跌天数市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_rank_sw_l2_desc | 20日下跌天数申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| down_days_20_pct_sw_l2_desc | 20日下跌天数申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_rank_all_desc | 60日成交额均值全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_pct_all_desc | 60日成交额均值全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_z_all | 60日成交额均值全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_rank_market_desc | 60日成交额均值市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_pct_market_desc | 60日成交额均值市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_rank_sw_l2_desc | 60日成交额均值申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ma_60_pct_sw_l2_desc | 60日成交额均值申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_rank_all_desc | 20日成交量相对均值全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_pct_all_desc | 20日成交量相对均值全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_z_all | 20日成交量相对均值全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_rank_market_desc | 20日成交量相对均值市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_pct_market_desc | 20日成交量相对均值市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_rank_sw_l2_desc | 20日成交量相对均值申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| volume_ratio_20_pct_sw_l2_desc | 20日成交量相对均值申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_rank_all_desc | 20日成交额相对均值全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_pct_all_desc | 20日成交额相对均值全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_z_all | 20日成交额相对均值全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_rank_market_desc | 20日成交额相对均值市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_pct_market_desc | 20日成交额相对均值市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_rank_sw_l2_desc | 20日成交额相对均值申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| amount_ratio_20_pct_sw_l2_desc | 20日成交额相对均值申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_rank_all_desc | 20日Parkinson波动率全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_pct_all_desc | 20日Parkinson波动率全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_z_all | 20日Parkinson波动率全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_rank_market_desc | 20日Parkinson波动率市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_pct_market_desc | 20日Parkinson波动率市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_rank_sw_l2_desc | 20日Parkinson波动率申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| parkinson_vol_20_pct_sw_l2_desc | 20日Parkinson波动率申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_rank_all_desc | 20日最大回撤全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_pct_all_desc | 20日最大回撤全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_z_all | 20日最大回撤全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_rank_market_desc | 20日最大回撤市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_pct_market_desc | 20日最大回撤市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_rank_sw_l2_desc | 20日最大回撤申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| max_drawdown_20_hfq_pct_sw_l2_desc | 20日最大回撤申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_rank_all_desc | PE_TTM五年历史分位全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_pct_all_desc | PE_TTM五年历史分位全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_z_all | PE_TTM五年历史分位全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_rank_market_desc | PE_TTM五年历史分位市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_pct_market_desc | PE_TTM五年历史分位市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_rank_sw_l2_desc | PE_TTM五年历史分位申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pe_ttm_pct_5y_pct_sw_l2_desc | PE_TTM五年历史分位申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_rank_all_desc | PB五年历史分位全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_pct_all_desc | PB五年历史分位全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_z_all | PB五年历史分位全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_rank_market_desc | PB五年历史分位市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_pct_market_desc | PB五年历史分位市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_rank_sw_l2_desc | PB五年历史分位申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| pb_pct_5y_pct_sw_l2_desc | PB五年历史分位申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_rank_all_desc | PS_TTM五年历史分位全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_pct_all_desc | PS_TTM五年历史分位全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_z_all | PS_TTM五年历史分位全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_rank_market_desc | PS_TTM五年历史分位市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_pct_market_desc | PS_TTM五年历史分位市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_rank_sw_l2_desc | PS_TTM五年历史分位申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ps_ttm_pct_5y_pct_sw_l2_desc | PS_TTM五年历史分位申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_rank_all_desc | 总市值五年历史分位全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_pct_all_desc | 总市值五年历史分位全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_z_all | 总市值五年历史分位全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_rank_market_desc | 总市值五年历史分位市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_pct_market_desc | 总市值五年历史分位市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_rank_sw_l2_desc | 总市值五年历史分位申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| total_mv_pct_5y_pct_sw_l2_desc | 总市值五年历史分位申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_rank_all_desc | 营业利润率全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_pct_all_desc | 营业利润率全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_z_all | 营业利润率全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_rank_market_desc | 营业利润率市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_pct_market_desc | 营业利润率市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_rank_sw_l2_desc | 营业利润率申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| operating_profit_margin_asof_pct_sw_l2_desc | 营业利润率申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_rank_all_desc | 货币资金占资产全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_pct_all_desc | 货币资金占资产全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_z_all | 货币资金占资产全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_rank_market_desc | 货币资金占资产市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_pct_market_desc | 货币资金占资产市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_rank_sw_l2_desc | 货币资金占资产申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cash_to_assets_asof_pct_sw_l2_desc | 货币资金占资产申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_rank_all_desc | 商誉占资产全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_pct_all_desc | 商誉占资产全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_z_all | 商誉占资产全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_rank_market_desc | 商誉占资产市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_pct_market_desc | 商誉占资产市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_rank_sw_l2_desc | 商誉占资产申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| goodwill_to_assets_asof_pct_sw_l2_desc | 商誉占资产申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_rank_all_desc | 负债权益比全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_pct_all_desc | 负债权益比全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_z_all | 负债权益比全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_rank_market_desc | 负债权益比市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_pct_market_desc | 负债权益比市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_rank_sw_l2_desc | 负债权益比申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| liabilities_to_equity_asof_pct_sw_l2_desc | 负债权益比申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_rank_all_desc | 营业收入4报告期变化全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_pct_all_desc | 营业收入4报告期变化全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_z_all | 营业收入4报告期变化全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_rank_market_desc | 营业收入4报告期变化市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_pct_market_desc | 营业收入4报告期变化市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_rank_sw_l2_desc | 营业收入4报告期变化申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| revenue_change_4report_asof_pct_sw_l2_desc | 营业收入4报告期变化申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_rank_all_desc | 净利润4报告期变化全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_pct_all_desc | 净利润4报告期变化全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_z_all | 净利润4报告期变化全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_rank_market_desc | 净利润4报告期变化市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_pct_market_desc | 净利润4报告期变化市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_rank_sw_l2_desc | 净利润4报告期变化申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| net_profit_change_4report_asof_pct_sw_l2_desc | 净利润4报告期变化申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_rank_all_desc | 经营现金流4报告期变化全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_pct_all_desc | 经营现金流4报告期变化全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_z_all | 经营现金流4报告期变化全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_rank_market_desc | 经营现金流4报告期变化市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_pct_market_desc | 经营现金流4报告期变化市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_rank_sw_l2_desc | 经营现金流4报告期变化申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| ocf_change_4report_asof_pct_sw_l2_desc | 经营现金流4报告期变化申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_rank_all_desc | 60日主力净流入累计全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_pct_all_desc | 60日主力净流入累计全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_z_all | 60日主力净流入累计全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_rank_market_desc | 60日主力净流入累计市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_pct_market_desc | 60日主力净流入累计市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_rank_sw_l2_desc | 60日主力净流入累计申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| main_flow_sum_60_pct_sw_l2_desc | 60日主力净流入累计申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_rank_all_desc | 小单净流入比例全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_pct_all_desc | 小单净流入比例全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_z_all | 小单净流入比例全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_rank_market_desc | 小单净流入比例市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_pct_market_desc | 小单净流入比例市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_rank_sw_l2_desc | 小单净流入比例申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| small_net_amount_rate_pct_sw_l2_desc | 小单净流入比例申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_rank_all_desc | 60日相对申万二级超额收益全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_pct_all_desc | 60日相对申万二级超额收益全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_z_all | 60日相对申万二级超额收益全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_rank_market_desc | 60日相对申万二级超额收益市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_pct_market_desc | 60日相对申万二级超额收益市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_rank_sw_l2_desc | 60日相对申万二级超额收益申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_sw_l2_60_pct_sw_l2_desc | 60日相对申万二级超额收益申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_rank_all_desc | 20日相对中证1000超额收益全市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_pct_all_desc | 20日相对中证1000超额收益全市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_z_all | 20日相对中证1000超额收益全市场z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_rank_market_desc | 20日相对中证1000超额收益市场降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_pct_market_desc | 20日相对中证1000超额收益市场降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_rank_sw_l2_desc | 20日相对中证1000超额收益申万二级降序排名 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| stock_excess_zz1000_20_pct_sw_l2_desc | 20日相对中证1000超额收益申万二级降序分位 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| profitability_exposure_z | 盈利能力暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| cashflow_quality_exposure_z | 现金流质量暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| leverage_exposure_z | 杠杆暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| concept_heat_exposure_z | 概念热度暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |
+| index_relative_exposure_z | 指数相对强弱暴露z值 | derived_cross_sectional_full_v | cross_sectional | extended | derived | mixed | source_optional |

@@ -2,10 +2,14 @@ from __future__ import annotations
 
 import json
 from calendar import monthrange
-from datetime import UTC, datetime
+from datetime import datetime
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import pandas as pd
+
+
+LOCAL_TZ = ZoneInfo("Asia/Shanghai")
 
 
 def parse_tushare_date(value: Any) -> Any:
@@ -43,7 +47,7 @@ def add_payload_json(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def add_updated_at(df: pd.DataFrame) -> pd.DataFrame:
-    df["updated_at"] = datetime.now(UTC).replace(tzinfo=None)
+    df["updated_at"] = datetime.now(LOCAL_TZ).replace(tzinfo=None)
     return df
 
 

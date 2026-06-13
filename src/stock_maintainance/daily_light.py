@@ -7,6 +7,9 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
+import duckdb
+
+from .database import connect
 from .daily_validate import DailyValidationResult, validate_daily
 from .features.build import build_features
 from .ingest import (
@@ -45,6 +48,23 @@ def _compact_date(value: str) -> str:
 
 def _month(value: str) -> str:
     return value.replace("-", "")[:6]
+
+
+def _latest_open_trade_date(as_of_date: str) -> str | None:
+    try:
+        with connect() as con:
+            row = con.execute(
+                """
+                SELECT max(CAST(cal_date AS DATE))
+                FROM trade_calendar
+                WHERE is_open = 1
+                  AND CAST(cal_date AS DATE) <= CAST(? AS DATE)
+                """,
+                [as_of_date],
+            ).fetchone()
+    except duckdb.CatalogException:
+        return None
+    return row[0].isoformat() if row and row[0] is not None else None
 
 
 def _render_markdown(report: dict[str, Any]) -> str:
@@ -101,6 +121,33 @@ def _precheck_payload(result: DailyValidationResult) -> dict[str, Any]:
     }
 
 
+def _failure_result(
+    *,
+    run_at: str,
+    as_of: str,
+    dry_run: bool,
+    precheck_payload: dict[str, Any] | None,
+    postcheck_payload: dict[str, Any] | None,
+    steps: list[dict[str, Any]],
+    output_prefix: str,
+    exc: Exception,
+) -> DailyLightResult:
+    report = {
+        "generated_at": run_at,
+        "as_of_date": as_of,
+        "dry_run": dry_run,
+        "precheck": precheck_payload,
+        "postcheck": postcheck_payload,
+        "steps": steps,
+        "summary": {
+            "status": "fail",
+            "blocked_reason": str(exc),
+            "incremental_trade_day_count": len(precheck_payload.get("incremental_dates", [])) if precheck_payload else None,
+        },
+    }
+    return _write_report(report, output_prefix)
+
+
 def run_daily_light(
     *,
     as_of_date: str | None = None,
@@ -114,8 +161,11 @@ def run_daily_light(
 ) -> DailyLightResult:
     started = time.perf_counter()
     run_at = datetime.now().isoformat(timespec="seconds")
-    as_of = as_of_date or date.today().isoformat()
+    requested_as_of = as_of_date or date.today().isoformat()
+    as_of = requested_as_of
     steps: list[dict[str, Any]] = []
+    precheck_payload: dict[str, Any] | None = None
+    postcheck_payload: dict[str, Any] | None = None
 
     def add_step(name: str, status: str, detail: Any = None) -> None:
         steps.append({"name": name, "status": status, "detail": detail})
@@ -127,9 +177,17 @@ def run_daily_light(
         master.update(sync_stock_basic())
         master.update(sync_stock_company())
         master.update(sync_stock_status_history())
-        master.update(sync_trade_calendar(start_date="20060101", end_date=_compact_date(as_of)))
+        master.update(sync_trade_calendar(start_date="20060101", end_date=_compact_date(requested_as_of)))
         master.update(sync_index_basic())
         add_step("sync-master", "done", master)
+
+    if as_of_date is None:
+        latest_open = _latest_open_trade_date(requested_as_of)
+        if latest_open:
+            as_of = latest_open
+            add_step("resolve-as-of-date", "done", {"requested_as_of_date": requested_as_of, "resolved_as_of_date": as_of})
+        else:
+            add_step("resolve-as-of-date", "warning", {"requested_as_of_date": requested_as_of, "message": "no open trade date found; using requested date"})
 
     precheck = validate_daily(
         as_of_date=as_of,
@@ -194,28 +252,68 @@ def run_daily_light(
                 add_step("financial-incremental", "planned", {"ann_date_window": [start_compact, end_compact], "all_stocks": True})
         else:
             base: dict[str, Any] = {}
-            base["daily"] = sync_daily_range(start_compact, end_compact)
-            base["adj_factor"] = sync_adj_factor_range(start_compact, end_compact)
-            base["market_behavior"] = sync_market_behavior_range(start_compact, end_compact)
-            base["index_daily"] = sync_index_daily_range(start_compact, end_compact)
-            add_step("base-incremental", "done", base)
+            try:
+                base["daily"] = sync_daily_range(start_compact, end_compact)
+                base["adj_factor"] = sync_adj_factor_range(start_compact, end_compact)
+                base["market_behavior"] = sync_market_behavior_range(start_compact, end_compact, force=True)
+                base["index_daily"] = sync_index_daily_range(start_compact, end_compact)
+            except Exception as exc:
+                add_step("base-incremental", "fail", {"error": str(exc), "partial": base})
+                return _failure_result(
+                    run_at=run_at,
+                    as_of=as_of,
+                    dry_run=dry_run,
+                    precheck_payload=precheck_payload,
+                    postcheck_payload=postcheck_payload,
+                    steps=steps,
+                    output_prefix=output_prefix,
+                    exc=exc,
+                )
+            base_status = "warning" if base.get("market_behavior", {}).get("optional_failures") else "done"
+            add_step("base-incremental", base_status, base)
             if include_index_weight:
                 index_weight = sync_index_weight_range(_month(start_iso), _month(end_iso), index_codes=default_index_codes())
                 add_step("index-weight", "done", index_weight)
             if include_financial:
-                financial = sync_financial_incremental_range(start_compact, end_compact, all_stocks=True)
-                events = sync_financial_events_batch(start_date=start_compact, end_date=end_compact)
+                try:
+                    financial = sync_financial_incremental_range(start_compact, end_compact, all_stocks=True)
+                    events = sync_financial_events_batch(start_date=start_compact, end_date=end_compact)
+                except Exception as exc:
+                    add_step("financial-incremental", "fail", {"error": str(exc)})
+                    return _failure_result(
+                        run_at=run_at,
+                        as_of=as_of,
+                        dry_run=dry_run,
+                        precheck_payload=precheck_payload,
+                        postcheck_payload=postcheck_payload,
+                        steps=steps,
+                        output_prefix=output_prefix,
+                        exc=exc,
+                    )
                 add_step("financial-incremental", "done", {"financial": financial, "events": events})
 
         build_start = validation_dates[0] if validation_dates else start_iso
         if dry_run:
             feature_result = build_features(start_date=build_start, end_date=end_iso, dry_run=True)
         else:
-            feature_result = build_features(
-                start_date=build_start,
-                end_date=end_iso,
-                allow_confirmed_history=allow_confirmed_history,
-            )
+            try:
+                feature_result = build_features(
+                    start_date=build_start,
+                    end_date=end_iso,
+                    allow_confirmed_history=allow_confirmed_history,
+                )
+            except Exception as exc:
+                add_step("feature-build", "fail", {"start_date": build_start, "end_date": end_iso, "error": str(exc)})
+                return _failure_result(
+                    run_at=run_at,
+                    as_of=as_of,
+                    dry_run=dry_run,
+                    precheck_payload=precheck_payload,
+                    postcheck_payload=postcheck_payload,
+                    steps=steps,
+                    output_prefix=output_prefix,
+                    exc=exc,
+                )
         add_step(
             "feature-build",
             "planned" if dry_run else "done",
@@ -232,7 +330,20 @@ def run_daily_light(
         postcheck_payload = None
         add_step("validate-daily-postcheck", "planned", "run after execution")
     else:
-        create_views()
+        try:
+            create_views()
+        except Exception as exc:
+            add_step("create-views", "fail", {"error": str(exc)})
+            return _failure_result(
+                run_at=run_at,
+                as_of=as_of,
+                dry_run=dry_run,
+                precheck_payload=precheck_payload,
+                postcheck_payload=postcheck_payload,
+                steps=steps,
+                output_prefix=output_prefix,
+                exc=exc,
+            )
         add_step("create-views", "done", "created analytical views")
         postcheck = validate_daily(
             as_of_date=as_of,
@@ -244,8 +355,19 @@ def run_daily_light(
         add_step("validate-daily-postcheck", postcheck_payload["status"], postcheck_payload)
 
     status = "pass"
-    if any(step["status"] in {"warning", "blocked", "fail"} for step in steps):
-        status = "warning"
+    for step in steps:
+        if step["status"] == "fail":
+            status = "fail"
+            break
+        if step["status"] in {"warning", "blocked"}:
+            if (
+                step["name"] == "validate-daily-precheck"
+                and not dry_run
+                and postcheck_payload
+                and postcheck_payload.get("status") == "pass"
+            ):
+                continue
+            status = "warning"
     report = {
         "generated_at": run_at,
         "as_of_date": as_of,

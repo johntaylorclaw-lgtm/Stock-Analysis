@@ -10,6 +10,7 @@
     },
     "apis": [
       {"name": "stock_basic", "domain": "security_master", "phase": "P0"},
+      {"name": "stock_company", "domain": "security_master", "phase": "P0"},
       {"name": "trade_cal", "domain": "calendar", "phase": "P0"},
       {"name": "daily", "domain": "trading", "phase": "P0"},
       {"name": "daily_basic", "domain": "valuation_daily", "phase": "P0"},

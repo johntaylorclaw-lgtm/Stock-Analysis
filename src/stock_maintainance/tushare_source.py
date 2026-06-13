@@ -31,6 +31,36 @@ class TushareClient:
         )
 
     def call(self, api_name: str, **params: Any) -> pd.DataFrame:
+        return self._call_once(api_name, **params)
+
+    def call_paged(
+        self,
+        api_name: str,
+        *,
+        page_size: int = 5000,
+        max_pages: int | None = None,
+        **params: Any,
+    ) -> pd.DataFrame:
+        """Fetch APIs that may be truncated by Tushare limit/offset paging."""
+        frames: list[pd.DataFrame] = []
+        offset = int(params.pop("offset", 0) or 0)
+        page = 0
+        while True:
+            df = self._call_once(api_name, **params, limit=page_size, offset=offset)
+            page += 1
+            if df.empty:
+                break
+            frames.append(df)
+            if len(df) < page_size:
+                break
+            if max_pages is not None and page >= max_pages:
+                break
+            offset += page_size
+        if not frames:
+            return pd.DataFrame()
+        return pd.concat(frames, ignore_index=True)
+
+    def _call_once(self, api_name: str, **params: Any) -> pd.DataFrame:
         sleep_seconds = self._sleep_seconds(api_name)
         last_error: Exception | None = None
         for attempt in range(1, self._rate_limit.max_retries + 1):

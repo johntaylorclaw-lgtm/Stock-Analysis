@@ -29,6 +29,24 @@ def table_fields(table: str) -> list[str]:
     raise KeyError(table)
 
 
+def rank_desc_expr(value: str, partition: str = "m.sw_l2_code, ds.trade_date", min_count: int = 2) -> str:
+    valid_count = f"count({value}) FILTER (WHERE {value} IS NOT NULL) OVER (PARTITION BY {partition})"
+    rank_sql = f"rank() OVER (PARTITION BY {partition} ORDER BY {value} DESC NULLS LAST)"
+    return (
+        f"CASE WHEN m.sw_l2_code IS NOT NULL AND {value} IS NOT NULL AND {valid_count} >= {min_count} "
+        f"THEN {rank_sql}::INTEGER ELSE NULL END"
+    )
+
+
+def pct_expr(value: str, partition: str = "m.sw_l2_code, ds.trade_date", min_count: int = 2) -> str:
+    valid_count = f"count({value}) FILTER (WHERE {value} IS NOT NULL) OVER (PARTITION BY {partition})"
+    rank_sql = f"rank() OVER (PARTITION BY {partition} ORDER BY {value} ASC NULLS LAST)"
+    return (
+        f"CASE WHEN m.sw_l2_code IS NOT NULL AND {value} IS NOT NULL AND {valid_count} >= {min_count} "
+        f"THEN ({rank_sql} - 1)::DOUBLE / NULLIF({valid_count} - 1, 0) ELSE NULL END"
+    )
+
+
 def build_sql(start_date: str, end_date: str, columns: list[str]) -> str:
     select: dict[str, str] = {
         "ts_code": "ds.ts_code",
@@ -40,11 +58,11 @@ def build_sql(start_date: str, end_date: str, columns: list[str]) -> str:
         "has_sw_industry": "m.ts_code IS NOT NULL",
         "industry_member_days": "CASE WHEN m.in_date IS NOT NULL THEN date_diff('day', m.in_date, ds.trade_date)::INTEGER ELSE NULL END",
         "industry_member_is_current": "m.ts_code IS NOT NULL AND (m.out_date IS NULL OR ds.trade_date <= m.out_date)",
-        "stock_mv_rank_industry": "rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY v.total_mv DESC NULLS LAST)::INTEGER",
-        "stock_mv_pct_industry": "percent_rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY v.total_mv)",
-        "stock_pe_ttm_pct_industry": "percent_rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY CASE WHEN v.pe_ttm > 0 THEN v.pe_ttm END)",
-        "stock_pb_pct_industry": "percent_rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY CASE WHEN v.pb > 0 THEN v.pb END)",
-        "stock_ps_ttm_pct_industry": "percent_rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY CASE WHEN v.ps_ttm > 0 THEN v.ps_ttm END)",
+        "stock_mv_rank_industry": rank_desc_expr("v.total_mv"),
+        "stock_mv_pct_industry": pct_expr("v.total_mv"),
+        "stock_pe_ttm_pct_industry": pct_expr("CASE WHEN v.pe_ttm > 0 THEN v.pe_ttm END"),
+        "stock_pb_pct_industry": pct_expr("CASE WHEN v.pb > 0 THEN v.pb END"),
+        "stock_ps_ttm_pct_industry": pct_expr("CASE WHEN v.ps_ttm > 0 THEN v.ps_ttm END"),
         "concept_count": "coalesce(c.concept_count, 0)",
         "concept_ids_all": "c.concept_ids_all",
         "concept_names_all": "c.concept_names_all",
@@ -63,13 +81,13 @@ def build_sql(start_date: str, end_date: str, columns: list[str]) -> str:
             select[f"{level}_amount_ma_{n}"] = f"{alias}.industry_amount_ma_{n}"
             select[f"{level}_main_flow_sum_{n}"] = f"{alias}.industry_main_flow_sum_{n}"
     for n in RANK_PERIODS:
-        select[f"stock_ret_rank_industry_{n}"] = f"rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY r.ret_{n}_hfq DESC NULLS LAST)::INTEGER"
-        select[f"stock_ret_pct_industry_{n}"] = f"percent_rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY r.ret_{n}_hfq)"
+        select[f"stock_ret_rank_industry_{n}"] = rank_desc_expr(f"r.ret_{n}_hfq")
+        select[f"stock_ret_pct_industry_{n}"] = pct_expr(f"r.ret_{n}_hfq")
         amount_expr = "vl.amount_ma_20" if n == 20 else "vl.amount_ma_60"
-        select[f"stock_amount_rank_industry_{n}"] = f"rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY {amount_expr} DESC NULLS LAST)::INTEGER"
-        select[f"stock_turnover_rank_industry_{n}"] = "rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY b.turnover_rate DESC NULLS LAST)::INTEGER"
+        select[f"stock_amount_rank_industry_{n}"] = rank_desc_expr(amount_expr)
+        select[f"stock_turnover_rank_industry_{n}"] = rank_desc_expr("b.turnover_rate")
         flow_expr = "cf.main_flow_sum_20" if n == 20 else "cf.main_flow_sum_60"
-        select[f"stock_main_flow_rank_industry_{n}"] = f"rank() OVER (PARTITION BY m.sw_l2_code, ds.trade_date ORDER BY {flow_expr} DESC NULLS LAST)::INTEGER"
+        select[f"stock_main_flow_rank_industry_{n}"] = rank_desc_expr(flow_expr)
     concept_fields = [
         "concept_ids_top_20", "concept_names_top_20", "concept_lagging_ids_20", "concept_lagging_names_20",
         "concept_active_ids_20", "concept_active_names_20", "concept_narrow_leading_ids_20", "concept_narrow_leading_names_20",
@@ -193,11 +211,16 @@ def main() -> None:
     columns = table_fields("derived_sector_concept_context")
     if not args.no_delete:
         con.execute("DELETE FROM derived_sector_concept_context")
+    max_trade_date = con.execute("SELECT max(trade_date) FROM derived_daily_spine").fetchone()[0]
     years = range(args.start_year, 2027)
     summary = []
     for year in years:
         start = f"{year}-01-01"
-        end = "2026-05-26" if year == 2026 else f"{year}-12-31"
+        year_end = datetime(year, 12, 31).date()
+        end_date = min(year_end, max_trade_date) if max_trade_date else year_end
+        end = end_date.isoformat()
+        if end_date < datetime(year, 1, 1).date():
+            break
         con.execute(
             "DELETE FROM derived_sector_concept_context WHERE trade_date BETWEEN ? AND ?",
             [start, end],
@@ -209,7 +232,7 @@ def main() -> None:
         ).fetchone()[0]
         summary.append({"year": year, "rows": int(rows)})
         print(json.dumps(summary[-1], ensure_ascii=False))
-        if year == 2026:
+        if max_trade_date and end_date >= max_trade_date:
             break
     total = con.execute("SELECT count(*) FROM derived_sector_concept_context").fetchone()[0]
     payload = {"started_at": started_at, "finished_at": datetime.now().isoformat(timespec="seconds"), "rows": int(total), "batches": summary}

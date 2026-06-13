@@ -1,0 +1,296 @@
+{
+  "generated_at": "2026-06-13T09:56:38",
+  "as_of_date": "2026-06-12",
+  "latest_trade_date": "2026-06-12",
+  "reference_start_date": "2026-04-15",
+  "reference_end_date": "2026-06-12",
+  "requested_compare_start_date": "2026-06-01",
+  "requested_compare_end_date": "2026-06-12",
+  "compare_start_date": "2026-06-01",
+  "compare_end_date": "2026-06-12",
+  "snapshot_common_start_date": "2026-06-01",
+  "snapshot_common_end_date": "2026-06-12",
+  "reference_days": 40,
+  "compare_days": 10,
+  "snapshot_prefix": "audit_tmp_phase4_full_",
+  "dry_run": false,
+  "create_snapshot_from_current": false,
+  "auto_create_missing_snapshot": false,
+  "snapshot_counts": null,
+  "missing_snapshot_tables": [],
+  "compare_report": {
+    "generated_at": "2026-06-13T09:56:38",
+    "start_date": "2026-06-01",
+    "end_date": "2026-06-12",
+    "snapshot_prefix": "audit_tmp_phase4_full_",
+    "abs_tol": 1e-06,
+    "rel_tol": 1e-12,
+    "summary": {
+      "passed": true,
+      "table_count": 25,
+      "pass_table_count": 25,
+      "fail_table_count": 0,
+      "missing_or_extra_key_rows": 0,
+      "mismatch_column_count": 0,
+      "mismatch_cell_count": 0,
+      "fail_tables": []
+    },
+    "tables": [
+      {
+        "table": "derived_daily_spine",
+        "snapshot_table": "audit_tmp_phase4_full_derived_daily_spine",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 46,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_price_technical",
+        "snapshot_table": "audit_tmp_phase4_full_derived_price_technical",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 13,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_volume_liquidity",
+        "snapshot_table": "audit_tmp_phase4_full_derived_volume_liquidity",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 11,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_return_momentum",
+        "snapshot_table": "audit_tmp_phase4_full_derived_return_momentum",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 13,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_volatility_risk",
+        "snapshot_table": "audit_tmp_phase4_full_derived_volatility_risk",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 10,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_trading_constraint",
+        "snapshot_table": "audit_tmp_phase4_full_derived_trading_constraint",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 11,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_valuation_size",
+        "snapshot_table": "audit_tmp_phase4_full_derived_valuation_size",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 31,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_valuation_percentile_cache",
+        "snapshot_table": "audit_tmp_phase4_full_derived_valuation_percentile_cache",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 40,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_financial_asof",
+        "snapshot_table": "audit_tmp_phase4_full_derived_financial_asof",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 27,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_financial_quality",
+        "snapshot_table": "audit_tmp_phase4_full_derived_financial_quality",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 114,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_financial_growth",
+        "snapshot_table": "audit_tmp_phase4_full_derived_financial_growth",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 252,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_capital_flow",
+        "snapshot_table": "audit_tmp_phase4_full_derived_capital_flow",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 61,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_northbound_flow_cache",
+        "snapshot_table": "audit_tmp_phase4_full_derived_northbound_flow_cache",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 38,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_capital_flow_event_cache",
+        "snapshot_table": "audit_tmp_phase4_full_derived_capital_flow_event_cache",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 29,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_sector_daily_cache",
+        "snapshot_table": "audit_tmp_phase4_full_derived_sector_daily_cache",
+        "current_rows": 1620,
+        "snapshot_rows": 1620,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 93,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_concept_daily_cache",
+        "snapshot_table": "audit_tmp_phase4_full_derived_concept_daily_cache",
+        "current_rows": 8730,
+        "snapshot_rows": 8730,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 86,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_sector_concept_context",
+        "snapshot_table": "audit_tmp_phase4_full_derived_sector_concept_context",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 101,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_concept_stock_context_cache",
+        "snapshot_table": "audit_tmp_phase4_full_derived_concept_stock_context_cache",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 221,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_index_daily_cache",
+        "snapshot_table": "audit_tmp_phase4_full_derived_index_daily_cache",
+        "current_rows": 140,
+        "snapshot_rows": 140,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 26,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_index_membership_cache",
+        "snapshot_table": "audit_tmp_phase4_full_derived_index_membership_cache",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 16,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_index_market_context",
+        "snapshot_table": "audit_tmp_phase4_full_derived_index_market_context",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 102,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_cross_sectional",
+        "snapshot_table": "audit_tmp_phase4_full_derived_cross_sectional",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 350,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_corporate_action",
+        "snapshot_table": "audit_tmp_phase4_full_derived_corporate_action",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 101,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_ownership_governance",
+        "snapshot_table": "audit_tmp_phase4_full_derived_ownership_governance",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 60,
+        "mismatch_columns": {},
+        "status": "pass"
+      },
+      {
+        "table": "derived_composite_state",
+        "snapshot_table": "audit_tmp_phase4_full_derived_composite_state",
+        "current_rows": 55116,
+        "snapshot_rows": 55116,
+        "missing_or_extra_key_rows": 0,
+        "columns_compared": 89,
+        "mismatch_columns": {},
+        "status": "pass"
+      }
+    ]
+  },
+  "summary": {
+    "status": "pass",
+    "table_count": 25,
+    "blocked_reason": ""
+  }
+}

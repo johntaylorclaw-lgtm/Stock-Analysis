@@ -92,7 +92,7 @@ for n in FULL_PERIODS:
             f(f"concept_ret_pct_all_{n}", "DOUBLE", f"{n}日概念收益全概念分位 = percent_rank(concept_ret_{n})"),
             f(f"concept_amount_ma_{n}", "DOUBLE", f"{n}日概念成交额均值 = avg(sum(amount),{n})"),
             f(f"concept_amount_pct_all_{n}", "DOUBLE", f"{n}日概念成交额全概念分位 = percent_rank(concept_amount_ma_{n})"),
-            f(f"concept_up_ratio_{n}", "DOUBLE", f"{n}日概念上涨比例均值 = avg(up_ratio,{n})"),
+            f(f"concept_up_ratio_{n}", "DOUBLE", f"{n}日概念涨停占比均值 = avg(limit_up_count / concept_stock_count,{n})"),
             f(f"concept_limit_up_count_{n}", "INTEGER", f"{n}日概念涨停数量累计 = sum(limit_up_count,{n})"),
             f(f"concept_main_flow_sum_{n}", "DOUBLE", f"{n}日概念主力净流入累计 = sum(main_net_amount,{n})"),
             f(f"concept_hot_flag_{n}", "BOOLEAN", f"{n}日概念是否高热 = concept_ret_pct_all_{n} >= 0.8 OR concept_amount_pct_all_{n} >= 0.8"),
