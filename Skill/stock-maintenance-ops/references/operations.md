@@ -37,6 +37,19 @@ Run:
 
 Use `--refresh-weekly-snapshot` after a repair if the weekly reference snapshot should be rebuilt from the repaired current data.
 
+After execution, run:
+
+```bash
+.venv-wsl/bin/stock-maintain summarize-run --mode daily-full --run-id <daily_full_run_id>
+```
+
+Daily-full acceptance:
+
+- `daily-full` status is `pass` or has only source-side expected delay warnings.
+- target dates match the intended repair window.
+- base-full-reload, feature-build, create-views, and validate-daily-postcheck all completed.
+- if `--refresh-weekly-snapshot` was used, mention whether the snapshot was refreshed and whether weekly-full should be rerun for independent comparison.
+
 ## Weekly Operation
 
 1. Run `weekly-full --dry-run`.

@@ -709,7 +709,7 @@ def build_parser() -> argparse.ArgumentParser:
             child.add_argument("--skip-feature-schema-sync", action="store_true")
             child.add_argument("--output-prefix", default="refresh_dictionary")
         if name == "summarize-run":
-            child.add_argument("--mode", choices=["status", "daily", "weekly", "phase"], required=True)
+            child.add_argument("--mode", choices=["status", "daily", "daily-full", "weekly", "phase"], required=True)
             child.add_argument("--run-id")
             child.add_argument("--as-of-date")
             child.add_argument("--phase", default="phase5")

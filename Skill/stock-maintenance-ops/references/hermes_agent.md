@@ -24,7 +24,13 @@ Follow-up commands:
 .venv-wsl/bin/stock-maintain summarize-run --mode weekly --run-id <weekly_run_id>
 ```
 
-3. For current status:
+3. After daily-full:
+
+```bash
+.venv-wsl/bin/stock-maintain summarize-run --mode daily-full --run-id <daily_full_run_id>
+```
+
+4. For current status:
 
 ```bash
 .venv-wsl/bin/stock-maintain summarize-run --mode status --as-of-date <YYYY-MM-DD>

@@ -16,7 +16,7 @@
     "timezone": "Asia/Shanghai",
     "command": ".venv-wsl/bin/stock-maintain daily-full --as-of-date <YYYY-MM-DD> --reload-trade-days 1 --output-prefix <run_id>",
     "repair_command": ".venv-wsl/bin/stock-maintain daily-full --as-of-date <YYYY-MM-DD> --reload-trade-days <N> --refresh-weekly-snapshot --output-prefix <run_id>",
-    "follow_up_command": ".venv-wsl/bin/stock-maintain summarize-run --mode daily --run-id <run_id>",
+    "follow_up_command": ".venv-wsl/bin/stock-maintain summarize-run --mode daily-full --run-id <run_id>",
     "report_format": "markdown",
     "notes": "Daily-full force reloads the target trade-date window for daily source tables and rebuilds derived features. Use it when source data arrived late or daily-light skipped because no missing trade dates were detected."
   },

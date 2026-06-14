@@ -40,6 +40,54 @@ def test_summarize_daily_from_report(tmp_path, monkeypatch):
     assert "日报汇总" in result.markdown_path.read_text(encoding="utf-8")
 
 
+def test_summarize_daily_full_from_report(tmp_path, monkeypatch):
+    reports_dir = tmp_path / "reports"
+    reports_dir.mkdir()
+    source = reports_dir / "daily_full_test.json"
+    source.write_text(
+        json.dumps(
+            {
+                "as_of_date": "2026-06-12",
+                "dry_run": False,
+                "target_dates": ["2026-06-12"],
+                "postcheck": {"status": "pass", "markdown": "post.md"},
+                "steps": [
+                    {"name": "sync-master", "status": "done", "detail": {"stock_basic_info": 5851}},
+                    {
+                        "name": "base-full-reload",
+                        "status": "done",
+                        "detail": {"daily": {"stock_daily": 5512}, "index_daily": {"index_daily": 14}},
+                    },
+                    {
+                        "name": "feature-build",
+                        "status": "done",
+                        "detail": {
+                            "start_date": "2026-06-12",
+                            "end_date": "2026-06-12",
+                            "module_count": 17,
+                            "elapsed_seconds": 12.3,
+                        },
+                    },
+                    {"name": "create-views", "status": "done", "detail": "created analytical views"},
+                    {"name": "validate-daily-postcheck", "status": "pass", "detail": {"status": "pass"}},
+                ],
+                "summary": {"status": "pass", "target_trade_day_count": 1},
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(run_summary, "REPORTS_DIR", reports_dir)
+    monkeypatch.setattr(run_summary, "SUMMARY_DIR", reports_dir / "summaries")
+
+    result = run_summary.summarize_run(mode="daily-full", run_id="daily_full_test")
+
+    assert result.passed
+    text = result.markdown_path.read_text(encoding="utf-8")
+    assert "Daily-Full 汇总" in text
+    assert "强制重拉窗口" in text
+    assert "feature-build" in text
+
+
 def test_summarize_weekly_from_report(tmp_path, monkeypatch):
     reports_dir = tmp_path / "reports"
     reports_dir.mkdir()

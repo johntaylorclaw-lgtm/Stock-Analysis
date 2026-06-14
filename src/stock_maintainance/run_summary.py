@@ -187,6 +187,61 @@ def _render_daily(report: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def _render_daily_full(report: dict[str, Any]) -> str:
+    source = report["source_report"]
+    postcheck = source.get("postcheck") or {}
+    lines = [
+        "# Daily-Full 汇总",
+        "",
+        f"生成时间：{report['generated_at']}",
+        f"来源报告：`{report['source_report_path']}`",
+        f"截至日期：`{source.get('as_of_date')}`",
+        f"运行模式：`{'dry-run' if source.get('dry_run') else 'execute'}`",
+        f"结果：`{report['summary']['status']}`",
+        "",
+        "## 强制重拉窗口",
+        "",
+        f"- 重拉交易日数：`{len(source.get('target_dates') or [])}`",
+        f"- 重拉交易日：{', '.join(source.get('target_dates') or []) or '无'}",
+        "",
+        "## 步骤状态",
+        "",
+        "| 步骤 | 状态 | 说明 |",
+        "|---|---|---|",
+    ]
+    for step in source.get("steps", []):
+        detail = step.get("detail")
+        if isinstance(detail, dict):
+            if step.get("name") == "base-full-reload":
+                detail_text = ", ".join(f"{key}: {value}" for key, value in detail.items())
+            elif step.get("name") == "feature-build":
+                detail_text = (
+                    f"{detail.get('start_date', '')} 至 {detail.get('end_date', '')}; "
+                    f"模块数={detail.get('module_count', '')}; 用时={detail.get('elapsed_seconds', '')}秒"
+                )
+            elif step.get("name") == "refresh-weekly-snapshot":
+                detail_text = f"weekly snapshot 状态={detail.get('status', '')}; 报告={detail.get('markdown', '')}"
+            else:
+                detail_text = json.dumps(detail, ensure_ascii=False)
+        else:
+            detail_text = str(detail or "")
+        lines.append(f"| `{step.get('name')}` | {step.get('status', '')} | {detail_text} |")
+    lines.extend(
+        [
+            "",
+            "## 后验收",
+            "",
+            f"- postcheck 状态：`{postcheck.get('status', 'n/a')}`",
+            f"- postcheck 报告：`{postcheck.get('markdown', '')}`",
+            "",
+        ]
+    )
+    blocked_reason = source.get("summary", {}).get("blocked_reason")
+    if blocked_reason:
+        lines.extend(["## 阻塞原因", "", str(blocked_reason), ""])
+    return "\n".join(lines)
+
+
 def _render_weekly(report: dict[str, Any]) -> str:
     source = report["source_report"]
     compare = source.get("compare_report") or {}
@@ -281,6 +336,18 @@ def summarize_run(
         }
         name = output_prefix or f"daily_summary_{path.stem}"
         content = _render_daily(report)
+    elif mode == "daily-full":
+        path = _resolve_report(run_id, default_prefix="daily_full_")
+        source = _read_json(path)
+        status = source.get("summary", {}).get("status", "warning")
+        report = {
+            "generated_at": generated_at,
+            "source_report_path": str(path),
+            "source_report": source,
+            "summary": {"status": status},
+        }
+        name = output_prefix or f"daily_full_summary_{path.stem}"
+        content = _render_daily_full(report)
     elif mode == "weekly":
         path = _resolve_report(run_id, default_prefix="phase5_weekly_full_compare_")
         source = _read_json(path)

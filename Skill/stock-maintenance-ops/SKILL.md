@@ -1,6 +1,6 @@
 ---
 name: stock-maintenance-ops
-description: Use this skill in the Stock_Maintainance project for Hermes Agent operations: daily-light follow-up checks, weekly-full follow-up checks, status summaries, dictionary refreshes, sample review, and maintenance handoff reports.
+description: Use this skill in the Stock_Maintainance project for Hermes Agent operations: daily-light follow-up checks, daily-full repair summaries, weekly-full follow-up checks, status summaries, dictionary refreshes, sample review, and maintenance handoff reports.
 ---
 
 # Stock Maintenance Ops
@@ -37,7 +37,13 @@ Default follow-up rules:
 .venv-wsl/bin/stock-maintain summarize-run --mode weekly --run-id <weekly_run_id>
 ```
 
-3. For current status, run:
+3. After `daily-full`, run:
+
+```bash
+.venv-wsl/bin/stock-maintain summarize-run --mode daily-full --run-id <daily_full_run_id>
+```
+
+4. For current status, run:
 
 ```bash
 .venv-wsl/bin/stock-maintain summarize-run --mode status --as-of-date <YYYY-MM-DD>
@@ -51,6 +57,8 @@ Default follow-up rules:
 | Daily preflight | `daily-light --dry-run` |
 | Daily execution | `daily-light` at 20:00 local time |
 | Daily report | `summarize-run --mode daily --run-id <run_id>` |
+| Daily forced reload | `daily-full` |
+| Daily forced reload report | `summarize-run --mode daily-full --run-id <run_id>` |
 | Weekly validation | `weekly-full` |
 | Weekly report | `summarize-run --mode weekly --run-id <run_id>` |
 | Refresh dictionary | `refresh-dictionary` |

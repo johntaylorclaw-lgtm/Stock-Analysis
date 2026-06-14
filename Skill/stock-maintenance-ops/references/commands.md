@@ -74,6 +74,7 @@ Use `--dry-run` for preflight.
 ```bash
 .venv-wsl/bin/stock-maintain summarize-run --mode status --as-of-date <YYYY-MM-DD>
 .venv-wsl/bin/stock-maintain summarize-run --mode daily --run-id <daily_run_id>
+.venv-wsl/bin/stock-maintain summarize-run --mode daily-full --run-id <daily_full_run_id>
 .venv-wsl/bin/stock-maintain summarize-run --mode weekly --run-id <weekly_run_id>
 .venv-wsl/bin/stock-maintain summarize-run --mode phase --phase phase5
 ```

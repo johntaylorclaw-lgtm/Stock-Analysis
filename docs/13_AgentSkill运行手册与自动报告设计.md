@@ -90,6 +90,7 @@ cd "/mnt/d/Opencode Workspace/Stock_Maintainance"
 | 刷新字典 | `stock-maintain refresh-dictionary` |
 | 抽样单股 | `stock-maintain sample-stock` |
 | 汇总日报 | `stock-maintain summarize-run --mode daily` |
+| 汇总强制日频重拉 | `stock-maintain summarize-run --mode daily-full` |
 | 汇总周报 | `stock-maintain summarize-run --mode weekly` |
 
 4. 安全边界：
@@ -222,6 +223,7 @@ cd "/mnt/d/Opencode Workspace/Stock_Maintainance"
 |---|---|---|
 | `status` | 当前库状态快照 | `reports/summaries/status_summary_<date>.md` |
 | `daily` | 汇总最近一次或指定 run_id 的日批 | `reports/summaries/daily_summary_<run_id>.md` |
+| `daily-full` | 汇总最近一次或指定 run_id 的强制日频重拉 | `reports/summaries/daily_full_summary_<run_id>.md` |
 | `weekly` | 汇总最近一次或指定 run_id 的周检 | `reports/summaries/weekly_summary_<run_id>.md` |
 | `phase` | 汇总阶段验收状态 | `reports/summaries/phase_summary_<phase>.md` |
 
@@ -261,7 +263,26 @@ cd "/mnt/d/Opencode Workspace/Stock_Maintainance"
 | postcheck 状态 | daily-light postcheck |
 | 总状态 | daily-light summary |
 
-### 4.4 weekly 报告字段
+### 4.4 daily-full 报告字段
+
+建议字段：
+
+| 字段 | 来源 |
+|---|---|
+| run_id | 参数或文件名 |
+| as_of_date | `daily-full` report |
+| dry_run/execute | `daily-full` report |
+| target_dates | `daily-full.target_dates` |
+| target_trade_day_count | `daily-full.summary` |
+| sync-master 结果 | daily-full steps |
+| base-full-reload 结果 | daily-full steps |
+| feature-build 模块数 | daily-full steps |
+| create-views 状态 | daily-full steps |
+| refresh-weekly-snapshot 状态 | daily-full steps |
+| postcheck 状态 | daily-full postcheck |
+| 总状态 | daily-full summary |
+
+### 4.5 weekly 报告字段
 
 建议字段：
 
@@ -277,7 +298,7 @@ cd "/mnt/d/Opencode Workspace/Stock_Maintainance"
 | mismatch columns/cells | compare report |
 | fail tables | compare report |
 
-### 4.5 输出路径
+### 4.6 输出路径
 
 建议路径：
 
@@ -355,6 +376,7 @@ Skill 内容保持短，只记录工作目录、CLI 入口、运行边界和 Her
 |---|---|
 | `summarize-run --mode status` | 生成 status summary，包含当前股票数、日期、锚点和出口列数 |
 | `summarize-run --mode daily` | 能读取 `daily-light` 报告并生成日报 |
+| `summarize-run --mode daily-full` | 能读取 `daily-full` 报告并生成强制重拉汇总 |
 | `summarize-run --mode weekly` | 能读取 `weekly-full` 和 compare 报告并生成周报 |
 | 运行手册 | 编号文档存在，命令和报告路径可执行 |
 | Agent Skill | Skill 简洁、触发描述明确、引用稳定 CLI |
